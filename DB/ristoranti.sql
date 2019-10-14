@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 14, 2019 alle 15:41
+-- Creato il: Ott 14, 2019 alle 22:00
 -- Versione del server: 10.1.37-MariaDB
--- Versione PHP: 7.2.12
+-- Versione PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,7 +78,8 @@ CREATE TABLE `recensione` (
   `Stelle` enum('1','2','3','4','5') NOT NULL,
   `Oggetto` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `Descrizione` text CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `ID_Utente` int(11) NOT NULL
+  `ID_Utente` int(11) NOT NULL,
+  `ID_Ristorante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -162,7 +163,8 @@ ALTER TABLE `like`
 --
 ALTER TABLE `recensione`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID_Utente` (`ID_Utente`);
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ID_Ristorante` (`ID_Ristorante`);
 
 --
 -- Indici per le tabelle `ristorante`
@@ -229,7 +231,8 @@ ALTER TABLE `like`
 -- Limiti per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  ADD CONSTRAINT `recensione_ibfk_1` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `recensione_ibfk_1` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `recensione_ibfk_2` FOREIGN KEY (`ID_Ristorante`) REFERENCES `ristorante` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `ristorante`
