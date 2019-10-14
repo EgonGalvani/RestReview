@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 14, 2019 alle 11:19
+-- Creato il: Ott 14, 2019 alle 15:41
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `Nome` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Descrizione` text NOT NULL
+  `Descrizione` text CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -120,10 +120,11 @@ CREATE TABLE `utente` (
   `Cognome` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `Data_Nascita` date NOT NULL,
   `ID_Foto` int(11) DEFAULT NULL,
-  `Ragione_Sociale` varchar(64) DEFAULT NULL,
+  `Ragione_Sociale` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin DEFAULT NULL,
   `P_IVA` int(11) DEFAULT NULL,
   `Permessi` enum('Utente','Ristoratore','Admin') CHARACTER SET utf16 COLLATE utf16_bin DEFAULT NULL,
-  `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto') CHARACTER SET utf16 COLLATE utf16_bin DEFAULT 'Sconosciuto'
+  `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto') CHARACTER SET utf16 COLLATE utf16_bin DEFAULT 'Sconosciuto',
+  `Nome_Utente` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -140,7 +141,8 @@ ALTER TABLE `categoria`
 -- Indici per le tabelle `corrispondenza`
 --
 ALTER TABLE `corrispondenza`
-  ADD PRIMARY KEY (`ID_Foto`,`ID_Ristorante`);
+  ADD PRIMARY KEY (`ID_Foto`,`ID_Ristorante`),
+  ADD KEY `ID_Ristorante` (`ID_Ristorante`);
 
 --
 -- Indici per le tabelle `foto`
@@ -152,25 +154,30 @@ ALTER TABLE `foto`
 -- Indici per le tabelle `like`
 --
 ALTER TABLE `like`
-  ADD PRIMARY KEY (`ID_Utente`,`ID_Recensione`);
+  ADD PRIMARY KEY (`ID_Utente`,`ID_Recensione`),
+  ADD KEY `like_ibfk_1` (`ID_Recensione`);
 
 --
 -- Indici per le tabelle `recensione`
 --
 ALTER TABLE `recensione`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Utente` (`ID_Utente`);
 
 --
 -- Indici per le tabelle `ristorante`
 --
 ALTER TABLE `ristorante`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Proprietario` (`ID_Proprietario`),
+  ADD KEY `Categoria` (`Categoria`);
 
 --
 -- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Foto` (`ID_Foto`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -199,6 +206,43 @@ ALTER TABLE `ristorante`
 --
 ALTER TABLE `utente`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `corrispondenza`
+--
+ALTER TABLE `corrispondenza`
+  ADD CONSTRAINT `corrispondenza_ibfk_1` FOREIGN KEY (`ID_Foto`) REFERENCES `foto` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `corrispondenza_ibfk_2` FOREIGN KEY (`ID_Ristorante`) REFERENCES `ristorante` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `like`
+--
+ALTER TABLE `like`
+  ADD CONSTRAINT `like_ibfk_1` FOREIGN KEY (`ID_Recensione`) REFERENCES `recensione` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `like_ibfk_2` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `recensione`
+--
+ALTER TABLE `recensione`
+  ADD CONSTRAINT `recensione_ibfk_1` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `ristorante`
+--
+ALTER TABLE `ristorante`
+  ADD CONSTRAINT `ristorante_ibfk_1` FOREIGN KEY (`ID_Proprietario`) REFERENCES `utente` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ristorante_ibfk_2` FOREIGN KEY (`Categoria`) REFERENCES `categoria` (`Nome`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `utente`
+--
+ALTER TABLE `utente`
+  ADD CONSTRAINT `utente_ibfk_1` FOREIGN KEY (`ID_Foto`) REFERENCES `foto` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
