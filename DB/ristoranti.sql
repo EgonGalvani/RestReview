@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 13, 2019 alle 11:28
+-- Creato il: Ott 14, 2019 alle 11:19
 -- Versione del server: 10.1.37-MariaDB
--- Versione PHP: 7.3.1
+-- Versione PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -102,7 +102,8 @@ CREATE TABLE `ristorante` (
   `Citta` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `CAP` varchar(5) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `Via` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Civico` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
+  `Civico` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `Approvato` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -112,7 +113,7 @@ CREATE TABLE `ristorante` (
 --
 
 CREATE TABLE `utente` (
-  `ID` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `ID` int(11) NOT NULL,
   `PWD` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `Mail` varchar(128) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
   `Nome` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
@@ -191,6 +192,12 @@ ALTER TABLE `recensione`
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `utente`
+--
+ALTER TABLE `utente`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
