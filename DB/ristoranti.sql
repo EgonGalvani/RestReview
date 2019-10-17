@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 14, 2019 alle 22:00
+-- Creato il: Ott 17, 2019 alle 14:49
 -- Versione del server: 10.1.37-MariaDB
--- Versione PHP: 7.3.1
+-- Versione PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,8 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoria` (
-  `Nome` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Descrizione` text CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
+  `Nome` varchar(32)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -76,8 +75,8 @@ CREATE TABLE `recensione` (
   `ID` int(11) NOT NULL,
   `Data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Stelle` enum('1','2','3','4','5') NOT NULL,
-  `Oggetto` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Descrizione` text CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `Oggetto` varchar(64)  NOT NULL,
+  `Descrizione` text  NOT NULL,
   `ID_Utente` int(11) NOT NULL,
   `ID_Ristorante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,20 +90,21 @@ CREATE TABLE `recensione` (
 CREATE TABLE `ristorante` (
   `ID` int(11) NOT NULL,
   `ID_Proprietario` int(11) NOT NULL,
-  `Nome` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Categoria` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Descrizione` text CHARACTER SET utf16 COLLATE utf16_bin,
+  `Nome` varchar(64)  NOT NULL,
+  `Categoria` varchar(32)  NOT NULL,
+  `Descrizione` text ,
   `Tel` varchar(13) NOT NULL,
-  `Mail` varchar(128) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Giorno_Chiusura` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `Mail` varchar(128)  NOT NULL,
+  `Giorno_Chiusura` varchar(16)  NOT NULL,
   `Ora_Apertura` time NOT NULL,
   `Ora_Chiusura` time NOT NULL,
-  `Nazione` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Citta` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `CAP` varchar(5) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Via` varchar(32) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Civico` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Approvato` tinyint(1) NOT NULL DEFAULT '0'
+  `Nazione` varchar(32)  NOT NULL,
+  `Citta` varchar(32)  NOT NULL,
+  `CAP` varchar(5)  NOT NULL,
+  `Via` varchar(32)  NOT NULL,
+  `Civico` varchar(16)  NOT NULL,
+  `Approvato` tinyint(1) NOT NULL DEFAULT '0',
+  `sito` varchar(2048)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -115,17 +115,16 @@ CREATE TABLE `ristorante` (
 
 CREATE TABLE `utente` (
   `ID` int(11) NOT NULL,
-  `PWD` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Mail` varchar(128) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Nome` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
-  `Cognome` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `PWD` varchar(64)  NOT NULL,
+  `Mail` varchar(128)  NOT NULL,
+  `Nome` varchar(64)  NOT NULL,
+  `Cognome` varchar(64)  NOT NULL,
   `Data_Nascita` date NOT NULL,
   `ID_Foto` int(11) DEFAULT NULL,
-  `Ragione_Sociale` varchar(64) CHARACTER SET utf16 COLLATE utf16_bin DEFAULT NULL,
+  `Ragione_Sociale` varchar(64)  DEFAULT NULL,
   `P_IVA` int(11) DEFAULT NULL,
-  `Permessi` enum('Utente','Ristoratore','Admin') CHARACTER SET utf16 COLLATE utf16_bin DEFAULT NULL,
-  `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto') CHARACTER SET utf16 COLLATE utf16_bin DEFAULT 'Sconosciuto',
-  `Nome_Utente` varchar(16) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
+  `Permessi` enum('Utente','Ristoratore','Admin')  DEFAULT NULL,
+  `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto')  DEFAULT 'Sconosciuto'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
