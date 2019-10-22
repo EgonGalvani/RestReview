@@ -16,6 +16,8 @@ Un **utente generico** può:
 - Visualizzare la pagina "FAQ"
 - Visualizzare la pagina "CHI SIAMO"
 - Visualizzare la pagina "REGOLAMENTO"
+- Visualizzare gli utlimi ristoranti inseriti 
+- Visualizzare le ultime recensioni lascite all'interno del sito 
 - Eseguire il login 
 - Eseguire la procedura di registrazione 
 
