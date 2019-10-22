@@ -1,7 +1,7 @@
 # Casi d'uso
 
 ## Tipologie di utenti 
-Il sito è stato realizzato per prevedere la distinzione di 4 tipologie di utenti:
+Il sito è realizzato per prevedere la distinzione di 4 tipologie di utenti:
 - Utente generico (non loggato) 
 - Utente recensore 
 - Utente ristoratore 
