@@ -1,0 +1,153 @@
+* {
+    padding: 0; 
+    margin: 0; 
+}
+
+html, body {
+    max-width: 1024px;
+    margin: 0 auto;     
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.8em;
+
+    background-color: #eee;
+}
+
+#header {
+    padding: 1.5em 1em; 
+    text-align: center;
+    margin-top: 1em; 
+    border: 1px solid #ddd; 
+    background-color: #fff; 
+}
+
+#header .a_btn {
+    float: right; 
+    margin-right: 0.5em; 
+}
+
+.a_btn {
+    padding: 1em; 
+    color: #000; 
+    text-decoration: none; 
+    background-color: #ddd; 
+    border-radius: 1px; 
+
+    margin-top: 1em; 
+}
+
+.a_btn:hover {
+    background-color: #ccc; 
+}
+
+#header #title {
+    font-size: 4em; 
+    display: inline;
+}
+
+#breadcrumb {
+    padding: 0.5em; 
+    font-size: 1.1em; 
+    border: 1px solid #ddd; 
+    border-top: none; 
+    margin-top: 0.5em; 
+    background-color: #fff; 
+}
+
+#menu {
+    float: left; 
+    width: 18%; 
+    margin-top: 0.5em; 
+    background-color: #fff;
+    border: 1px solid #ddd;  
+    border-bottom: none; 
+}
+
+#menu ul {
+    list-style-type: none;
+}
+
+#menu ul li {
+    border-bottom: 1px solid #ddd; 
+    text-align: center; 
+    font-size: 1.15em;
+}
+
+#menu ul li:hover{
+    background-color: #ddd;
+}
+
+/* il padding non è inserito nel li, 
+    ma nel tag a poichè in questo modo 
+    l'utente può accedere al link cliccando 
+    un qualunque punto del li */
+#menu ul li a {
+    text-decoration: none;
+    display: inline-block;  
+    width: 100%; 
+    padding: 1em 0; 
+    color: #000; 
+}
+
+/* viene aggiunto il padding all'elemento 
+attivo, poichè questo non è un link */
+.active {
+    padding: 1em 0; 
+    background-color: #ddd; 
+}
+
+#content {
+    min-height: 50em; 
+    margin: 0.5em 0 0.5em 19%; 
+    border: 1px solid #ddd; 
+    background-color: #fff; 
+    padding: 2em;   
+}
+
+#footer {
+    padding: 1em; 
+    text-align: center;  
+    border: 1px solid #ddd; 
+    background-color: #fff; 
+}
+
+#page_title {
+    font-size: 2.5em; 
+}
+
+
+/* --- PAGINA FAQ --- */
+.faq_title {
+    text-align: center; 
+    font-size: 2em; 
+    padding-top: 1em;  
+}
+
+.faq_list {
+    padding: 1em; 
+}
+
+.faq_list dt {
+    font-size: 1.5em;   
+    background-image: url(../img/play-button.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 1em 1em;
+    padding: 0.5em 0.5em 0.5em 1.5em;
+    cursor: pointer;
+    border-top: 1px solid #ddd; 
+}
+
+.faq_list dt:first-of-type {
+    border-top: none;   
+}
+
+.faq_list dt:hover {
+    background-color: #eee; 
+}
+
+.faq_list dd {
+    font-size: 1.3em; 
+    margin-bottom: 0.5em; 
+    padding-bottom: 0.2em; 
+    padding-left: 1.5em;
+}
