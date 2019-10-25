@@ -37,11 +37,15 @@
         </div>
 
         <div id="content">
-           
             <h1 id="page_title">FAQ</h1>
 
-            <h2 class="faq_title">Recensori</h2>
-            <dl class="faq_list">
+            <div class="faq_header">
+                <h2 class="faq_title">Recensori</h2>
+                <a class="faq_feature faq_open" href="#" data-target="rev_faq_list">APRI TUTTE</a>
+                <a class="faq_feature faq_close" href="#" data-target="rev_faq_list">CHIUDI TUTTE</a>
+            </div>
+
+            <dl id="rev_faq_list" class="faq_list">
                 <dt>
                     Posso modificare le recensioni che ho lasciato? 
                 </dt>
@@ -82,23 +86,28 @@
                     anche in grado di eliminarlo. 
                 </dd>
             </dl>
+        
+            <div class="faq_header">
+                <h2 class="faq_title">Ristoratori</h2>
+                <a class="faq_feature faq_open" href="#" data-target="rist_faq_list">APRI TUTTE</a>
+                <a class="faq_feature faq_close" href="#" data-target="rist_faq_list">CHIUDI TUTTE</a>
+            </div>
 
-            <h2 class="faq_title">Ristoratori</h2>
-            <dl class="faq_list">
+            <dl id="rist_faq_list" class="faq_list">
                 <dt>
                     Entro quando viene esaminata la richiesta di inserimento di un ristorante?
                 </dt>
                 <dd>
-                   Indicativamente le richieste necessitano di massimo una settimana per essere 
-                   esaminate da un amministratore. 
+                    Indicativamente le richieste necessitano di massimo una settimana per essere 
+                    esaminate da un amministratore. 
                 </dd>
-            </dl>
-
-           
+            </dl>           
         </div>
     
         <div id="footer">
             ##FOOTER##
         </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
     </body>
 </html>
