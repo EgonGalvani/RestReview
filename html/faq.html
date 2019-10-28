@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE HTML5>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -40,21 +40,22 @@
             <h1 id="page_title">FAQ</h1>
 
             <div class="faq_header">
-                <h2 class="faq_title">Recensori</h2>
-                <a class="faq_feature faq_open" href="#" data-target="rev_faq_list">APRI TUTTE</a>
-                <a class="faq_feature faq_close" href="#" data-target="rev_faq_list">CHIUDI TUTTE</a>
+                <h2 class="faq_title" tabindex="1">Recensori</h2>  
+                <a class="faq_control_close" tabindex="2" href="#" data-target="rev_faq_list">CHIUDI TUTTE</a>
+                <a class="faq_control_open" tabindex="3" href="#" data-target="rev_faq_list">APRI TUTTE</a>
+              
             </div>
 
             <dl id="rev_faq_list" class="faq_list">
-                <dt>
+                <dt tabindex="4">
                     Posso modificare le recensioni che ho lasciato? 
                 </dt>
-                <dd>
+                <dd tabindex="5">
                     No, non si possono modificare le recensioni già lasciate. 
                     Puoi eliminarle e crearne di nuove. 
                 </dd>
 
-                <dt>
+                <dt tabindex="6">
                     Perchè la mia recensione è stata cancellata? 
                 </dt>
                 <dd>
@@ -85,13 +86,19 @@
                     Si, accedendo alla pagina relativa al tuo profilo, sarai 
                     anche in grado di eliminarlo. 
                 </dd>
+
+                <dt>Cosa succede alle mie recensioni se decido di cancellare l'account? </dt>
+                <dd>
+                    Le recensioni vengono mantenute all'interno del nostro sito, solamente non 
+                    verrà indicato il nome dell'account che le ha scritte, in quanto cancellato. 
+                </dd>
             </dl>
         
             <div class="faq_header">
-                <h2 class="faq_title">Ristoratori</h2>
-                <a class="faq_feature faq_open" href="#" data-target="rist_faq_list">APRI TUTTE</a>
-                <a class="faq_feature faq_close" href="#" data-target="rist_faq_list">CHIUDI TUTTE</a>
-            </div>
+                <h2 class="faq_title" >Ristoratori</h2>
+                <a class="faq_control_close" href="#" data-target="rist_faq_list">CHIUDI TUTTE</a>
+                <a class="faq_control_open" href="#" data-target="rist_faq_list">APRI TUTTE</a>
+           </div>
 
             <dl id="rist_faq_list" class="faq_list">
                 <dt>
@@ -100,6 +107,30 @@
                 <dd>
                     Indicativamente le richieste necessitano di massimo una settimana per essere 
                     esaminate da un amministratore. 
+                </dd>
+
+                <dt>
+                    C'è un numero massimo di ristoranti inseribili? 
+                </dt>
+                <dd>
+                    Attualmente no; ogni ristoratore può richiedere di inserire tutti i ristoranti di 
+                    sua proprietà, senza limitazione di numero. Ovviamente ogni ristorante prima di essere 
+                    inserito dovrà superare un processo di verifica da parte di un amministratore. 
+                </dd>
+
+                <dt>
+                    Posso eliminare recensioni lasciate a un mio ristorante? 
+                </dt>
+                <dd>
+                    No, le recensioni possono essere eliminate unicamente dagli amministratori nel caso 
+                    in cui non rispettano le norme indicate nel regolamento del sito. 
+                </dd>
+
+                <dt>
+                    Cosa succede alle pagine relative ai miei ristoranti se cancello l'account?
+                </dt>
+                <dd>
+                    Anche le pagine dei tuoi ristoranti verranno eliminate, insieme alle relative r
                 </dd>
             </dl>           
         </div>

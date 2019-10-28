@@ -108,6 +108,7 @@ attivo, poichè questo non è un link */
     text-align: center;  
     border: 1px solid #ddd; 
     background-color: #fff; 
+    margin-bottom: 2em; 
 }
 
 #page_title {
@@ -129,7 +130,7 @@ attivo, poichè questo non è un link */
     display: inline-block;  
 }
 
-.faq_feature {
+.faq_control_open, .faq_control_close {
     float: right; 
     margin-right: 1em;
     margin-top: 1em; 
@@ -141,7 +142,7 @@ attivo, poichè questo non è un link */
 
 .faq_list dt {
     font-size: 1.35em;   
-    background-image: url(../img/right_arrow.svg);
+    background-image: url(../img/bottom_arrow.svg);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 1em 1em;
@@ -165,4 +166,8 @@ attivo, poichè questo non è un link */
     background-color: #eee; 
     border-radius: 0.75em;  
     margin-bottom: 0.5em;   
+}
+
+.faq_list .faq_closed {
+    background-image: url(../img/right_arrow.svg);
 }
