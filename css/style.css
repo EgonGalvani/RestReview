@@ -152,9 +152,23 @@ attivo, poichè questo non è un link */
     padding-left: 1.5em;
 }
 
-input, select, label{
+fieldset {
+    margin-left: 20%;
+    margin-right:20%;
+    width: 60%;
+    text-align: center;
+}
+input, select{
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+} 
+
+label{
+    float: left;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     margin-left: 1em;
+    padding-right: 1em;
+    
 }
