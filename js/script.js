@@ -21,7 +21,8 @@ function removeClass(element, className) {
 
 function getTargetDetails(control) {
     if(control) {
-        var target = document.getElementById(control.getAttribute("data-target")); 
+        var targetId = control.getAttribute("href").substr(1); // rimuovo il # 
+        var target = document.getElementById(targetId); 
         return {
             dts: target.getElementsByTagName("dt"),
             dds: target.getElementsByTagName("dd")
@@ -65,8 +66,15 @@ for(var i = 0; i < dts.length; i++) {
     addClass(dts[i].nextElementSibling, "hide"); 
     addClass(dts[i], "faq_closed"); 
 
-    // setto i listener per l'evento click 
+    // setto i listener per l'evento click del mouse 
+    // e enter button 
     dts[i].addEventListener("click", faqClickListener); 
+    dts[i].addEventListener("keyup", function(e) {
+        if(e.keyCode === 13) { // ENTER KEY_CODE
+            e.preventDefault(); 
+            faqClickListener(e); 
+        }
+    }); 
 }
 
 // controlli di chiusura 
