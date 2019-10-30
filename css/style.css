@@ -108,18 +108,32 @@ attivo, poichè questo non è un link */
     text-align: center;  
     border: 1px solid #ddd; 
     background-color: #fff; 
+    margin-bottom: 2em; 
 }
 
 #page_title {
     font-size: 2.5em; 
 }
 
+.hide {
+    display: none; 
+ } 
 
-/* --- PAGINA FAQ --- */
-.faq_title {
+/* ------------- PAGINA FAQ ---------- */
+.faq_header {
     text-align: center; 
+    margin-top: 1.5em; 
+}
+
+.faq_title {
     font-size: 2em; 
-    padding-top: 1em;  
+    display: inline-block;  
+}
+
+.faq_control_open, .faq_control_close {
+    float: right; 
+    margin-right: 1em;
+    margin-top: 1em; 
 }
 
 .faq_list {
@@ -127,12 +141,12 @@ attivo, poichè questo non è un link */
 }
 
 .faq_list dt {
-    font-size: 1.5em;   
-    background-image: url(../img/play-button.svg);
+    font-size: 1.35em;   
+    background-image: url(../img/bottom_arrow.svg);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 1em 1em;
-    padding: 0.5em 0.5em 0.5em 1.5em;
+    padding: 0.5em 0.3em 0.5em 1.5em;
     cursor: pointer;
     border-top: 1px solid #ddd; 
 }
@@ -146,10 +160,16 @@ attivo, poichè questo non è un link */
 }
 
 .faq_list dd {
-    font-size: 1.3em; 
-    margin-bottom: 0.5em; 
-    padding-bottom: 0.2em; 
-    padding-left: 1.5em;
+    font-size: 1.15em; 
+    margin-left: 1.5em; 
+    padding: 0.75em; 
+    background-color: #eee; 
+    border-radius: 0.75em;  
+    margin-bottom: 0.5em;   
+}
+
+.faq_list .faq_closed {
+    background-image: url(../img/right_arrow.svg);
 }
 
 fieldset {
