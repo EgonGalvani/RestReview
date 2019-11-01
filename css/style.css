@@ -162,15 +162,16 @@ attivo, poichè questo non è un link */
 #form_fieldset legend{
     padding-top: 1em;
     padding-bottom: 1em;
-    font-size: 1.25em;
+    font-size: 1.35em;
     font-weight: bolder;
 }
 .form_element{
     display: block;
-    /*margin: auto;*/
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-
+    border-radius: 1em;
+    border-color: antiquewhite;
+    padding: 0.5em;
 } 
 
 .form_label{
@@ -179,7 +180,7 @@ attivo, poichè questo non è un link */
     padding-bottom: 0.5em;
     margin-left: 1em;
     padding-right: 1em;
-    
+    font-size: 1.2em;
 }
 
 .form_element img{
@@ -195,4 +196,8 @@ attivo, poichè questo non è un link */
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+.hidden{
+    display: none;
 }

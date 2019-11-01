@@ -9,7 +9,7 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
-        
+        <script type="text/javascript" src="../js/script.js"></script>
         <link rel="stylesheet" class="form_element" class="form_element" type="text/css" href="../css/style.css" /> 
     </head>
 
@@ -42,7 +42,7 @@
                 (https://www.w3schools.com/tags/att_form_encclass="form_element" class="form_element" type.asp)-->
                 <fieldset class="centered" id="form_fieldset">
                     <label class="form_label "for="tipo_utente">Come vuoi registrarti?:</label>
-                    <select class="form_element centered" name="tipo_utente" id=>
+                    <select class="form_element centered" id="sel_regid" name="tipo_utente" onchange="sel_reg()">
                         <option value="recensore">Recensore</option>
                         <option value="ristoratore">Ristoratore</option>
                     </select>
@@ -73,9 +73,9 @@
                     <input class="form_element" class="form_element" type="password" name="password" id="password" required="required" tabindex="7" />
                     <label class="form_label" for="repeatpassword">Ripeti password</label>
                     <input class="form_element" class="form_element" type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8" />
-                    <label class="form_label" for="p_iva">Partita IVA</label>
-                    <input class="form_element" class="form_element" type="text" name="p_iva" id="p_iva" tabindex="9" />
-                    <input class="form_element centered" class="form_element" type="submit" value="Registrati"/>
+                    <label class="form_label hidden" id="piva_l" for="p_iva">Partita IVA</label>
+                    <input class="form_element hidden" id="piva" class="form_element" type="text" name="p_iva" id="p_iva" tabindex="9" />
+                    <input class="form_element centered " class="form_element" type="submit" value="Registrati"/>
                 </fieldset>
             </form>
         </div>

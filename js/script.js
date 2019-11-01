@@ -1,6 +1,21 @@
 
 // CODICE PER FAQ 
 
+//Codice registrazione
+
+function sel_reg(){
+        var x = document.getElementById("sel_regid").value;
+        if(x=="recensore"){
+            document.getElementById("piva_l").classList.add('hidden');
+            document.getElementById("piva").classList.add('hidden');
+        }
+        else{
+            document.getElementById("piva_l").classList.remove('hidden');
+            document.getElementById("piva").classList.remove('hidden');
+        }
+        
+}
+
 // util functions 
 
 function hasClass(element, className) {
