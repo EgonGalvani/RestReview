@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>RestReview - Le migliori recensioni di ristoranti</title>
+        <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+            <h1 id="title">RestReview</h1>
+
+            <a href="login.html" class="a_btn">LOGIN</a>
+            <a href="registrazione.html" class="a_btn">REGISTRAZIONE</a>
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: ##PATH## 
+        </div>
+
+        <div id="menu">
+            <ul>
+                <li class="active">Home</li>
+                <li><a href="lastRest.html">Ultimi ristoranti inseriti</a></li>
+                <li><a href="lastRev.html">Ultime recensioni lasciate</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="chisiamo.html">Chi Siamo</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">Ricerca</h1>
+           
+            <form id="form_ricerca" method="get" action="">
+                <fieldset>
+                    <div class="in_wrapper">
+                        <label for="sbar" class="in_wrapper_title">Informazioni:</label>
+                        <input id="sbar" name="sbar" type="text" placeholder="ex. Bar dei chimici, Caffè Pefrocchi, ..."/>
+                        
+                        <input type="radio" id="f_posizione" name="filter" checked="checked" value="0" />
+                        <label for="f_posizione">Cerca per POSIZIONE</label>
+                        
+                        <input type="radio" id="n_filter" name="filter" value="1" />
+                        <label for="n_filter">Cerca per NOME</label>
+                    </div>
+                    
+                    <div class="in_wrapper">
+                        <label for="categoria" class="in_wrapper_title">Categoria: </label>
+                        <select id="categoria" name="categoria">
+                            <option value="0" selected="selected">Tutte le categorie</option>
+                            <option value="1">Categoria1</option>
+                            <option value="2">Categoria2</option>
+                            <option value="3">Categoria3</option>
+                            <option value="4">Categoria4</option>
+                            <option value="5">Categoria5</option>
+                        </select>
+                    </div>
+                    
+                    <input id="search_btn" type="submit" value="Avvia Ricerca!" />  
+                </fieldset>
+            </form>
+
+            <h2>Suggerimenti di ricerca: </h2>
+        </div>
+    
+        <div id="footer">
+            ##FOOTER##
+        </div>
+    </body>
+</html>

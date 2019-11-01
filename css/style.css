@@ -117,7 +117,13 @@ attivo, poichè questo non è un link */
 
 .hide {
     display: none; 
- } 
+} 
+
+/* allinea radio button e relativa label */
+input[type="radio"] {
+    margin-top: -1px;
+    vertical-align: middle;
+}
 
 /* ------------- PAGINA FAQ ---------- */
 .faq_header {
@@ -172,6 +178,69 @@ attivo, poichè questo non è un link */
     background-image: url(../img/right_arrow.svg);
 }
 
+/* ------------- PAGINA DI RICERCA ---------- */
+#form_ricerca {
+    border-left: 5px solid #ddd; 
+}
+
+#form_ricerca fieldset {
+    border: 0; 
+    padding: 0.5em 0 0.5em 1em; 
+    margin: 2em 0 2.5em 0; 
+}
+
+#form_ricerca input, #categoria{
+    padding: 0.75em; 
+}
+
+#sbar, #categoria{
+    border: 0; 
+    border-bottom: 1px solid #ddd; 
+    transition: border-color ease-in-out 200ms; 
+}
+
+#sbar:focus, #categoria:focus {
+    border-bottom-color: #000; 
+    outline: none; 
+}
+
+#form_ricerca input[type="radio"]{
+    margin-left: 0.25em; 
+}
+
+#form_ricerca input[type="radio"] + label {
+    display: inline-block;
+    margin: 1em 1em 0em 0em; 
+}
+
+.in_wrapper {
+    display: inline-block; 
+    vertical-align: top; 
+}
+
+.in_wrapper_title {
+    display: block; 
+    font-size: 1em; 
+}
+
+.in_wrapper:first-of-type {
+    width: 50%; 
+}
+
+#sbar { 
+    width: calc(100% - 2em);
+    padding-bottom: 0.5em; 
+}
+
+#categoria {
+    margin-right: 1em; 
+}
+
+#search_btn {
+    margin-top: 0.75em; 
+}
+
+/*
 fieldset {
     margin-left: 20%;
     margin-right:20%;
@@ -189,6 +258,5 @@ label{
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-left: 1em;
-    padding-right: 1em;
-    
-}
+    padding-right: 1em;  
+}*/
