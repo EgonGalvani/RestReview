@@ -108,32 +108,18 @@ attivo, poichè questo non è un link */
     text-align: center;  
     border: 1px solid #ddd; 
     background-color: #fff; 
-    margin-bottom: 2em; 
 }
 
 #page_title {
     font-size: 2.5em; 
 }
 
-.hide {
-    display: none; 
- } 
 
-/* ------------- PAGINA FAQ ---------- */
-.faq_header {
-    text-align: center; 
-    margin-top: 1.5em; 
-}
-
+/* --- PAGINA FAQ --- */
 .faq_title {
+    text-align: center; 
     font-size: 2em; 
-    display: inline-block;  
-}
-
-.faq_control_open, .faq_control_close {
-    float: right; 
-    margin-right: 1em;
-    margin-top: 1em; 
+    padding-top: 1em;  
 }
 
 .faq_list {
@@ -141,12 +127,12 @@ attivo, poichè questo non è un link */
 }
 
 .faq_list dt {
-    font-size: 1.35em;   
-    background-image: url(../img/bottom_arrow.svg);
+    font-size: 1.5em;   
+    background-image: url(../img/play-button.svg);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 1em 1em;
-    padding: 0.5em 0.3em 0.5em 1.5em;
+    padding: 0.5em 0.5em 0.5em 1.5em;
     cursor: pointer;
     border-top: 1px solid #ddd; 
 }
@@ -160,35 +146,53 @@ attivo, poichè questo non è un link */
 }
 
 .faq_list dd {
-    font-size: 1.15em; 
-    margin-left: 1.5em; 
-    padding: 0.75em; 
-    background-color: #eee; 
-    border-radius: 0.75em;  
-    margin-bottom: 0.5em;   
+    font-size: 1.3em; 
+    margin-bottom: 0.5em; 
+    padding-bottom: 0.2em; 
+    padding-left: 1.5em;
 }
 
-.faq_list .faq_closed {
-    background-image: url(../img/right_arrow.svg);
+#form_fieldset {
+    margin-left: 10%;
+    margin-right:7.5%;
+    /*width: 60%;*/
+    /*text-align: center;*/
+    border: 0;
 }
-
-fieldset {
-    margin-left: 20%;
-    margin-right:20%;
-    width: 60%;
-    text-align: center;
+#form_fieldset legend{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 1.25em;
+    font-weight: bolder;
 }
-input, select{
+.form_element{
     display: block;
+    /*margin: auto;*/
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+
 } 
 
-label{
-    float: left;
+.form_label{
+    font-weight: bold;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-left: 1em;
     padding-right: 1em;
     
+}
+
+.form_element img{
+    width: 45%;
+    height: auto;
+}
+
+#img_sel{
+    float: right;
+}
+
+.centered{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
