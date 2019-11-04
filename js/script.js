@@ -60,31 +60,37 @@ function faqClickListener(e) {
 }
 
 var dts = document.getElementsByTagName("dt"); 
-for(var i = 0; i < dts.length; i++) {
-    // chiudo tutte le faq => in questo modo se js è disabilitato l'utente
-    // è comunque in grado di visualizzare le risposte 
-    addClass(dts[i].nextElementSibling, "hide"); 
-    addClass(dts[i], "faq_closed"); 
+if(dts) {
+    for(var i = 0; i < dts.length; i++) {
+        // chiudo tutte le faq => in questo modo se js è disabilitato l'utente
+        // è comunque in grado di visualizzare le risposte 
+        addClass(dts[i].nextElementSibling, "hide"); 
+        addClass(dts[i], "faq_closed"); 
 
-    // setto i listener per l'evento click del mouse 
-    // e enter button 
-    dts[i].addEventListener("click", faqClickListener); 
-    dts[i].addEventListener("keyup", function(e) {
-        if(e.keyCode === 13) { // ENTER KEY_CODE
-            e.preventDefault(); 
-            faqClickListener(e); 
-        }
-    }); 
+        // setto i listener per l'evento click del mouse 
+        // e enter button 
+        dts[i].addEventListener("click", faqClickListener); 
+        dts[i].addEventListener("keyup", function(e) {
+            if(e.keyCode === 13) { // ENTER KEY_CODE
+                e.preventDefault(); 
+                faqClickListener(e); 
+            }
+        }); 
+    }
 }
 
 // controlli di chiusura 
 var closeControls = document.getElementsByClassName("faq_control_close"); 
-for(var i = 0; i < closeControls.length; i++) {
-    closeControls[i].addEventListener("click", (e) => modifyAll(e.target, true)); 
+if(closeControls) {
+    for(var i = 0; i < closeControls.length; i++) {
+        closeControls[i].addEventListener("click", (e) => modifyAll(e.target, true)); 
+    }
 }
 
 // controlli di apertura 
 var openControls = document.getElementsByClassName("faq_control_open"); 
-for(var i = 0; i < openControls.length; i++) {
-    openControls[i].addEventListener("click", (e) => modifyAll(e.target, false)); 
+if(openControls) {
+    for(var i = 0; i < openControls.length; i++) {
+        openControls[i].addEventListener("click", (e) => modifyAll(e.target, false)); 
+    }
 }
