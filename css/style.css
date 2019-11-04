@@ -260,3 +260,27 @@ label{
     margin-left: 1em;
     padding-right: 1em;  
 }*/
+
+/*---------------Pagina ultimi ristoranti-------------*/
+.ristoranti {
+    border: 1px solid rgb(128, 128, 128);
+    padding: 1em;
+    margin-top: 1em;
+    min-height: 15em;
+}
+.ristoranti img{
+    float:left;
+    width: 20%;
+    padding: 1em;
+
+}
+.ristoranti a{
+    color: #000000;
+    text-decoration: none;
+}
+.ristoranti h1{
+    font-size: 2em;
+}
+.ristoranti p{
+    font-size: 1em;
+}
