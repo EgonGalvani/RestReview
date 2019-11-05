@@ -95,7 +95,7 @@ attivo, poichè questo non è un link */
     background-color: #ddd; 
 }
 
-#content {
+#content, #cr_content {
     min-height: 50em; 
     margin: 0.5em 0 0.5em 19%; 
     border: 1px solid #ddd; 
@@ -103,7 +103,7 @@ attivo, poichè questo non è un link */
     padding: 2em;   
 }
 
-#footer {
+#footer{
     padding: 1em; 
     text-align: center;  
     border: 1px solid #ddd; 
@@ -283,4 +283,25 @@ label{
 }
 .ristoranti p{
     font-size: 1em;
+}
+/* --------------- Pagine chisiamo e regolamento -------------- */
+#cr_content{
+    font-size: 1.2em;
+}
+#cr_content h1,h2{
+    text-align: center;
+    padding: 0.5em;
+}
+#cr_content h1{
+    font-size: 2.5em;
+}
+#cr_content strong{
+    text-decoration: underline;
+}
+#cr_content ol, #cr_content ul, #cr_content p, #cr_content span.list-span{
+    padding-left: 2.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em; 
+    list-style-position: inside;
+    list-style-type: square;
 }
