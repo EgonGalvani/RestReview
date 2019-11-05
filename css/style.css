@@ -304,4 +304,36 @@ label{
     padding-top: 0.5em; 
     list-style-position: inside;
     list-style-type: square;
+
+/*-------------Pagina di visualizzazione ristorante-------------*/
+#nomeRist {
+    text-align: center;
+}
+
+#mainphoto{
+    width: 40%;
+    display: block;
+    margin: auto;
+}
+
+.photoes{
+    float:left;
+    width: 30%;
+    padding: 1%;
+}
+
+#orario{
+    clear:left;
+    list-style-type: none;
+    padding: 1em;
+}
+#orario > p{
+    padding: 1em 0 1em;
+}
+#orario li{
+    padding: 0 0 0 3em;
+}
+
+#contatto{
+    padding: 1em;
 }
