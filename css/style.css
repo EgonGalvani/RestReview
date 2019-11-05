@@ -240,27 +240,6 @@ input[type="radio"] {
     margin-top: 0.75em; 
 }
 
-/*
-fieldset {
-    margin-left: 20%;
-    margin-right:20%;
-    width: 60%;
-    text-align: center;
-}
-input, select{
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-} 
-
-label{
-    float: left;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-left: 1em;
-    padding-right: 1em;  
-}*/
-
 /*---------------Pagina ultimi ristoranti-------------*/
 .ristoranti {
     border: 1px solid rgb(128, 128, 128);
@@ -284,6 +263,7 @@ label{
 .ristoranti p{
     font-size: 1em;
 }
+
 /* --------------- Pagine chisiamo e regolamento -------------- */
 #cr_content{
     font-size: 1.2em;
@@ -298,12 +278,11 @@ label{
 #cr_content strong{
     text-decoration: underline;
 }
-#cr_content ol, #cr_content ul, #cr_content p, #cr_content span.list-span{
-    padding-left: 2.5em;
-    padding-bottom: 0.5em;
-    padding-top: 0.5em; 
+#cr_content ol, #cr_content ul, #cr_content p, #cr_content span.list-span{ 
+    padding: 0.5em; 
     list-style-position: inside;
     list-style-type: square;
+}
 
 /*-------------Pagina di visualizzazione ristorante-------------*/
 #nomeRist {
