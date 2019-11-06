@@ -268,7 +268,7 @@ input[type="radio"] {
 #cr_content{
     font-size: 1.2em;
 }
-#cr_content h1,h2{
+#cr_content h1, #cr_content h2{
     text-align: center;
     padding: 0.5em;
 }
