@@ -1,24 +1,80 @@
 
-// CODICE PER FAQ 
+/** FUNZIONI UTILI  */
 
-// util functions 
-
+// ritorna true sse l'elemento element presenta la classe avente nome className
 function hasClass(element, className) {
     if(element && element.classList.contains(className))
         return true; 
     return false; 
 }
 
+// aggiunge la classe className all'elemento element
 function addClass(element, className) {
     if(element && !element.classList.contains(className))
         element.classList.add(className); 
 }
 
+// rimuove la classe className all'elemento element
 function removeClass(element, className) {
     if(element && element.classList.contains(className))
         element.classList.remove(className); 
 }
 
+// funzione per avere uno smooth scroll da un elemento all'altro 
+function scrollTo(element, to, duration) { 
+    if (duration <= 0) return;
+    var difference = to - element.scrollTop;
+    var perTick = difference / duration * 10;
+    
+    setTimeout(function() {
+        element.scrollTop = element.scrollTop + perTick;
+        if (element.scrollTop === to) return;
+        scrollTo(element, to, duration - 10);
+    }, 10); 
+}
+
+/************************ CODICE PER PAGINA DI BASE ******************************/
+
+// GESTIONE CLICK SU HAMBURGER 
+var hamburger = document.getElementById("hamburger"); 
+var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
+// elmento a cui bisogna arrivare quando l'hamburger viene cliccato 
+var hTarget = document.getElementById(hTargetID); 
+/*
+hamburger.addEventListener("click", function(e) {
+    e.preventDefault(); 
+    scrollTo(document.documentElement, hTarget.offsetTop, 300); 
+}); */
+
+// GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
+var screenHeight = window.screen.height; 
+var documentHeight = document.documentElement.scrollHeight; 
+var scrollBtn = document.getElementById("scrollBtn"); 
+
+// lo scroll massimo è di documentHeight - screenHeight
+
+const LIMIT = screenHeight * 0.25; 
+window.onscroll = function() {
+    // valuto se ha senso introdurre il bottone nella pagina (il controllo viene messo all'interno 
+    // dell'evento per gestire anche eventuali ridimensionamenti in verticale)
+    if(documentHeight > screenHeight*1.5) { 
+
+        // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
+        if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
+            this.removeClass(scrollBtn, "hide"); 
+        else 
+            this.addClass(scrollBtn, "hide"); 
+    }
+}; 
+
+
+
+
+/****************** CODICE PER LA PAGINA FAQ.HTML *****************************/
+
+// control = elemento di controllo delle faq (cioè un link "apri tutte", "chiudi tutte")
+// ritorna un oggetto avente come attributi due vettori, contenenti dd e dt 
+// della lista di domande a cui si riferisce il control specificato 
 function getTargetDetails(control) {
     if(control) {
         var targetId = control.getAttribute("href").substr(1); // rimuovo il # 
@@ -32,6 +88,7 @@ function getTargetDetails(control) {
     return {dts: [], dds: []}; 
 }
 
+// apre/chiude tutte le domande gestite da un determinato control
 function modifyAll(control, close) {
     var info = getTargetDetails(control); 
           
@@ -46,7 +103,8 @@ function modifyAll(control, close) {
     }   
 }
 
-// click listeners 
+// click listener per un elemento della lista di domande, se la domanda 
+// che è stata cliccata è gia aperta, allora viene chiusa. Altrimenti accade il contrario. 
 function faqClickListener(e) {
     var dt = e.target; 
     if(hasClass(dt, "faq_closed"))

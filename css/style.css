@@ -119,11 +119,34 @@ attivo, poichè questo non è un link */
     display: none; 
 } 
 
+#hamburger {
+    display: none;
+}
+
+#scrollBtn {
+    position: fixed; 
+    right: 1em; 
+    bottom: 1em;  
+}
+
 /* allinea radio button e relativa label */
 input[type="radio"] {
     margin-top: -1px;
     vertical-align: middle;
 }
+
+input[type="text"], select {
+    padding: 0.75em; 
+    border: 0; 
+    border-bottom: 1px solid #ddd; 
+    transition: border-color ease-in-out 200ms; 
+}
+
+input[type="text"]:focus, select:focus  {
+    border-bottom-color: #000; 
+    outline: none; 
+}
+
 
 /* ------------- PAGINA FAQ ---------- */
 .faq_header {
@@ -189,21 +212,6 @@ input[type="radio"] {
     margin: 2em 0 2.5em 0; 
 }
 
-#form_ricerca input, #tipologia{
-    padding: 0.75em; 
-}
-
-#sbar, #tipologia{
-    border: 0; 
-    border-bottom: 1px solid #ddd; 
-    transition: border-color ease-in-out 200ms; 
-}
-
-#sbar:focus, #tipologia:focus {
-    border-bottom-color: #000; 
-    outline: none; 
-}
-
 #form_ricerca input[type="radio"]{
     margin-left: 0.25em; 
 }
@@ -238,6 +246,7 @@ input[type="radio"] {
 
 #search_btn {
     margin-top: 0.75em; 
+    padding: 0.75em; 
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
@@ -251,7 +260,6 @@ input[type="radio"] {
     float:left;
     width: 20%;
     padding: 1em;
-
 }
 .ristoranti a{
     color: #000000;
@@ -315,4 +323,65 @@ input[type="radio"] {
 
 #contatto{
     padding: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+    
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #header {
+        order: 1;
+        margin-top: 0.5em;
+        border: 0;
+    }
+
+    #header .a_btn {
+        margin-top: 0.5em; 
+       /* display: none; */
+    }
+
+    #header #title {
+        font-size: 3em;
+    }
+    
+    #hamburger {
+        display: inline-block;
+    }
+
+    #breadcrumb {
+        order: 2;
+        border: 0;
+    }
+
+    #content {
+        margin-left: 0px; 
+        order: 3;
+        border: 0;
+        padding: 1em; 
+    }
+
+    #menu {
+        order: 4;
+        width: 100%;
+        margin-bottom: 1em;
+        border: 0;
+        height: 100vh;
+    }
+
+    #footer {
+        order: 5; 
+        border: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #header #title { display: block; font-size: 3.5em }
+    #header .a_btn {
+        float: none;
+        padding: 0.5em; 
+    }
+    #header { padding: 1em; }
 }
