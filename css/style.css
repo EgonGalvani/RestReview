@@ -201,3 +201,15 @@ attivo, poichè questo non è un link */
 .hidden{
     display: none;
 }
+#recensore,#ristoratore{
+    display: inline-block;
+}
+#recensore:checked~#piva_l{
+    display: none;
+}
+#recensore:checked~#piva{
+    display: none;
+}
+#ristoratore:checked~#pipiva_lva,#piva {
+    display: block;
+}
