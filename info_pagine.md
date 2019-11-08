@@ -20,4 +20,4 @@ Questa decisione è dovuta a:
 Particolarità della pagina: 
 - Poichè il cambiamento del placeholder è gestito tramite javascript, la disabilitazione di quest'ultimo porta 
 	alla mancanza del placeholder stesso dalla barra di ricerca. Questo comportamento risulta più adeguato di inserire il 
-	placeholder direttamente nell'html, poichè in questo caso (e in assenza di js abiitato) il placeholder non cambierebbe 			dinamicamente, e porterebbe a una certa ambiguità nella struttura del sito. 
+	placeholder direttamente nell'html, poichè in questo caso (e in assenza di js abiitato) il placeholder non cambierebbe 			dinamicamente, e porterebbe a una certa ambiguità nella struttura della pagina. 
