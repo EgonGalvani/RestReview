@@ -1,4 +1,11 @@
-﻿## FAQ
+## BASE 
+La pagina base.html rappresenta la scheletro delle altre pagine. Viene utilizzata una struttura a tre pannelli per rendere la navigazione dell'utente all'interno del sito il più naturale possibile. Il design della pagina è responsive, in particolare sono usati i seguenti breakpoint: 600px e 768px. Per i dispositivi più grandi il contenuto della pagina risulta essere centrato, con una dimensione massima di 1024px. 
+Caratteristiche: 
+- Il pannello HEADER per dispositivi con width > 768px presenta il titolo del sito e due bottoni per LOGIN/REGISTRAZIONE. A dimensioni inferiori, a tali elementi viene aggiunto un bottone per raggiungere il MENU. 
+- Il MENU è visibile come pannello laterale per schermi con width > 768px, per quelli di dimensioni inferiori viene spostato sotto al pannello principale della pagina. Il menu risulta essere raggiungibile: o premendo il tasto "MENU" che compare nell'header o una volta scorso tutto il pannello principale. Questa scelta permette di evitare eventuali menu ad humburger e facilita la realizzazione di una pagina più accessibile. 
+
+ 
+ ## FAQ
 La pagina di FAQ presenta DOCTYPE HTML, rispettando comunque le regole di sintassi di XHTML 1.0 Strict. 
 Questa decisione è dovuta a: 
 - Utilizzo dell'attributo tabindex sui dt e dd 
