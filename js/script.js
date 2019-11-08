@@ -37,9 +37,9 @@ function scrollTo(element, to, duration) {
 
 // GESTIONE CLICK SU HAMBURGER 
 var hamburger = document.getElementById("hamburger"); 
-var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
+//var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
 // elmento a cui bisogna arrivare quando l'hamburger viene cliccato 
-var hTarget = document.getElementById(hTargetID); 
+//var hTarget = document.getElementById(hTargetID); 
 /*
 hamburger.addEventListener("click", function(e) {
     e.preventDefault(); 
@@ -47,28 +47,50 @@ hamburger.addEventListener("click", function(e) {
 }); */
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
-var screenHeight = window.screen.height; 
-var documentHeight = document.documentElement.scrollHeight; 
 var scrollBtn = document.getElementById("scrollBtn"); 
 
 // lo scroll massimo è di documentHeight - screenHeight
-
-const LIMIT = screenHeight * 0.25; 
 window.onscroll = function() {
     // valuto se ha senso introdurre il bottone nella pagina (il controllo viene messo all'interno 
     // dell'evento per gestire anche eventuali ridimensionamenti in verticale)
+    
+    var screenHeight = window.screen.height; 
+    var documentHeight = document.documentElement.scrollHeight; 
+    
     if(documentHeight > screenHeight*1.5) { 
 
+        var LIMIT = screenHeight * 0.25;
+
         // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
-        if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
-            this.removeClass(scrollBtn, "hide"); 
-        else 
-            this.addClass(scrollBtn, "hide"); 
+       // if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
+           // this.removeClass(scrollBtn, "hide"); 
+       // else 
+           // this.addClass(scrollBtn, "hide"); 
     }
 }; 
 
+/********************* CODICE PER LA PAGINA INDEX.HTML (RICERCA)  */
 
+// placeholder 
+const positionPH = "ex. Padova, Milano, Bologna, etc.."; 
+const namePH = "ex. Caffè Pedrocchi, Bar dai Chimici, etc.."; 
 
+var posFilter = document.getElementById("f_posizione"); 
+var nameFilter = document.getElementById("f_nome"); 
+var sbar = document.getElementById("sbar"); 
+
+// di default il filtro sulla posizione è attivo, imposto quindi il relativo placeholder 
+sbar.setAttribute("placeholder", positionPH); 
+
+posFilter.addEventListener("change", function(e) {
+    if(e.target.checked)
+        sbar.setAttribute("placeholder", positionPH); 
+}); 
+
+nameFilter.addEventListener("change", function(e) {
+    if(e.target.checked)
+        sbar.setAttribute("placeholder", namePH); 
+}); 
 
 /****************** CODICE PER LA PAGINA FAQ.HTML *****************************/
 

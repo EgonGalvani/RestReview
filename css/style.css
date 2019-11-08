@@ -237,7 +237,6 @@ input[type="text"]:focus, select:focus  {
 
 #sbar { 
     width: calc(100% - 2em);
-    padding-bottom: 0.5em; 
 }
 
 #tipologia {
@@ -360,7 +359,6 @@ input[type="text"]:focus, select:focus  {
         margin-left: 0px; 
         order: 3;
         border: 0;
-        padding: 1em; 
     }
 
     #menu {
@@ -384,4 +382,17 @@ input[type="text"]:focus, select:focus  {
         padding: 0.5em; 
     }
     #header { padding: 1em; }
+    #content { 
+        padding: 1em; 
+    }
+    .in_wrapper, #search_btn {
+        margin-top: 2em; 
+        margin-left: 0.5em; 
+    }
+
+    .in_wrapper:first-of-type {
+        width: 95%; 
+        margin-top: 0; 
+    }
+
 }
