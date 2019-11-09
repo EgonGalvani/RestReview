@@ -20,31 +20,18 @@ function removeClass(element, className) {
         element.classList.remove(className); 
 }
 
-// funzione per avere uno smooth scroll da un elemento all'altro 
-function scrollTo(element, to, duration) { 
-    if (duration <= 0) return;
-    var difference = to - element.scrollTop;
-    var perTick = difference / duration * 10;
-    
-    setTimeout(function() {
-        element.scrollTop = element.scrollTop + perTick;
-        if (element.scrollTop === to) return;
-        scrollTo(element, to, duration - 10);
-    }, 10); 
-}
-
 /************************ CODICE PER PAGINA DI BASE ******************************/
 
 // GESTIONE CLICK SU HAMBURGER 
 var hamburger = document.getElementById("hamburger"); 
-//var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
+var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
 // elmento a cui bisogna arrivare quando l'hamburger viene cliccato 
-//var hTarget = document.getElementById(hTargetID); 
-/*
+var hTarget = document.getElementById(hTargetID); 
+
 hamburger.addEventListener("click", function(e) {
     e.preventDefault(); 
     scrollTo(document.documentElement, hTarget.offsetTop, 300); 
-}); */
+}); 
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
 var scrollBtn = document.getElementById("scrollBtn"); 
@@ -57,19 +44,21 @@ window.onscroll = function() {
     var screenHeight = window.screen.height; 
     var documentHeight = document.documentElement.scrollHeight; 
     
+    this.console.log(screenHeight + " - " + documentHeight); 
+
     if(documentHeight > screenHeight*1.5) { 
 
         var LIMIT = screenHeight * 0.25;
 
         // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
-       // if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
-           // this.removeClass(scrollBtn, "hide"); 
-       // else 
-           // this.addClass(scrollBtn, "hide"); 
+        if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
+            this.removeClass(scrollBtn, "hide"); 
+        else 
+            this.addClass(scrollBtn, "hide"); 
     }
 }; 
 
-/********************* CODICE PER LA PAGINA INDEX.HTML (RICERCA)  */
+/********************* CODICE PER LA PAGINA INDEX.HTML (RICERCA)  *********************/
 
 // placeholder 
 const positionPH = "ex. Padova, Milano, Bologna, etc.."; 
@@ -80,17 +69,19 @@ var nameFilter = document.getElementById("f_nome");
 var sbar = document.getElementById("sbar"); 
 
 // di default il filtro sulla posizione è attivo, imposto quindi il relativo placeholder 
-sbar.setAttribute("placeholder", positionPH); 
+if(sbar) {
+    sbar.setAttribute("placeholder", positionPH); 
 
-posFilter.addEventListener("change", function(e) {
-    if(e.target.checked)
-        sbar.setAttribute("placeholder", positionPH); 
-}); 
+    posFilter.addEventListener("change", function(e) {
+        if(e.target.checked)
+            sbar.setAttribute("placeholder", positionPH); 
+    }); 
 
-nameFilter.addEventListener("change", function(e) {
-    if(e.target.checked)
-        sbar.setAttribute("placeholder", namePH); 
-}); 
+    nameFilter.addEventListener("change", function(e) {
+        if(e.target.checked)
+            sbar.setAttribute("placeholder", namePH); 
+    }); 
+}
 
 /****************** CODICE PER LA PAGINA FAQ.HTML *****************************/
 

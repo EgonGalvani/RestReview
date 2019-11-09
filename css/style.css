@@ -366,7 +366,7 @@ input[type="text"]:focus, select:focus  {
         width: 100%;
         margin-bottom: 1em;
         border: 0;
-        height: 100vh;
+       /* height: 50vh; */
     }
 
     #footer {
