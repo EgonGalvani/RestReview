@@ -135,14 +135,14 @@ input[type="radio"] {
     vertical-align: middle;
 }
 
-input[type="text"], select {
+input[type="text"], input[type="password"], input[type= "email"], select {
     padding: 0.75em; 
     border: 0; 
     border-bottom: 1px solid #ddd; 
     transition: border-color ease-in-out 200ms; 
 }
 
-input[type="text"]:focus, select:focus  {
+input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], select:focus  {
     border-bottom-color: #000; 
     outline: none; 
 }
@@ -395,4 +395,18 @@ input[type="text"]:focus, select:focus  {
         margin-top: 0; 
     }
 
+}
+/* ----------- CSS pagina login ------------------*/
+/*#login_content a, label, input[type="text"], input[type="password"], input[type="submit"]{
+    display: block;
+}*/
+#login_content label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+}
+#login_content input[type= "email"], input[type= "password"]{
+    display: inline-block;
 }
