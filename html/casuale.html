@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>RestReview - Le migliori recensioni di ristoranti</title>
+        <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+            <h1 id="title">RestReview</h1>
+        
+            <a id="hamburger" href="#menu" class="a_btn">MENU</a>
+
+            <a href="login.html" class="a_btn">LOGIN</a>
+            <a href="registrazione.html" class="a_btn">REGISTRAZIONE</a>
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: ##PATH## 
+        </div>
+
+        <div id="menu">
+            <ul>
+                <li class="active">Home</li>
+                <li><a href="ultimiristoranti.html">Ultimi ristoranti inseriti</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="chisiamo.html">Chi Siamo</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">Ricerca Casuale</h1>
+            <h2>
+                Stanco dei soliti locali? Questa è la funzione giusta
+                per te. Seleziona una zona e eventualmente anche una 
+                categoria: sarai reindirizzato a un locale tutto da scoprire.   
+            </h2>
+
+            <form id="form_ricerca" method="get" action="">
+                <fieldset>
+                    <div class="in_wrapper">
+                        <label for="sbar" class="in_wrapper_title">Zona:</label>
+                        <input id="sbar" tabindex="1" name="sbar" type="text" placeholder="ex. Padova, Abano, Monselice, etc..."/>
+                    </div>
+                    
+                    <div class="in_wrapper">
+                        <label for="tipologia" class="in_wrapper_title">Tipologia: </label>
+                        <select id="tipologia" name="tipologia" tabindex="3">
+                            <option value="0" selected="selected">Tutte le tipologie</option>
+                            <option value="1">tipologia1</option>
+                            <option value="2">tipologia2</option>
+                            <option value="3">tipologia3</option>
+                            <option value="4">tipologia4</option>
+                            <option value="5">tipologia5</option>
+                        </select>
+                    </div>
+                    
+                    <input id="search_btn" type="submit" value="Avvia Ricerca!" tabindex="4"/>  
+                </fieldset>
+            </form>
+
+        </div>
+    
+        <div id="footer">
+            ##FOOTER##
+        </div>
+
+        <a id="scrollBtn" class="hide" href="#header">
+            <img src="../img/top_arrow.svg" width="50" height="50"/>
+        </a>
+       
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
