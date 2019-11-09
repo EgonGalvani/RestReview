@@ -396,29 +396,41 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
     }
 
 }
-/* ----------- CSS pagina login ------------------*/
+/* --------------------- CSS login ----------------------- */
+#form_login{
+    margin-top: 9em;
+}
+#form_login fieldset{
+    border:none;
+}
+#form_login legend{
+    display:none;
+}
 #form_login input[type= "email"], input[type= "password"]{
     display: inline-block;
-    margin-right: auto;
-    margin-left: auto;
+    margin-top: 2em;
 }
 #form_login a {
     clear:left;
     display: block;
     text-align: center;
     padding: 1.5em;
+    border-style: none;
+    outline: none;
 }
 #form_login label{
     float:left;
-    text-align: right;
-    display: inline-block;
+    font-size: 1.2em;
     text-align: right;
     width: 30%;
+    font-weight: bold;
+    margin-top: 3.3em;
+    margin-right: 1em;
 }
 #form_login input[type="submit"]{
     margin-top: 2em;
     margin-bottom: 1.5em;
     display: block;
     margin-left: auto;
-    margin-right: 30em;
+    margin-right: 27em;
 }
