@@ -182,6 +182,13 @@ attivo, poichè questo non è un link */
     padding-right: 1em;
     font-size: 1.2em;
 }
+.radio_label{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 0.5em;
+    padding-right: 1em;
+    font-size: 1.1em;
+}
 
 .form_element img{
     width: 45%;
