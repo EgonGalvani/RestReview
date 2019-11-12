@@ -257,7 +257,8 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
     min-height: 15em;
 }
 .ristoranti img{
-    float:left;
+    display: block;
+    float:right;
     width: 20%;
     padding: 1em;
 }
@@ -267,9 +268,19 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
 }
 .ristoranti h1{
     font-size: 2em;
+    text-align: center;
 }
 .ristoranti p{
     font-size: 1em;
+}
+.categoria{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.indirizzo{
+    padding-top: 3em;
+}
+.stelle{
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
