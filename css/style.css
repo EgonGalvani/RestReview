@@ -322,6 +322,74 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
     padding: 1em;
 }
 
+
+/* --------------------- CSS login ----------------------- */
+#form_login{
+    margin-top: 9em;
+}
+#form_login fieldset{
+    border:none;
+}
+#form_login legend{
+    display:none;
+}
+#form_login input[type= "email"], input[type= "password"]{
+    display: inline-block;
+    margin-top: 2em;
+}
+#form_login a {
+    clear:left;
+    display: block;
+    text-align: center;
+    padding: 1.5em;
+    border-style: none;
+    outline: none;
+}
+#form_login label{
+    float:left;
+    font-size: 1.2em;
+    text-align: right;
+    width: 30%;
+    font-weight: bold;
+    margin-top: 3.3em;
+    margin-right: 1em;
+}
+#form_login input[type="submit"]{
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: 27em;
+}
+
+
+/* ------------------------- registrazione ------------------------------*/
+#img_sel{
+    float: right;
+}
+
+.centered{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.hidden{
+    display: none;
+}
+#recensore,#ristoratore{
+    display: inline-block;
+}
+#recensore:checked~#piva_l{
+    display: none;
+}
+#recensore:checked~#piva{
+    display: none;
+}
+#ristoratore:checked~#pipiva_lva,#piva {
+    display: block;
+}
+
 @media only screen and (max-width: 768px) {
     
     body {
@@ -393,42 +461,4 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
         margin-top: 0; 
     }
 
-}
-/* --------------------- CSS login ----------------------- */
-#form_login{
-    margin-top: 9em;
-}
-#form_login fieldset{
-    border:none;
-}
-#form_login legend{
-    display:none;
-}
-#form_login input[type= "email"], input[type= "password"]{
-    display: inline-block;
-    margin-top: 2em;
-}
-#form_login a {
-    clear:left;
-    display: block;
-    text-align: center;
-    padding: 1.5em;
-    border-style: none;
-    outline: none;
-}
-#form_login label{
-    float:left;
-    font-size: 1.2em;
-    text-align: right;
-    width: 30%;
-    font-weight: bold;
-    margin-top: 3.3em;
-    margin-right: 1em;
-}
-#form_login input[type="submit"]{
-    margin-top: 2em;
-    margin-bottom: 1.5em;
-    display: block;
-    margin-left: auto;
-    margin-right: 27em;
 }

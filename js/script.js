@@ -46,7 +46,7 @@ window.onscroll = function() {
     
     this.console.log(screenHeight + " - " + documentHeight); 
 
-    if(documentHeight > screenHeight*1.5) { 
+   // if(documentHeight > screenHeight*1.5) { 
 
         var LIMIT = screenHeight * 0.25;
 
@@ -55,7 +55,7 @@ window.onscroll = function() {
             this.removeClass(scrollBtn, "hide"); 
         else 
             this.addClass(scrollBtn, "hide"); 
-    }
+  //  }
 }; 
 
 /********************* CODICE PER LA PAGINA INDEX.HTML (RICERCA)  *********************/
