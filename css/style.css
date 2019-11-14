@@ -95,7 +95,7 @@ attivo, poichè questo non è un link */
     background-color: #ddd; 
 }
 
-#content, #cr_content {
+#content, .cr_content {
     line-height: 1.5;
     min-height: 50em; 
     margin: 0.5em 0 0.5em 19%; 
@@ -143,7 +143,7 @@ input[type="text"], input[type="password"], input[type= "email"], select {
     transition: border-color ease-in-out 200ms; 
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], select:focus  {
+input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:focus, select:focus  {
     border-bottom-color: #000; 
     outline: none; 
 }
@@ -171,7 +171,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
 }
 
 .faq_list dt {
-    font-size: 1.35em;   
+    font-size: 1.25em;   
     background-image: url(../img/bottom_arrow.svg);
     background-repeat: no-repeat;
     background-position: left;
@@ -190,7 +190,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
 }
 
 .faq_list dd {
-    font-size: 1.15em; 
+    font-size: 1.2em; 
     margin-left: 1.5em; 
     padding: 0.75em; 
     background-color: #eee; 
@@ -284,17 +284,18 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
-#cr_content{
+.cr_content{
     font-size: 1.2em;
 }
-#cr_content h1, #cr_content h2{
+.cr_content h2{
     text-align: center;
-    padding: 0.5em;
+    padding: 0.2em;
 }
-#cr_content h1{
+.cr_content h1{
     font-size: 2.5em;
+    padding: 0.1em; 
 }
-#cr_content ol, #cr_content ul, #cr_content p, #cr_content span.list-span{ 
+.cr_content ol, .cr_content ul, .cr_content p, .cr_content span.list-span{ 
     padding: 0.5em; 
     list-style-position: inside;
     list-style-type: square;
@@ -333,46 +334,46 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"], se
     padding: 1em;
 }
 
-
 /* --------------------- CSS login ----------------------- */
-#form_login{
-    margin-top: 9em;
-}
-#form_login fieldset{
-    border:none;
-}
-#form_login legend{
-    display:none;
-}
-#form_login input[type= "email"], input[type= "password"]{
-    display: inline-block;
-    margin-top: 2em;
-}
-#form_login a {
-    clear:left;
-    display: block;
-    text-align: center;
-    padding: 1.5em;
-    border-style: none;
-    outline: none;
-}
-#form_login label{
-    float:left;
-    font-size: 1.2em;
-    text-align: right;
-    width: 30%;
-    font-weight: bold;
-    margin-top: 3.3em;
-    margin-right: 1em;
-}
-#form_login input[type="submit"]{
-    margin-top: 2em;
-    margin-bottom: 1.5em;
-    display: block;
-    margin-left: auto;
-    margin-right: 27em;
+
+#form_login {
+    width: 50%; 
+    margin: 0 auto; 
 }
 
+#form_login fieldset{
+    padding: 1.5em;
+    border: 4px solid #ccc;  
+}
+
+#form_login legend {
+    padding: 0 1.5em; 
+    font-size: 1.2em; 
+    font-weight: bold;
+}
+
+#form_login label{
+    width: 30%; 
+    margin-top: 1.3em; 
+    margin-right: 1em; 
+    float: left; 
+    text-align: right;  
+}
+
+#form_login input {
+    display: block; 
+}
+
+#form_login a {
+    clear: left; 
+    display: block; 
+    text-align: center; 
+    padding: 1.5em; 
+}
+
+#form_login #login_btn {
+    padding: 1em;
+}
 
 /* ------------------------- registrazione ------------------------------*/
 #img_sel{

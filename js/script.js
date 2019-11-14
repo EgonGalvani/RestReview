@@ -23,7 +23,7 @@ function removeClass(element, className) {
 /************************ CODICE PER PAGINA DI BASE ******************************/
 
 // GESTIONE CLICK SU HAMBURGER 
-var hamburger = document.getElementById("hamburger"); 
+/*var hamburger = document.getElementById("hamburger"); 
 var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
 // elmento a cui bisogna arrivare quando l'hamburger viene cliccato 
 var hTarget = document.getElementById(hTargetID); 
@@ -32,7 +32,7 @@ hamburger.addEventListener("click", function(e) {
     e.preventDefault(); 
     scrollTo(document.documentElement, hTarget.offsetTop, 300); 
 }); 
-
+*/
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
 var scrollBtn = document.getElementById("scrollBtn"); 
 
