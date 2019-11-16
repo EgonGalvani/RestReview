@@ -20,6 +20,8 @@ function removeClass(element, className) {
         element.classList.remove(className); 
 }
 
+function isEmpty(str) { return !str.trim().length; }
+
 /************************ CODICE PER PAGINA DI BASE ******************************/
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
@@ -119,3 +121,64 @@ if(openControls) {
         openControls[i].addEventListener("click", (e) => modifyAll(e.target, false)); 
     }
 }
+
+/************* CODICE PER LOGIN E REGISTRAZIONE *******/
+var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+var pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
+
+/** SPIEGAZIONE REGEX PSW 
+ * /^
+  (?=.*\d)          // should contain at least one digit
+  (?=.*[a-z])       // should contain at least one lower case
+  (?=.*[A-Z])       // should contain at least one upper case
+  [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
+  $/
+*/
+
+// inserisce un box di errore come primo elemento del fieldset del form
+function showErrMsg(form, msg) {
+    var fieldset = form.firstElementChild; 
+ 
+    var box = document.createElement("div");
+    box.classList.add("error_box"); 
+    box.innerHTML = msg; 
+    fieldset.insertBefore(box, fieldset.firstChild); 
+}
+
+function clearErrMsgs() {
+    var errors = document.getElementsByClassName("error_box");  
+    while (errors.length > 0) { 
+        // ogni volta che rimuovo un elmento dal DOM, viene rimosso anche dall'array
+        errors[0].parentNode.removeChild(errors[0]);
+    }
+}
+
+var loginForm = document.getElementById("login_form"); 
+if(loginForm) {
+    var email = document.getElementById("email"); 
+    var psw = document.getElementById("password"); 
+    var loginBtn = document.getElementById("login_btn"); 
+
+    loginBtn.addEventListener("click", function(e) {
+        e.preventDefault(); 
+        clearErrMsgs(loginForm); 
+
+        var allOK = true; 
+       
+        if(isEmpty(psw.value)) {
+            showErrMsg(loginForm, "Inserire una password!"); 
+            allOK = false; 
+        }
+
+        var emailPattern = new RegExp(emailRegex); 
+        if(!emailPattern.test(email.value.trim())) {
+            showErrMsg(loginForm, "Inserire una email valida!"); 
+            allOK = false; 
+        }
+
+        if(allOK) {
+            loginForm.submit(); 
+        }      
+    }); 
+
+} 
