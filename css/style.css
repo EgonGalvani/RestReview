@@ -315,17 +315,14 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
-.cr_content{
-    font-size: 1.2em;
+.cr_content p, .cr_content li{
+   font-size: 1.2em; 
 }
 .cr_content h2{
     text-align: center;
     padding: 0.2em;
 }
-.cr_content h1{
-    font-size: 2.5em;
-    padding: 0.1em; 
-}
+
 .cr_content ol, .cr_content ul, .cr_content p, .cr_content span.list-span{ 
     padding: 0.5em; 
     list-style-position: inside;
