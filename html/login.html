@@ -2,19 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>RestReview - Le migliori recensioni di ristoranti</title>
-        <meta name="title" content="login" />
+      
+        <title>Login - RestReview</title>
+        <meta name="title" content="Login - RestReview" />
 
         <meta name="description" content=" pagina login del sito" />
         <meta name="keywords" content=" RistReview,login, email, password" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
     </head>
-<body>
+    <body>
         <div id="header">
             <h1 id="title">RestReview</h1>
-
             <a href="registrazione.html" class="a_btn">REGISTRAZIONE</a>
         </div>
     
@@ -33,6 +35,7 @@
         </div>
 
         <div id="content">
+
             <form action= " " id="form_login">
 		      <fieldset>
 		          <legend> login </legend>
@@ -43,8 +46,27 @@
                   <a href="registrazione.html" tabindex="2"> non sei ancora registrato? </a> 
 		          <input type="submit"  name= "accedi" value="accedi" tabindex="4" />
 		       </fieldset>
+
+            <form action="" id="login_form">
+                <fieldset>
+                    <legend>Login</legend>
+
+                    <label for="email" xml:lang="eng">Email : </label>
+                    <input type="text" name="email" id="email" maxlength="30" tabindex="1" />
+
+                    <label for= "password" xml:lang="eng">Password : </label>
+                    <input type="password" name="password" id="password" maxlength= "15" tabindex="2"/>
+                 
+                    <a href="registrazione.html" tabindex="3">Non sei ancora registrato? </a>  
+                    <input type="submit" id="login_btn" name="Accedi" value="Accedi" tabindex="4" />
+                </fieldset>
+
 	       </form>
         </div>
         <div id="footer">
             ##FOOTER##
         </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>

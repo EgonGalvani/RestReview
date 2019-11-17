@@ -20,68 +20,24 @@ function removeClass(element, className) {
         element.classList.remove(className); 
 }
 
+function isEmpty(str) { return !str.trim().length; }
+
 /************************ CODICE PER PAGINA DI BASE ******************************/
-
-// GESTIONE CLICK SU HAMBURGER 
-var hamburger = document.getElementById("hamburger"); 
-var hTargetID = hamburger.getAttribute("href").substr(1); // rimuovo il # dall'href ==> ottengo l'id 
-// elmento a cui bisogna arrivare quando l'hamburger viene cliccato 
-var hTarget = document.getElementById(hTargetID); 
-
-hamburger.addEventListener("click", function(e) {
-    e.preventDefault(); 
-    scrollTo(document.documentElement, hTarget.offsetTop, 300); 
-}); 
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
 var scrollBtn = document.getElementById("scrollBtn"); 
 
 // lo scroll massimo è di documentHeight - screenHeight
 window.onscroll = function() {
-    // valuto se ha senso introdurre il bottone nella pagina (il controllo viene messo all'interno 
-    // dell'evento per gestire anche eventuali ridimensionamenti in verticale)
-    
-    var screenHeight = window.screen.height; 
-    var documentHeight = document.documentElement.scrollHeight; 
-    
-    this.console.log(screenHeight + " - " + documentHeight); 
+    // valuto se ha senso introdurre il bottone nella pagina (il calcolo del valore limite viene messo 
+    // all'interno dell'evento per gestire anche eventuali ridimensionamenti in verticale)
+    var LIMIT = window.screen.height * 0.25;
 
-    if(documentHeight > screenHeight*1.5) { 
-
-        var LIMIT = screenHeight * 0.25;
-
-        // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
-        if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
-            this.removeClass(scrollBtn, "hide"); 
-        else 
-            this.addClass(scrollBtn, "hide"); 
-    }
+    // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
+    if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
+        this.removeClass(scrollBtn, "hide"); 
+    else this.addClass(scrollBtn, "hide"); 
 }; 
-
-/********************* CODICE PER LA PAGINA INDEX.HTML (RICERCA)  *********************/
-
-// placeholder 
-const positionPH = "ex. Padova, Milano, Bologna, etc.."; 
-const namePH = "ex. Caffè Pedrocchi, Bar dai Chimici, etc.."; 
-
-var posFilter = document.getElementById("f_posizione"); 
-var nameFilter = document.getElementById("f_nome"); 
-var sbar = document.getElementById("sbar"); 
-
-// di default il filtro sulla posizione è attivo, imposto quindi il relativo placeholder 
-if(sbar) {
-    sbar.setAttribute("placeholder", positionPH); 
-
-    posFilter.addEventListener("change", function(e) {
-        if(e.target.checked)
-            sbar.setAttribute("placeholder", positionPH); 
-    }); 
-
-    nameFilter.addEventListener("change", function(e) {
-        if(e.target.checked)
-            sbar.setAttribute("placeholder", namePH); 
-    }); 
-}
 
 /****************** CODICE PER LA PAGINA FAQ.HTML *****************************/
 
@@ -165,3 +121,64 @@ if(openControls) {
         openControls[i].addEventListener("click", (e) => modifyAll(e.target, false)); 
     }
 }
+
+/************* CODICE PER LOGIN E REGISTRAZIONE *******/
+var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+var pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
+
+/** SPIEGAZIONE REGEX PSW 
+ * /^
+  (?=.*\d)          // should contain at least one digit
+  (?=.*[a-z])       // should contain at least one lower case
+  (?=.*[A-Z])       // should contain at least one upper case
+  [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
+  $/
+*/
+
+// inserisce un box di errore come primo elemento del fieldset del form
+function showErrMsg(form, msg) {
+    var fieldset = form.firstElementChild; 
+ 
+    var box = document.createElement("div");
+    box.classList.add("error_box"); 
+    box.innerHTML = msg; 
+    fieldset.insertBefore(box, fieldset.firstChild); 
+}
+
+function clearErrMsgs() {
+    var errors = document.getElementsByClassName("error_box");  
+    while (errors.length > 0) { 
+        // ogni volta che rimuovo un elmento dal DOM, viene rimosso anche dall'array
+        errors[0].parentNode.removeChild(errors[0]);
+    }
+}
+
+var loginForm = document.getElementById("login_form"); 
+if(loginForm) {
+    var email = document.getElementById("email"); 
+    var psw = document.getElementById("password"); 
+    var loginBtn = document.getElementById("login_btn"); 
+
+    loginBtn.addEventListener("click", function(e) {
+        e.preventDefault(); 
+        clearErrMsgs(loginForm); 
+
+        var allOK = true; 
+       
+        if(isEmpty(psw.value)) {
+            showErrMsg(loginForm, "Inserire una password!"); 
+            allOK = false; 
+        }
+
+        var emailPattern = new RegExp(emailRegex); 
+        if(!emailPattern.test(email.value.trim())) {
+            showErrMsg(loginForm, "Inserire una email valida!"); 
+            allOK = false; 
+        }
+
+        if(allOK) {
+            loginForm.submit(); 
+        }      
+    }); 
+
+} 
