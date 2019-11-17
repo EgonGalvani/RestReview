@@ -1,8 +1,8 @@
 ## GENERALE 
 
 ### HTML 
-In tutte le pagine si è tentato di usare unicamente html4, in modo da aver una compatibilità più elevata con i vari browser. 
-Nei form si è deciso di usare unicamente i campi di input messi a disposizione di html4: eventuali controlli sul formato e contenuto di tali campi è stato eseguito in javascript. 
+In tutte le pagine si è tentato di usare unicamente xhtml 1.1, in modo da aver una compatibilità più elevata con i vari browser. 
+Nei form si è deciso di usare unicamente i campi di input messi a disposizione da xhtml 1.1: eventuali controlli sul formato e contenuto di tali campi è stato eseguito in javascript. 
 In alcune pagine (es. faq) si è deciso di usare html5, per supportare un maggior livello di accessibilità. In ogni caso, anche tali pagine, dovrebbero essere visibili senza alcuna tipologia di problema anche su browser che non supportano html4.  
 
 ### CSS 
