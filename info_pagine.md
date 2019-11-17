@@ -1,3 +1,21 @@
+## GENERALE 
+
+### HTML 
+In tutte le pagine si è tentato di usare unicamente html4, in modo da aver una compatibilità più elevata con i vari browser. 
+Nei form si è deciso di usare unicamente i campi di input messi a disposizione di html4: eventuali controlli sul formato e contenuto di tali campi è stato eseguito in javascript. 
+In alcune pagine (es. faq) si è deciso di usare html5, per supportare un maggior livello di accessibilità. In ogni caso, anche tali pagine, dovrebbero essere visibili senza alcuna tipologia di problema anche su browser che non supportano html4.  
+
+### CSS 
+La maggior parte del css è css2. Nel caso di utilizzo di alcune regole introdotte da css3, esse sono state disposte alla fine del blocco di regole. Questo permette a browser che non supportano css3 di eseguire in modo adeguato almeno tutte le regole css2. 
+
+### JS
+Javascript è stato usato in un numero limitato di pagine, con i seguenti scopi:  
+- Controlli sui form 
+- Preview di immagini 
+- Garantire maggiore accessibilità  
+In ogni caso, tutte le pagine influenzate da codice javscript possono essere visualizzate in modo corretto anche se quest'ultimo risulti essere disabilitato. In questo caso abbiamo ritenuto adeguato mostrare all'utente un messaggio di warning relativo al possibile non disponibilità di alcune funzionalità. 
+
+
 ## BASE 
 La pagina base.html rappresenta la scheletro delle altre pagine. Viene utilizzata una struttura a tre pannelli per rendere la navigazione dell'utente all'interno del sito il più naturale possibile. Il design della pagina è responsive, in particolare sono usati i seguenti breakpoint: 600px e 768px. Per i dispositivi più grandi il contenuto della pagina risulta essere centrato, con una dimensione massima di 1024px. 
 Caratteristiche: 
@@ -6,10 +24,9 @@ Caratteristiche:
 
  
  ## FAQ
-La pagina di FAQ presenta DOCTYPE HTML, rispettando comunque le regole di sintassi di XHTML 1.0 Strict. 
+La pagina di FAQ presenta DOCTYPE HTML 5, rispettando comunque le regole di sintassi di XHTML 1.0 Strict. 
 Questa decisione è dovuta a: 
 - Utilizzo dell'attributo tabindex sui dt e dd 
-- Meta tag viewport, per un supporto più adeguato del responsive design 
 
 Particolarità della pagina: 
 - la pagina funziona correttamente anche nel caso in cui js sia disattivato, in particolare in tale situazione 
@@ -17,14 +34,3 @@ Particolarità della pagina:
 - gli utenti possono accedere alle risposte tramite un click sul relativo dt, oppure tramite il tasto "invio" (una 
 	volta messo in focus il td). Questa funzionalità richiede la presenza di js attivato, e rende accessibile le pagine 
 	anche a utenti impossibilitati all'utilizzo del mouse. 
-	
-## INDEX 
-La pagina di FAQ presenta DOCTYPE HTML, rispettando comunque le regole di sintassi di XHTML 1.0 Strict. 
-Questa decisione è dovuta a: 
-- Utilizzo di placeholder e required 
-- Meta tag viewport, per un supporto più adeguato del responsive design 
-
-Particolarità della pagina: 
-- Poichè il cambiamento del placeholder è gestito tramite javascript, la disabilitazione di quest'ultimo porta 
-	alla mancanza del placeholder stesso dalla barra di ricerca. Questo comportamento risulta più adeguato di inserire il 
-	placeholder direttamente nell'html, poichè in questo caso (e in assenza di js abiitato) il placeholder non cambierebbe 			dinamicamente, e porterebbe a una certa ambiguità nella struttura della pagina. 
