@@ -140,7 +140,8 @@ function showErrMsg(form, msg) {
     var fieldset = form.firstElementChild; 
  
     var box = document.createElement("div");
-    box.classList.add("error_box"); 
+    box.classList.add("msg_box"); 
+    box.classList.add("error_box")
     box.innerHTML = msg; 
     fieldset.insertBefore(box, fieldset.firstChild); 
 }

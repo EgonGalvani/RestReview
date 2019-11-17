@@ -164,14 +164,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     outline: none; 
 }
 
-.error_box {
+.msg_box {
     padding: 1.25em; 
-    color: #cc0033;
     font-weight: bold;
-    background-color: #fce4e4;
-    border: 1px solid #fcc2c3;
     margin: 0.5em 0; 
-    background-image: url(../img/error_icon.svg); 
     background-repeat: no-repeat;
     background-position: 0.5em center;
     background-size: 3em; 
@@ -179,6 +175,26 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     font-size: 1em; 
 }
 
+.error_box {
+    background-image: url(../img/error_icon.svg);   
+    background-color: #fce4e4;
+    border: 1px solid #fcc2c3;
+    color: #cc0033;
+}
+
+.success_box {
+    background-color:#e9ffd9;
+    background-image: url(../img/success_icon.svg);
+    border:1px solid #a6ca8a;
+    color: #50a013;
+}
+
+.warning_box {
+    background-color:#fff8c4;
+    background-image: url(../img/warning_icon.svg);
+    border:1px solid #f2c779;
+    color: #ffa600;
+}
 
 /* ------------- PAGINA FAQ ---------- */
 .faq_header {
