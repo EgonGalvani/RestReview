@@ -561,39 +561,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
 }
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
-/*.item_recensioni ul{
-    list-style: none;
-}
-.item_recensioni img{
-    width: 4%;
-    height: 4%;
-}
-.oggetto_item{
-    display: inline-block;
-    float :left;
-    padding-left: 2em;
-}
-.data_item{
-    display: inline-block;
-    float :right;
-    padding-right: 6em;
-}
-.descrizione_item{
-    clear:both;
-    float :left;
-    padding-left: 2em;
-    padding-top: 1.5em;
-}
-.like_item{
-    clear:both;
-    float :left;
-    padding-left: 2em;
-    padding-top: 7em;
-}
-.stelle_item{
-    clear:both;
-    padding-left: 2em;
-}*/
 #item_recensione-list {
     list-style:none;
 }
