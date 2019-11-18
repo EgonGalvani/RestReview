@@ -3,7 +3,7 @@
 ### HTML 
 In tutte le pagine si è tentato di usare unicamente xhtml 1.1, in modo da aver una compatibilità più elevata con i vari browser. 
 Nei form si è deciso di usare unicamente i campi di input messi a disposizione da xhtml 1.1: eventuali controlli sul formato e contenuto di tali campi è stato eseguito in javascript. 
-In alcune pagine (es. faq) si è deciso di usare html5, per supportare un maggior livello di accessibilità. In ogni caso, anche tali pagine, dovrebbero essere visibili senza alcuna tipologia di problema anche su browser che non supportano html4.  
+In alcune pagine (es. faq) si è deciso di usare html5, per supportare un maggior livello di accessibilità. In ogni caso, anche tali pagine, dovrebbero essere visibili senza alcuna tipologia di problema anche su browser che non supportano html5.  
 
 ### CSS 
 La maggior parte del css è css2. Nel caso di utilizzo di alcune regole introdotte da css3, esse sono state disposte alla fine del blocco di regole. Questo permette a browser che non supportano css3 di eseguire in modo adeguato almeno tutte le regole css2. 
