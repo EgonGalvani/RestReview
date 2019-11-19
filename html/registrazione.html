@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
-        <meta http-equiv="Content-class="" class="" type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-  type" content="text/html; charset=utf-8" />
 
         <title>Registrazione</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
@@ -10,7 +10,7 @@
         <meta name="keywords" content="" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
         <script type="text/javascript" src="../js/script.js"></script>
-        <link rel="stylesheet" class="" class="" type="text/css" href="../css/style.css" /> 
+        <link rel="stylesheet"   type="text/css" href="../css/style.css" /> 
     </head>
 
     <body>
@@ -36,41 +36,43 @@
         </div>
 
         <div id="content">
-            <form method="post" action="" encclass="" class="" type="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data" id="form_registrazione">
                 <!--multipart/form-data	Non vengono codificati i caratteri,
                 è necessario per i form che fanno file upload.
-                (https://www.w3schools.com/tags/att_form_encclass="" class="" type.asp)-->
-                <fieldset id="form_fieldset">
-                    <span class="">Come vuoi registrarti?:</span>
-                    <input type="radio" name="tipo_utente" value="Recensore" class="" id="recensore" checked="checked"><label class="radio_label " for="recensore">Recensore</label>
-                    <input type="radio" name="tipo_utente" value="Ristoratore" class="" id="ristoratore"><label class="radio_label" for="ristoratore">Ristoratore</label>
+                (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
+                <fieldset>
+                    <span >Come vuoi registrarti?:</span>
+                    <input type="radio" name="tipo_utente" value="Recensore" id="recensore" checked="checked"><label class="radio_label " for="recensore">Recensore</label>
+                    <input type="radio" name="tipo_utente" value="Ristoratore"  id="ristoratore"><label class="radio_label" for="ristoratore">Ristoratore</label>
                     <legend>Dati personali</legend>
-                    <div id="img_sel">
-                        <label class=" " for="img_profilo_placeholder">Immagine profilo</label>
-                        <img class=" " name="img_profilo_placeholder"src="../img/imgnotfound.png" />
-                        <input class=" " type="file" name="img_profilo" id="img_profilo" tabindex="6">
-                    </div>
-                    <label class="" for="email" xml:lang="eng">Email</label>
-                    <input class="" type="email" name="email" id="email" required="required" tabindex="1" />
-                    <label class="" for="nome">Nome</label>
-                    <input class="" type="text" name="nome" id="nome" required="required" tabindex="2" />
-                    <label class="" for="cognome">Cognome</label>
-                    <input class="" type="text" name="cognome" id="cognome" required="required" tabindex="3" />
-                    <label class="" for="sesso">Sesso</label>
-                    <select class="" name="sesso" id="sesso" required="required" tabindex="4">
+                    <label for="email" xml:lang="eng">Email</label>
+                    <input type="email" name="email" id="email" required="required" tabindex="1" />
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" required="required" tabindex="2" />
+                    <label for="cognome">Cognome</label>
+                    <input type="text" name="cognome" id="cognome" required="required" tabindex="3" />
+                    <label for="sesso">Sesso</label>
+                    <select name="sesso" id="sesso" required="required" tabindex="4">
                         <option value="undef" selected="selected">Non Specificato</option>
                         <option value="uomo">Uomo</option>
                         <option value="donna">Donna</option>
                         <option value="altro">Altro</option>
                     </select>
-                    <label class="" for="nascita">Data di nascita</label>
-                    <input class=""  type="date" name="nascita" id="nascita" required="required" tabindex="5">
-                    <label class="" for="password" xml:lang="eng">Password</label>
-                    <input class=""  type="password" name="password" id="password" required="required" tabindex="7" />
-                    <label class="" for="repeatpassword">Ripeti password</label>
-                    <input class=""  type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8" />
-                    <label class="" id="piva_l" for="p_iva">Partita IVA</label>
-                    <input class="" id="piva" type="text" name="p_iva" id="p_iva" tabindex="9" />
+                    <label for="nascita">Data di nascita</label>
+                    <input type="date" name="nascita" id="nascita" required="required" tabindex="5">
+                    <label for="password" xml:lang="eng">Password</label>
+                    <input type="password" name="password" id="password" required="required" tabindex="7" />
+                    <label for="repeatpassword">Ripeti password</label>
+                    <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8" />
+                    <label id="piva_l" for="p_iva">Partita IVA</label>
+                    <input id="piva" type="text" name="p_iva" tabindex="9" />
+                    <label id="rsoc_l" for="r_soc">Ragione sociale</label>
+                    <input id="rsoc" type="text" name="r_soc" tabindex="10" />
+                    <div id="img_sel">
+                        <label for="img_profilo_placeholder">Immagine profilo</label>
+                        <img name="img_profilo_placeholder"src="../img/imgnotfound.jpg" />
+                        <input type="file" name="img_profilo" id="img_profilo" tabindex="11">
+                    </div>
                     <input class="centered" type="submit" value="Registrati"/>
                 </fieldset>
             </form>

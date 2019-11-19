@@ -383,12 +383,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     margin: 0 auto; 
 }
 
-#login_form fieldset{
+#login_form,#form_registrazione fieldset{
     padding: 1.5em;
     border: 4px solid #ccc;  
 }
 
-#login_form legend {
+#login_form,#form_registrazione legend {
     padding: 0 1.5em; 
     font-size: 1.2em; 
     font-weight: bold;
@@ -418,8 +418,46 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 /* ------------------------- registrazione ------------------------------*/
-#img_sel{
-    float: right;
+#form_registrazione {
+    margin-left: 10%;
+    margin-right:7.5%;
+    /*width: 60%;*/
+    /*text-align: center;*/
+    border: 0;
+}   
+  
+#form_registrazione input,select{
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+} 
+
+#form_registrazione input[type="radio"]{
+    display: inline-block;
+}
+
+#form_registrazione label{
+    font-weight: bold;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 1em;
+    padding-right: 1em;
+    font-size: 1.2em;
+}
+
+#form_registrazione .radio_label{
+    font-weight: normal;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-left: 0.5em;
+    padding-right: 1em;
+    font-size: 1.1em;
+}
+
+#form_registrazione img{
+    width: 25%;
+    height: auto;
 }
 
 .centered{
@@ -434,13 +472,19 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 #recensore,#ristoratore{
     display: inline-block;
 }
-#recensore:checked~#piva_l{
+#recensore:checked~#piva_l,#rsoc,#rsoc_l{
     display: none;
 }
 #recensore:checked~#piva{
     display: none;
 }
-#ristoratore:checked~#pipiva_lva,#piva {
+#recensore:checked~#rsoc{
+    display: none;
+}
+#recensore:checked~#rsoc_l{
+    display: none;
+}
+#ristoratore:checked~#piva_l,#piva,#rsoc,#rsoc_l {
     display: block;
 }
 
@@ -517,36 +561,37 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
 }
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
-.item_recensioni ul{
-    list-style: none;
+#item_recensione-list {
+    list-style:none;
 }
-.item_recensioni img{
-    width: 4%;
-    height: 4%;
+.item_recensione{
+    margin-top: 2em;
+    border: 1px solid black;
+    min-height: 15em;
+    min-width: 30em;
 }
 .oggetto_item{
-    display: inline-block;
-    float :left;
-    padding-left: 2em;
-}
-.data_item{
-    display: inline-block;
-    float :right;
-    padding-right: 6em;
+    font-size: 1.5em;
+    margin-left: 1.5em;
+    display: inline;
 }
 .descrizione_item{
-    clear:both;
-    float :left;
-    padding-left: 2em;
-    padding-top: 1.5em;
+    display: inline;
+    float:right;
+    position: absolute;
+    padding-top: 0.4em;
+    margin-right: 50em;
+    text-align: left;
+    padding-left: 6em;
+    width: 30%;
+    height: 30%;
+    overflow: hidden;
 }
-.like_item{
-    clear:both;
-    float :left;
-    padding-left: 2em;
-    padding-top: 7em;
+.item_recensione span{
+    display: block;
+    margin-left: 2em;
 }
-.stelle_item{
-    clear:both;
-    padding-left: 2em;
+.item_recensione img{
+    width: 3.5%;
+    height: 3.5%;
 }
