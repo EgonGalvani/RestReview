@@ -1,27 +1,4 @@
 
-/** FUNZIONI UTILI  */
-
-// ritorna true sse l'elemento element presenta la classe avente nome className
-function hasClass(element, className) {
-    if(element && element.classList.contains(className))
-        return true; 
-    return false; 
-}
-
-// aggiunge la classe className all'elemento element
-function addClass(element, className) {
-    if(element && !element.classList.contains(className))
-        element.classList.add(className); 
-}
-
-// rimuove la classe className all'elemento element
-function removeClass(element, className) {
-    if(element && element.classList.contains(className))
-        element.classList.remove(className); 
-}
-
-function isEmpty(str) { return !str.trim().length; }
-
 /************************ CODICE PER PAGINA DI BASE ******************************/
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
@@ -34,97 +11,122 @@ window.onscroll = function() {
     var LIMIT = window.screen.height * 0.25;
 
     // mostro il bottone se lo scroll è superiore a una certa soglia (LIMIT)
-    if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
+   /* if(document.body.scrollTop > LIMIT || document.documentElement.scrollTop > LIMIT)
         this.removeClass(scrollBtn, "hide"); 
-    else this.addClass(scrollBtn, "hide"); 
+    else this.addClass(scrollBtn, "hide"); */ 
 }; 
 
 /****************** CODICE PER LA PAGINA FAQ.HTML *****************************/
 
-// control = elemento di controllo delle faq (cioè un link "apri tutte", "chiudi tutte")
-// ritorna un oggetto avente come attributi due vettori, contenenti dd e dt 
-// della lista di domande a cui si riferisce il control specificato 
-function getTargetDetails(control) {
-    if(control) {
-        var targetId = control.getAttribute("href").substr(1); // rimuovo il # 
-        var target = document.getElementById(targetId); 
-        return {
-            dts: target.getElementsByTagName("dt"),
-            dds: target.getElementsByTagName("dd")
-        }; 
-    }
+class FaqItem {
+    constructor(dtElement) {
+        this.dt = dtElement; 
+        this.dd = dtElement.nextElementSibling; 
+        this.isOpen = true; // di default tutti i faq item sono aperti  
 
-    return {dts: [], dds: []}; 
-}
-
-// apre/chiude tutte le domande gestite da un determinato control
-function modifyAll(control, close) {
-    var info = getTargetDetails(control); 
-          
-    for(var i = 0; i < info.dts.length; i++) {
-        if(close) {
-            addClass(info.dts[i], "faq_closed"); 
-            addClass(info.dds[i], "hide"); 
-        } else {
-            removeClass(info.dts[i], "faq_closed"); 
-            removeClass(info.dds[i], "hide");   
-        }
-    }   
-}
-
-// click listener per un elemento della lista di domande, se la domanda 
-// che è stata cliccata è gia aperta, allora viene chiusa. Altrimenti accade il contrario. 
-function faqClickListener(e) {
-    var dt = e.target; 
-    if(hasClass(dt, "faq_closed"))
-        removeClass(dt, "faq_closed"); 
-    else addClass(dt, "faq_closed"); 
-
-    var dd = dt.nextElementSibling; 
-    if(hasClass(dd, "hide"))
-        removeClass(dd, "hide"); 
-    else addClass(dd, "hide"); 
-}
-
-var dts = document.getElementsByTagName("dt"); 
-if(dts) {
-    for(var i = 0; i < dts.length; i++) {
-        // chiudo tutte le faq => in questo modo se js è disabilitato l'utente
-        // è comunque in grado di visualizzare le risposte 
-        addClass(dts[i].nextElementSibling, "hide"); 
-        addClass(dts[i], "faq_closed"); 
-
-        // setto i listener per l'evento click del mouse 
-        // e enter button 
-        dts[i].addEventListener("click", faqClickListener); 
-        dts[i].addEventListener("keyup", function(e) {
+        // setto il click listener e il click del tasto enter 
+        // poichè in javascript c'è il concetto di execution context, 
+        // mi occupo di fare già il bind dei metodi relativi alla gestione degli eventi
+        this.dt.addEventListener("click", this.onClick.bind(this)); 
+        this.dt.addEventListener("keyup", function(e) {
             if(e.keyCode === 13) { // ENTER KEY_CODE
                 e.preventDefault(); 
-                faqClickListener(e); 
+                this.onClick(); 
             }
-        }); 
+        }.bind(this)); 
+    } 
+
+    open() {
+        if(!this.isOpen) {
+            this.dd.classList.remove("hide"); 
+            this.dt.classList.remove("faq_closed"); 
+            this.isOpen = true; 
+        }
+    }
+
+    close() {
+        if(this.isOpen) {
+            this.dd.classList.add("hide"); 
+            this.dt.classList.add("faq_closed"); 
+            this.isOpen = false; 
+        }
+    }
+
+    onClick() {
+        if(this.isOpen)
+            this.close();
+        else 
+            this.open(); 
     }
 }
 
-// controlli di chiusura 
-var closeControls = document.getElementsByClassName("faq_control_close"); 
-if(closeControls) {
-    for(var i = 0; i < closeControls.length; i++) {
-        closeControls[i].addEventListener("click", (e) => modifyAll(e.target, true)); 
+class FaqList {
+    constructor(listElement) {
+        this.listID = listElement.id; 
+        this.list = new Array(); 
+
+        // INTRODUCO TUTTI GLI ELEMENTI DELLA LISTA IN UN ARRAY (SOTTOFORMA DI ListItem)
+        var dts = listElement.getElementsByTagName("dt"); 
+        for(var i = 0; i < dts.length; i++)  {
+            this.list.push(new FaqItem(dts[i])); 
+        }
     }
+
+    openAll() {
+        for(var i = 0; i < this.list.length; i++) {
+            this.list[i].open(); 
+        } 
+    }
+
+    closeAll() { 
+        for(var i = 0; i < this.list.length; i++) {    
+           this.list[i].close();  
+        }
+    }
+
 }
 
-// controlli di apertura 
-var openControls = document.getElementsByClassName("faq_control_open"); 
-if(openControls) {
-    for(var i = 0; i < openControls.length; i++) {
-        openControls[i].addEventListener("click", (e) => modifyAll(e.target, false)); 
+window.onload = function() {
+
+    var fLists = document.getElementsByClassName("faq_list"); 
+ 
+    // instanzio tutte le liste 
+    var fListObj = new Array(); 
+    for(var i = 0; i < fLists.length; i++)
+        fListObj.push(new FaqList(fLists[i])); 
+
+    // chiudo tutte le liste (=> di default sono aperte per permettere ad utenti senza js abilitato 
+    // di leggere le risposte ) 
+    for(var i = 0; i < fListObj.length; i++) {
+        fListObj[i].closeAll(); 
     }
-}
+
+    // gestione dei controlli di apertura e chisura
+    // ottengo una lista di tutti i controlli 
+    var controls = document.querySelectorAll(".faq_control_close, .faq_control_open"); 
+    for(var i = 0; i < controls.length; i++) {
+        
+        // setto il click listener di ogni controllo 
+        controls[i].addEventListener("click", function() {
+            
+            // identifico la lista a cui fa riferimento e la cerco tra le FaqList
+            var targetListID = this.getAttribute("href").substr(1);   
+            for(var j = 0; j < fListObj.length; j++) {
+
+                // quando trovo la FaqList di interesse agisco in base al tipo di control
+                if(targetListID == fListObj[j].listID) {
+                    if(this.classList.contains("faq_control_close"))
+                        fListObj[j].closeAll(); 
+                    else fListObj[j].openAll(); 
+                }
+            }
+        });
+    }
+}; 
+    
+
 
 /************* CODICE PER LOGIN E REGISTRAZIONE *******/
-var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
-var pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
 /** SPIEGAZIONE REGEX PSW 
  * /^
@@ -134,6 +136,16 @@ var pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
   [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
   $/
 */
+
+class MsgBox {
+    MSG_TYPES = {
+        ERROR: -1, 
+        WARNING: 0, 
+        SUCCESS: 1
+    }; 
+
+
+}
 
 // inserisce un box di errore come primo elemento del fieldset del form
 function showErrMsg(form, msg) {
@@ -183,3 +195,21 @@ if(loginForm) {
     }); 
 
 } 
+
+class FormUtils {
+    emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+    pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
+
+    isEmail(email) {
+        return new RegExp(emailRegex).test(email.trim()); 
+    }
+
+    isEmpty(str) { 
+        return !str.trim().length; 
+    }
+
+    equals(str1, str2) {
+        return str1.trim() === str2.trim(); 
+    }   
+}
+
