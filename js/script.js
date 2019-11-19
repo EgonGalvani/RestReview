@@ -144,25 +144,36 @@ class MsgBox {
         SUCCESS: 1
     }; 
 
+    constructor(msg, type) {
+        this.text = text; 
+        this.type = type;
+        
+        // creo il box per il messaggio 
+        this.box = document.createElement("div");
+        this.box.classList.add("msg_box"); 
 
-}
+        var msgClass = "msg_success"; 
+        if(type == this.MSG_TYPES.ERROR)
+            msgClass = "msg_error"; 
+        else if(type == this.MSG_TYPES.WARNING)
+            msgClass = "msg_warning"; 
 
-// inserisce un box di errore come primo elemento del fieldset del form
-function showErrMsg(form, msg) {
-    var fieldset = form.firstElementChild; 
- 
-    var box = document.createElement("div");
-    box.classList.add("msg_box"); 
-    box.classList.add("error_box")
-    box.innerHTML = msg; 
-    fieldset.insertBefore(box, fieldset.firstChild); 
-}
+        this.box.classList.add(msgClass); 
+        this.box.innerHTML = msg;
+    }
 
-function clearErrMsgs() {
-    var errors = document.getElementsByClassName("error_box");  
-    while (errors.length > 0) { 
-        // ogni volta che rimuovo un elmento dal DOM, viene rimosso anche dall'array
-        errors[0].parentNode.removeChild(errors[0]);
+    show(parent) {
+        // se non è presente alcun parent considero di inserire l'elemento come primo 
+        // elemento del body 
+        if(!parent)
+            parent = document.body; 
+        
+        parent.insertBefore(box, parent.firstChild); 
+    }
+
+    delete() {
+        // rimuove l'elemento dal DOM 
+        this.box.parentNode.removeChild(this.box);
     }
 }
 
