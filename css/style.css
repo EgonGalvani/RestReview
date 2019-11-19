@@ -383,12 +383,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     margin: 0 auto; 
 }
 
-#login_form,#form_registrazione fieldset{
+#login_form fieldset,#form_registrazione fieldset{
     padding: 1.5em;
     border: 4px solid #ccc;  
 }
 
-#login_form,#form_registrazione legend {
+#login_form legend,#form_registrazione legend {
     padding: 0 1.5em; 
     font-size: 1.2em; 
     font-weight: bold;
@@ -472,19 +472,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 #recensore,#ristoratore{
     display: inline-block;
 }
-#recensore:checked~#piva_l,#rsoc,#rsoc_l{
-    display: none;
-}
-#recensore:checked~#piva{
-    display: none;
-}
-#recensore:checked~#rsoc{
-    display: none;
-}
+
+#recensore:checked~#piva_l,
+#recensore:checked~#piva,
+#recensore:checked~#rsoc,
 #recensore:checked~#rsoc_l{
     display: none;
-}
-#ristoratore:checked~#piva_l,#piva,#rsoc,#rsoc_l {
     display: block;
 }
 
