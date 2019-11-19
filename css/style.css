@@ -566,32 +566,54 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 .item_recensione{
     margin-top: 2em;
-    border: 1px solid black;
-    min-height: 15em;
-    min-width: 30em;
+    overflow: hidden;
+    box-shadow: 2px 4px #DCDCDC;
+}
+.item_card{
+    border: 2px solid #808080;
+    box-shadow: 5px 5px #808080;
+}
+.input_recensioni{
+    float:right;
+    width: 20%;
+    margin-left: 3em;
+    margin-bottom: 0.5em;
+    margin-right: 1.6em;
 }
 .oggetto_item{
     font-size: 1.5em;
-    margin-left: 1.5em;
-    display: inline;
+    padding-left: 0.6em;
+    display: inline-block;
 }
 .descrizione_item{
-    display: inline;
-    float:right;
-    position: absolute;
-    padding-top: 0.4em;
-    margin-right: 50em;
-    text-align: left;
-    padding-left: 6em;
-    width: 30%;
-    height: 30%;
-    overflow: hidden;
+    padding-top: 0.8em;
+    padding-left: 1em;
+    padding-bottom: 0.8em;
+    border-bottom: 3px solid #C8C8C8;
+    border-top: 3px solid #C8C8C8;
 }
-.item_recensione span{
+.data_item{
+   float:right;
+   display: block;
+   text-align: left;
+   margin-right: 7em;
+   padding-top: 0.8em;
+}
+.like_item{
+    padding-left: 1em;
+    padding-top: 1em;
     display: block;
-    margin-left: 2em;
 }
 .item_recensione img{
-    width: 3.5%;
-    height: 3.5%;
+    max-width: 2.4%;
+    max-height: 2.4%;
+}
+.stelle_item{
+    padding-left: 1em;
+}
+@media only screen and (max-width: 350px) {
+    .data_item{
+        float:none;
+        margin-left: 0.8em;
+    }
 }
