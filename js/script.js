@@ -1,4 +1,3 @@
-
 /************************ CODICE PER PAGINA DI BASE ******************************/
 
 // GESTIONE BOTTONE PER TORNARE A INIZIO PAGINA
@@ -86,45 +85,6 @@ class FaqList {
 
 }
 
-window.onload = function() {
-
-    var fLists = document.getElementsByClassName("faq_list"); 
- 
-    // instanzio tutte le liste 
-    var fListObj = new Array(); 
-    for(var i = 0; i < fLists.length; i++)
-        fListObj.push(new FaqList(fLists[i])); 
-
-    // chiudo tutte le liste (=> di default sono aperte per permettere ad utenti senza js abilitato 
-    // di leggere le risposte ) 
-    for(var i = 0; i < fListObj.length; i++) {
-        fListObj[i].closeAll(); 
-    }
-
-    // gestione dei controlli di apertura e chisura
-    // ottengo una lista di tutti i controlli 
-    var controls = document.querySelectorAll(".faq_control_close, .faq_control_open"); 
-    for(var i = 0; i < controls.length; i++) {
-        
-        // setto il click listener di ogni controllo 
-        controls[i].addEventListener("click", function() {
-            
-            // identifico la lista a cui fa riferimento e la cerco tra le FaqList
-            var targetListID = this.getAttribute("href").substr(1);   
-            for(var j = 0; j < fListObj.length; j++) {
-
-                // quando trovo la FaqList di interesse agisco in base al tipo di control
-                if(targetListID == fListObj[j].listID) {
-                    if(this.classList.contains("faq_control_close"))
-                        fListObj[j].closeAll(); 
-                    else fListObj[j].openAll(); 
-                }
-            }
-        });
-    }
-}; 
-    
-
 
 /************* CODICE PER LOGIN E REGISTRAZIONE *******/
 
@@ -185,7 +145,7 @@ if(loginForm) {
 
     loginBtn.addEventListener("click", function(e) {
         e.preventDefault(); 
-        clearErrMsgs(loginForm); 
+       
 
         var allOK = true; 
        
@@ -224,3 +184,44 @@ class FormUtils {
     }   
 }
 
+
+
+
+window.onload = function() {
+
+    var fLists = document.getElementsByClassName("faq_list"); 
+ 
+    // instanzio tutte le liste 
+    var fListObj = new Array(); 
+    for(var i = 0; i < fLists.length; i++)
+        fListObj.push(new FaqList(fLists[i])); 
+
+    // chiudo tutte le liste (=> di default sono aperte per permettere ad utenti senza js abilitato 
+    // di leggere le risposte ) 
+    for(var i = 0; i < fListObj.length; i++) {
+        fListObj[i].closeAll(); 
+    }
+
+    // gestione dei controlli di apertura e chisura
+    // ottengo una lista di tutti i controlli 
+    var controls = document.querySelectorAll(".faq_control_close, .faq_control_open"); 
+    for(var i = 0; i < controls.length; i++) {
+        
+        // setto il click listener di ogni controllo 
+        controls[i].addEventListener("click", function() {
+            
+            // identifico la lista a cui fa riferimento e la cerco tra le FaqList
+            var targetListID = this.getAttribute("href").substr(1);   
+            for(var j = 0; j < fListObj.length; j++) {
+
+                // quando trovo la FaqList di interesse agisco in base al tipo di control
+                if(targetListID == fListObj[j].listID) {
+                    if(this.classList.contains("faq_control_close"))
+                        fListObj[j].closeAll(); 
+                    else fListObj[j].openAll(); 
+                }
+            }
+        });
+    }
+}; 
+    
