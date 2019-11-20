@@ -556,16 +556,11 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 #item_recensione-list {
     list-style:none;
 }
-/*.item_recensione{
-    margin-top: 2em;
-    overflow: hidden;
-    box-shadow: 2px 4px #DCDCDC;
-}*/
 .item_card{
     border: 2px solid #808080;
     margin-top: 2em;
     overflow: hidden;
-    box-shadow: 5px 5px #808080;
+    box-shadow: 5px 5px RGBA(80,80,80,0.3);
 }
 .input_recensioni{
     float:right;
