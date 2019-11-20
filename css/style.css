@@ -613,7 +613,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     }
 }
 
-@media only screen and (max-width: 470px) {
+@media only screen and (max-width: 480px) {
     .data_item{
         float:none;
     }
