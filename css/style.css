@@ -556,24 +556,27 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 #item_recensione-list {
     list-style:none;
 }
-.item_recensione{
+/*.item_recensione{
     margin-top: 2em;
     overflow: hidden;
     box-shadow: 2px 4px #DCDCDC;
-}
+}*/
 .item_card{
     border: 2px solid #808080;
+    margin-top: 2em;
+    overflow: hidden;
     box-shadow: 5px 5px #808080;
 }
 .input_recensioni{
     float:right;
-    width: 20%;
+    min-width: 20%;
     margin-left: 3em;
     margin-bottom: 0.5em;
     margin-right: 1.6em;
 }
 .oggetto_item{
     font-size: 1.5em;
+    padding-top: 0.7em;
     padding-left: 0.6em;
     display: inline-block;
 }
@@ -581,14 +584,13 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     padding-top: 0.8em;
     padding-left: 1em;
     padding-bottom: 0.8em;
-    border-bottom: 3px solid #C8C8C8;
     border-top: 3px solid #C8C8C8;
 }
 .data_item{
    float:right;
    display: block;
    text-align: left;
-   margin-right: 7em;
+   margin-right: 3em;
    padding-top: 0.8em;
 }
 .like_item{
@@ -597,11 +599,17 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     display: block;
 }
 .item_recensione img{
-    max-width: 2.4%;
-    max-height: 2.4%;
+    padding-left: 1em;
+    width: 20px;
+    height: 20px;
+}
+.item_recensione span{
+    padding-left: 1em;
+    display: block;
 }
 .stelle_item{
     padding-left: 1em;
+    padding-top: 1em;
 }
 @media only screen and (max-width: 350px) {
     .data_item{
