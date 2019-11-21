@@ -378,52 +378,49 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 /* --------------------- CSS login ----------------------- */
-
-#login_form {
-    width: 50%; 
-    margin: 0 auto; 
-}
-
-#login_form fieldset,#form_registrazione fieldset{
+.vertical_input_form fieldset{
     padding: 1.5em;
     border: 4px solid #ccc;  
 }
 
-#login_form legend,#form_registrazione legend {
+.vertical_input_form legend {
     padding: 0 1.5em; 
     font-size: 1.2em; 
     font-weight: bold;
 }
 
-#login_form label{
-    width: 30%; 
-    margin-top: 1.3em; 
-    margin-right: 1em; 
-    float: left; 
-    text-align: right;  
-}
-
-#login_form input {
+.vertical_input_form input {
     display: block; 
 }
 
-#login_form a {
-    clear: left; 
-    display: block; 
+.vertical_input_form input[type="text"], 
+.vertical_input_form input[type="password"] {
+    margin-left: 1.5em; 
+    width: calc(100% - 4em); 
+    margin-bottom: 1em; 
+}
+
+#login_form {
+    width: 40%; 
+    margin: 0 auto; 
+}
+
+#login_form a { 
+    display: block;
     text-align: center; 
-    padding: 1.5em; 
+    padding: 1em; 
 }
 
-#login_form #login_btn {
-    padding: 1em;
+#login_btn {
+    padding: 0.5em;
+    float: right; 
+    margin-top: 1em; 
 }
 
 /* ------------------------- registrazione ------------------------------*/
 #form_registrazione {
     margin-left: 10%;
     margin-right:7.5%;
-    /*width: 60%;*/
-    /*text-align: center;*/
     border: 0;
 }   
   
@@ -590,6 +587,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
         order: 5; 
         border: 0;
     }
+
+    #login_form {
+        width: 45%; 
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -611,6 +612,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
         width: 95%; 
         margin-top: 0; 
     }
+
+    #login_form {
+        width: 75%; 
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -620,5 +625,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
     .faq_list {
         margin-top: 2.5em; 
+    }
+
+    #login_form {
+        width: 100%; 
     }
 }
