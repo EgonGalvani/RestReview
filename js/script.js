@@ -97,82 +97,60 @@ class FaqList {
   $/
 */
 
-class MsgBox {
-    MSG_TYPES = {
-        ERROR: -1, 
-        WARNING: 0, 
-        SUCCESS: 1
-    }; 
+MSG_TYPES = {
+    ERROR: -1, 
+    WARNING: 0, 
+    SUCCESS: 1
+}; 
 
-    constructor(msg, type) {
-        this.text = text; 
+class MsgBox {
+    constructor(type, msg) {
+        this.text = msg; 
         this.type = type;
+        this.isShown = false; // default
         
         // creo il box per il messaggio 
         this.box = document.createElement("div");
         this.box.classList.add("msg_box"); 
 
-        var msgClass = "msg_success"; 
-        if(type == this.MSG_TYPES.ERROR)
-            msgClass = "msg_error"; 
-        else if(type == this.MSG_TYPES.WARNING)
-            msgClass = "msg_warning"; 
+        var msgClass = "success_box"; 
+        if(type == MSG_TYPES.ERROR)
+            msgClass = "error_box"; 
+        else if(type == MSG_TYPES.WARNING)
+            msgClass = "warning_box"; 
 
         this.box.classList.add(msgClass); 
         this.box.innerHTML = msg;
     }
 
     show(parent) {
-        // se non è presente alcun parent considero di inserire l'elemento come primo 
-        // elemento del body 
-        if(!parent)
-            parent = document.body; 
-        
-        parent.insertBefore(box, parent.firstChild); 
+        if(!this.isShown) {
+            // se non è presente alcun parent considero di inserire l'elemento come primo 
+            // elemento del body 
+            if(!parent)
+                parent = document.body; 
+                
+            parent.insertBefore(this.box, parent.firstChild); 
+            this.isShown = true; 
+        }
     }
 
     delete() {
-        // rimuove l'elemento dal DOM 
-        this.box.parentNode.removeChild(this.box);
+        if(this.isShown) {
+            // rimuove l'elemento dal DOM 
+            this.box.parentNode.removeChild(this.box);
+            this.isShown = false; 
+        }
     }
 }
 
-var loginForm = document.getElementById("login_form"); 
-if(loginForm) {
-    var email = document.getElementById("email"); 
-    var psw = document.getElementById("password"); 
-    var loginBtn = document.getElementById("login_btn"); 
-
-    loginBtn.addEventListener("click", function(e) {
-        e.preventDefault(); 
-       
-
-        var allOK = true; 
-       
-        if(isEmpty(psw.value)) {
-            showErrMsg(loginForm, "Inserire una password!"); 
-            allOK = false; 
-        }
-
-        var emailPattern = new RegExp(emailRegex); 
-        if(!emailPattern.test(email.value.trim())) {
-            showErrMsg(loginForm, "Inserire una email valida!"); 
-            allOK = false; 
-        }
-
-        if(allOK) {
-            loginForm.submit(); 
-        }      
-    }); 
-
-} 
 
 class FormUtils {
     emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
     pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
     isEmail(email) {
-        return new RegExp(emailRegex).test(email.trim()); 
+        return new RegExp(this.emailRegex).test(email.trim()); 
     }
 
     isEmpty(str) { 
@@ -181,47 +159,96 @@ class FormUtils {
 
     equals(str1, str2) {
         return str1.trim() === str2.trim(); 
-    }   
+    }
 }
 
-
-
+// VARIABILI USATE 
+var loginMSGs = {
+    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
+    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
+    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
+}; 
 
 window.onload = function() {
 
+    // ----------- FAQ  ---------------
     var fLists = document.getElementsByClassName("faq_list"); 
- 
-    // instanzio tutte le liste 
-    var fListObj = new Array(); 
-    for(var i = 0; i < fLists.length; i++)
-        fListObj.push(new FaqList(fLists[i])); 
+    if(fLists) {
+        // instanzio tutte le liste 
+        var fListObj = new Array(); 
+        for(var i = 0; i < fLists.length; i++)
+            fListObj.push(new FaqList(fLists[i])); 
 
-    // chiudo tutte le liste (=> di default sono aperte per permettere ad utenti senza js abilitato 
-    // di leggere le risposte ) 
-    for(var i = 0; i < fListObj.length; i++) {
-        fListObj[i].closeAll(); 
-    }
+        // chiudo tutte le liste (=> di default sono aperte per permettere ad utenti senza js abilitato 
+        // di leggere le risposte ) 
+        for(var i = 0; i < fListObj.length; i++) {
+            fListObj[i].closeAll(); 
+        }
 
-    // gestione dei controlli di apertura e chisura
-    // ottengo una lista di tutti i controlli 
-    var controls = document.querySelectorAll(".faq_control_close, .faq_control_open"); 
-    for(var i = 0; i < controls.length; i++) {
-        
-        // setto il click listener di ogni controllo 
-        controls[i].addEventListener("click", function() {
+        // gestione dei controlli di apertura e chisura
+        // ottengo una lista di tutti i controlli 
+        var controls = document.querySelectorAll(".faq_control_close, .faq_control_open"); 
+        for(var i = 0; i < controls.length; i++) {
             
-            // identifico la lista a cui fa riferimento e la cerco tra le FaqList
-            var targetListID = this.getAttribute("href").substr(1);   
-            for(var j = 0; j < fListObj.length; j++) {
+            // setto il click listener di ogni controllo 
+            controls[i].addEventListener("click", function() {
+                
+                // identifico la lista a cui fa riferimento e la cerco tra le FaqList
+                var targetListID = this.getAttribute("href").substr(1);   
+                for(var j = 0; j < fListObj.length; j++) {
 
-                // quando trovo la FaqList di interesse agisco in base al tipo di control
-                if(targetListID == fListObj[j].listID) {
-                    if(this.classList.contains("faq_control_close"))
-                        fListObj[j].closeAll(); 
-                    else fListObj[j].openAll(); 
+                    // quando trovo la FaqList di interesse agisco in base al tipo di control
+                    if(targetListID == fListObj[j].listID) {
+                        if(this.classList.contains("faq_control_close"))
+                            fListObj[j].closeAll(); 
+                        else fListObj[j].openAll(); 
+                    }
                 }
-            }
-        });
+            });
+        }
     }
+
+    // ------------- LOGIN ---------------
+    var loginForm = document.getElementById("login_form"); 
+    if(loginForm) {
+        var email = document.getElementById("email"); 
+        var psw = document.getElementById("password"); 
+        var loginBtn = document.getElementById("login_btn"); 
+     
+        // se ci sono eventuali messaggi di errore, li mostro come figli del 
+        // fieldset 
+        var msgsParent = loginForm.firstElementChild; 
+
+        loginBtn.addEventListener("click", function(e) {
+            e.preventDefault(); 
+            
+            // "rimuovo gli eventuali messaggi" 
+            for (var key in loginMSGs) {
+                loginMSGs[key].delete(); 
+            }
+
+            var fUtils = new FormUtils(); 
+
+            var allOK = true; 
+            if(fUtils.isEmpty(psw.value)) {
+                // aggiungo un messaggio di errore e lo mostro 
+                loginMSGs['empty_password'].show(msgsParent); 
+                allOK = false; 
+            }
+
+            if(fUtils.isEmpty(email.value)) {
+                loginMSGs['empty_email'].show(msgsParent); 
+                allOK = false; 
+            } else if(!fUtils.isEmail(email.value.trim())) {
+                loginMSGs['wrong_email'].show(msgsParent); 
+                allOK = false;
+            }
+
+            if(allOK) {
+                loginForm.submit(); 
+            }      
+        }); 
+
+    } 
 }; 
     
