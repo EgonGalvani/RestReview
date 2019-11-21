@@ -153,25 +153,22 @@ class FormUtils {
         return new RegExp(this.emailRegex).test(email.trim()); 
     }
 
+    isPsw(psw) {
+        return new RegExp(this.pswRegex).test(psw.trim()); 
+    }
+
     isEmpty(str) { 
         return !str.trim().length; 
     }
 
     equals(str1, str2) {
-        return str1.trim() === str2.trim(); 
+        return str1.trim() == str2.trim(); 
     }
 }
 
-// VARIABILI USATE 
-var loginMSGs = {
-    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
-    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
-    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
-}; 
 
-window.onload = function() {
 
-    // ----------- FAQ  ---------------
+function faq_init() {
     var fLists = document.getElementsByClassName("faq_list"); 
     if(fLists) {
         // instanzio tutte le liste 
@@ -207,12 +204,18 @@ window.onload = function() {
             });
         }
     }
+}
 
-    // ------------- LOGIN ---------------
+// VARIABILI USATE 
+var loginMSGs = {
+    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
+    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
+    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!")
+}; 
+
+function login_init() {
     var loginForm = document.getElementById("login_form"); 
     if(loginForm) {
-        var email = document.getElementById("email"); 
-        var psw = document.getElementById("password"); 
         var loginBtn = document.getElementById("login_btn"); 
      
         // se ci sono eventuali messaggi di errore, li mostro come figli del 
@@ -228,6 +231,8 @@ window.onload = function() {
             }
 
             var fUtils = new FormUtils(); 
+            var email = document.getElementById("email"); 
+            var psw = document.getElementById("password"); 
 
             var allOK = true; 
             if(fUtils.isEmpty(psw.value)) {
@@ -248,7 +253,102 @@ window.onload = function() {
                 loginForm.submit(); 
             }      
         }); 
-
     } 
+} 
+
+var regMSGs = {
+    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
+    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
+    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
+    "wrong_password" : new MsgBox(MSG_TYPES.ERROR, "La password deve avere una lunghezza minima di 8 caratteri. Può contenere lettere e numeri. Deve contenere almeno un numero!"), 
+    "psw_match": new MsgBox(MSG_TYPES.ERROR, "La password e la relativa ripetizione non coincidono!"), 
+    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi devono essere riempiti!")
+}; 
+function reg_init() {
+    var reg_form = document.getElementById("form_registrazione"); 
+    if(reg_form) {
+        
+        // preview dell'immagine
+        var fileInput = document.getElementById("img_profilo"); 
+        fileInput.addEventListener("change", function(e) {
+            if(fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader(); 
+                reader.onload = function(ee) {
+                    document.getElementById("img_profilo_preview").src = ee.target.result;
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }); 
+
+        // setto il click listener
+        var reg_btn = document.getElementById("reg_btn"); 
+        reg_btn.addEventListener("click", function (e) {
+            e.preventDefault(); 
+
+            // "rimuovo gli eventuali messaggi" 
+            for (var key in regMSGs) {
+                regMSGs[key].delete(); 
+            }
+
+            var reg_fieldset = reg_form.firstElementChild; 
+
+            var name = document.getElementById("nome"); 
+            var surname = document.getElementById("cognome"); 
+            var psw = document.getElementById("password"); 
+            var rpsw = document.getElementById("repeatpassword"); 
+          
+            var ristoratore = document.getElementById("ristoratore");
+            var piva = document.getElementById("piva");
+            var rsoc = document.getElementById("rsoc"); 
+    
+            var fUtils = new FormUtils(); 
+            var allOk = true; 
+
+            if(fUtils.isEmpty(name.value) || fUtils.isEmpty(surname.value)
+                || fUtils.isEmpty(psw.value) || fUtils.isEmpty(rpsw.value)) {
+                
+                regMSGs['empty_fields'].show(reg_fieldset); 
+                allOk = false; 
+            } else if(ristoratore.checked && (fUtils.isEmpty(piva.value) || fUtils.isEmpty(rsoc.value)) ) {
+                regMSGs['empty_fields'].show(reg_fieldset); 
+                allOk = false; 
+            } 
+
+            if(allOk) {
+                if(!fUtils.isEmail(email.value)) {
+                    regMSGs['wrong_email'].show(reg_fieldset); 
+                    allOk = false; 
+                }
+
+                if(!fUtils.isPsw(psw.value)) {
+                    regMSGs['wrong_password'].show(reg_fieldset); 
+                    allOk = false; 
+                } else if(!fUtils.equals(psw.value, rpsw.value)) {
+                    regMSGs['psw_match'].show(reg_fieldset); 
+                    allOk = false; 
+                }
+            }
+
+            if(allOk) {
+                reg_form.submit(); 
+            }
+        }); 
+
+      
+
+
+    }
+}
+
+window.onload = function() {
+
+    // ----------- FAQ  ---------------
+    faq_init(); 
+
+    // ------------- LOGIN ---------------
+    login_init();
+
+    // ---------- REGISTRAZIONE -------------- 
+    reg_init(); 
 }; 
     

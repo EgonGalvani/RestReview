@@ -34,25 +34,32 @@
                 è necessario per i form che fanno file upload.
                 (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
                 <fieldset>
+                    <noscript>
+                        <div class="msg_box warning_box">
+                            ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
+                            NON ESSERE DISPONIBILI
+                        </div>
+                    </noscript>
+
                     <legend>Registrazione</legend>
                     
                     <span >Tipologia di registrazione: </span>
-                    <input type="radio" name="tipo_utente" value="Recensore" id="recensore" checked="checked">
+                    <input type="radio" name="tipo_utente" value="Recensore" tabindex="1" id="recensore" checked="checked">
                     <label class="radio_label " for="recensore">Recensore</label>
                     <input type="radio" name="tipo_utente" value="Ristoratore"  id="ristoratore">
                     <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
                     <label for="email" xml:lang="eng">Email:</label>
-                    <input type="email" name="email" id="email" required="required" tabindex="1" />
+                    <input type="email" name="email" id="email" required="required" tabindex="2" />
                     
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required="required" tabindex="2" />
+                    <input type="text" name="nome" id="nome" required="required" tabindex="3" />
                     
                     <label for="cognome">Cognome:</label>
-                    <input type="text" name="cognome" id="cognome" required="required" tabindex="3" />
+                    <input type="text" name="cognome" id="cognome" required="required" tabindex="4" />
                     
                     <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" required="required" tabindex="4">
+                    <select name="sesso" id="sesso" required="required" tabindex="5">
                         <option value="undef" selected="selected">Non Specificato</option>
                         <option value="uomo">Uomo</option>
                         <option value="donna">Donna</option>
@@ -60,7 +67,7 @@
                     </select>
                     
                     <label for="nascita">Data di nascita:</label>
-                    <input type="date" name="nascita" id="nascita" required="required" tabindex="5">
+                    <input type="date" name="nascita" id="nascita" required="required" tabindex="6">
                     
                     <label for="password" xml:lang="eng">Password:</label>
                     <input type="password" name="password" id="password" required="required" tabindex="7" />
@@ -75,11 +82,11 @@
                     <input id="rsoc" type="text" name="r_soc" tabindex="10" />
 
                     <div id="img_sel">
-                        <label for="img_profilo_placeholder">Immagine profilo:</label>
-                        <img name="img_profilo_placeholder"src="../img/imgnotfound.jpg" />
+                        <label for="img_profilo_preview">Immagine profilo:</label>
+                        <img id="img_profilo_preview" name="img_profilo_preview" src="../img/imgnotfound.jpg" />
                         <input type="file" name="img_profilo" id="img_profilo" tabindex="11">
                     </div>
-                    <input id="reg_btn" type="submit" value="Registrati"/>
+                    <input id="reg_btn" type="submit" value="Registrati" tabindex="12"/>
                 </fieldset>
             </form>
         </div>
