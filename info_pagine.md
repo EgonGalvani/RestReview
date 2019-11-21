@@ -34,3 +34,6 @@ Particolarità della pagina:
 - gli utenti possono accedere alle risposte tramite un click sul relativo dt, oppure tramite il tasto "invio" (una 
 	volta messo in focus il td). Questa funzionalità richiede la presenza di js attivato, e rende accessibile le pagine 
 	anche a utenti impossibilitati all'utilizzo del mouse. 
+
+## REGISTRAZIONE 
+- Il doctype è html5 per sfruttare il maggiore supporto introdotto ai form, in particolare viene usato il type data, che in xhtml 1.1 non è presente.
