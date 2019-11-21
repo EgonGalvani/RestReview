@@ -389,12 +389,14 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     font-weight: bold;
 }
 
-.vertical_input_form input {
+.vertical_input_form input, .vertical_input_form select {
     display: block; 
 }
 
 .vertical_input_form input[type="text"], 
-.vertical_input_form input[type="password"] {
+.vertical_input_form input[type="password"],
+.vertical_input_form input[type="email"],
+.vertical_input_form select {
     margin-left: 1.5em; 
     width: calc(100% - 4em); 
     margin-bottom: 1em; 
@@ -419,57 +421,46 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
 /* ------------------------- registrazione ------------------------------*/
 #form_registrazione {
-    margin-left: 10%;
-    margin-right:7.5%;
-    border: 0;
+    width: 45%;
+    margin: 0 auto; 
 }   
-  
-#form_registrazione input,select{
+
+#form_registrazione span:first-of-type {
     display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    padding: 0.5em;
-} 
+    margin-bottom: 0.75em; 
+}
 
 #form_registrazione input[type="radio"]{
     display: inline-block;
 }
 
-#form_registrazione label{
-    font-weight: bold;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-left: 1em;
-    padding-right: 1em;
-    font-size: 1.2em;
+#form_registrazione input[type="radio"]:first-of-type{
+    margin-left: 1.5em; 
+}
+
+#form_registrazione label[for="email"] {
+    display: block;
+    margin-top: 1.5em; 
+}
+
+
+#form_registrazione #nascita {
+    margin: 0.75em 0 1em 1.5em; 
 }
 
 #form_registrazione .radio_label{
-    font-weight: normal;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding: 0.5em 1em 0.5em 0; 
     margin-left: 0.5em;
-    padding-right: 1em;
     font-size: 1.1em;
 }
 
 #form_registrazione img{
-    width: 25%;
+    width: 30%;
+    display: block;
     height: auto;
+    margin: 1em auto; 
 }
 
-.centered{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.hidden{
-    display: none;
-}
-#recensore,#ristoratore{
-    display: inline-block;
-}
 #recensore:checked~#piva_l,
 #recensore:checked~#rsoc,
 #recensore:checked~#rsoc_l, 
@@ -477,10 +468,17 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     display: none;
 }
 
+#reg_btn {
+    padding: 0.5em; 
+    margin-top: 1em; 
+    float: right; 
+}
+
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
 #item_recensione-list {
     list-style:none;
 }
+
 .item_card{
     border: 2px solid #ddd;
     margin-top: 2em;
@@ -591,6 +589,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     #login_form {
         width: 45%; 
     }
+
+    #form_registrazione {
+        width: 75%; 
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -615,6 +617,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
     #login_form {
         width: 75%; 
+    }
+
+    #form_registrazione {
+        width: 100%; 
     }
 }
 
