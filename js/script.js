@@ -340,6 +340,24 @@ function reg_init() {
     }
 }
 
+/***************CODICE PAGINA PROFILO *****************/
+
+function profile_init(){
+    var prof_form = document.getElementById("modifica_dati");
+    if(prof_form){
+        var fileInput = document.getElementById("new_foto_profilo");
+        fileInput.addEventListener("change", function(e) {
+            if(fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader(); 
+                reader.onload = function(ee) {
+                    document.getElementById("img_profilo").src = ee.target.result;
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        })
+    }
+}
+
 window.onload = function() {
 
     // ----------- FAQ  ---------------
@@ -350,5 +368,8 @@ window.onload = function() {
 
     // ---------- REGISTRAZIONE -------------- 
     reg_init(); 
+
+    // ----------- PROFILO ---------------
+    profile_init()
 }; 
     
