@@ -298,35 +298,42 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
-.ristoranti {
-    border: 1px solid rgb(128, 128, 128);
-    padding: 1em;
-    margin-top: 1em;
-    min-height: 15em;
+
+        /* stile .item_card definito per le mie recensioni*/
+#item_ristorante-list {
+    list-style:none;
 }
-.ristoranti img{
+.item_ristorante img{
     display: block;
-    float:right;
+    float:left;
     width: 20%;
-    padding: 1em;
+    padding: 2%;
 }
-.ristoranti a{
+.item_ristorante a{
     color: #000000;
     text-decoration: none;
 }
-.ristoranti h1{
+.item_ristorante h1{
     font-size: 2em;
     text-align: center;
+    margin-left: 24%;
 }
-.ristoranti p{
+.item_ristorante p{
     font-size: 1em;
+    margin-left:24%;
 }
 .categoria{
     font-size: 1.5em;
     font-weight: bold;
 }
 .indirizzo{
-    padding-top: 3em;
+    padding-top: 2em;
+}
+.stelle {
+    float:right;
+    position: relative;
+    bottom: 1.5em;
+    padding-right: 1em;
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
