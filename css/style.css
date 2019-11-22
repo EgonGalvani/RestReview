@@ -304,10 +304,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     list-style:none;
 }
 .item_ristorante img{
+    /*border: 2px solid #ddd;*/
     display: block;
     float:left;
     width: 20%;
-    padding: 2%;
+    margin: 1% 1% 1% 2%;
+    /*padding: 0 1% 2% 2%;*/
 }
 .item_ristorante a{
     color: #000000;
@@ -316,7 +318,8 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 .item_ristorante h1{
     font-size: 2em;
     text-align: center;
-    margin-left: 24%;
+    padding: 0.3em;
+    border-bottom: 1px solid #ddd;
 }
 .item_ristorante p{
     font-size: 1em;
@@ -325,15 +328,17 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 .categoria{
     font-size: 1.5em;
     font-weight: bold;
+    padding-top: 0.5em;
 }
 .indirizzo{
     padding-top: 2em;
 }
 .stelle {
-    float:right;
+    padding:1em 0 1em;
+    /*float:right;
     position: relative;
     bottom: 1.5em;
-    padding-right: 1em;
+    padding-right: 1em;*/
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
