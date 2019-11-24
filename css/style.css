@@ -521,46 +521,53 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 .input_recensioni{
     float:right;
     min-width: 20%;
-    margin-left: 3em;
     margin-bottom: 0.5em;
-    margin-right: 1.6em;
+    margin-right: 1em;
+    padding: 0.2em 0.1em; 
+    cursor: pointer;
 }
+
 .oggetto_item{
-    font-size: 1.5em;
-    padding-top: 0.7em;
-    padding-left: 0.6em;
+    font-size: 1.9em;
     display: inline-block;
+    padding: 0.25em 0.5em;  
 }
+
 .descrizione_item{
-    padding-top: 0.8em;
-    padding-left: 1em;
-    padding-bottom: 0.8em;
+    padding: 1em;  
+    font-size: 1.05em; 
     border-top: 1px solid #ddd;
 }
+
 .data_item{
-   float:right;
+   float: right;
    display: block;
-   text-align: left;
-   margin-right: 3em;
-   padding-top: 0.8em;
+   margin: 1.25em 1.25em 0 0; 
 }
+
 .like_item{
     padding-left: 1em;
-    padding-top: 1em;
-    display: block;
+    padding-top: 0.25em;
 }
+
 .item_recensione img{
-    padding-left: 1em;
-    width: 20px;
-    height: 20px;
+    width: 2em;
+    height: 2em;
 }
-.item_recensione span{
-    padding-left: 1em;
-    display: block;
-}
+
 .stelle_item{
     padding-left: 1em;
-    padding-top: 1em;
+    display: block;
+    font-size: 1.1em; 
+}
+
+.stelle_counter {
+    color: gold; 
+    font-size: 1.5em; 
+}
+
+.like_item {
+    display: block; 
 }
 
 @media only screen and (max-width: 768px) {
@@ -654,6 +661,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 @media only screen and (max-width: 480px) {
     .data_item{
         float:none;
+        margin-top: 0; 
+        margin-bottom: 0.25em; 
+    }
+
+    .oggetto_item {
+        padding-bottom: 0;
     }
 
     .faq_list {
