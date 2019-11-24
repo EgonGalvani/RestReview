@@ -29,7 +29,7 @@
         <div id="content">
             <h1>Il mio profilo</h1>
             <form method="post" action="" enctype="multipart/form-data" id="modifica_dati">
-                <fieldset>
+                <fieldset  id="edit_foto_profilo">
 
                     <noscript>
                         <div class="msg_box warning_box">
@@ -39,12 +39,24 @@
                     </noscript>
 
                     <legend>Foto Profilo</legend>
-                    <div id="edit_foto_profilo">
+                    <div>
                         <label for="img_profilo">La mia foto:</label>
                         <img id="img_profilo" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
                         <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="1"/>
                     </div>
                 </fieldset> 
+                <div>
+                    <h2>I miei dati utente</h2>
+                    <dl>
+                        <dt>Email: </dt>
+                            <dd>mario.rossi@gmail.com</dd>
+                        <dt>Password: </dt>
+                            <dd>********</dd>
+                        <dt>Tipo di utenza: </dt>
+                            <dd>Recensore</dd>
+                    </dl>
+                    <input type="button" id="edit_password" name="edit_password" value="Modifica la Password" />
+                </div>
                 <div>
                     <h2>I miei dati personali</h2>
                     <dl>
@@ -52,13 +64,6 @@
                             <dd>Mario</dd>
                         <dt>Cognome: </dt>
                             <dd>Rossi</dd>
-                        <dt>Email: </dt>
-                            <dd>mario.rossi@gmail.com</dd>
-                    </dl>
-                    <input type="button" id="edit_password" name="edit_password" value="Modifica la Password" />
-                    <dl>   
-                        <dt>Tipo di utenza: </dt>
-                            <dd>Recensore</dd>
                         <dt>Sesso: </dt>
                             <dd>Undefined</dd>
                         <dt>Data di nascita: </dt>
@@ -67,10 +72,9 @@
                             <dd>N. 1234567890</dd>
                         <dt>Ragione Sociale: </dt>
                             <dd>MarioRossi Ristorante S.P.A.</dd>
-                    </dl>
+                    </dl>   
+                    <input type="button" id="edit_data" name="edit_data" value="Modifica i dati" />
                 </div>
-
-                <input type="button" id="edit_data" name="edit_data" value="Modifica i dati" />
             </form>
         </div>
 

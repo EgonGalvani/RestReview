@@ -304,12 +304,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     list-style:none;
 }
 .item_ristorante img{
-    /*border: 2px solid #ddd;*/
     display: block;
     float:left;
     width: 20%;
     margin: 1% 1% 1% 2%;
-    /*padding: 0 1% 2% 2%;*/
 }
 .item_ristorante a{
     color: #000000;
@@ -335,10 +333,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 .stelle {
     padding:1em 0 1em;
-    /*float:right;
-    position: relative;
-    bottom: 1.5em;
-    padding-right: 1em;*/
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */
@@ -484,6 +478,27 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     padding: 0.5em; 
     margin-top: 1em; 
     float: right; 
+}
+
+/* -----------------------CSS profilo------------------------*/
+#modifica_dati dt{
+    clear: right;
+    float: left;
+}
+#modifica_dati > div{
+    padding: 0.5em 0;
+}
+#edit_foto_profilo{
+    margin: 0 66% 0 0;
+}
+#edit_foto_profilo legend{
+    font-size: 1.5em;;
+    font-weight:bold;
+}
+
+#modifica_dati #img_profilo{
+    display: block;
+    width: 100%;
 }
 
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
