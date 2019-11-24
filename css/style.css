@@ -431,7 +431,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     margin: 0 auto; 
 }   
 
-#form_registrazione span:first-of-type {
+#form_registrazione label:first-of-type {
     display: block;
     margin-bottom: 0.75em; 
 }
