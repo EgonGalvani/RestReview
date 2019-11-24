@@ -150,15 +150,24 @@ class FormUtils {
     pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
     isEmail(email) {
-        return new RegExp(this.emailRegex).test(email.trim()); 
+        return new RegExp(this.emailRegex).test(email); 
     }
 
     isPsw(psw) {
-        return new RegExp(this.pswRegex).test(psw.trim()); 
+        return new RegExp(this.pswRegex).test(psw); 
     }
 
     isEmpty(str) { 
         return !str.trim().length; 
+    }
+
+    hasNYear(dateValue, yearOld) {
+        var today = new Date(); 
+        var bDay = new Date(dateValue);
+        
+        // differenza rispetto al 1970 (unix timestamp)
+        var diff =new Date(today - bDay); 
+        return diff.getFullYear() >= 1970 + yearOld; 
     }
 
     equals(str1, str2) {
@@ -206,11 +215,18 @@ function faq_init() {
     }
 }
 
-// VARIABILI USATE 
-var loginMSGs = {
+// ETA' MINIMA PER ISCRIVERSI
+const MIN_AGE = 12; 
+
+// MESSAGGI DI ERRORE
+var errorMSGs = {
     "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
     "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
-    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!")
+    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
+    "wrong_password" : new MsgBox(MSG_TYPES.ERROR, "La password deve avere una lunghezza minima di 8 caratteri. Può contenere lettere e numeri. Deve contenere almeno: una lettere maiuscola, una lettera minuscola e una cifra!"), 
+    "psw_match": new MsgBox(MSG_TYPES.ERROR, "La password e la relativa ripetizione non coincidono!"), 
+    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi devono essere riempiti!"), 
+    "too_young": new MsgBox(MSG_TYPES.ERROR, "Ci dispiace ma, per il regolamento, l'età minima è di " + MIN_AGE + " anni.")
 }; 
 
 function login_init() {
@@ -225,9 +241,9 @@ function login_init() {
         loginBtn.addEventListener("click", function(e) {
             e.preventDefault(); 
             
-            // "rimuovo gli eventuali messaggi" 
-            for (var key in loginMSGs) {
-                loginMSGs[key].delete(); 
+            // rimuovo gli eventuali messaggi
+            for (var key in errorMSGs) {
+                errorMSGs[key].delete(); 
             }
 
             var fUtils = new FormUtils(); 
@@ -236,16 +252,15 @@ function login_init() {
 
             var allOK = true; 
             if(fUtils.isEmpty(psw.value)) {
-                // aggiungo un messaggio di errore e lo mostro 
-                loginMSGs['empty_password'].show(msgsParent); 
+                errorMSGs['empty_password'].show(msgsParent); 
                 allOK = false; 
             }
 
             if(fUtils.isEmpty(email.value)) {
-                loginMSGs['empty_email'].show(msgsParent); 
+                errorMSGs['empty_email'].show(msgsParent); 
                 allOK = false; 
             } else if(!fUtils.isEmail(email.value.trim())) {
-                loginMSGs['wrong_email'].show(msgsParent); 
+                errorMSGs['wrong_email'].show(msgsParent); 
                 allOK = false;
             }
 
@@ -256,14 +271,18 @@ function login_init() {
     } 
 } 
 
-var regMSGs = {
-    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
-    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
-    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
-    "wrong_password" : new MsgBox(MSG_TYPES.ERROR, "La password deve avere una lunghezza minima di 8 caratteri. Può contenere lettere e numeri. Deve contenere almeno un numero!"), 
-    "psw_match": new MsgBox(MSG_TYPES.ERROR, "La password e la relativa ripetizione non coincidono!"), 
-    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi devono essere riempiti!")
-}; 
+// crea una preview dell'immagine caricata tramite il "sourceElement" 
+// in "previewElement"
+function imgPreview(sourceElement, previewElement) {
+    if(sourceElement.files && sourceElement.files[0]) {
+        var reader = new FileReader(); 
+        reader.onload = function(ee) {
+            previewElement.src = ee.target.result;
+        }
+        reader.readAsDataURL(sourceElement.files[0]);
+    }
+}
+
 function reg_init() {
     var reg_form = document.getElementById("form_registrazione"); 
     if(reg_form) {
@@ -271,13 +290,7 @@ function reg_init() {
         // preview dell'immagine
         var fileInput = document.getElementById("img_profilo"); 
         fileInput.addEventListener("change", function(e) {
-            if(fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader(); 
-                reader.onload = function(ee) {
-                    document.getElementById("img_profilo_preview").src = ee.target.result;
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            }
+            imgPreview(this, document.getElementById("img_profilo_preview"));
         }); 
 
         // setto il click listener
@@ -285,76 +298,75 @@ function reg_init() {
         reg_btn.addEventListener("click", function (e) {
             e.preventDefault(); 
 
-            // "rimuovo gli eventuali messaggi" 
-            for (var key in regMSGs) {
-                regMSGs[key].delete(); 
+            // rimuovo gli eventuali messaggi
+            for (var key in errorMSGs) {
+                errorMSGs[key].delete(); 
             }
 
             var reg_fieldset = reg_form.firstElementChild; 
 
-            var name = document.getElementById("nome"); 
-            var surname = document.getElementById("cognome"); 
-            var psw = document.getElementById("password"); 
-            var rpsw = document.getElementById("repeatpassword"); 
+            var email = document.getElementById("email").value; 
+            var name = document.getElementById("nome").value; 
+            var surname = document.getElementById("cognome").value; 
+            var psw = document.getElementById("password").value; 
+            var rpsw = document.getElementById("repeatpassword").value; 
           
-            var ristoratore = document.getElementById("ristoratore");
-            var piva = document.getElementById("piva");
-            var rsoc = document.getElementById("rsoc"); 
+            var ristoratore = document.getElementById("ristoratore").value;
+            var piva = document.getElementById("piva").value;
+            var rsoc = document.getElementById("rsoc").value; 
     
+            var dNascita = document.getElementById("nascita").value; 
+            
             var fUtils = new FormUtils(); 
             var allOk = true; 
 
-            if(fUtils.isEmpty(name.value) || fUtils.isEmpty(surname.value)
-                || fUtils.isEmpty(psw.value) || fUtils.isEmpty(rpsw.value)) {
+            if(fUtils.isEmpty(name) || fUtils.isEmpty(surname) || fUtils.isEmpty(psw) 
+                || fUtils.isEmpty(rpsw) || fUtils.isEmpty(dNascita)) {
                 
-                regMSGs['empty_fields'].show(reg_fieldset); 
+                errorMSGs['empty_fields'].show(reg_fieldset); 
                 allOk = false; 
-            } else if(ristoratore.checked && (fUtils.isEmpty(piva.value) || fUtils.isEmpty(rsoc.value)) ) {
-                regMSGs['empty_fields'].show(reg_fieldset); 
+            } else if(ristoratore.checked && (fUtils.isEmpty(piva) || fUtils.isEmpty(rsoc)) ) {
+                errorMSGs['empty_fields'].show(reg_fieldset); 
                 allOk = false; 
             } 
 
             if(allOk) {
-                if(!fUtils.isEmail(email.value)) {
-                    regMSGs['wrong_email'].show(reg_fieldset); 
+                if(!fUtils.isEmail(email)) {
+                    errorMSGs['wrong_email'].show(reg_fieldset); 
                     allOk = false; 
                 }
 
-                if(!fUtils.isPsw(psw.value)) {
-                    regMSGs['wrong_password'].show(reg_fieldset); 
+                if(!fUtils.isPsw(psw)) {
+                    errorMSGs['wrong_password'].show(reg_fieldset); 
                     allOk = false; 
-                } else if(!fUtils.equals(psw.value, rpsw.value)) {
-                    regMSGs['psw_match'].show(reg_fieldset); 
+                } else if(!fUtils.equals(psw, rpsw)) {
+                    errorMSGs['psw_match'].show(reg_fieldset); 
                     allOk = false; 
                 }
+
+                if(!fUtils.hasNYear(dNascita, MIN_AGE)) {
+                    errorMSGs['too_young'].show(reg_fieldset); 
+                    allOk = false; 
+                } 
             }
 
             if(allOk) {
                 reg_form.submit(); 
             }
         }); 
-
-      
-
-
     }
 }
 
 /***************CODICE PAGINA PROFILO *****************/
 
 function profile_init(){
+
     var prof_form = document.getElementById("modifica_dati");
     if(prof_form){
         var fileInput = document.getElementById("new_foto_profilo");
         fileInput.addEventListener("change", function(e) {
-            if(fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader(); 
-                reader.onload = function(ee) {
-                    document.getElementById("img_profilo").src = ee.target.result;
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        })
+            imgPreview(this, document.getElementById("img_profilo"));
+        });
     }
 }
 
