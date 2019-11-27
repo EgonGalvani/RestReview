@@ -679,3 +679,21 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
         width: 100%; 
     }
 }
+
+/*PAGINA 404*/
+#h1_404{
+    font-size: 3.5em;
+    font-weight: bold;
+    text-align: center;
+}
+#p_404{
+    font-size: 1.75em;
+    font-weight: bold;
+    margin-top: 7em;
+}
+#img_404{
+    width: 50%;
+    float: right;
+    height: auto;
+    margin: 1em auto; 
+}
