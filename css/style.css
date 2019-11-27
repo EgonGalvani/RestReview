@@ -510,12 +510,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     border: 2px solid #ddd;
     margin-top: 2em;
     overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .item_card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
 }
 
 .input_recensioni{
@@ -541,14 +541,22 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
 .data_item{
    float: right;
-   display: block;
    margin: 1.25em 1.25em 0 0; 
+}
+
+.item_recensione > span {
+    margin-left: 1.1em; 
+    display: block;
+}
+
+.like_counter {
+    margin-top: 0.5em;  
 }
 
 .like_item{
     padding-left: 2.25em;
-    padding-top: 0.25em;
-    margin-left: 1.1em; 
+    padding-top: 0.25em; 
+    margin-top: 0.25em; 
     background-repeat: no-repeat;
     background-position: 0 center;
     background-size: 2em; 
@@ -557,18 +565,12 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 .stelle_item{
-    padding-left: 1em;
-    display: block;
     font-size: 1.1em; 
 }
 
 .stelle_counter {
     color: gold; 
     font-size: 1.5em; 
-}
-
-.like_item {
-    display: block; 
 }
 
 @media only screen and (max-width: 768px) {
