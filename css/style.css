@@ -550,9 +550,11 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     padding-top: 0.25em;
 }
 
-.item_recensione img{
+.like_btn{
+    background-image: url(../img/like.jpg);
     width: 2em;
     height: 2em;
+    cursor: pointer; 
 }
 
 .stelle_item{
