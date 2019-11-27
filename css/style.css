@@ -546,15 +546,14 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 }
 
 .like_item{
-    padding-left: 1em;
+    padding-left: 2.25em;
     padding-top: 0.25em;
-}
-
-.like_btn{
-    background-image: url(../img/like.jpg);
-    width: 2em;
-    height: 2em;
+    margin-left: 1.1em; 
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-size: 2em; 
     cursor: pointer; 
+    background-image: url(../img/like.jpg);
 }
 
 .stelle_item{
