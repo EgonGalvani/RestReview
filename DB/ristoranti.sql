@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 25, 2019 alle 08:33
+-- Creato il: Nov 27, 2019 alle 18:07
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.2.12
 
@@ -31,6 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `categoria` (
   `Nome` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `categoria`
+--
+
+INSERT INTO `categoria` (`Nome`) VALUES
+('Britannica'),
+('Cucina tedesca'),
+('Indiano'),
+('Italiana'),
+('Libanese'),
+('Messicano'),
+('Steakhouse'),
+('Sushi'),
+('Vegano');
 
 -- --------------------------------------------------------
 
@@ -107,6 +122,20 @@ CREATE TABLE `ristorante` (
   `sito` varchar(2048) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `ristorante`
+--
+
+INSERT INTO `ristorante` (`ID`, `ID_Proprietario`, `Nome`, `Categoria`, `Descrizione`, `Tel`, `Mail`, `Giorno_Chiusura`, `Ora_Apertura`, `Ora_Chiusura`, `Nazione`, `Citta`, `CAP`, `Via`, `Civico`, `Approvato`, `sito`) VALUES
+(2, 21, 'Madito', 'Libanese', 'Madito offre una cucina libanese contemporanea, realizzata con prodotti freschi e sani e senza fritture.\r\nTutti i piatti sono realizzati dal nostro chef a comanda.', '+000000000000', 'madito@dayrep.com', 'Martedì', '12:00:00', '23:00:00', 'Francia', 'Parigi', '75012', 'Rue de citeaux', '38', 'In attesa', 'www.sitodimadito.com'),
+(3, 22, 'The clink restaurant', 'Britannica', 'Situato vicino le vecchie case governative Inglesi risalenti al 1819, questo ristorante offre agli ospiti il tipico cibo Inglese.', '+000000000000', 'theclink@spy.us', 'Mercoledì', '18:00:00', '21:00:00', 'Inghilterra', 'Londra', 'SW2', 'Brixtonjebb avenue', '11', 'Approvato', 'www.theclinkcharity.org/rastaurant/brixton'),
+(4, 23, 'Rosso pomodoro', 'Italiana', 'Noi di Rossopomodoro portiamo da vent\'anni un po’ di Napoli in tutto il mondo facendo gustare l\'autentica pizza napoletana artigianale a lunga lievitazione e la cucina campana in più di cento località, dal nord al sud Italia, fino a Nizza, Londra, San Paolo, Reykjavik, Jeddah, New York e tante altre città. Essere ambasciatori della cultura gastronomica napoletana è la nostra passione. Perché siamo legati alla nostra terra, ai suoi prodotti genuini e anche all\'atmosfera della nostra amata città, colorata, accogliente e allegra come i nostri ristoranti.\r\nBenvenuti a Rossopomodoro, benvenuti a Napoli!', '+000000000000', 'rossopomodoro@dayrep.com', 'Giovedì', '11:30:00', '24:00:00', 'Italia', 'Napoli', '80121', 'Corso Vittorio emanuele', '84', 'Approvato', 'www.rossopomodoro.it'),
+(5, 23, 'Pizza Italia', 'Italiana', 'Solo qui potrai mangiare la vera pizza italiana in quel di Malta!', '+000000000000', 'pizzaitala@spy.us', 'Giovedì', '18:00:00', '24:00:00', 'Malta', 'La Valletta', '1012', 'Dawret il-Gzejjer St. Paul’s Bay', '12', 'In attesa', NULL),
+(6, 24, 'La Boheme', 'Steakhouse', 'Casual international flair meets living room-like cosiness and culinary diversity. From the simple glass of wine with oven bread to the 5-course menu you can get everything you want. In addition, there are always vegetarian dishes in the menu. Chef Lilian Schumann and host Michael Urban with their young team have set the goal to give you a special dining experience.\r\nEspecially for our international guests coming from the airport or going to it, La Bohème is the first or last stop on your way. It’s worth stopping by.', '+0000000000', 'LaBoheme@dayrep.com', 'Lunedì', '18:00:00', '23:00:00', 'Germania', 'Monaco di Baviera', '80804', 'Leopoldstrasse', '180', 'In attesa', 'http://boheme-schwabing.de/en/the-restaurant/'),
+(7, 26, 'Hofbrauhaus', 'Cucina tedesca', 'Situata nel cuore di Monaco per anni. Questo ristorante è una delle pietre miliari della cultura bavarese. Ogni giorno attraiamo persone da tutte le nazioni e c\'è spazio per tutti nelle stanze storiche', '+0000000000', 'Hofbraumhaus@dayrep.it', 'Mercoledì', '09:00:00', '24:00:00', 'Germania', 'Monaco di Baviera', '80331', 'Platzl', '9', 'Approvato', 'www.hofbraeuhaus.de'),
+(8, 30, 'Da enzo', 'Italiana', 'Buonissimo ristorante, aperto per tutti :)', '+0000000000', 'Daenzo@troll.it', 'Domenica', '00:00:00', '01:00:30', 'Italia', 'Borgoricco', '35010', 'Via Giotto', '12', 'Non approvato', 'www.superenzo.it'),
+(9, 29, 'Sumishi', 'Sushi', NULL, '+0000000000', 'sumishi@dayrep.it', 'Martedì', '12:00:00', '22:00:00', 'Italia', 'Monselice', '35043', 'Viale Lombardia', '19', 'In attesa', 'www.sumishi.it');
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +155,42 @@ CREATE TABLE `utente` (
   `Permessi` enum('Utente','Ristoratore','Admin') DEFAULT NULL,
   `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto') DEFAULT 'Sconosciuto'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES
+(1, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'leila.pagnotto@rhyta.com', 'Leila', 'Pagnotto', '1993-10-27', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(2, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'DinoGenovese@dayrep.com', 'Dino', 'Genovese', '2004-07-21', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(3, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'NestoreMancini@dayrep.com', 'Nestore', 'Mancini', '1973-03-26', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(4, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AlvisaLongo@jourrapide.com', 'Alvisa', 'Longo', '1963-04-03', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(5, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'CarisioDavide@teleworm.us', 'Davide', 'Carisio', '1988-10-23', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(6, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'alessandrodiscalzi98@gmail.com', 'Alessandro', 'Discalzi', '1998-10-23', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(7, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'albertococco98@gmail.com', 'Alberto', 'Cocco', '1998-06-15', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(8, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'galvaniegon@gmail.com', 'Egon', 'Galvani', '1999-11-17', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(9, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'matteomunari@gmail.com', 'Matteo', 'Munari', '1998-01-18', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(10, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'frostmourne96@teleworm.us', 'Marco', 'Fonta', '1996-12-08', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(11, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AleardoMilano@armyspy.com', 'Aleardo', 'Milan', '1962-02-18', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(12, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'TamaraSiciliani@armyspy.com', 'Tamara', 'Siciliani', '1982-02-18', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(13, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AbelardaMoretti@dayrep.com', 'Abelarda', 'Moretti', '1955-09-26', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(14, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GiudittaNuci@jourrapide.com', 'Giuditta', 'Nuci', '1978-11-29', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(15, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'stanislawmanfrin@armyspy.com', 'Stanislao', 'Manfrin', '1978-10-11', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(16, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'generosamarcelo@dayrep.com', 'Generosa', 'Marcelo', '1980-11-16', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(17, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'benedetta.lettiere@teleworm.us', 'Benedetta', 'Lettiere', '1993-04-11', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(18, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'adarosi@teleworm.us', 'Adalberta', 'Rossi', '1978-02-10', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(19, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lucrezia.piccio@jourrapide.com', 'Lucrezia', 'Piccio', '1996-08-08', NULL, NULL, NULL, 'Utente', 'Femmina'),
+(20, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giocchinofenice@dayrep.com', 'Gioacchino', 'Fenice', '1968-07-15', NULL, NULL, NULL, 'Utente', 'Maschio'),
+(21, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giuseppalori@teleworm.us', 'Giuseppa', 'Lori', '1975-05-02', NULL, 'Country Club Markets', 0, 'Ristoratore', 'Femmina'),
+(22, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'paola.sagese@teleworm.us', 'Paola', 'Sagese', '1990-12-12', NULL, 'StopAndShop', 0, 'Ristoratore', 'Sconosciuto'),
+(23, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'bernicebeneventi@dayrep.com', 'Bernice', 'Beneventi', '1971-05-05', NULL, 'Best Bar Restaurants', 0, 'Ristoratore', 'Femmina'),
+(24, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'sofia.reticci@rhyta.com', 'Sofia', 'Reticci', '1974-07-01', NULL, 'FoodConsumers SRL', 0, 'Ristoratore', 'Femmina'),
+(25, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'grazianopiazza@teleworm.us', 'Graziano', 'Piazza', '1957-03-18', NULL, 'Piazza e F.', 0, 'Ristoratore', 'Maschio'),
+(26, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lidiarossi@dayrep.com', 'Lidia', 'Rossi', '1965-08-08', NULL, NULL, 0, 'Ristoratore', 'Femmina'),
+(27, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Giordano', 'Fantino', 'fantinogiordano@jourrapide.com', '1981-01-21', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
+(28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
+(29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
+(30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', NULL, NULL, 0, 'Ristoratore', 'Maschio');
 
 --
 -- Indici per le tabelle scaricate
@@ -200,13 +265,13 @@ ALTER TABLE `recensione`
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Limiti per le tabelle scaricate
