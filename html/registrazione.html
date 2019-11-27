@@ -29,14 +29,14 @@
         </div>
 
         <div id="content">
-            <form method="post" action="" enctype="multipart/form-data" id="form_registrazione" class="vertical_input_form">
+            <form method="post" action="page.php" enctype="multipart/form-data" id="form_registrazione" class="vertical_input_form">
                 <!--multipart/form-data	Non vengono codificati i caratteri,
                 è necessario per i form che fanno file upload.
                 (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
                 <fieldset>
                     <noscript>
                         <div class="msg_box warning_box">
-                            ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
+                            ATTENZIONE: <span lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
                             NON ESSERE DISPONIBILI
                         </div>
                     </noscript>
@@ -49,7 +49,7 @@
                     <input type="radio" name="tipo_utente" value="Ristoratore"  id="ristoratore">
                     <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
-                    <label for="email" xml:lang="en">Email:</label>
+                    <label for="email" lang="en">Email:</label>
                     <input type="email" name="email" id="email" required="required" tabindex="2" />
                     
                     <label for="nome">Nome:</label>
@@ -69,7 +69,7 @@
                     <label for="nascita">Data di nascita:</label>
                     <input type="date" name="nascita" id="nascita" required="required" tabindex="6">
                     
-                    <label for="password" xml:lang="en">Password:</label>
+                    <label for="password" lang="en">Password:</label>
                     <input type="password" name="password" id="password" required="required" tabindex="7" />
                     
                     <label for="repeatpassword">Ripeti <span xml:lang="en">password</span>:</label>
