@@ -611,7 +611,12 @@ input[type="text"]:focus, input[type="password"]:focus,
 /** -------- INSERIMENTO NUOVO RISTORANTE ****/
 #nuovo_rist_form {
     width: 70%; 
-    margin: 2em auto; 
+    margin: 0 auto; 
+}
+
+#nuovo_rist_form fieldset {
+    margin-top: 1.5em; 
+    border-width: 3px;
 }
 
 #nuovo_rist_form #descrizione, 

@@ -32,7 +32,7 @@
  
             <form id="nuovo_rist_form" class="vertical_input_form">
                 <fieldset>
-                    <legend>Inserimento nuovo ristorante</legend>
+                    <legend>Dettagli ristorante</legend>
 
                     <label for="nome">Nome: </label>
                     <input type="text" name="nome" id="nome" />
@@ -51,34 +51,34 @@
 
                     <label for="sito">Sito: </label>
                     <input type="url" name="sito" id="sito" />
+                </fieldset>
 
+                <fieldset>
+                    <legend>Orari</legend>
+                        
                     <label for="o_apertura">Orario di apertura: </label>
                     <input type="time" name="o_apertura" id="o_apertura" />
 
                     <label for="o_chiusura">Orario di chiusura: </label>
                     <input type="time" name="o_chiusura" id="o_chiusura" />
 
-                    <fieldset>
-                        <legend>Giorni di chiusura: </legend>
-                            
-                        <input type="checkbox" name="lun" id="lun" value="lun"> Lunedì
-                        <input type="checkbox" name="mar" id="mar" value="mar"> Martedì
-                        <input type="checkbox" name="mer" id="mer" value="mer"> Mercoledì
-                        <input type="checkbox" name="gio" id="gio" value="gio"> Giovedì
-                        <input type="checkbox" name="ven" id="ven" value="ven"> Venerdì
-                        <input type="checkbox" name="sab" id="sab" value="sab"> Sabato
-                        <input type="checkbox" name="dom" id="dom" value="dom"> Domenica
-                    </fieldset>
-                  
-                    <fieldset>
-                        <legend>Indirizzo</legend>
-                    </fieldset>
- 
-                    <input type="submit" id="ins_rest_submit" value="Inserisci ristorante!" />
+                    <input type="checkbox" name="lun" id="lun" value="lun"> Lunedì
+                    <input type="checkbox" name="mar" id="mar" value="mar"> Martedì
+                    <input type="checkbox" name="mer" id="mer" value="mer"> Mercoledì
+                    <input type="checkbox" name="gio" id="gio" value="gio"> Giovedì
+                    <input type="checkbox" name="ven" id="ven" value="ven"> Venerdì
+                    <input type="checkbox" name="sab" id="sab" value="sab"> Sabato
+                    <input type="checkbox" name="dom" id="dom" value="dom"> Domenica
                 </fieldset>
+                  
+                <fieldset>
+                    <legend>Indirizzo</legend>
+                </fieldset>
+
+                <input type="submit" id="ins_rest_submit" value="Inserisci ristorante!" />
             </form>
             
-
+            <div style="clear: both;"></div>
             
         </div>
     
