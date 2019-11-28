@@ -94,13 +94,18 @@ attivo, poichè questo non è un link */
     background-color: #ddd; 
 }
 
-#content, .cr_content {
+#content, .cr_content, #full_content{
     line-height: 1.5;
     min-height: 50em; 
     margin: 0.5em 0 0.5em 19%; 
     border: 1px solid #ddd; 
     background-color: #fff; 
     padding: 2em;   
+}
+
+#full_content {
+    margin-left: 0;
+    min-height: 0;
 }
 
 #footer{
@@ -299,7 +304,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
 /*---------------Pagina ultimi ristoranti-------------*/
 
-        /* stile .item_card definito per le mie recensioni*/
+/* stile .item_card definito per le mie recensioni*/
 #item_ristorante-list {
     list-style:none;
 }
@@ -573,6 +578,29 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     font-size: 1.5em; 
 }
 
+
+/*PAGINA 404*/
+#title_404{
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em; 
+}
+
+#subtitle_404{
+    font-size: 1.75em;   
+    text-align: center; 
+    width: 55%; 
+    float: left;    
+    margin-right: 1em; 
+    margin-top: 6em; 
+}
+
+#img_404{
+    width: 40%;
+    height: auto; 
+}
+
 @media only screen and (max-width: 768px) {
     
     body {
@@ -604,7 +632,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
         border: 0;
     }
 
-    #content {
+    #content, #full_content{
         margin-left: 0px; 
         order: 3;
         border: 0;
@@ -629,6 +657,22 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 
     #form_registrazione {
         width: 75%; 
+    }
+
+    #title_404 {
+        margin-bottom: 0; 
+    }
+
+    #subtitle_404{
+        float: none; 
+        width: 90%; 
+        margin: 0 auto 1em auto; 
+    }
+
+    #img_404{
+        width: 50%;
+        margin: 1em auto;
+        display: block; 
     }
 }
 
@@ -659,6 +703,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     #form_registrazione {
         width: 100%; 
     }
+
+    #img_404 {
+        width: 75%; 
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -679,22 +727,8 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     #login_form {
         width: 100%; 
     }
-}
 
-/*PAGINA 404*/
-#h1_404{
-    font-size: 3.5em;
-    font-weight: bold;
-    text-align: center;
-}
-#p_404{
-    font-size: 1.75em;
-    font-weight: bold;
-    margin-top: 7em;
-}
-#img_404{
-    width: 50%;
-    float: right;
-    height: auto;
-    margin: 1em auto; 
+    #img_404 {
+        width: 90%; 
+    }
 }
