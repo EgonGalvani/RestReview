@@ -157,14 +157,19 @@ input[type="radio"] {
     vertical-align: middle;
 }
 
-input[type="text"], input[type="password"], input[type= "email"], select {
+input[type="text"], input[type="password"], input[type= "email"], 
+    input[type="tel"], input[type="url"], select {
+
     padding: 0.75em; 
     border: 0; 
     border-bottom: 1px solid #ddd; 
     transition: border-color ease-in-out 200ms; 
 }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:focus, select:focus  {
+input[type="text"]:focus, input[type="password"]:focus,
+    input[type= "email"]:focus, input[type="tel"]:focus, 
+    input[type="url"]:focus,  select:focus  {
+
     border-bottom-color: #000; 
     outline: none; 
 }
@@ -404,9 +409,11 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     display: block; 
 }
 
-.vertical_input_form input[type="text"], 
+.vertical_input_form input[type="text"],
+.vertical_input_form input[type="tel"],
 .vertical_input_form input[type="password"],
 .vertical_input_form input[type="email"],
+.vertical_input_form input[type="url"],
 .vertical_input_form select {
     margin-left: 1.5em; 
     width: calc(100% - 4em); 
@@ -479,7 +486,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
     display: none;
 }
 
-#reg_btn {
+#reg_btn, #ins_rest_submit {
     padding: 0.5em; 
     margin-top: 1em; 
     float: right; 
@@ -599,6 +606,24 @@ input[type="text"]:focus, input[type="password"]:focus, input[type= "email"]:foc
 #img_404{
     width: 40%;
     height: auto; 
+}
+
+/** -------- INSERIMENTO NUOVO RISTORANTE ****/
+#nuovo_rist_form {
+    width: 70%; 
+    margin: 2em auto; 
+}
+
+#nuovo_rist_form #descrizione, 
+#nuovo_rist_form #b_descrizione {
+    display: block;
+    width: calc(100% - 2em); 
+    margin: 0.25em 0 0.75em 1em; 
+}
+
+#nuovo_rist_form input[type="time"] {
+    margin-left: 1em; 
+    padding: 0.25em; 
 }
 
 @media only screen and (max-width: 768px) {

@@ -9,7 +9,7 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
     </head>
 
@@ -30,8 +30,54 @@
             <h1 id="page_title">Inserimento nuovo ristorante</h1>
             <h2 id="sub_title">Compila il seguente <span lang="en">form</span> e fai conoscere a tutti i nostri utenti il tuo ristorante!</h2>
  
-            <label for="nome">Nome: </label>
-            <input type="text" name="nome" id="nome" />
+            <form id="nuovo_rist_form" class="vertical_input_form">
+                <fieldset>
+                    <legend>Inserimento nuovo ristorante</legend>
+
+                    <label for="nome">Nome: </label>
+                    <input type="text" name="nome" id="nome" />
+
+                    <label for="b_descrizione">Breve Descrizione: </label>
+                    <textarea name="b_descrizione" id="b_descrizione" rows="3"></textarea>
+
+                    <label for="descrizione">Descrizione completa: </label>
+                    <textarea name="descrizione" id="descrizione" rows="7"></textarea>
+
+                    <label for="telefono">Telefono: </label>
+                    <input type="tel" name="telefono" id="telefono" />
+
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" id="email" />
+
+                    <label for="sito">Sito: </label>
+                    <input type="url" name="sito" id="sito" />
+
+                    <label for="o_apertura">Orario di apertura: </label>
+                    <input type="time" name="o_apertura" id="o_apertura" />
+
+                    <label for="o_chiusura">Orario di chiusura: </label>
+                    <input type="time" name="o_chiusura" id="o_chiusura" />
+
+                    <fieldset>
+                        <legend>Giorni di chiusura: </legend>
+                            
+                        <input type="checkbox" name="lun" id="lun" value="lun"> Lunedì
+                        <input type="checkbox" name="mar" id="mar" value="mar"> Martedì
+                        <input type="checkbox" name="mer" id="mer" value="mer"> Mercoledì
+                        <input type="checkbox" name="gio" id="gio" value="gio"> Giovedì
+                        <input type="checkbox" name="ven" id="ven" value="ven"> Venerdì
+                        <input type="checkbox" name="sab" id="sab" value="sab"> Sabato
+                        <input type="checkbox" name="dom" id="dom" value="dom"> Domenica
+                    </fieldset>
+                  
+                    <fieldset>
+                        <legend>Indirizzo</legend>
+                    </fieldset>
+ 
+                    <input type="submit" id="ins_rest_submit" value="Inserisci ristorante!" />
+                </fieldset>
+            </form>
+            
 
             
         </div>
