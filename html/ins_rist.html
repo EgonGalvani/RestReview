@@ -29,12 +29,12 @@
         <div id="content">
             <h1 id="page_title">Inserimento nuovo ristorante</h1>
             <h2 id="sub_title">Compila il seguente <span lang="en">form</span> e fai conoscere a tutti i nostri utenti il tuo ristorante!</h2>
- 
+            <h3>Tutti i campi sono OBBLIGATORI!</h3>
             <form id="nuovo_rist_form" class="vertical_input_form">
                 <fieldset>
                     <legend>Dettagli ristorante</legend>
 
-                    <label for="nome">Nome: </label>
+                    <label for="nome">Nome ristorante: </label>
                     <input type="text" name="nome" id="nome" />
 
                     <label for="b_descrizione">Breve Descrizione: </label>
@@ -42,6 +42,18 @@
 
                     <label for="descrizione">Descrizione completa: </label>
                     <textarea name="descrizione" id="descrizione" rows="7"></textarea>
+
+                    <label for="tipolgia">Tipologia: </label>
+                    <select name="tipologia">
+                        <option value="0">tipologia0</option>
+                        <option value="1">tipologia1</option>
+                        <option value="2">tipologia2</option>
+                        <option value="3">tipologia3</option>
+                        <option value="4">tipologia4</option>
+                        <option value="5">tipologia5</option>
+                        <option value="6">tipologia6</option>
+                        <option value="7">tipologia7</option>
+                    </select>
 
                     <label for="telefono">Telefono: </label>
                     <input type="tel" name="telefono" id="telefono" />
@@ -61,18 +73,66 @@
 
                     <label for="o_chiusura">Orario di chiusura: </label>
                     <input type="time" name="o_chiusura" id="o_chiusura" />
-
-                    <input type="checkbox" name="lun" id="lun" value="lun"> Lunedì
-                    <input type="checkbox" name="mar" id="mar" value="mar"> Martedì
-                    <input type="checkbox" name="mer" id="mer" value="mer"> Mercoledì
-                    <input type="checkbox" name="gio" id="gio" value="gio"> Giovedì
-                    <input type="checkbox" name="ven" id="ven" value="ven"> Venerdì
-                    <input type="checkbox" name="sab" id="sab" value="sab"> Sabato
-                    <input type="checkbox" name="dom" id="dom" value="dom"> Domenica
+                    
+                    <span>Giorno di chiusura: </span>
+                    <ul id="free_day_list">
+                        <li>
+                            <input type="radio" name="free_day" id="lun" value="lun"><label for="lun">Lunedì </label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="mar" value="mar"><label for="mar">Martedì <label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="mer" value="mer"><label for="mer">Mercoledì</label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="gio" value="gio"><label for="gio">Giovedì </label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="ven" value="ven"><label for="ven">Venerdì </label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="sab" value="sab"><label for="sab">Sabato </label>
+                        </li> 
+                        <li>
+                            <input type="radio" name="free_day" id="dom" value="dom"><label for="dom">Domenica</label>
+                        </li>
+                    </ul>
+                  
                 </fieldset>
                   
                 <fieldset>
-                    <legend>Indirizzo</legend>
+                    <legend>Indirizzo ristorante</legend>
+
+                    <div id="indirizzo">
+                        <label for="via">Via: </label>
+                        <input type="text" name="via" id="via" />
+    
+                        <label for="civico">Civico: </label>
+                        <input type="text" name="civico" id="civico" />    
+                    </div>
+                    
+                    <div>
+                        <label for="citta">Città: </label>
+                        <input type="text" name="citta" id="citta" />
+    
+                        <label for="cap">CAP: </label>
+                        <input type="text" name="cap" id="cap" /> 
+                    </div>
+                   
+                    <label for="nazione">Nazione: </label>
+                    <input type="text" name="nazione" id="nazione" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Immagini</legend>
+
+                    <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
+                    <input type="file" name="main_photo" />
+
+                    <label for="minor_photo" class="file_label">Altre immagini del ristorante (massimo 3): </label>
+                    <input type="file" name="minor_photo" multiple="multiple"/>
+
                 </fieldset>
 
                 <input type="submit" id="ins_rest_submit" value="Inserisci ristorante!" />
