@@ -88,15 +88,6 @@ class FaqList {
 
 /************* CODICE PER LOGIN E REGISTRAZIONE *******/
 
-/** SPIEGAZIONE REGEX PSW 
- * /^
-  (?=.*\d)          // should contain at least one digit
-  (?=.*[a-z])       // should contain at least one lower case
-  (?=.*[A-Z])       // should contain at least one upper case
-  [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
-  $/
-*/
-
 MSG_TYPES = {
     ERROR: -1, 
     WARNING: 0, 
@@ -145,6 +136,14 @@ class MsgBox {
 }
 
 
+/** SPIEGAZIONE REGEX PSW 
+ * /^
+  (?=.*\d)          // should contain at least one digit
+  (?=.*[a-z])       // should contain at least one lower case
+  (?=.*[A-Z])       // should contain at least one upper case
+  [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
+  $/
+*/
 class FormUtils {
     emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
     pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
@@ -225,7 +224,7 @@ var errorMSGs = {
     "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
     "wrong_password" : new MsgBox(MSG_TYPES.ERROR, "La password deve avere una lunghezza minima di 8 caratteri. Può contenere lettere e numeri. Deve contenere almeno: una lettere maiuscola, una lettera minuscola e una cifra!"), 
     "psw_match": new MsgBox(MSG_TYPES.ERROR, "La password e la relativa ripetizione non coincidono!"), 
-    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi devono essere riempiti!"), 
+    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi sono obbligatori!"), 
     "too_young": new MsgBox(MSG_TYPES.ERROR, "Ci dispiace ma, per il regolamento, l'età minima è di " + MIN_AGE + " anni.")
 }; 
 
