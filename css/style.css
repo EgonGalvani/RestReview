@@ -497,24 +497,40 @@ textarea {
 }
 
 /* -----------------------CSS profilo------------------------*/
-#modifica_dati dt{
-    clear: right;
-    float: left;
-}
+
 #modifica_dati > div{
     padding: 0.5em 0;
 }
 #edit_foto_profilo{
-    margin: 0 66% 0 0;
+    margin:auto;
+    width:33%;
 }
-#edit_foto_profilo legend{
+#modifica_dati legend{
     font-size: 1.5em;;
     font-weight:bold;
 }
 
 #modifica_dati #img_profilo{
     display: block;
-    width: 100%;
+    width:100%;
+}
+#edit_account_data #repeat_pwd, #repeat_pw_lbl, #confirm_pwd{
+    display:none;
+}
+#edit_personal_data #confirm{
+    display: none;
+}
+#edit_personal_data label{
+    display:block;
+    padding:1em;
+}
+#edit_personal_data input, #edit_personal_data select{
+    display:block;
+    margin-left: 3em;
+}
+#edit_personal_data, #edit_account_data{
+    border:none;
+    padding: 0.5em;
 }
 
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */

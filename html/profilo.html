@@ -39,42 +39,55 @@
                     </noscript>
 
                     <legend>Foto Profilo</legend>
-                    <div>
                         <label for="img_profilo">La mia foto:</label>
                         <img id="img_profilo" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
                         <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="1"/>
-                    </div>
                 </fieldset> 
-                <div>
-                    <h2>I miei dati utente</h2>
-                    <dl>
-                        <dt>Email: </dt>
-                            <dd>mario.rossi@gmail.com</dd>
-                        <dt>Password: </dt>
-                            <dd>********</dd>
-                        <dt>Tipo di utenza: </dt>
-                            <dd>Recensore</dd>
-                    </dl>
-                    <input type="button" id="edit_password" name="edit_password" value="Modifica la Password" />
-                </div>
-                <div>
-                    <h2>I miei dati personali</h2>
-                    <dl>
-                        <dt>Nome: </dt>
-                            <dd>Mario</dd>
-                        <dt>Cognome: </dt>
-                            <dd>Rossi</dd>
-                        <dt>Sesso: </dt>
-                            <dd>Undefined</dd>
-                        <dt>Data di nascita: </dt>
-                            <dd>01/01/1920</dd>
-                        <dt>Partita Iva: </dt>
-                            <dd>N. 1234567890</dd>
-                        <dt>Ragione Sociale: </dt>
-                            <dd>MarioRossi Ristorante S.P.A.</dd>
-                    </dl>   
-                    <input type="button" id="edit_data" name="edit_data" value="Modifica i dati" />
-                </div>
+                <fieldset  id="edit_account_data">
+                    <legend>I miei dati utente</legend>
+                    <p><span lang="en">Email</span>: mario.rossi@gmail.com</p>
+
+                    <label for="password"><span lang="en">Password</span>:</label>
+                    <input type="password" id="password" name="password" required="required" value="********" readonly="readonly" tabindex="2"/>
+
+                    <input type="button" id="show_password" name="show_password" value="Mostra Password" tabindex="3"/>
+                    <input type="button" id="edit_password" name="edit_password" value="Modifica la Password" tabindex="4"/>
+
+                    <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
+                    <input type="password" name="repeat_pwd" id="repeat_pwd" required="required" readonly="readonly" tabindex="5" />
+                    <input type="submit" id="confirm_pwd" value="Conferma nuova password" tabindex="6"/>
+
+                    <p>Tipo di utenza: Recensore</p>  
+
+                </fieldset>
+                <fieldset id="edit_personal_data">
+                    <legend>I miei dati personali</legend>
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome" required="required" value="Mario" readonly="readonly" tabindex="7" />
+                    
+                    <label for="cognome">Cognome:</label>
+                    <input type="text" name="cognome" id="cognome" required="required" value="Rossi" readonly="readonly" tabindex="8" />
+                    
+                    <label for="sesso">Sesso:</label>
+                    <select name="sesso" id="sesso" required="required" value="uomo" disabled="disabled" tabindex="9">
+                        <option value="uomo">Uomo</option>
+                        <option value="donna">Donna</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                    
+                    <label for="nascita">Data di nascita:</label>
+                    <input type="date" name="nascita" id="nascita" required="required" readonly="readonly" tabindex="10">
+
+                    <label id="piva_l" for="piva">Partita IVA:</label>
+                    <input id="piva" type="text" name="piva" value="1234567" readonly="readonly" tabindex="11" />
+                    
+                    <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
+                    <input id="rsoc" type="text" name="rsoc" value="MarioRossi S.P.A" readonly="readonly" tabindex="12" />
+                     
+                    <input type="button" id="edit_data" name="edit_data" value="Modifica i dati" tabindex="13"/>
+                    <input type="submit" id="confirm" name="confirm" value="Conferma le modifiche" tabindex="14"/>
+                </fieldset>
             </form>
         </div>
 
