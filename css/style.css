@@ -497,24 +497,23 @@ textarea {
 }
 
 /* -----------------------CSS profilo------------------------*/
-
-#modifica_dati > div{
-    padding: 0.5em 0;
-}
 #edit_foto_profilo{
     margin:auto;
     width:33%;
 }
-#modifica_dati legend{
+.modifica_dati legend{
     font-size: 1.5em;;
     font-weight:bold;
 }
 
-#modifica_dati #img_profilo{
+.modifica_dati #img_profilo{
     display: block;
     width:100%;
 }
-#edit_account_data #repeat_pwd, #repeat_pw_lbl, #confirm_pwd{
+#edit_foto_profilo #new_foto_profilo, #edit_foto_profilo #confirm_photo{
+    display:none;
+}
+#edit_account_data #repeat_pwd,#edit_account_data #repeat_pw_lbl,#edit_account_data #confirm_pwd{
     display:none;
 }
 #edit_personal_data #confirm{
