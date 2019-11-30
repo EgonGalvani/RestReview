@@ -678,7 +678,7 @@ textarea {
 }
 
 #via, #citta { 
-    width: 50%;
+    width: 40%;
     margin-right: 1em; 
     margin-left: 0.25em; 
 }
@@ -795,6 +795,16 @@ textarea {
     #img_404 {
         width: 75%; 
     }
+
+    #via, #civico, #citta, #cap {
+        display: block;
+        width: calc(100% - 2em); 
+    }
+
+    #nuovo_rist_form {
+        width: 75%;
+    }
+   
 }
 
 @media only screen and (max-width: 480px) {
@@ -818,5 +828,9 @@ textarea {
 
     #img_404 {
         width: 90%; 
+    }
+
+    #nuovo_rist_form {
+        width: 100%;
     }
 }
