@@ -313,42 +313,42 @@ textarea {
 
 /*---------------Pagina ultimi ristoranti-------------*/
 
-/* stile .item_card definito per le mie recensioni*/
 #item_ristorante-list {
     list-style:none;
 }
-.item_ristorante img{
-    display: block;
-    float:left;
-    width: 20%;
-    margin: 1% 1% 1% 2%;
-}
-.item_ristorante a{
-    color: #000000;
-    text-decoration: none;
-}
 .item_ristorante h1{
     font-size: 2em;
-    text-align: center;
-    padding: 0.3em;
-    border-bottom: 1px solid #ddd;
+    display: inline-block;
+    padding: 0.25em 0.5em;
 }
-.item_ristorante p{
+.rist_descrizione{
     font-size: 1em;
-    margin-left:24%;
+    display: inline-block;
+    width: 65%;
+    padding : 0.5em 0.5em 0.5em 1em;
 }
-.categoria{
-    font-size: 1.5em;
+.rist_indirizzo{
+    float: right;
+    padding-top: 1.4em;
+    padding-right: 2em;
+}
+.rist_categoria{
+    display: block;
+    border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding-left: 1em;
+    padding-top: 1em;
     font-weight: bold;
-    padding-top: 0.5em;
 }
-.indirizzo{
-    padding-top: 2em;
+.item_ristorante img{
+    float:right;
+    width: 200px;
+    height: 150px;
+    margin: 1% 4% 3% 2%;
 }
-.stelle {
-    padding:1em 0 1em;
+.item_ristorante span{
+    padding-left: 1em;
 }
-
 /* --------------- Pagine chisiamo e regolamento -------------- */
 .cr_content p, .cr_content li{
    font-size: 1.2em; 
@@ -364,6 +364,14 @@ textarea {
     list-style-type: square;
 }
 
+.input_ristoranti{
+    min-width: 20%;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 1em;
+    padding: 0.2em 0.1em; 
+    cursor: pointer;
+}
 /*-------------Pagina di visualizzazione ristorante-------------*/
 #nomeRist {
     text-align: center;
@@ -596,7 +604,8 @@ textarea {
 }
 
 .stelle_item{
-    font-size: 1.1em; 
+    font-size: 1.1em;
+    display: block; 
 }
 
 .stelle_counter {
@@ -687,7 +696,12 @@ textarea {
     width: 20%;
     margin-left: 0.25em; 
 }
-
+@media screen and (max-width: 992px) {
+  .item_ristorante img{
+        float: none;
+        clear: both;
+    }
+}
 
 @media only screen and (max-width: 768px) {
     
@@ -812,6 +826,14 @@ textarea {
         float:none;
         margin-top: 0; 
         margin-bottom: 0.25em; 
+    }
+    .rist_indirizzo{
+        float: none;
+        margin-left: 0.90em; 
+        margin-bottom: 0.25em; 
+    }
+    .rist_descrizione{
+        width: 90%;
     }
 
     .oggetto_item {
