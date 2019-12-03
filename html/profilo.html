@@ -28,7 +28,7 @@
 
         <div id="content">
             <h1>Il mio profilo</h1>
-            <form method="post" action="" enctype="multipart/form-data" class="modifica_dati">
+            <form method="post" action="" enctype="multipart/form-data" id="modifica_dati">
                 <fieldset  id="edit_foto_profilo">
 
                     <noscript>
@@ -41,12 +41,8 @@
                     <legend>Foto Profilo</legend>
                         <label for="img_profilo">La mia foto:</label>
                         <img id="img_profilo" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
-                        <input type="button" id="edit_photo" name="edit_photo" value="Modifica foto" tabindex="1" />
                         <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
-                        <input type="submit" id="confirm_photo" value="Conferma" tabindex="3" />
                 </fieldset> 
-            </form>
-            <form method="post" action="" enctype="multipart/form-data" class="modifica_dati">
                 <fieldset  id="edit_account_data">
                     <legend>I miei dati utente</legend>
                     <p><span lang="en">Email</span>: mario.rossi@gmail.com</p>
@@ -55,17 +51,13 @@
                     <input type="password" id="password" name="password" required="required" value="********" readonly="readonly" tabindex="2"/>
 
                     <input type="button" id="show_password" name="show_password" value="Mostra Password" tabindex="3"/>
-                    <input type="button" id="edit_password" name="edit_password" value="Modifica la Password" tabindex="4"/>
 
                     <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeat_pwd" id="repeat_pwd" required="required" readonly="readonly" tabindex="5" />
-                    <input type="submit" id="confirm_pwd" value="Conferma nuova password" tabindex="6"/>
 
                     <p>Tipo di utenza: Recensore</p>  
 
                 </fieldset>
-            </form>
-            <form method="post" action="" enctype="multipart/form-data" class="modifica_dati">
                 <fieldset id="edit_personal_data">
                     <legend>I miei dati personali</legend>
 
