@@ -342,7 +342,7 @@ textarea {
     float:right;
     width: 200px;
     height: 150px;
-    margin: 1.5em 4em 3em 1em;
+    margin: 1.5em 7em 3em 1em;
 }
 .item_ristorante span{
     padding-left: 1em;
@@ -604,6 +604,7 @@ textarea {
 .stelle_item{
     font-size: 1.1em;
     display: block; 
+    clear: both;
 }
 
 .stelle_counter {
@@ -849,7 +850,10 @@ textarea {
     }
     .item_ristorante img{
         float: none;
-        margin-left: 8em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
     .rist_indirizzo{
         padding-left: 0.1em;
