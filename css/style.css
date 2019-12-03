@@ -318,24 +318,22 @@ textarea {
 }
 .item_ristorante h1{
     font-size: 2em;
-    display: inline-block;
     padding: 0.25em 0.5em;
 }
 .rist_descrizione{
     font-size: 1em;
-    display: inline-block;
-    width: 65%;
+    text-align: left;
+    width: 60%;
     padding : 0.5em 0.5em 0.5em 1em;
 }
 .rist_indirizzo{
-    float: right;
+    border-top: 1px solid #ddd;
+    padding-left: 1em;
     padding-top: 1.4em;
     padding-right: 2em;
+    font-weight: bold;
 }
 .rist_categoria{
-    display: block;
-    border-top: 1px solid #ddd;
-    border-top: 1px solid #ddd;
     padding-left: 1em;
     padding-top: 1em;
     font-weight: bold;
@@ -344,7 +342,7 @@ textarea {
     float:right;
     width: 200px;
     height: 150px;
-    margin: 1% 4% 3% 2%;
+    margin: 1.5em 4em 3em 1em;
 }
 .item_ristorante span{
     padding-left: 1em;
@@ -696,12 +694,6 @@ textarea {
     width: 20%;
     margin-left: 0.25em; 
 }
-@media screen and (max-width: 992px) {
-  .item_ristorante img{
-        float: none;
-        clear: both;
-    }
-}
 
 @media only screen and (max-width: 768px) {
     
@@ -854,5 +846,12 @@ textarea {
 
     #nuovo_rist_form {
         width: 100%;
+    }
+    .item_ristorante img{
+        float: none;
+        margin-left: 8em;
+    }
+    .rist_indirizzo{
+        padding-left: 0.1em;
     }
 }
