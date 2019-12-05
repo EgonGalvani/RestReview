@@ -549,28 +549,25 @@ textarea {
     box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
 }
 
-.input_recensioni{
-    float:right;
-    min-width: 20%;
-    margin-bottom: 0.5em;
-    margin-right: 1em;
-    padding: 0.2em 0.1em; 
+.item_recensione .input_recensioni{
+    padding: 0.5em; 
+    margin: 0.5em;
     cursor: pointer;
 }
 
-.oggetto_item{
+.item_recensione .oggetto_item{
     font-size: 1.9em;
     display: inline-block;
     padding: 0.25em 0.5em;  
 }
 
-.descrizione_item{
+.item_recensione .descrizione_item{
     padding: 1em;  
     font-size: 1.05em; 
     border-top: 1px solid #ddd;
 }
 
-.data_item{
+.item_recensione .data_item{
    float: right;
    margin: 1.25em 1.25em 0 0; 
 }
@@ -580,32 +577,46 @@ textarea {
     display: block;
 }
 
-.like_counter {
+.item_recensione .like_info {
     margin-top: 0.5em;  
+    margin-left: 1.3em;  
 }
 
-.like_item{
-    padding-left: 2.25em;
-    padding-top: 0.25em; 
-    margin-top: 0.25em; 
+.item_recensione form, .item_recensione fieldset {
+    display: inline;
+    border: 0;
+}
+
+.item_recensione .like_button {
     background-repeat: no-repeat;
     background-position: 0 center;
     background-size: 2em; 
+    width: 2em; 
+    height: 2em; 
+    border: none; 
     cursor: pointer; 
-    background-image: url(../img/like.jpg);
+    background-color: transparent;
+    background-image: url(../img/like_button.svg);
 }
 
-.stelle_item{
+.item_recensione .has_like {
+    background-image: url(../img/has_like_button.svg);  
+}
+
+.item_recensione .stelle_item{
     font-size: 1.1em;
     display: block; 
     clear: both;
 }
 
-.stelle_counter {
+.item_recensione .stelle_counter {
     color: gold; 
     font-size: 1.5em; 
 }
 
+.item_recensione .input_btn_form {
+    float: right; 
+}
 
 /*PAGINA 404*/
 #title_404{
@@ -804,6 +815,10 @@ textarea {
 
     #nuovo_rist_form {
         width: 75%;
+    }
+
+    .item_recensione .input_btn_form {
+        margin-top: 1em; 
     }
    
 }
