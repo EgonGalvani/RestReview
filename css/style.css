@@ -316,37 +316,30 @@ textarea {
 #item_ristorante-list {
     list-style:none;
 }
-.item_ristorante h1{
-    font-size: 2em;
-    padding: 0.25em 0.5em;
+
+.item_ristorante .rist_name {
+    text-align: center;
+    border-bottom: 2px solid #ddd; 
 }
-.rist_descrizione{
-    font-size: 1em;
-    text-align: left;
-    width: 60%;
-    padding : 0.5em 0.5em 0.5em 1em;
+
+.item_ristorante .rist_dett {
+    width: 70%; 
+    float: left;
+    padding: 1em; 
 }
-.rist_indirizzo{
-    border-top: 1px solid #ddd;
-    padding-left: 1em;
-    padding-top: 1.4em;
-    padding-right: 2em;
-    font-weight: bold;
+
+.item_ristorante .rist_dett > span {
+    display: block; 
 }
-.rist_categoria{
-    padding-left: 1em;
-    padding-top: 1em;
-    font-weight: bold;
+
+.item_ristorante .rist_img {
+    width: 25%; 
 }
-.item_ristorante img{
-    float:right;
-    width: 200px;
-    height: 150px;
-    margin: 1.5em 7em 3em 1em;
+
+.item_ristorante .rist_descrizione {
+    margin: 0.5em 0.25em;   
 }
-.item_ristorante span{
-    padding-left: 1em;
-}
+
 /* --------------- Pagine chisiamo e regolamento -------------- */
 .cr_content p, .cr_content li{
    font-size: 1.2em; 
@@ -362,14 +355,6 @@ textarea {
     list-style-type: square;
 }
 
-.input_ristoranti{
-    min-width: 20%;
-    margin-top: 5%;
-    margin-bottom: 2%;
-    margin-left: 1em;
-    padding: 0.2em 0.1em; 
-    cursor: pointer;
-}
 /*-------------Pagina di visualizzazione ristorante-------------*/
 #nomeRist {
     text-align: center;
@@ -549,10 +534,14 @@ textarea {
     box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
 }
 
-.item_recensione .input_recensioni{
+.item_card .input_btn_form input[type="submit"]{
     padding: 0.5em; 
     margin: 0.5em;
     cursor: pointer;
+}
+
+.item_recensione .input_btn_form {
+    float: right; 
 }
 
 .item_recensione .oggetto_item{
@@ -572,7 +561,7 @@ textarea {
    margin: 1.25em 1.25em 0 0; 
 }
 
-.item_recensione > span {
+.item_card > span {
     margin-left: 1.1em; 
     display: block;
 }
@@ -582,7 +571,7 @@ textarea {
     margin-left: 1.3em;  
 }
 
-.item_recensione form, .item_recensione fieldset {
+.item_card form, .item_card fieldset {
     display: inline;
     border: 0;
 }
@@ -603,19 +592,15 @@ textarea {
     background-image: url(../img/has_like_button.svg);  
 }
 
-.item_recensione .stelle_item{
+.item_card .stelle_item{
     font-size: 1.1em;
     display: block; 
     clear: both;
 }
 
-.item_recensione .stelle_counter {
+.item_card .stelle_counter {
     color: gold; 
     font-size: 1.5em; 
-}
-
-.item_recensione .input_btn_form {
-    float: right; 
 }
 
 /*PAGINA 404*/
@@ -820,7 +805,6 @@ textarea {
     .item_recensione .input_btn_form {
         margin-top: 1em; 
     }
-   
 }
 
 @media only screen and (max-width: 480px) {
@@ -857,14 +841,23 @@ textarea {
     #nuovo_rist_form {
         width: 100%;
     }
-    .item_ristorante img{
-        float: none;
+     
+    .item_ristorante .rist_dett {
+        float: none; 
+        width: 100%;
+    }
+
+    .item_ristorante .rist_img {
+        width: 30%; 
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
+        margin: 0 auto; 
     }
-    .rist_indirizzo{
-        padding-left: 0.1em;
+    
+    .item_ristorante .input_btn_form {
+        float: right; 
+        margin-right: 1.5em; 
+        margin-bottom: 1em; 
     }
+    
+
 }
