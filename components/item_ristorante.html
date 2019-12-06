@@ -1,0 +1,23 @@
+<li class="item_card item_ristorante">
+    <h1 class="rist_name">%NOME%</h1>
+
+    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+    
+    <div class="rist_dett">
+        <span>%INDIRIZZO%</span>
+        <span>%TIPOLOGIA%</span>
+            
+        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+            <span class="stelle_counter">%LISTA_STELLE%</span>
+        </span>
+
+        <p class="rist_descrizione">%DESCRIZIONE%</p>
+
+        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+            <fieldset>
+                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+            </fieldset>
+        </form>
+    </div> 
+</li>
