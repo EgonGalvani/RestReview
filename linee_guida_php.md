@@ -7,6 +7,19 @@ In tutte le pagine devono essere introdotti gli elementi di:
 <br />
 TUTTI I PLACEHOLDER SONO NELLA FORMA: %PLACEHOLDER%
 
+## MENU 
+Se l'utente è un amministratore, allora deve comparire nel menu la sezione: 
+ - Pannello di amministrazione 
+Se l'utente è un recensore, allora deve comparire anche: 
+ - Le mie recensioni 
+Se è un ristoratore, allora deve essere presente: 
+ - I miei ristoranti 
+Infine, se l'utente non è loggato, allora non va aggiunta alcuna sezione nel menu. 
+NOTA: L'item del menu relativo alla pagina attuale non deve essere un link e deve presentare la classe 'active'. E' quindi una buona idea non usare il component, ma usare direttamente php per creare il menu.  
+
+## BREADCRUMB 
+Bisogna vedere se diventa necessario introdurre il breadcrumb in modo dinamico per pagine che possono essere raggiunte in più modi (es. dettaglio ristorante può essere raggiunto tramite risultati di ricerca, index, le mie recensioni, ecc. )
+
 ## LOGIN 
 ### CONTENUTO FORM 
 Nel form della pagina login sono presenti i seguenti campi di input: 
