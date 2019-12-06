@@ -128,8 +128,8 @@ ANCORA DA FARE IN HTML
 - pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
 ## ENTITA' STELLE
-- stelle piene: &#9733;
-- stelle vuote: &#9734;
+- stelle piene: &amp;#9733;
+- stelle vuote: &amp;#9734;
 
 ## MESSAGGI DI SUCCESSO/WARNING/ERRORE 
 Se fosse necessario mostrare eventuali messaggi all'utente (es. dopo registrazione o inserimento ristorante) si può usare un div con la classe msg_box e una classe tra: error_box, success_box e warning_box. Indicando all'interno del div il messaggio da mostrare all'utente. 
