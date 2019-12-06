@@ -37,9 +37,9 @@
                     <legend>Registrazione</legend>
                                         
                     <label for="recensore">Tipologia di registrazione: </label>
-                    <input type="radio" name="tipo_utente" value="Recensore" tabindex="1" id="recensore" checked="checked" />
+                    <input type="radio" name="tipo_utente" value="rec" tabindex="1" id="recensore" checked="checked" />
                     <label class="radio_label" for="recensore">Recensore</label>
-                    <input type="radio" name="tipo_utente" value="Ristoratore"  id="ristoratore" />
+                    <input type="radio" name="tipo_utente" value="rist"  id="ristoratore" />
                     <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
                     <label for="email" lang="en">Email:</label>
@@ -53,7 +53,7 @@
                     
                     <label for="sesso">Sesso:</label>
                     <select name="sesso" id="sesso" required="required" tabindex="5">
-                        <option value="" selected="selected">Non Specificato</option>
+                        <option value="ns" selected="selected">Non Specificato</option>
                         <option value="uomo">Uomo</option>
                         <option value="donna">Donna</option>
                         <option value="altro">Altro</option>
@@ -79,7 +79,7 @@
                         <img id="img_profilo_preview" src="../img/imgnotfound.jpg" alt="immagine di profilo" />
                         <input type="file" name="img_profilo" id="img_profilo" tabindex="11" />
                     </div>
-                    <input id="reg_btn" type="submit" value="Registrati" tabindex="12"/>
+                    <input id="reg_btn" type="submit" value="Registrati" name="registrati" tabindex="12"/>
                 </fieldset>
             </form>
         </div>
