@@ -330,6 +330,7 @@ textarea {
 
 .item_ristorante .rist_dett > span {
     display: block; 
+    margin-bottom: 0.5em; 
 }
 
 .item_ristorante .rist_img {
