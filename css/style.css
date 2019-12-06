@@ -152,7 +152,7 @@ attivo, poichè questo non è un link */
 }
 
 /* allinea radio button e relativa label */
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
     margin-top: -1px;
     vertical-align: middle;
 }
@@ -425,12 +425,23 @@ textarea {
     display: block;
     text-align: center; 
     padding: 1em; 
+    clear: right; 
+    margin-top: 2em; 
 }
 
 #login_btn {
     padding: 0.5em;
     float: right; 
-    margin-top: 1em; 
+    margin-bottom: 1em;  
+}
+
+#login_form #remember_me {
+    display: inline-block;
+    margin-left: 0.25em; 
+}
+
+#login_form #password {
+    margin-bottom: 1.5em; 
 }
 
 /* ------------------------- registrazione ------------------------------*/

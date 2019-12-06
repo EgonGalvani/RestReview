@@ -28,7 +28,7 @@
         </div>
 
         <div id="content">
-            <form action="" id="login_form" class="vertical_input_form">
+            <form method="POST" action="" id="login_form" class="vertical_input_form">
                 <fieldset>
                     <legend xml:lang="en">Login</legend>
                    
@@ -44,12 +44,17 @@
 
                     <label for= "password" xml:lang="en">Password:</label>
                     <input type="password" name="password" id="password" maxlength= "15" tabindex="2"/>
-                 
-                    <a href="registrazione.html" tabindex="3">Non sei ancora registrato?</a>  
+                    
+                    <input type="checkbox" id="remember_me" name="remember_me" />
+                    <label for="remember_me">Ricordati di me</label>
+                    
                     <input type="submit" id="login_btn" name="Accedi" value="Accedi" tabindex="4" />
-                </fieldset>
 
-	       </form>
+                    <a href="registrazione.html" tabindex="3">Non sei ancora registrato? CLICCA QUI</a>  
+                </fieldset>
+           </form>
+             
+          
         </div>
         <div id="footer">
             ##FOOTER##
