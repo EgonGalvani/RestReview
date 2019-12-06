@@ -151,5 +151,5 @@ Se fosse necessario mostrare eventuali messaggi all'utente (es. dopo registrazio
 
 ## CONTROLLI SULLE IMMAGINI 
 Per ogni immagine bisogna controllare: 
- - Estensione (jpg | png | jpeg | gif)
+ - Estensione (jpg | png | jpeg )
  - Dimensione Massima 5MB
