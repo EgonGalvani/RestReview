@@ -550,7 +550,7 @@ textarea {
 }
 
 .item_recensione .has_like {
-    background-image: url(../img/has_like_button.svg);  
+    width: 2em; 
 }
 
 .item_card .stelle_item{

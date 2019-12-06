@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../css/style.css" />
+
 <li class="item_recensione item_card">
     <h2 class="oggetto_item">%TITOLO%</h2>
     <span class="data_item">%DATA%</span>
@@ -9,12 +11,9 @@
 
     <div class="like_info">MI PIACE: 
         <span title="Numero di mi piace">%NUMERO_MI_PIACE%</span>
-        
-        <form action="" method="">
-            <fieldset disabled="none">
-                <input type="submit" title="Hai messo mi piace" value="" class="like_button has_like" tabindex="1">
-            </fieldset>
-        </form>
+            
+        %LIKE_FORM% 
+       
     </div>
     
     <form action="" method="" class="input_btn_form">
@@ -31,3 +30,15 @@
         </fieldset>
     </form>
 </li>
+
+<!--  FORM PER UTENTE CHE NON HA ANCORA MESSO LIKE 
+    <form action="" method="">
+        <fieldset>
+            <input type="submit" title="Premi per mettere mi piace" value="" class="like_button" tabindex="1">
+        </fieldset>
+    </form>
+-->
+
+<!-- IMMAGINE PER UTENTE CHE HA GIA MESSO LIKE 
+    <img src="../img/has_like_button.svg" alt="Hai messo like" class="has_like"/>              
+-->

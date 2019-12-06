@@ -69,6 +69,8 @@ Nel form di inserimento dei ristoranti sono presenti i seguenti campi:
 ## LE MIE RECENSIONI
 ### PLACEHOLDER 
 - %LIST% : deve essere sostituito dalla list di recensione dell'utente, ordinate dalla più nuova alla più vecchia 
+### PERMESSI 
+Solo gli utenti loggati e di tipo RECENSORE possono accedere a tale pagina. Se l'utente considerato non rientra in tale categoria, allora forse è meglio rimandarlo a una pagina di errore o ad esempio alla home, in cui si potrebbe introdurre un box di errore (vedi relativa sezione). 
 ### TODO
 - Gestione dei risultati in più pagine (quando l'utente ha lasciato molte recensioni )
 
@@ -84,12 +86,21 @@ Nel form di inserimento dei ristoranti sono presenti i seguenti campi:
 - %NUMERO_MI_PIACE% : numero di mi piace alla recensione 
 - %ID_RECENSIONE% : id della recensione
 - %ID_RISTORANTE% : id ristorante 
+- %LIKE_FORM% : il funzionamento è spiegato nella sezione successiva
 #### FUNZIONAMENTO 
-- se è necessario far vedere il form di eliminazione della recensione, allora 
-
+- I form di eliminazione e di apertura del ristorante funzionano usando un campo hidden, contenente l'id della recensione/ristorante considerato. 
+- La gestione del like risulta essere più complicata: (VALORE DI %LIKE_FORM%)
+1. Se l'utente non ha ancora messo like, allora al post di %LIKE_FORM% deve essere inserito il form che è presente nei commenti del component
+2. Se invece l'utente ha già messo like, gli viene mostrata una semplice immagine (presente anche questo come commento nel file component) 
 
 ### RECENSIONE ALTRUI 
+ANCORA DA FARE IN HTML 
 
+## ULTIMI RISTORANTI 
+### PLACEHOLDER 
+- %LIST% : deve essere rimpiazzato con la lista dei ristoranti 
+### TODO 
+- Gestione di più pagine di risultati 
 
 ## ITEM RISTORANTE 
 ### PLACEHOLDER
@@ -100,22 +111,23 @@ Nel form di inserimento dei ristoranti sono presenti i seguenti campi:
 - %LISTA_STELLE% : ipotizzando che il ristorante abbia una media di 4.3 stelle, allora devono essere mostrate k entità di stelle piene e 5-k entità di stelle vuote (dove k è il troncamento della media, nel nostro esempio di 4.3 stelle di media, allora k sarebbe 4)
 - %DESCRIZIONE% : descrizione del ristorante 
 - %ID_RISTORANTE% : id del ristorante 
+- %FORM_ELIMINAZIONE% : vedi funzionamento 
 ### FUNZIONAMENTO 
-L'item presenta al suo interno un form, in cui è presente un campo hidden, che contiene al suo interno l'id del ristorante. Quando l'utente preme il bottone "Vai al ristorante", allora viene chiamata la pagina dettaglioristorante.html, con method GET. Si verrà reindirizzati quindi alla pagina: dettaglioristorante.html?id=VALORE_ID
-### DA FARE IN PHP 
-Manca da aggiungere un eventuale FORM (identico a quello del dettaglio del ristorante, ma casomai con method="POST" ) di eliminazione del ristorante, che sarà visibile solo per il ristoratore 
+- L'item presenta al suo interno un form, in cui è presente un campo hidden, che contiene al suo interno l'id del ristorante. Quando l'utente preme il bottone "Vai al ristorante", allora viene chiamata la pagina dettaglioristorante.html, con method GET. Si verrà reindirizzati quindi alla pagina: dettaglioristorante.html?id=VALORE_ID
+- Il %FORM_ELIMINAZIONE% deve essere: 
+    1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
+    2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
 
-## ULTIMI RISTORANTI 
-### PLACEHOLDER 
-- %LIST% : deve essere rimpiazzato con la lista dei ristoranti 
-### TODO 
-- Gestione di più pagine di risultati 
+
+## PAGINA "HOME" (index.html)
+### PLACEHOLDER
+- %LIST% : deve essere rimpiazzato i suggerimenti di ricerca. Quindi con i primi N (es. N=5) ristoranti meglio recensiti. Deve essere usato come item l'item_ristorante
 
 ## REGEX UTILIZZATE: 
 - emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 - pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
-## STELLE
+## ENTITA' STELLE
 - stelle piene: &#9733;
 - stelle vuote: &#9734;
 
