@@ -53,6 +53,7 @@ Nel form di registrazione sono presenti i seguenti campi:
 - partita iva e ragione sociale sono campi necessari solo per i ristoratori
 - eventuali controlli sulla lunghezza della partita iva 
 - tutti i campi sono obbligatori 
+- controlli sulle immagini (vedi sezione alla fine del documento)
 
 ## INSERIMENTO RISTORANTE 
 ### CONTENUTO FORM 
@@ -77,6 +78,7 @@ Nel form di inserimento dei ristoranti sono presenti i seguenti campi:
 - la descrizione deve avere lunghezza minima di 25 caratteri
 - NON sono obbligatori: sito, numero di telefono, email, immagini aggiuntive 
 - possono essere caricate al massimo 3 immagini aggiuntive 
+- controlli sulle immagini (vedi sezione alla fine del documento)
 
 
 ## LE MIE RECENSIONI
@@ -146,3 +148,8 @@ ANCORA DA FARE IN HTML
 
 ## MESSAGGI DI SUCCESSO/WARNING/ERRORE 
 Se fosse necessario mostrare eventuali messaggi all'utente (es. dopo registrazione o inserimento ristorante) si può usare un div con la classe msg_box e una classe tra: error_box, success_box e warning_box. Indicando all'interno del div il messaggio da mostrare all'utente. 
+
+## CONTROLLI SULLE IMMAGINI 
+Per ogni immagine bisogna controllare: 
+ - Estensione (jpg | png | jpeg | gif)
+ - Dimensione Massima 5MB
