@@ -112,6 +112,28 @@ html, body {
     display: none; 
 } 
 
+.center {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a, .pagination .active{
+    color: black;
+    float: left;
+    padding: 0.75em 1.25em;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
 #hamburger {
     display: none;
 }
