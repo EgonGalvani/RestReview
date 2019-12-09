@@ -130,6 +130,12 @@ html, body {
     margin: 0 4px;
 }
 
+.pagination .disabled {
+    cursor: not-allowed; 
+    opacity: 0.3; 
+    user-select: none; 
+}
+
 .pagination a:hover:not(.active) {
     background-color: #ddd;
 }
@@ -303,7 +309,7 @@ textarea {
     width: 50%; 
 }
 
-#sbar { 
+#search { 
     width: calc(100% - 2em);
 }
 

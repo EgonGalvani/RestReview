@@ -33,7 +33,7 @@ Nel form della pagina login sono presenti i seguenti campi di input:
 ## REGISTRAZIONE 
 ### CONTENUTO FORM 
 Nel form di registrazione sono presenti i seguenti campi: 
-- radio button per la tipologia dell'utente [name: tipo_utente] [value: rec | rist]
+- radio button per la tipologia dell'utente [name: tipo_utente] [value: 0(recensore) | 1(ristoratore)]
 - email [name: email]
 - nome [name: nome]
 - cognome [name: cognome]
@@ -133,8 +133,13 @@ ANCORA DA FARE IN HTML
     1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
     2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
 
-
 ## PAGINA "HOME" (index.html)
+### FUNZIONAMENTO
+I campi del form sono: 
+- Stringa di ricerca (name: search)
+- Tipologia di ricerca (per posizione o per nome) (name: filter) (value: 0 (per posizione), 1 (per nome))
+- Tipologia del ristorante (name: tipologia)
+
 ### PLACEHOLDER
 - %LIST% : deve essere rimpiazzato i suggerimenti di ricerca. Quindi con i primi N (es. N=5) ristoranti meglio recensiti. Deve essere usato come item l'item_ristorante
 
