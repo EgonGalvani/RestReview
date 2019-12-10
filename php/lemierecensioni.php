@@ -2,7 +2,6 @@
  l'ID utente della session corrente-->
 
 <?php
-
     function stars($num){
         if($num<0 || $num>5){
             return "";
@@ -16,10 +15,10 @@
         }
         return $stelle;
     }
-
+    session_start();
     include("connessione.php");
-
-    if(!$result = $connessione->query("SELECT * FROM recensione WHERE ID_Utente=2")){
+    $id_utente=$_SESSION["ID"];
+    if(!$result = $connessione->query("SELECT * FROM recensione WHERE ID_Utente=$id_utente")){
         echo "Non è possibile visualizzare le tue recensioni";
         exit();
     }else{
