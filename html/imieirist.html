@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>RestReview</title>
+        <meta name="title" content="RistReview" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="restreview, ristoranti, recensioni, ricerca, pranzo, cena" />
+        <meta name="author" content="##NOME_GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+          %HEADER%
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: %PATH% 
+        </div>
+
+        <div id="menu">
+            %MENU%
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">I miei ristoranti</h1>
+            
+            <h2>Ristoranti approvati: </h2>
+            <ul>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+            </ul>
+
+            <div class="center">
+                <div class="pagination">
+                    <span href="#" class=" disabled">&laquo;</span>
+                    <a href="#" class="">1</a>
+                    <span class="active">2</span>
+                    <a href="#" class="">3</a>
+                    <a href="#" class="">4</a>
+                    <a href="#" class="">5</a>
+                    <a href="#" class="">6</a>
+                    <a href="#" class="">&raquo;</a>
+                </div>
+           </div>
+            
+           <h2>Ristoranti approvati: </h2>
+            <ul>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+            </ul>
+
+            <div class="center">
+                <div class="pagination">
+                    <span href="#" class=" disabled">&laquo;</span>
+                    <a href="#" class="">1</a>
+                    <span class="active">2</span>
+                    <a href="#" class="">3</a>
+                    <a href="#" class="">4</a>
+                    <a href="#" class="">5</a>
+                    <a href="#" class="">6</a>
+                    <a href="#" class="">&raquo;</a>
+                </div>
+           </div>
+            
+
+           <h2>Ristoranti approvati: </h2>
+            <ul>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+                <li class="item_card item_ristorante">
+                    <h1 class="rist_name">%NOME%</h1>
+                
+                    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante" />      
+                    
+                    <div class="rist_dett">
+                        <span>%INDIRIZZO%</span>
+                        <span>%TIPOLOGIA%</span>
+                            
+                        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+                            <span class="stelle_counter">%LISTA_STELLE%</span>
+                        </span>
+                
+                        <p class="rist_descrizione">%DESCRIZIONE%</p>
+                
+                        %FORM_ELIMINAZIONE%
+                
+                        <form method="GET" action="dettaglioristorante.html" class="input_btn_form">
+                            <fieldset>
+                                <input type="hidden" name="id" value="%ID_RISTORANTE%">
+                                <input type="submit" name="visitaRist" value="Vai al ristorante" />
+                            </fieldset>
+                        </form>
+                    </div> 
+                </li>
+            </ul>
+
+            <div class="center">
+                <div class="pagination">
+                    <span href="#" class=" disabled">&laquo;</span>
+                    <a href="#" class="">1</a>
+                    <span class="active">2</span>
+                    <a href="#" class="">3</a>
+                    <a href="#" class="">4</a>
+                    <a href="#" class="">5</a>
+                    <a href="#" class="">6</a>
+                    <a href="#" class="">&raquo;</a>
+                </div>
+           </div>
+            
+            
+        </div>
+    
+        <div id="footer">
+            %FOOTER%
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>

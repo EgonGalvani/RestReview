@@ -118,9 +118,10 @@ html, body {
 
 .pagination {
     display: inline-block;
+    margin: 2em; 
 }
 
-.pagination a, .pagination .active{
+.pagination *{
     color: black;
     float: left;
     padding: 0.75em 1.25em;
