@@ -101,6 +101,7 @@ Solo gli utenti loggati e di tipo RECENSORE possono accedere a tale pagina. Se l
 - %NUMERO_MI_PIACE% : numero di mi piace alla recensione 
 - %ID_RECENSIONE% : id della recensione
 - %ID_RISTORANTE% : id ristorante 
+- %NOME_RISTORANTE% : nome del ristorante a cui si riferisce la recensione
 - %LIKE_FORM% : il funzionamento è spiegato nella sezione successiva
 #### FUNZIONAMENTO 
 - I form di eliminazione e di apertura del ristorante funzionano usando un campo hidden, contenente l'id della recensione/ristorante considerato. 

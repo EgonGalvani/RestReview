@@ -1,8 +1,10 @@
 <li class="item_recensione item_card">
     <h2 class="oggetto_item">%TITOLO%</h2>
     <span class="data_item">%DATA%</span>
+
+    <span class="rist_name_item">%NOME_RISTORANTE%</span>
     <p class="descrizione_item">%CONTENUTO%</p>
-    
+
     <span class="stelle_item">Stelle %NUMERO_STELLE%/5
         <span class="stelle_counter">%LISTA_STELLE%</span>
     </span>
@@ -11,10 +13,9 @@
         <span title="Numero di mi piace">%NUMERO_MI_PIACE%</span>
             
         %LIKE_FORM% 
-       
     </div>
     
-    <form action="" method="" class="input_btn_form">
+    <form action="remove_review.php" method="POST" class="input_btn_form">
         <fieldset>
             <input type="hidden" name="id_ristorante" value="%ID_RECENSIONE%"/>
             <input type="submit" class="input_recensioni" name="Elimina" value="Elimina" tabindex="2" />
