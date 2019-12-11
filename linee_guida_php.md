@@ -86,8 +86,13 @@ Nel form di inserimento dei ristoranti sono presenti i seguenti campi:
 - %LIST% : deve essere sostituito dalla list di recensione dell'utente, ordinate dalla più nuova alla più vecchia 
 ### PERMESSI 
 Solo gli utenti loggati e di tipo RECENSORE possono accedere a tale pagina. Se l'utente considerato non rientra in tale categoria, allora forse è meglio rimandarlo a una pagina di errore o ad esempio alla home, in cui si potrebbe introdurre un box di errore (vedi relativa sezione). 
-### TODO
-- Gestione dei risultati in più pagine (quando l'utente ha lasciato molte recensioni )
+
+NOTA: Una lista di recensioni viene definnita nel seguente modo: 
+``` 
+<dl class="card_list rec_list">
+    lista di item recensione
+</dl>
+```
 
 ## ITEM RECENSIONE 
 
@@ -115,8 +120,13 @@ ANCORA DA FARE IN HTML
 ## ULTIMI RISTORANTI 
 ### PLACEHOLDER 
 - %LIST% : deve essere rimpiazzato con la lista dei ristoranti 
-### TODO 
-- Gestione di più pagine di risultati 
+
+NOTA: Una lista di ristoranti viene creata nel seguente modo: 
+``` 
+    <dl class="card_list rist_list">
+        elenco di item ristorante            
+    </dl>
+``` 
 
 ## ITEM RISTORANTE 
 ### PLACEHOLDER
