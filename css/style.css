@@ -325,31 +325,27 @@ textarea {
 
 /*---------------Pagina ultimi ristoranti-------------*/
 
-#item_ristorante-list {
+.rist_list {
     list-style:none;
 }
 
-.item_ristorante .rist_name {
-    text-align: center;
-    border-bottom: 2px solid #ddd; 
-}
-
-.item_ristorante .rist_dett {
+.rist_list .rist_dett {
     width: 70%; 
-    float: left;
     padding: 1em; 
 }
 
-.item_ristorante .rist_dett > span {
+.rist_list .rist_dett > span {
     display: block; 
     margin-bottom: 0.5em; 
 }
 
-.item_ristorante .rist_img {
+.rist_list .rist_img {
     width: 25%; 
+    float: right; 
+    margin: 1em; 
 }
 
-.item_ristorante .rist_descrizione {
+.rist_list .rist_descrizione {
     margin: 0.5em 0.25em;   
 }
 
@@ -503,6 +499,7 @@ textarea {
     display:block;
     margin-left: 3em;
 }
+
 #edit_personal_data, #edit_account_data{
     border:none;
     padding: 0.5em;
@@ -513,22 +510,43 @@ textarea {
     list-style:none;
 }
 
-.item_card{
+.card_list {
+    margin: 1em; 
+    list-style: none;
+}
+
+.card_list dt {
+    padding: 0.5em; 
+    text-align: center; 
+    font-size: 1.75em; 
+    border: 2px solid #ddd; 
+    border-bottom: 0; 
+}
+
+.card_list dd {
     border: 2px solid #ddd;
-    margin-top: 2em;
-    overflow: hidden;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
-    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 1em; 
 }
 
-.item_card:hover {
-    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
-}
-
-.item_card .input_btn_form input[type="submit"]{
+.card_list input[type="submit"]{
     padding: 0.5em; 
     margin: 0.5em;
     cursor: pointer;
+}
+
+dd form, dd fieldset {
+    display: inline;
+    border: 0;
+}
+
+dd .stelle_item{
+    font-size: 1.1em;
+    display: block; 
+}
+
+dd .stelle_counter {
+    color: gold; 
+    font-size: 1.5em; 
 }
 
 .item_recensione .input_btn_form {
@@ -558,18 +576,8 @@ textarea {
    margin: 1.25em 1.25em 0 0; 
 }
 
-.item_card > span {
-    margin-left: 1.1em; 
-    display: block;
-}
-
 .item_recensione .like_info {
     margin: 0.5em 0 0 1.3em; 
-}
-
-.item_card form, .item_card fieldset {
-    display: inline;
-    border: 0;
 }
 
 .item_recensione .like_button {
@@ -588,16 +596,7 @@ textarea {
     width: 2em; 
 }
 
-.item_card .stelle_item{
-    font-size: 1.1em;
-    display: block; 
-    clear: both;
-}
 
-.item_card .stelle_counter {
-    color: gold; 
-    font-size: 1.5em; 
-}
 
 /*PAGINA 404*/
 #title_404{
@@ -833,22 +832,21 @@ textarea {
         width: 100%;
     }
      
-    .item_ristorante .rist_dett {
+    .rist_list .rist_img {
         float: none; 
-        width: 100%;
-    }
-
-    .item_ristorante .rist_img {
-        width: 30%; 
+        width: 50%; 
         display: block;
-        margin: 0 auto; 
+        margin: 0.5em auto; 
     }
     
-    .item_ristorante .input_btn_form {
+    .rist_list .input_btn_form {
         float: right; 
         margin-right: 1.5em; 
         margin-bottom: 1em; 
     }
-    
+
+    .rist_list .rist_dett {
+        width: calc(100% - 2em); 
+    }
 
 }
