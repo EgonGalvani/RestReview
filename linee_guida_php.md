@@ -154,11 +154,11 @@ I campi del form sono:
 
 ## MESSAGGI DI SUCCESSO/WARNING/ERRORE 
 Se fosse necessario mostrare eventuali messaggi all'utente (es. dopo registrazione o inserimento ristorante) si può usare un p con la classe msg_box e una classe tra: error_box, success_box e warning_box. Indicando all'interno del div il messaggio da mostrare all'utente. Esempio: 
-'''
+```
     <p class"msg_box error_box">
         MESSAGGIO DI ERRORE
     </p>
-'''
+```
 
 ## CONTROLLI SULLE IMMAGINI 
 Per ogni immagine bisogna controllare: 
@@ -170,7 +170,7 @@ Per disporre la lista di pagine in modo centrale, è necessario usare come padre
 se si vogliono bloccare i bottoni per passare alla pagina successiva/precedente (quelli alle estremità)
 basta aggiungere la classe "disabled". L'item attuale deve essere uno span (non un link) e deve avere class="active". 
 Esempio: 
- '''
+```html
     <div class="center">
         <div class="pagination">
             <span class="disabled">&laquo;</span>
@@ -183,4 +183,4 @@ Esempio:
             <a href="#" class="">&raquo;</a>
         </div>
     </div>
- '''
+```
