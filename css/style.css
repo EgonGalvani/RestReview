@@ -666,6 +666,24 @@ dd .stelle_counter {
     width: 20%;
     margin-left: 0.25em; 
 }
+/*  PAGINA VISUALIZZAZIONE PROFILO */
+.list_profilo dt{
+    padding:  1em;
+    font-size: 1.1em; 
+}
+.list_profilo dd{
+    padding-bottom:  0.25em; 
+    font-weight: bold; 
+    font-size:  1.10em; 
+    margin-left: 1em;
+}
+.edit_data{
+        margin-left: 8em;
+    }
+#img_profilo{
+    margin: 1em auto;
+    display: block;
+}
 
 @media only screen and (max-width: 768px) {
     
