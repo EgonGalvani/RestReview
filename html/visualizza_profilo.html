@@ -30,31 +30,33 @@
         <div id="content">
             <h1>Il mio profilo</h1>
             <img id="img_profilo" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
-            <h2> I miei dati utente </h2>
-            <dl class="list_profilo">
-                <dt> La mia <span xml:lang="en"> Email </span> : </dt>
-                <dd> $EMAIL </dd>
-                <dt> <span xml:lang="en"> Password </span>: </dt>
-                <dd> $PASSWORD </dd>
-                <dt> Tipo di utenza: </dt>
-                <dd> $UTENZA </dd>
-            </dl>
-            <h2> I miei dati personali </h2>
-            <dl class="list_profilo">
-                <dt> Nome: </dt>
-                <dd> $NOME </dd>
-                <dt> Cognome: </dt>
-                <dd> $COGNOME </dd>
-                <dt> Sesso: </dt>
-                <dd> $SESSO </dd>
-                <dt> Data di Nascita: </dt>
-                <dd> DATA_NASCITA </dd>
-                <dt> Partita IVA:</dt>
-                <dd> $PARTITA_IVA </dd>
-                <dt> Ragione Sociale: </dt>
-                <dd> $RAGIONESOCIALE </dd>
-            </dl>
-            <input type="button" class="edit_data" name="edit_data" value="Modifica il profilo" tabindex="1"/>
+            <div id="profile-view">
+                <h2 class="profile-view_title"> I miei dati utente </h2>
+                <dl class="list_profilo">
+                    <dt> La mia <span xml:lang="en"> Email </span> : </dt>
+                    <dd> %EMAIL </dd>
+                    <dt> <span xml:lang="en"> Password </span>: </dt>
+                    <dd> %PASSWORD </dd>
+                    <dt> Tipo di utenza: </dt>
+                    <dd> %UTENZA </dd>
+                </dl> 
+                <h2 class="profile-view_title"> I miei dati personali </h2>
+                <dl class="list_profilo">
+                    <dt> Nome: </dt>
+                    <dd> %NOME </dd>
+                    <dt> Cognome: </dt>
+                    <dd> %COGNOME </dd>
+                    <dt> Sesso: </dt>
+                    <dd> %SESSO </dd>
+                    <dt> Data di Nascita: </dt>
+                    <dd> %DATA_NASCITA </dd>
+                    <dt> Partita IVA:</dt>
+                    <dd> %PARTITA_IVA </dd>
+                    <dt> Ragione Sociale: </dt>
+                    <dd> %RAGIONESOCIALE </dd>
+                </dl>
+            </div>
+            <input type="button" class="edit_data" name="edit_data" value="Modifica profilo" tabindex="1"/>
             <input type="button" class="edit_data" name="edit_data" value="Elimina profilo" tabindex="2"/>
 
         <script type="text/javascript" src="../js/script.js"></script>
