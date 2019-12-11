@@ -475,9 +475,9 @@ textarea {
 }
 
 /* -----------------------CSS profilo------------------------*/
-#edit_foto_profilo{
+/*#edit_foto_profilo{
     margin:auto;
-    width:33%;
+    width: 33%;
 }
 #modifica_dati legend{
     font-size: 1.5em;;
@@ -500,10 +500,10 @@ textarea {
     margin-left: 3em;
 }
 
-#edit_personal_data, #edit_account_data{
+#edit_personal_data, #edit_account_data, #edit_foto_profilo{
     border:none;
     padding: 0.5em;
-}
+}/*
 
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
 #item_recensione-list {
@@ -686,16 +686,44 @@ dd .stelle_counter {
     padding-bottom:  0.25em; 
     font-weight: bold; 
     font-size:  1.10em; 
-    margin-left: 1em;
+    margin-left: 1.5em;
 }
 .edit_data{
+        margin-top: 2em;
         margin-left: 8em;
     }
 #img_profilo{
-    margin: 1em auto;
+    float: left;
+    display: block;
+    border-radius:  50%;
+    width: 30%;
+    margin:  2em; 
+    border:  solid 1px #000;
+    padding:  0.25em;
+}
+#profile-view{
+    margin-left: 40%;
+}
+.profile-view_title{
+    padding-top:  1em;
+}
+#edit_foto_profilo{
+    float: left;
+    width:  50%;
+    border: none;
+}
+#edit_account_data{
+    float: right;
+    border: none;
+    width: 30%;
+}
+#edit_personal_data{
+    margin-left: 2em;
+    border: none;
+}
+#edit_personal_data label{
     display: block;
 }
-
 @media only screen and (max-width: 768px) {
     
     body {
