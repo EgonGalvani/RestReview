@@ -20,7 +20,7 @@
 
             if($queryResult->num_rows>0){
                 $result=array();
-                while(!$row=$result->fetch_array(MYSQLI_ASSOC)){
+                while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
                     array_push($result,$row);
                 }
                 return $result;

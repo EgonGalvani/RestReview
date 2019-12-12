@@ -1,6 +1,3 @@
-<!-- appena si scrive il file che gestisce la session le query vanno modificate inserendo
- l'ID utente della session corrente-->
-
 <?php
     function stars($num){
         if($num<0 || $num>5){
@@ -22,15 +19,12 @@
     $obj_connection = new DBConnection();
     $connected = $obj_connection->create_connection();
 
-    $id_utente=$_SESSION["ID"];
+    $id_utente=$_SESSION['ID'];
     $file_content = file_get_contents('../html/lemierecensioni.html');
 
     /* Creazione menu */
     require_once('menu_list.php');
     $menuList=new menuList('utente');
-    /*$menu=file_get_contents("../components/menu.html");
-    $other_elements = '<li><a href="../html/profilo.html">Il mio profilo</a><li>
-                        <li class="active">Le mie recensioni</a><li>'.$menu_item->getHTMLItem();*/
     $search='<li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>';
     $replace='<li class="active">Le mie recensioni</li>';
     
