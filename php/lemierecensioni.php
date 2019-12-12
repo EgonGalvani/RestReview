@@ -15,47 +15,73 @@
         }
         return $stelle;
     }
+    
     session_start();
-    include("connessione.php");
+
+    require_once("connessione.php");
+    $obj_connection = new DBConnection();
+    $connected = $obj_connection->create_connection();
+
     $id_utente=$_SESSION["ID"];
-    if(!$result = $connessione->query("SELECT * FROM recensione WHERE ID_Utente=$id_utente")){
-        echo "Non è possibile visualizzare le tue recensioni";
-        exit();
-    }else{
-        $list = "";
-        if($result->num_rows>0){
-            while($row=$result->fetch_array(MYSQLI_ASSOC)){
-                $item = file_get_contents("../components/recensione_utente_loggato.html");
-                $item = str_replace("%TITOLO%",$row["Oggetto"],$item);
-                $item = str_replace("%DATA%",$row["Data"],$item);
-                $item = str_replace("%CONTENUTO%",$row["Descrizione"],$item);
-                $item = str_replace("%NUMERO_STELLE%",$row["Stelle"],$item);
-                $item = str_replace("%LISTA_STELLE%",stars($row["Stelle"]),$item);
-                $item = str_replace("%ID_RECENSIONE%",$row["ID"],$item);
-                $item = str_replace("%ID_RISTORANTE%",$row["ID_Ristorante"],$item);
+    $file_content = file_get_contents('../html/lemierecensioni.html');
 
-                if(!$count = $connessione->query("SELECT COUNT(*) AS likes,ID FROM mi_piace AS m, recensione AS r 
-                    WHERE r.ID_Utente=2 AND m.ID_Recensione=r.ID GROUP BY r.ID")){
-                    $item=str_replace("%NUMERO_MI_PIACE%","",$item);  
-                }else{
-                    while($like = $count->fetch_array(MYSQLI_ASSOC)){
-                        if($like["ID"]==$row["ID"]){
-                            $item = str_replace("%NUMERO_MI_PIACE%",$like["likes"],$item);
-                        }
-                    }
-                    $count->free();
-                }
-                $item=str_replace("%LIKE_FORM%","",$item);
-                $list=$list.$item;
-            }
+    /* Creazione menu */
+    require_once('menu_list.php');
+    $menuList=new menuList('utente');
+    /*$menu=file_get_contents("../components/menu.html");
+    $other_elements = '<li><a href="../html/profilo.html">Il mio profilo</a><li>
+                        <li class="active">Le mie recensioni</a><li>'.$menu_item->getHTMLItem();*/
+    $search='<li><a href="../php/lemierecensioni.php">Le mie recensioni</a><li>';
+    $replace='<li class="active">Le mie recensioni<li>';
+    
+    $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
+
+    $file_content=str_replace("%MENU%",$menu,$file_content);
+
+    /* Recupero lista recensioni dal database */
+    if($connected){
+        if(!$result = $obj_connection->connessione->query("SELECT * FROM recensione WHERE ID_Utente=$id_utente")){
+            $file_content=str_replace("%LIST%","Non è possibile visualizzare le tue recensioni",$file_content);
         }else{
-            $list="";
-        }
-        $file_content = file_get_contents("../html/lemierecensioni.html");
-        echo str_replace("%LIST%",$list,$file_content);
+            $list = "";
+            if($result->num_rows>0){
+                while($row=$result->fetch_array(MYSQLI_ASSOC)){
+                    $item = file_get_contents("../components/recensione_utente_loggato.html");
+                    $item = str_replace("%TITOLO%",$row["Oggetto"],$item);
+                    $item = str_replace("%DATA%",$row["Data"],$item);
+                    $item = str_replace("%CONTENUTO%",$row["Descrizione"],$item);
+                    $item = str_replace("%NUMERO_STELLE%",$row["Stelle"],$item);
+                    $item = str_replace("%LISTA_STELLE%",stars($row["Stelle"]),$item);
+                    $item = str_replace("%ID_RECENSIONE%",$row["ID"],$item);
+                    $item = str_replace("%ID_RISTORANTE%",$row["ID_Ristorante"],$item);
+                
+                    $rest_id=$row["ID_Ristorante"];
+                    $rest_name="";
+                    if($restaurant= $obj_connection->connessione->query("SELECT Nome FROM ristorante WHERE ID=$rest_id")){
+                        $rest_name=$restaurant->fetch_array(MYSQLI_ASSOC)["Nome"];
+                        $restaurant->free();
+                    }
+                    $item=str_replace("%NOME_RISTORANTE%",$rest_name,$item);
 
-        $result->free();
+                    $id_recensione=$row["ID"];
+                    $num_likes="";
+                    if($likes = $obj_connection->connessione->query("SELECT COUNT(*) AS num FROM mi_piace AS m, recensione AS r 
+                        WHERE r.ID_Utente=$id_utente AND m.ID_Recensione=$id_recensione")){
+                        $num_likes=$likes->fetch_array(MYSQLI_ASSOC)["num"];
+                        $likes->free();
+                    }
+                    $item=str_replace("%NUMERO_MI_PIACE%",$num_likes,$item);  
+
+                    $item=str_replace("%LIKE_FORM%","",$item);
+
+                    $list=$list.$item;
+                }
+            }
+            $file_content= str_replace("%LIST%",$list,$file_content);
+
+            $result->free();
+        }
     }
-    $connessione->close();
+    echo $file_content;
 
 ?>
