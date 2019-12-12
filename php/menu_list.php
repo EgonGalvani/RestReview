@@ -8,11 +8,11 @@
 
         public function getHTMLmenu(){
             $menu='<ul><li xml:lang="en"><a href="../html/index.html">Home</a></li>';
-            if($this->type='utente'){
+            if($this->type=='utente'){
                 $menu.='<li><a href="../html/profilo.html">Il mio profilo</a><li>
                         <li><a href="../php/lemierecensioni.php">Le mie recensioni</a><li>';
             }else{
-                if($this->type='ristoratore'){
+                if($this->type=='ristoratore'){
                     $menu.='<li><a href="../html/profilo.html">Il mio profilo</a><li>
                             <li><a href="../html/imieirist.html">I miei ristoranti</a></li>
                             <li><a href="../html/ins_rist.html">Inserisci nuovo ristorante</a></li>';
