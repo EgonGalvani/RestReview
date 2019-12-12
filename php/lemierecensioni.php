@@ -31,8 +31,8 @@
     /*$menu=file_get_contents("../components/menu.html");
     $other_elements = '<li><a href="../html/profilo.html">Il mio profilo</a><li>
                         <li class="active">Le mie recensioni</a><li>'.$menu_item->getHTMLItem();*/
-    $search='<li><a href="../php/lemierecensioni.php">Le mie recensioni</a><li>';
-    $replace='<li class="active">Le mie recensioni<li>';
+    $search='<li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>';
+    $replace='<li class="active">Le mie recensioni</li>';
     
     $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
 
