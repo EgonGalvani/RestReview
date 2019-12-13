@@ -36,6 +36,10 @@ html, body {
     background-color: #ccc; 
 }
 
+a:visited {
+    color: #cc0033;
+}
+
 #header #title {
     font-size: 4em; 
     display: inline;
