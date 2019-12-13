@@ -158,7 +158,12 @@ NOTA: Una lista di ristoranti viene creata nel seguente modo:
     1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
     2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
 
-## PAGINA "HOME" (index.html)
+## PAGINA INDEX
+### PLACEHOLDER 
+- %TIOLOGIA% : lista di option della select delle varie tipologie di ristoranti 
+- %LIST: 
+    1. Nel caso non sia ancora avvenuta una ricerca, allora la lista deve presentare i suggerimenti di ricerca. Al posto di %LIST% dovrà essere messo un titolo (h2) "Suggerimenti di ricerca: " seguito da una lista degli N ristoranti meglio recensiti del sito 
+    2. Nel caso in cui sia avvenuta una ricerca, il titolo deve essere "Risultati di ricerca: ", seguito da una lista di ristoranti 
 ### FUNZIONAMENTO
 I campi del form sono: 
 - Stringa di ricerca (name: search)

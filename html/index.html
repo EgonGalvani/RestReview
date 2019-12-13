@@ -30,7 +30,7 @@
         <div id="content">
             <h1 id="page_title">Ricerca</h1>
            
-            <form id="form_ricerca" method="get" action="">
+            <form id="form_ricerca" method="get" action="index.php">
                 <fieldset>
                     <div class="in_wrapper">
                         <label for="search" class="in_wrapper_title">Informazioni:</label>
@@ -46,12 +46,7 @@
                     <div class="in_wrapper">
                         <label for="tipologia" class="in_wrapper_title">Tipologia: </label>
                         <select id="tipologia" name="tipologia" tabindex="3">
-                            <option value="0" selected="selected">Tutte le tipologie</option>
-                            <option value="1">tipologia1</option>
-                            <option value="2">tipologia2</option>
-                            <option value="3">tipologia3</option>
-                            <option value="4">tipologia4</option>
-                            <option value="5">tipologia5</option>
+                            %TIPOLOGIA%
                         </select>
                     </div>
                     
