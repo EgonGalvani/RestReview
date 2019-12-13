@@ -59,7 +59,7 @@ a:visited {
     background-color: #fff; 
 }
 
-#menu ul {
+ul, dl {
     list-style-type: none;
 }
 
@@ -324,18 +324,11 @@ textarea {
 }
 
 #search_btn {
-    margin-top: 0.75em; 
     padding: 0.75em; 
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
-
-.rist_list {
-    list-style:none;
-}
-
 .rist_list .rist_dett {
-    
     margin-right: 30%; 
 }
 
@@ -363,12 +356,12 @@ textarea {
     padding: 0.2em;
 }
 
-.cr_content ol, .cr_content ul, .cr_content p, .cr_content span.list-span{ 
+.cr_content ol, .cr_content ul, .cr_content p, 
+.cr_content span.list-span{ 
     padding: 0.5em; 
     list-style-position: inside;
     list-style-type: square;
 }
-
 
 /* --------------------- CSS login ----------------------- */
 .vertical_input_form fieldset{
@@ -513,7 +506,6 @@ textarea {
 /* ----------------------------------- CSS Le mie recensioni --------------------------------------- */
 .card_list {
     margin: 1em; 
-    list-style: none;
 }
 
 .card_list dt {
@@ -533,9 +525,9 @@ textarea {
     margin-bottom: 1em; 
 }
 
-.card_list input[type="submit"]{
+input[type="submit"]{
     padding: 0.5em; 
-    margin: 0.5em;
+    margin: 0.75em;
     cursor: pointer;
 }
 
@@ -658,10 +650,6 @@ dd .stelle_counter {
     padding: 0.25em; 
 }
 
-#free_day_list {
-    list-style-type: none; 
-}
-
 #free_day_list li {
     margin: 0.5em 0 0 1em; 
 }
@@ -740,6 +728,20 @@ dd .stelle_counter {
 #edit_personal_data label{
     display: block;
 }
+
+/* --------------- DETTAGLIO RISTORANTE ---------- */
+
+.review_info_title {
+    margin: 1em 0; 
+}
+
+progress {
+    padding: 1em;  
+    width: 60%;
+}
+
+
+
 @media only screen and (max-width: 768px) {
     
     body {
