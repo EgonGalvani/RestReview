@@ -442,7 +442,7 @@ textarea {
 }
 
 
-#form_registrazione #nascita {
+#nascita {
     margin: 0.75em 0 1em 1.5em; 
 }
 
@@ -494,7 +494,7 @@ textarea {
     margin-bottom: 1em; 
 }
 
-input[type="submit"]{
+input[type="submit"], input[type="reset"]{
     padding: 0.5em; 
     margin: 0.75em;
     cursor: pointer;
@@ -650,76 +650,77 @@ dd .stelle_counter {
     width: 20%;
     margin-left: 0.25em; 
 }
+
 /*  PAGINE VISUALIZZAZIONE PROFILO */
 .list_profilo dt{
     padding:  1em;
     font-size: 1.1em;
     margin-left: 1em; 
 }
+
 .list_profilo dd{
     padding-bottom:  0.25em; 
     font-weight: bold; 
     font-size:  1.10em; 
     margin-left: 3em;
 }
-.edit_data{
-        margin-top: 2em;
-        margin-left: 8em;
-}
+
 .img_profilo{
     float: left;
     border-radius: 50%;
-    margin: 2em;
     border: solid 1px #000;
-    padding: 0.25em;
+    padding: 0.5em;
+    display: block;
+    margin: 0 auto 1.5em auto; 
 }
+
 #img_profilo-view{
     width: 30%;
-    margin-left: 4em;
-}
+} 
+
 #img_profilo-modify{
     width: 50%;
-    margin-left: 6.5em;
+    margin-left: 20%; 
 }
+
 #profile-view{
     margin-left: 40%;
 }
+
 .profile-view_title{
     padding-top:  1em;
     margin-left: 1.5em;
 }
+
 #edit_foto_profilo{
     float: left;
-    width:  45%;
-    border: none;
-    margin-bottom: 8em;
-    margin-left: 3em;
+    width: 40%;
+    margin-right: 1em; 
 }
-#confirm{
-    margin-top: 2em;
-    display: block;
+
+#edit_personal_data, #edit_account_data {
+    margin-left: 50%; 
 }
-#modifica_dati label{
-    display: block;
-    margin-top: 2em;
+
+#modifica_dati {
+    overflow: hidden;
 }
-#modifica_dati legend{
-    font-weight: bold;
-    font-size: 1.8em;
-    margin-top: 1.5em;
+
+#modifica_dati fieldset {
+    margin-top: 1.5em; 
 }
-.not_editable{
-    padding-top: 2em;
+
+#modifica_dati input[type="submit"],
+#modifica_dati input[type="reset"] {
+    float: right; 
+    margin-left: 0; 
 }
-#edit_account_data{
-    border: none;
+
+
+#modifica_dati legend {
+    text-align: center; 
 }
-#edit_personal_data{
-    border: none;
-}
-#edit_personal_data label{
-    display: block;
-}
+
 
 /* --------------- DETTAGLIO RISTORANTE ---------- */
 
@@ -848,13 +849,21 @@ progress {
     #nuovo_rist_form {
         width: 75%;
     }
-    #img_profilo-modify{
-        display: block;
-        margin-left: 0em;
+
+    #modifica_dati fieldset{
+        width: calc(100% - 4em); 
+        margin-left: 0; 
     }
-    #edit_personal_data,  #edit_account_data{
-        margin-left: 3em;
+
+    #edit_foto_profilo {
+        float: none; 
     }
+
+    #img_profilo-modify  {
+        width: 30%; 
+        margin-left: 35%;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
