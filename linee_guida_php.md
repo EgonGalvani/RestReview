@@ -115,7 +115,21 @@ NOTA: Una lista di recensioni viene definnita nel seguente modo:
 2. Se invece l'utente ha già messo like, gli viene mostrata una semplice immagine (presente anche questo come commento nel file component) 
 
 ### RECENSIONE ALTRUI 
-ANCORA DA FARE IN HTML 
+#### PLACEHOLDER 
+- %TITOLO% : titolo recensione 
+- %DATA% : data recensione 
+- %NOME_UTENTE% : nome del recensore 
+- %COGNOME_UTENTE% : cognome del recenore 
+- %URL_IMG_PROFILO% : url dell'immagine di profilo dell'utente 
+- %CONTENUTO% : contenuto recensione 
+- %NUMERO_STELLE% : numero di stelle della recensione(da 1 a 5)
+- %LISTA_STELLE% : lista stelle (sottoforma di entità)
+- %NUMERO_MI_PIACE% : numero di mi piace alla recensione 
+- %LIKE_FORM% : funziona nello stesso modo della recensione dell'utente loggato (vedi paragrafo precedente)
+- %DELETE_FORM% : 
+    1. l'utente normale non vede nulla (--> il placeholder viene semplicemente rimipiazzato da una stringa vuota)
+    2. se l'utente è amministratore deve comparire il form di eliminazione (presente nei commenti dell'item) 
+    3. bisogna decidere se far vedere l'item recensione_utente_loggato o item_recensione quando navigando nelle recensioni di un ristorante, un utente trova una recensione scritta da lui stesso 
 
 ## ULTIMI RISTORANTI 
 ### PLACEHOLDER 

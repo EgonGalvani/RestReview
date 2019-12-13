@@ -590,7 +590,29 @@ dd .stelle_counter {
     width: 2em; 
 }
 
+/* rewview item generale (utente diverso da quello loggato) */
+.rec_list .user_details, 
+.rec_list .review_details {
+    display: inline-block;
+}
 
+.rec_list .user_details *{
+    display: block;
+    text-align: center;     
+}
+
+.rec_list .user_details img {
+    border-radius: 50%;
+    width: 7em; 
+    margin: 0 auto 1em auto; 
+    height: 7em; 
+    border: solid 2px #000;
+}
+
+.rec_list .review_details {
+    vertical-align: top;
+    margin-left: 1.5em; 
+}
 
 /*PAGINA 404*/
 #title_404{
