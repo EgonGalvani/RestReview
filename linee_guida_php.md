@@ -115,7 +115,21 @@ NOTA: Una lista di recensioni viene definnita nel seguente modo:
 2. Se invece l'utente ha già messo like, gli viene mostrata una semplice immagine (presente anche questo come commento nel file component) 
 
 ### RECENSIONE ALTRUI 
-ANCORA DA FARE IN HTML 
+#### PLACEHOLDER 
+- %TITOLO% : titolo recensione 
+- %DATA% : data recensione 
+- %NOME_UTENTE% : nome del recensore 
+- %COGNOME_UTENTE% : cognome del recenore 
+- %URL_IMG_PROFILO% : url dell'immagine di profilo dell'utente 
+- %CONTENUTO% : contenuto recensione 
+- %NUMERO_STELLE% : numero di stelle della recensione(da 1 a 5)
+- %LISTA_STELLE% : lista stelle (sottoforma di entità)
+- %NUMERO_MI_PIACE% : numero di mi piace alla recensione 
+- %LIKE_FORM% : funziona nello stesso modo della recensione dell'utente loggato (vedi paragrafo precedente)
+- %DELETE_FORM% : 
+    1. l'utente normale non vede nulla (--> il placeholder viene semplicemente rimipiazzato da una stringa vuota)
+    2. se l'utente è amministratore deve comparire il form di eliminazione (presente nei commenti dell'item) 
+    3. bisogna decidere se far vedere l'item recensione_utente_loggato o item_recensione quando navigando nelle recensioni di un ristorante, un utente trova una recensione scritta da lui stesso 
 
 ## ULTIMI RISTORANTI 
 ### PLACEHOLDER 
@@ -144,7 +158,12 @@ NOTA: Una lista di ristoranti viene creata nel seguente modo:
     1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
     2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
 
-## PAGINA "HOME" (index.html)
+## PAGINA INDEX
+### PLACEHOLDER 
+- %TIOLOGIA% : lista di option della select delle varie tipologie di ristoranti 
+- %LIST: 
+    1. Nel caso non sia ancora avvenuta una ricerca, allora la lista deve presentare i suggerimenti di ricerca. Al posto di %LIST% dovrà essere messo un titolo (h2) "Suggerimenti di ricerca: " seguito da una lista degli N ristoranti meglio recensiti del sito 
+    2. Nel caso in cui sia avvenuta una ricerca, il titolo deve essere "Risultati di ricerca: ", seguito da una lista di ristoranti 
 ### FUNZIONAMENTO
 I campi del form sono: 
 - Stringa di ricerca (name: search)
