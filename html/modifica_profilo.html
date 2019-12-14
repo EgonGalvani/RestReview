@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title> Modifica il mio profilo</title>
+        <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+           %HEADER%
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: <a href="visualizza_profilo.php">Il tuo profilo</a> &#8250; Modifica Profilo
+        </div>
+
+        <div id="menu">
+           %MENU%
+        </div>
+
+        <div id="content">
+            <noscript>
+                <div class="msg_box warning_box">
+                    ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
+                    NON ESSERE DISPONIBILI
+                </div>
+            </noscript>
+
+            <h1>Modifica il mio profilo</h1>
+           
+            <form method="post" action="" enctype="multipart/form-data" id="modifica_dati" class="vertical_input_form">
+                <fieldset id="edit_foto_profilo">
+                    <legend>Foto Profilo</legend>
+                   
+                    <img class="img_profilo" id="img_profilo-modify" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
+                    <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
+                </fieldset> 
+                
+                <fieldset  id="edit_account_data">
+                    <legend>I miei dati utente</legend>
+                   
+                    <span>Tipo di utenza: Recensore</span> 
+
+                    <label for="email"><span lang="en">Email</span>:</label>
+                    <input type="email" id="email" value="%EMAIL%" tabindex="2" readonly="readonly"/>
+
+                    <label for="password">Nuova <span lang="en">password</span>:</label>
+                    <input type="password" id="password" name="password" tabindex="2"/>
+                   
+                    <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
+                    <input type="password" name="repeat_pwd" id="repeat_pwd" tabindex="5" />
+                </fieldset>
+
+                <fieldset id="edit_personal_data">
+                    <legend>I miei dati personali</legend>
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome" value="%NOME%" tabindex="7" />
+                    
+                    <label for="cognome">Cognome:</label>
+                    <input type="text" name="cognome" id="cognome" value="%COGNOME%" tabindex="8" />
+                    
+                    <label for="sesso">Sesso:</label>
+                    <select name="sesso" id="sesso" value="uomo" tabindex="9">
+                        <option value="uomo">Uomo</option>
+                        <option value="donna">Donna</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                    
+                    <label for="nascita">Data di nascita:</label>
+                    <input type="date" name="nascita" id="nascita" value="%DATA_NASCITA%" tabindex="10">
+
+                    <label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>
+                    <input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="11" />
+                    
+                    <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
+                    <input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="12" />
+                </fieldset>
+
+                <input type="submit" name="confirm" value="Conferma modifiche" tabindex="14"/>
+                <input type="reset" name="resetta" value="Resetta form" tabindex="14"/>
+            </form>
+        </div>
+
+        <div id="footer">
+            %FOOTER%
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>

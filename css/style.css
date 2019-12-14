@@ -30,6 +30,7 @@ html, body {
     background-color: #ddd; 
     margin-top: 1em; 
     border-radius: 1px; 
+    cursor: pointer; 
 }
 
 .a_btn:hover {
