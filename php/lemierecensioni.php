@@ -22,6 +22,11 @@
     $id_utente=$_SESSION['ID'];
     $file_content = file_get_contents('../html/lemierecensioni.html');
 
+    /* Creazione header */
+    require_once('header.php');
+    $head=new pageHeader(false);
+    $file_content = str_replace("%HEADER%",$head->getHeader(),$file_content);
+
     /* Creazione menu */
     require_once('menu_list.php');
     $menuList=new menuList('utente');
