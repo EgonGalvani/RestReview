@@ -6,30 +6,35 @@
 
     if($obj_connection->create_connection()){
         $email=$_POST['email'];
+        $email_error='';
         if(!check_email($email)){
-            header('location: login.php?error=not_valid_email');
-            exit;
-        }
-        if(!$email_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."'")){
-            header('location: login.php?error=wrong_email');
-            exit;
+            $email_error='1';
+        }else{
+            if(!$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."'")){
+                $email_error='2';
+            }
         }
 
         $password=$_POST['password'];
-        if(check_pwd($password)){
-            header('location: login.php?error=not_valid_password')
-        }
-        if(!$log_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."' AND PWD='".$password."'")){
-            header('location: login.php?wrong_pwd=1');
-            exit;
+        $pwd_error='';
+        if(!check_pwd($password)){
+            $pwd_error='1';
         }else{
+            if(!$log_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."' AND PWD='".$password."'")){
+                $pwd_error='2';
+            }
+        }
+
+        if($email_error=='' && $pwd_error==''){
             $_SESSION['logged']=true;
             $_SESSION['email']=$email;
             $_SESSION['ID']=$log_query[0]['ID'];
             $_SESSION['permesso']=$log_query[0]['Permessi'];
-        }
 
-        //Reindirizzamento sulla home
-        header('Location: ../php/index.php');
+            header('Location: ../php/index.php');
+            exit;
+        }
+        header('location: login.php?email_error='.$email_error.'&pwd_error='.$pwd_error);
+        exit;        
     }
 ?>
