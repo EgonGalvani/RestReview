@@ -2,5 +2,5 @@
     session_start();
     session_unset();
 
-    header('location:../php/chisiamo.php');
+    header('location: index.php');
 ?>

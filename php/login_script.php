@@ -5,7 +5,7 @@
     $obj_connection = new DBConnection();
 
     if($obj_connection->create_connection()){
-        $email=$_POST['email'];
+        $email=trim($_POST['email']);
         $email_error='';
         if(!check_email($email)){
             $email_error='1';
@@ -15,17 +15,21 @@
             }
         }
 
-        $password=$_POST['password'];
+        $password=trim($_POST['password']);
         $pwd_error='';
-        if(!check_pwd($password)){
+        if($password==''){
             $pwd_error='1';
         }else{
-            if(!$log_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."' AND PWD='".$password."'")){
+            if(!check_pwd($password)){
                 $pwd_error='2';
+            }else{
+                if(!$log_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$email."' AND PWD='".$password."'")){
+                    $pwd_error='3';
+                }
             }
         }
 
-        if($email_error=='' && $pwd_error==''){
+        if($log_query){
             $_SESSION['logged']=true;
             $_SESSION['email']=$email;
             $_SESSION['ID']=$log_query[0]['ID'];

@@ -9,8 +9,9 @@
         }
         if($type=='pwd'){
             switch($num){
-                case 1: return 'password non valida';
-                case 2: return 'password non corretta';
+                case 1: return 'inserire una password';
+                case 2: return 'password non valida, la password deve avere una lunghezza di almeno 8 caratteri, deve contenere almeno una lettera maiuscola, una lettera minuscola e un numero';
+                case 3: return 'password non corretta';
             }
         }
         return '';
