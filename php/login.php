@@ -9,16 +9,15 @@
         }
         if($type=='pwd'){
             switch($num){
-                case 1: return 'inserire una password';
-                case 2: return 'password non valida, la password deve avere una lunghezza di almeno 8 caratteri, deve contenere almeno una lettera maiuscola, una lettera minuscola e un numero';
-                case 3: return 'password non corretta';
+                case 1: return 'inserire la password';
+                case 2: return 'password non corretta';
             }
         }
         return '';
     }
 
-    session_start();
-    if(isset($_SESSION['logged'])){
+    require_once("sessione.php");
+    if($_SESSION['logged']==true){
         header('location:index.php');
         exit();
     }

@@ -33,5 +33,9 @@
                 $this->connessione->close();
             }
         }
+
+        public function escape_str($string){
+            return $this->connessione->real_escape_string($string);
+        }
     }
 ?>
