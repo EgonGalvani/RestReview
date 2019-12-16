@@ -37,6 +37,13 @@
         
         //Aggiunge header
         $header = file_get_contents("../components/header.html");
+        if($_SESSION['logged']){            
+            $header=str_replace("<a href=\"../php/login.php\" class=\"a_btn\">LOGIN</a>",
+                                    "toReplace",$header);
+            $header=str_replace("<a href=\"../php/registrazione.php\" class=\"a_btn\">REGISTRAZIONE</a>",
+                                    "",$header);
+            $header=str_replace("toReplace","<a href=\"../php/logout.php\" class=\"a_btn\">LOGOUT</a>",$header);
+        }
         $header_added=str_replace("%HEADER%",$header,$menu_added);
         
         //Aggiunge footer
