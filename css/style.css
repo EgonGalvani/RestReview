@@ -705,12 +705,16 @@ dd .stelle_counter {
     overflow: hidden;
 }
 
-#modifica_dati fieldset {
+#edit_personal_data, #edit_account_data, #edit_foto_profilo {
     margin-top: 1.5em; 
 }
 
-#modifica_dati input[type="submit"],
-#modifica_dati input[type="reset"] {
+#edit_personal_data input[type="submit"],
+#edit_account_data input[type="submit"],
+#edit_foto_profilo input[type="submit"], 
+#edit_personal_data input[type="reset"],
+#edit_account_data input[type="reset"],
+#edit_foto_profilo input[type="reset"] {
     float: right; 
     margin-left: 0; 
 }
@@ -849,8 +853,10 @@ progress {
         width: 75%;
     }
 
-    #modifica_dati fieldset{
-        width: calc(100% - 4em); 
+    #edit_foto_profilo, 
+    #edit_account_data,
+    #edit_personal_data {
+        width: 100%; 
         margin-left: 0; 
     }
 
@@ -858,9 +864,9 @@ progress {
         float: none; 
     }
 
-    #img_profilo-modify  {
-        width: 30%; 
-        margin-left: 35%;
+    #img_profilo-modify {
+        width: 40%; 
+        margin-left: 25%;
     }
 
 }
