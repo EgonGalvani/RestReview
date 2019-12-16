@@ -1,10 +1,11 @@
 <?php
 
     require_once("sessione.php");
+    $_SESSION['current_page']='ins_rist.php';
 
     //check se loggato
     if($_SESSION['logged']==false){
-        header('location: login.php?prev_page=ins_rist.php');
+        header('location: login.php');
         exit;
     }
 
@@ -21,10 +22,8 @@
         $file_content=str_replace('%MENU%',$menu,$file_content);
 
         echo $file_content;
-        $_SESSION['prev_page']='ins_rist.php';
     }else{
         header('location: access_denied.php');
-        $_SESSION['prev_page']='ins_rist.php';
         exit;
     }
 ?>
