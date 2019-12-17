@@ -701,10 +701,6 @@ dd .stelle_counter {
     margin-left: 50%; 
 }
 
-#modifica_dati {
-    overflow: hidden;
-}
-
 #edit_personal_data, #edit_account_data, #edit_foto_profilo {
     margin-top: 1.5em; 
 }
@@ -718,12 +714,6 @@ dd .stelle_counter {
     float: right; 
     margin-left: 0; 
 }
-
-
-#modifica_dati legend {
-    text-align: center; 
-}
-
 
 /* --------------- DETTAGLIO RISTORANTE ---------- */
 
