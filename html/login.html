@@ -28,7 +28,7 @@
         </div>
 
         <div id="content">
-            <form method="POST" action="../php/login_script.php" id="login_form" class="vertical_input_form">
+            <form method="POST" action="../php/login.php" id="login_form" class="vertical_input_form">
                 <fieldset>
                     <legend xml:lang="en">Login</legend>
                    
@@ -38,14 +38,14 @@
                             NON ESSERE DISPONIBILI
                         </div>
                     </noscript>                 
-
+                    %ERROR%
                     <label for="email" xml:lang="en">Email:</label>
-                    <input type="text" name="email" id="email" maxlength="30" tabindex="1" />
+                    <input type="text" name="email" id="email" value="%VALUE_EMAIL%" maxlength="30" tabindex="1" />
 
                     <label for= "password" xml:lang="en">Password:</label>
-                    <input type="password" name="password" id="password" maxlength= "15" tabindex="2"/>
+                    <input type="password" name="password" id="password" value="%VALUE_PASSWORD%" maxlength= "15" tabindex="2"/>
                     
-                    <input type="checkbox" id="remember_me" name="remember_me" />
+                    <input type="checkbox" id="remember_me" name="remember_me" %CHECKED%/>
                     <label for="remember_me">Ricordati di me</label>
                     
                     <input type="submit" id="login_btn" name="accedi" value="Accedi" tabindex="4" />
