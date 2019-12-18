@@ -5,7 +5,7 @@
 
     //check se loggato
     if($_SESSION['logged']==false){
-        header('location: login.php');
+        header('location: index.php');
         exit;
     }
 
@@ -20,6 +20,8 @@
         $replace='<li class="active">Inserisci nuovo ristorante<li>';
         $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
         $file_content=str_replace('%MENU%',$menu,$file_content);
+
+        str_replace('%TIPOLOGIA%',);
 
         echo $file_content;
     }else{
