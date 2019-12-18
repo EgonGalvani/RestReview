@@ -764,9 +764,6 @@ progress {
 #contatto dt{
     display: inline-block;
 }
-#telefono dd{
-    display: inline;
-}
 @media only screen and (max-width: 768px) {
     
     body {
