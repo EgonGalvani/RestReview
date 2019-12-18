@@ -3,12 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title> Modifica il mio profilo</title>
+        <title>Il mio Profilo</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
     </head>
@@ -27,61 +28,38 @@
         </div>
 
         <div id="content">
-            <h1>Modifica il mio profilo</h1>
-           
-            <form method="post" action="" enctype="multipart/form-data" id="modifica_dati">
-                <fieldset  id="edit_foto_profilo">
+            <h1 id="page_title">Il mio profilo</h1>
+            <img class="img_profilo" id="img_profilo-view" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
+            
+            <div id="profile-view">
+                <h2 class="profile-view_title">I miei dati utente</h2>
+                <dl class="list_profilo">
+                    <dt>La mia <span xml:lang="en">Email</span>:</dt>
+                    <dd>%EMAIL%</dd>
+                    <dt>Tipo di utenza: </dt>
+                    <dd>%UTENZA%</dd>
+                </dl> 
+               
+                <h2 class="profile-view_title">I miei dati personali</h2>
+                <dl class="list_profilo">
+                    <dt>Nome: </dt>
+                    <dd>%NOME%</dd>
+                    <dt>Cognome: </dt>
+                    <dd>%COGNOME%</dd>
+                    <dt>Sesso: </dt>
+                    <dd>%SESSO%</dd>
+                    <dt>Data di Nascita: </dt>
+                    <dd>%DATA_NASCITA%</dd>
+                    <dt>Partita IVA:</dt>
+                    <dd>%PARTITA_IVA%</dd>
+                    <dt>Ragione Sociale: </dt>
+                    <dd>%RAGIONESOCIALE%</dd>
+                </dl>
+            </div>
+         
 
-                    <legend>Foto Profilo</legend>
-                        <img class="img_profilo" id="img_profilo-modify" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
-                        <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
-                </fieldset> 
-                <fieldset  id="edit_account_data">
-                    <legend>I miei dati utente</legend>
-                    <p class="not_editable"><span lang="en">Email</span>: mario.rossi@gmail.com</p>
-
-                    <label for="password"><span lang="en">Password</span>:</label>
-                    <input type="password" id="password" name="password" required="required" value="********" readonly="readonly" tabindex="2"/>
-                    <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
-                    <input type="password" name="repeat_pwd" id="repeat_pwd" required="required" readonly="readonly" tabindex="5" />
-
-                    <p class="not_editable">Tipo di utenza: Recensore</p>  
-
-                </fieldset>
-                <fieldset id="edit_personal_data">
-                    <legend>I miei dati personali</legend>
-
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required="required" value="Mario" readonly="readonly" tabindex="7" />
-                    
-                    <label for="cognome">Cognome:</label>
-                    <input type="text" name="cognome" id="cognome" required="required" value="Rossi" readonly="readonly" tabindex="8" />
-                    
-                    <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" required="required" value="uomo" disabled="disabled" tabindex="9">
-                        <option value="uomo">Uomo</option>
-                        <option value="donna">Donna</option>
-                        <option value="altro">Altro</option>
-                    </select>
-                    
-                    <label for="nascita">Data di nascita:</label>
-                    <input type="date" name="nascita" id="nascita" required="required" readonly="readonly" tabindex="10">
-
-                    <label id="piva_l" for="piva">Partita <abbr title="imposta su valore aggiunto">IVA:</abbr></label>
-                    <input id="piva" type="text" name="piva" value="1234567" readonly="readonly" tabindex="11" />
-                    
-                    <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
-                    <input id="rsoc" type="text" name="rsoc" value="MarioRossi S.P.A" readonly="readonly" tabindex="12" />
-                     
-                    <input type="submit" id="confirm" name="confirm" value="Conferma le modifiche" tabindex="14"/>
-                </fieldset>
-            </form>
-             <noscript>
-                        <div class="msg_box warning_box">
-                            ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
-                            NON ESSERE DISPONIBILI
-                            </div>
-            </noscript>
+            <a class="a_btn" href="modifica_profilo.php">Modifica profilo</a>
+            <a class="a_btn" href="rimuovi_profilo.php">Rimuovi profilo</a>
         </div>
 
         <div id="footer">

@@ -173,6 +173,28 @@ I campi del form sono:
 ### PLACEHOLDER
 - %LIST% : deve essere rimpiazzato i suggerimenti di ricerca. Quindi con i primi N (es. N=5) ristoranti meglio recensiti. Deve essere usato come item l'item_ristorante
 
+
+## PAGINA MODIFICA PROFILO 
+### PLACEHOLDER 
+- %IMG_ERROR% : messaggio di errore in caso in cui l'immagine abbia dimensione troppo elevata / estensione sbagliata 
+- %PASSWORD_ERROR% : eventuale messaggio di errore se la password vecchia è sbagliata / le nuove non coincidono 
+- %NOME% : nome utente 
+- %COGNOME% : cognome utente
+- %DATA_NASCITA% : data di nascita dell'utente 
+- %P_IVA% : partita iva 
+- %R_SOC% : regione sociale 
+
+## PAGINA VISUALIZZAZIONE PROFILO 
+### PLACEHOLDER 
+- %EMAIL% : email 
+- %UTENZA% : tipologia di utenza (Ristoratore | Recensore)
+- %NOME% : nome 
+- %COGNOME% : cognome 
+- %SESSO% : sesso utente 
+- %DATA_NASCITA% : data di nascita utente 
+- %PARTITA_IVA% : partita iva 
+- %RAGIONESOCIALE% : ragione sociale 
+
 ## REGEX UTILIZZATE: 
 - emailRegex = usare quella di https://emailregex.com/
 - pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 

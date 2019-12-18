@@ -7,15 +7,14 @@
         }
 
         public function getHTMLmenu(){
-            $menu='<ul><li xml:lang="en"><a href="../html/index.html">Home</a></li>';
+            $menu='<ul><li xml:lang="en"><a href="../php/index.php">Home</a></li>';
             if($this->type=='utente'){
                 $menu.='<li><a href="../php/profilo.php">Il mio profilo</a></li>
                         <li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>';
             }else{
                 if($this->type=='ristoratore'){
-                    $menu.='<li><a href="../php/profilo.php">Il mio profilo</a></li>
-                            <li><a href="../php/imieirist.php">I miei ristoranti</a></li>
-                            <li><a href="../php/ins_rist.php">Inserisci nuovo ristorante</a></li>';
+                    $menu.='<li><a href="../php/visualizza_profilo.php">Il mio profilo</a></li>
+                            <li><a href="../php/imieirist.php">I miei ristoranti</a></li>';
                 }
             }
             $menu.='<li><a href="../php/ultimiristoranti.php">Ultimi ristoranti inseriti</a></li>

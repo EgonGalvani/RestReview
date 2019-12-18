@@ -10,7 +10,6 @@
         
         public function create_connection(){
             $this->connessione = new mysqli(static::HOST_DB,static::USERNAME,static::PASSWORD,static::DATABASE_NAME);
-            //$this->connessione = new mysqli("localhost","root","","tecweb");
             if(!$this->connessione){ return false;}
             return true;
         }
@@ -27,6 +26,16 @@
             }else{
                 return false;
             }
+        }
+
+        public function close_connection(){
+            if($this->connessione){
+                $this->connessione->close();
+            }
+        }
+
+        public function escape_str($string){
+            return $this->connessione->real_escape_string($string);
         }
     }
 ?>
