@@ -195,6 +195,20 @@ I campi del form sono:
 - %PARTITA_IVA% : partita iva 
 - %RAGIONESOCIALE% : ragione sociale 
 
+## I MIEI RISTORANTI 
+Nella pagina "i miei ristoranti" è necessario gestire 3 sezioni: ristoranti approvati, in fase di approvazione e rifiutati. Ognuna è caratterizzata da un "type", rispettivamente: 0, 1, 2. 
+Bisgona inoltre gestire la possibile necessita di mostrar ei risultati in più pagine. 
+Per le precedenti motivazioni sono passati nel GET due parametri: type e page. (se non sono presenti, allora i valori di default da considerare sono: type=0, page=1). 
+
+### PLACEHOLDER
+- %LIST% : una lista di ristoranti con eventuale gestione di pagine multiple 
+- %TAB_MENU_CONTENT%: caratterizzato da tre elementi, uno attivo (span) e gli altri due come link (NOTA: i link devono portare in ogni caso alla prima pagina, quindi nel link basta indicare il type), esempio: 
+```
+    <span class="tab_item">Approvati</span>
+    <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
+    <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>
+```
+
 ## REGEX UTILIZZATE: 
 - emailRegex = usare quella di https://emailregex.com/
 - pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
