@@ -331,9 +331,6 @@ textarea {
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
-.rist_list .rist_dett {
-    margin-right: 30%; 
-}
 
 .rist_list .rist_dett > span {
     display: block; 
@@ -498,7 +495,7 @@ textarea {
 }
 
 input[type="submit"], input[type="reset"]{
-    padding: 0.5em; 
+    padding: 0.75em; 
     margin: 0.75em;
     cursor: pointer;
 }
@@ -772,6 +769,24 @@ progress {
     color: #000; 
 }
 
+/*---------- PANNELLO AMMINISTRATORE ---------- */
+#ins_cat_form, #nome_categoria, #ins_cat {
+    display: inline-block; 
+}
+
+#ins_cat_form {
+    margin-bottom: 1em; 
+    padding-top: 0; 
+}
+
+#nome_categoria {
+    width: auto;
+}
+
+#ins_cat {
+    float: right; 
+    margin-left: 2em; 
+}
 
 
 @media only screen and (max-width: 768px) {
@@ -960,9 +975,6 @@ progress {
         margin: 0.5em auto; 
     }
     
-    .rist_list .rist_dett {
-        margin-right: 0; 
-    }
 
     #profile-view {
         margin-left: 0em; 

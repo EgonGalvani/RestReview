@@ -151,12 +151,10 @@ NOTA: Una lista di ristoranti viene creata nel seguente modo:
 - %LISTA_STELLE% : ipotizzando che il ristorante abbia una media di 4.3 stelle, allora devono essere mostrate k entità di stelle piene e 5-k entità di stelle vuote (dove k è il troncamento della media, nel nostro esempio di 4.3 stelle di media, allora k sarebbe 4)
 - %DESCRIZIONE% : descrizione del ristorante 
 - %ID_RISTORANTE% : id del ristorante 
-- %FORM_ELIMINAZIONE% : vedi funzionamento 
+- %FORMS% : vedi funzionamento 
 ### FUNZIONAMENTO 
 - L'item presenta al suo interno un form, in cui è presente un campo hidden, che contiene al suo interno l'id del ristorante. Quando l'utente preme il bottone "Vai al ristorante", allora viene chiamata la pagina dettaglioristorante.html, con method GET. Si verrà reindirizzati quindi alla pagina: dettaglioristorante.html?id=VALORE_ID
-- Il %FORM_ELIMINAZIONE% deve essere: 
-    1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
-    2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
+- Il %FORMS% deve essere sostituito da uno o più form necessari (i cui codici sono tutti presenti nei commenti html)
 
 ## PAGINA INDEX
 ### PLACEHOLDER 
