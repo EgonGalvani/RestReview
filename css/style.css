@@ -26,8 +26,11 @@ html, body {
     margin-top: 1em; 
     border-radius: 1px; 
     cursor: pointer; 
-    float: right; 
     margin-right: 0.5em; 
+}
+
+#header .a_btn {
+    float: right; 
 }
 
 .a_btn:hover {
@@ -106,6 +109,7 @@ ul, dl {
 
 #page_title {
     font-size: 2.5em; 
+    margin-bottom: 0.5em; 
 }
 
 #sub_title {
@@ -327,9 +331,6 @@ textarea {
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
-.rist_list .rist_dett {
-    margin-right: 30%; 
-}
 
 .rist_list .rist_dett > span {
     display: block; 
@@ -494,7 +495,7 @@ textarea {
 }
 
 input[type="submit"], input[type="reset"]{
-    padding: 0.5em; 
+    padding: 0.75em; 
     margin: 0.75em;
     cursor: pointer;
 }
@@ -764,6 +765,53 @@ progress {
 #contatto dt{
     display: inline-block;
 }
+<<<<<<< HEAD
+=======
+
+/** ------- I MIEI RISTORANTI ------- **/ 
+.tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc; 
+}
+
+.tab_item {
+    background-color: inherit;
+    float: left;
+    padding: 1em; 
+    transition: 0.3s;
+}
+
+.tab_item a {
+    cursor: pointer;
+}
+
+.tab_item:hover, .active_tab {
+    background-color: #bbb;
+    color: #000; 
+}
+
+/*---------- PANNELLO AMMINISTRATORE ---------- */
+#ins_cat_form, #nome_categoria, #ins_cat {
+    display: inline-block; 
+}
+
+#ins_cat_form {
+    margin-bottom: 1em; 
+    padding-top: 0; 
+}
+
+#nome_categoria {
+    width: auto;
+}
+
+#ins_cat {
+    float: right; 
+    margin-left: 2em; 
+}
+
+
+>>>>>>> 7faccb781fe16921133e549889881fb8975691d6
 @media only screen and (max-width: 768px) {
     
     body {
@@ -950,9 +998,6 @@ progress {
         margin: 0.5em auto; 
     }
     
-    .rist_list .rist_dett {
-        margin-right: 0; 
-    }
 
     #profile-view {
         margin-left: 0em; 

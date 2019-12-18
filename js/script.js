@@ -238,8 +238,7 @@ function login_init() {
         var msgsParent = loginForm.firstElementChild; 
 
         loginBtn.addEventListener("click", function(e) {
-            e.preventDefault(); 
-            
+                        
             // rimuovo gli eventuali messaggi
             for (var key in errorMSGs) {
                 errorMSGs[key].delete(); 
@@ -263,9 +262,7 @@ function login_init() {
                 allOK = false;
             }
 
-            if(allOK) {
-                loginForm.submit(); 
-            }      
+            return allOK;      
         }); 
     } 
 } 

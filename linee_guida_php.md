@@ -151,12 +151,10 @@ NOTA: Una lista di ristoranti viene creata nel seguente modo:
 - %LISTA_STELLE% : ipotizzando che il ristorante abbia una media di 4.3 stelle, allora devono essere mostrate k entità di stelle piene e 5-k entità di stelle vuote (dove k è il troncamento della media, nel nostro esempio di 4.3 stelle di media, allora k sarebbe 4)
 - %DESCRIZIONE% : descrizione del ristorante 
 - %ID_RISTORANTE% : id del ristorante 
-- %FORM_ELIMINAZIONE% : vedi funzionamento 
+- %FORMS% : vedi funzionamento 
 ### FUNZIONAMENTO 
 - L'item presenta al suo interno un form, in cui è presente un campo hidden, che contiene al suo interno l'id del ristorante. Quando l'utente preme il bottone "Vai al ristorante", allora viene chiamata la pagina dettaglioristorante.html, con method GET. Si verrà reindirizzati quindi alla pagina: dettaglioristorante.html?id=VALORE_ID
-- Il %FORM_ELIMINAZIONE% deve essere: 
-    1. sostituito con una stringa vuota nel caso in cui l'utente loggato non sia il proprietario del ristorante 
-    2. essere sostituito con il form di eliminazione (presente nei commenti del component). Tale form presenta al suo interno un placeholder %ID_RISTORANTE%, che in caso deve essere sostituito con l'id del ristorante
+- Il %FORMS% deve essere sostituito da uno o più form necessari (i cui codici sono tutti presenti nei commenti html)
 
 ## PAGINA INDEX
 ### PLACEHOLDER 
@@ -194,6 +192,20 @@ I campi del form sono:
 - %DATA_NASCITA% : data di nascita utente 
 - %PARTITA_IVA% : partita iva 
 - %RAGIONESOCIALE% : ragione sociale 
+
+## I MIEI RISTORANTI 
+Nella pagina "i miei ristoranti" è necessario gestire 3 sezioni: ristoranti approvati, in fase di approvazione e rifiutati. Ognuna è caratterizzata da un "type", rispettivamente: 0, 1, 2. 
+Bisgona inoltre gestire la possibile necessita di mostrar ei risultati in più pagine. 
+Per le precedenti motivazioni sono passati nel GET due parametri: type e page. (se non sono presenti, allora i valori di default da considerare sono: type=0, page=1). 
+
+### PLACEHOLDER
+- %LIST% : una lista di ristoranti con eventuale gestione di pagine multiple 
+- %TAB_MENU_CONTENT%: caratterizzato da tre elementi, uno attivo (span) e gli altri due come link (NOTA: i link devono portare in ogni caso alla prima pagina, quindi nel link basta indicare il type), esempio: 
+```
+    <span class="tab_item">Approvati</span>
+    <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
+    <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>
+```
 
 ## REGEX UTILIZZATE: 
 - emailRegex = usare quella di https://emailregex.com/

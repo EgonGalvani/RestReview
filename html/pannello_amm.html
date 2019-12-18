@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>RestReview - Le migliori recensioni di ristoranti</title>
+        <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+            %HEADER%
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: %PATH% 
+        </div>
+
+        <div id="menu">
+           %MENU%
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">Pannello amministratore</h1>
+           
+            <form class="vertical_input_form" id="ins_cat_form" method="POST" action=""> 
+                <fieldset>
+                    <legend>Inserimento nuova categoria</legend>
+                    
+                    <label for="nome_categoria">Nome categoria: </label>
+                    <input type="text" id="nome_categoria" name="nome_categoria" />
+
+                    <input type="submit" value="Inserisci" id="ins_cat" name="ins_cat"/>
+                </fieldset>
+            </form>
+
+            <h2>Richieste di inserimento ristoranti: </h2>
+            <dl class="card_list rist_list">
+                <dt >%NOME%</dt>
+<dd>
+    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
+
+    <div class="rist_dett">
+        <span>%INDIRIZZO%</span>
+        <span>%TIPOLOGIA%</span>
+
+        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+            <span class="stelle_counter">%LISTA_STELLE%</span>
+        </span>
+
+        <p class="rist_descrizione">%DESCRIZIONE%</p>
+
+        <form method="POST" action="">
+            <fieldset>
+                <input type="hidden" value="%ID_RISTORANTE%" />
+                <input type="submit" class="msg_box error_box" value="RIFIUTA RICHIESTA" />
+            </fieldset>
+        </form>
+
+        <form method="POST" action="">
+            <fieldset>
+                <input type="hidden" value="%ID_RISTORANTE%" />
+                <input type="submit" class="msg_box success_box" value="ACCETTA RICHIESTA" />
+            </fieldset>
+        </form>
+               
+    </div> 
+</dd>
+
+<dt >%NOME%</dt>
+<dd>
+    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
+
+    <div class="rist_dett">
+        <span>%INDIRIZZO%</span>
+        <span>%TIPOLOGIA%</span>
+
+        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
+            <span class="stelle_counter">%LISTA_STELLE%</span>
+        </span>
+
+        <p class="rist_descrizione">%DESCRIZIONE%</p>
+
+        %FORMS% 
+               
+    </div> 
+</dd>
+
+            </dl>
+        </div>
+    
+        <div id="footer">
+            %FOOTER%
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
