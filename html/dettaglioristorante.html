@@ -28,17 +28,14 @@
 
         <div id="content">
             <h1 id="nomeRist">Nome Ristorante</h1>
-            <img id="mainphoto" src="../img/esempio.jpg" alt=""/>
-            <p>Categoria: categoria</p>
-            <p>descrizione: descrizione fornita dal proprietario </p>
-            
-            
-            <p>Foto</p>
-            <img class="photoes" src="../img/esempio1.jpg" alt=""/>
-            <img class="photoes" src="../img/esempio2.jpg" alt=""/>
-            <img class="photoes" src="../img/esempio3.jpg" alt=""/>
-            <img class="photoes" src="../img/esempio4.jpg" alt=""/>
-            <!--  Forse è meglio utilizzare una table -->
+            <p id="restaurant_type">Categoria: categoria</p>
+            <p id="restaurant_description">Descrizione: descrizione fornita dal proprietario </p>
+            <div class="all_photoes">
+                <img id="mainphoto" src="../img/esempio.jpg" alt=""/>
+                <img class="photoes" src="../img/esempio1.jpg" alt=""/>
+                <img class="photoes" src="../img/esempio2.jpg" alt=""/>
+                <img class="photoes" src="../img/esempio3.jpg" alt=""/>
+            </div>
             <ul id="orario">
                 <li><p>Orario di apertura</p></li>
                 <li><p>Lunedì: 00:00-23:59</p></li>
@@ -49,12 +46,16 @@
                 <li><p>Sabato: 00:00-23:59</p></li>
                 <li><p>Domenica: 00:00-23:59</p></li>
             </ul>
-            <div id="contatto">
-                <p id="telefono">Telefono: +39 xxxxxxxxxx</p>
-                <p id="email"><a href="">indirizzoemail@mail.com</a></p>
-                <p>Indirizzo: via VIA NUMERO, CITTA</p>
-                <p>Sito<span xml:lang="en">web</span>: <a href=""> <span xml:lang="en">sitoweb</span></a></p>
-            </div>
+            <dl id="contatto">
+                <dt id="telefono">Telefono: </dt>
+                <dd> +39 xxxxxxxxxx</dd>
+                <dt id="email">Email: </dt>
+                <dd> <a href="">indirizzoemail@mail.com</a></dd>
+                <dt>Indirizzo: </dt>
+                <dd>via VIA NUMERO, CITTA</dd>
+                <dt>Sito<span xml:lang="en">web</span> </dt> 
+                <dd><a href=""> <span xml:lang="en">sitoweb</span></a> </dd>
+            </dl>
         </div>
     
         <div id="footer">

@@ -731,9 +731,24 @@ progress {
     padding: 1em;  
     width: 60%;
 }
-
-
-
+#nomeRist{
+    margin-left: 15em;
+    display: block;
+}
+.all_photoes{
+    float: left;
+}
+#mainphoto{
+    width: 30%;
+    height: 70%;
+    margin-left: 4em;
+}
+#restaurant_type, #restaurant_description{
+    margin-left: 31em;
+}
+#orario, #contatto{
+    margin-left: 31em;
+}
 @media only screen and (max-width: 768px) {
     
     body {
