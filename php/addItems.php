@@ -49,18 +49,16 @@
             $header=str_replace("toReplace",'<a href="../php/logout_script.php" class="a_btn">LOGOUT</a>',$header);
         }
         if(basename($_SERVER["REQUEST_URI"])=="login.php"){
-            $header ='<div id="header">
-            <h1 id="title">RestReview</h1>
+            $header ='<h1 id="title">RestReview</h1>
             <a id="hamburger" href="#menu" class="a_btn">MENU</a>
             <a href="../php/registrazione.php" class="a_btn">REGISTRAZIONE</a>
-            </div>';
+            ';
         }
         if(basename($_SERVER["REQUEST_URI"])=="registrazione.php"){
-            $header ='<div id="header">
-            <h1 id="title">RestReview</h1>
+            $header ='<h1 id="title">RestReview</h1>
             <a id="hamburger" href="#menu" class="a_btn">MENU</a>
             <a href="../php/login.php" class="a_btn">LOGIN</a>
-            </div>';
+            ';
         }
         $file_content=str_replace("%HEADER%",$header,$file_content);
         

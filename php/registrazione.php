@@ -5,6 +5,6 @@
         header('location:index.php');
         exit();
     }
-    addItems("../html/registrazione.html");
-
+    $page=addItems("../html/registrazione.html");
+    echo $page;
 ?>
