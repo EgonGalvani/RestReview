@@ -1,9 +1,10 @@
 <?php
     session_start();
-    
-    $file_content=file_get_contents('../html/registrazione.html');
-
     require_once("addItems.php");
+    if($_SESSION['logged']==true){
+        header('location:index.php');
+        exit();
+    }
     addItems("../html/registrazione.html");
 
 ?>
