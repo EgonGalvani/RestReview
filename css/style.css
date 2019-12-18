@@ -721,30 +721,52 @@ dd .stelle_counter {
 .review_info_title {
     margin: 1em 0; 
 }
-
+#review_main_title{
+    padding-top: 2em;
+    clear: both;
+}
 progress {
     padding: 1em;  
     width: 60%;
 }
 #nomeRist{
-    margin-left: 15em;
+    margin-left: 55%;
+    border: none;
+    font-size: 2.5em;
     display: block;
 }
-.all_photoes{
+#all_photoes{
     float: left;
+    margin-top: 2em;
 }
 #mainphoto{
-    width: 30%;
-    height: 70%;
+    width: 120%;
+    height: 170%;
+    margin-left: 4em;
+    display: block;
+    margin-top: 2em;
+}
+.photoes{
+    margin-top:3em;
     margin-left: 4em;
 }
-#restaurant_type, #restaurant_description{
-    margin-left: 31em;
+#information{
+    margin-left: 48%;
+    font-size: 1.1em;
+    padding-left: 5em;
+    border-left: 6px solid rgb(192,192,192);
+    border-spacing: 3em;
 }
-#orario, #contatto{
-    margin-left: 31em;
+#orario{
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
-
+#contatto dt{
+    display: inline-block;
+}
+#telefono dd{
+    display: inline;
+}
 @media only screen and (max-width: 768px) {
     
     body {
