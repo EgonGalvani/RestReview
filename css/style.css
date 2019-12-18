@@ -753,6 +753,9 @@ progress {
 }
 #information{
     margin-left: 48%;
+    margin-top: 1.3em;
+    /*background-color: rgb(232,232,232);*/
+    background: linear-gradient(to right, #E8E8E8 0%, #FFFFFF 100%);
     font-size: 1.1em;
     padding-left: 5em;
     border-left: 6px solid rgb(192,192,192);
@@ -763,10 +766,13 @@ progress {
     margin-bottom: 1em;
 }
 #contatto dt{
-    display: inline-block;
+    float: left;
+    font-weight: bold;
 }
-<<<<<<< HEAD
-=======
+#contatto dd{
+    margin-left: 6em;
+    font-style: italic;
+}
 
 /** ------- I MIEI RISTORANTI ------- **/ 
 .tab {
@@ -810,8 +816,6 @@ progress {
     margin-left: 2em; 
 }
 
-
->>>>>>> 7faccb781fe16921133e549889881fb8975691d6
 @media only screen and (max-width: 768px) {
     
     body {
