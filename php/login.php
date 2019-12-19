@@ -34,7 +34,7 @@
             $hashed_pwd=hash("sha256",$obj_connection->escape_str(trim($pwd)));
 
             if(!$log_query=$obj_connection->queryDB("SELECT * FROM utente WHERE Mail=\"$email\" AND PWD=\"$hashed_pwd\"")){
-                $error="[Le credenziali inserite non sono corrette ciooo]";
+                $error="[Le credenziali inserite non sono corrette]";
             }else{
                 $_SESSION['logged']=true;
                 $_SESSION['email']=$email;
