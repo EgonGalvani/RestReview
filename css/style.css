@@ -120,6 +120,10 @@ ul, dl {
     display: none; 
 } 
 
+.inline {
+    display: inline;
+}
+
 .center {
     text-align: center;
 }
@@ -787,6 +791,7 @@ progress {
     overflow: hidden;
     background-color: #f1f1f1;
     border: 1px solid #ccc; 
+    margin-top: 1.5em; 
 }
 
 .tab_item {
@@ -803,6 +808,11 @@ progress {
 .tab_item:hover, .active_tab {
     background-color: #bbb;
     color: #000; 
+}
+
+#new_rist_btn {
+    float: right; 
+    margin-top: 0; 
 }
 
 /*---------- PANNELLO AMMINISTRATORE ---------- */
@@ -899,12 +909,20 @@ progress {
 }
 
 @media only screen and (max-width: 600px) {
-    #header #title { display: block; font-size: 3.5em }
+    #header #title { 
+        display: block; 
+        font-size: 3.5em 
+    }
+
     #header .a_btn {
         float: none;
         padding: 0.5em; 
     }
-    #header { padding: 1em; }
+    
+    #header { 
+        padding: 1em; 
+    }
+
     #content { 
         padding: 1em; 
     }
@@ -965,6 +983,14 @@ progress {
         margin: 1em; 
     }
 
+    #new_rist_btn {
+        float: none; 
+        margin: 1.5em 0; 
+    }
+
+    #page_title {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1010,7 +1036,6 @@ progress {
         margin: 0.5em auto; 
     }
     
-
     #profile-view {
         margin-left: 0em; 
     }
