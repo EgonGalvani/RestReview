@@ -592,7 +592,7 @@ dd .stelle_counter {
     text-align: center; 
     width: 60%; 
     float: left;  
-    margin: 10% 2em 2em 2em; 
+    margin: 8% 2em 2em 2em; 
 }
 
 #img_404{
@@ -608,7 +608,6 @@ dd .stelle_counter {
 
 #nuovo_rist_form fieldset {
     margin-top: 1.5em; 
-    border-width: 3px;
 }
 
 #nuovo_rist_form #descrizione, 
