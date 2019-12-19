@@ -731,37 +731,30 @@ progress {
     width: 60%;
 }
 #nomeRist{
-    margin-left: 40%;
-    border: none;
-    font-size: 2.5em;
+    font-size: 2.1em;
+    padding-bottom: 1em;
     display: block;
 }
 #all_photoes{
     float: left;
-    margin-top: 2em;
-    width: 65%;
+    width: 45%;
+    padding-bottom: 7.7em;
 }
 #mainphoto{
-    margin-left: 4em;
     display: block;
-    margin-top: 3em;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .photoes{
-    width: 17%;
-    margin-top:3em;
-    margin-left: 4em;
+    margin-top: 31%;
+    width: 20%;
 }
 #information{
-    width: 80%;
-    margin-left: 57%;
-    margin-top: 1.3em;
-    margin-right: 5%;
-    background-color: rgb(232,232,232);
-    font-size: 1.1em;
+    margin-left: 45%;
+    font-size: 1.3em;
     padding-left: 5em;
-    border-left: 6px solid rgb(192,192,192);
-    border-spacing: 3em;
-    background: linear-gradient(to right, #E8E8E8 0%, #FFFFFF 100%);
+    border-bottom: none;
 }
 #orari{
     margin-top: 0.6em;
@@ -776,19 +769,18 @@ progress {
 }
 #restaurant_information{
     margin-right: 5em;
+    margin-bottom: 0.6em;
 }
 #contatto dd{
     margin-left: 6em; 
     font-style: italic;
 }
-
 /** ------- I MIEI RISTORANTI ------- **/ 
 .tab {
     overflow: hidden;
     background-color: #f1f1f1;
     border: 1px solid #ccc; 
 }
-
 .tab_item {
     background-color: inherit;
     float: left;
@@ -830,7 +822,6 @@ progress {
         display: flex;
         flex-direction: column;
     }
-
     #header {
         order: 1;
         margin-top: 0.5em;
@@ -894,6 +885,16 @@ progress {
         width: 50%;
         margin: 1em auto;
         display: block; 
+    }
+    #all_photoes{
+        background-color: transparent;
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    #information{
+        margin-left: 0em;
+        padding-left: 0em;
     }
     
 }
