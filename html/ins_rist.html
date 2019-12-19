@@ -43,10 +43,10 @@
                     </noscript>
 
                     <label for="nome">Nome ristorante: </label>
-                    <input type="text" name="nome" id="nome" />
+                    <input type="text" name="nome" id="nome" value="%NOME%"/>
 
                     <label for="b_descrizione">Breve Descrizione: </label>
-                    <textarea name="b_descrizione" id="b_descrizione" rows="3"></textarea>
+                    <textarea name="b_descrizione" id="b_descrizione" rows="3">%DESCRIZIONE%</textarea>
 
                     <label for="tipolgia">Tipologia: </label>
                     <select name="tipologia">
@@ -54,46 +54,46 @@
                     </select>
 
                     <label for="telefono">Telefono: </label>
-                    <input type="tel" name="telefono" id="telefono" />
+                    <input type="tel" name="telefono" id="telefono" value="%TELEFONO%"/>
 
                     <label for="email">Email: </label>
-                    <input type="email" name="email" id="email" />
+                    <input type="email" name="email" id="email" value="%EMAIL%"/>
 
                     <label for="sito">Sito: </label>
-                    <input type="url" name="sito" id="sito" />
+                    <input type="url" name="sito" id="sito" value="%SITO%"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Orari</legend>
                         
                     <label for="o_apertura">Orario di apertura: </label>
-                    <input type="time" name="o_apertura" id="o_apertura" />
+                    <input type="time" name="o_apertura" id="o_apertura" value="%ORA_APERTURA%"/>
 
                     <label for="o_chiusura">Orario di chiusura: </label>
-                    <input type="time" name="o_chiusura" id="o_chiusura" />
+                    <input type="time" name="o_chiusura" id="o_chiusura" value="%ORA_CHIUSURA%"/>
                     
                     <span>Giorno di chiusura: </span>
                     <ul id="free_day_list">
                         <li>
-                            <input type="radio" name="free_day" id="lun" value="lun"><label for="lun">Lunedì </label>
+                            <input type="radio" name="free_day" id="lun" value="lun" %LUN_CHECKED% ><label for="lun">Lunedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mar" value="mar"><label for="mar">Martedì <label>
+                            <input type="radio" name="free_day" id="mar" value="mar" %MAR_CHECKED%><label for="mar">Martedì <label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mer" value="mer"><label for="mer">Mercoledì</label>
+                            <input type="radio" name="free_day" id="mer" value="mer" %MER_CHECKED%><label for="mer">Mercoledì</label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="gio" value="gio"><label for="gio">Giovedì </label>
+                            <input type="radio" name="free_day" id="gio" value="gio" %GIO_CHECKED%><label for="gio">Giovedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="ven" value="ven"><label for="ven">Venerdì </label>
+                            <input type="radio" name="free_day" id="ven" value="ven" %VEN_CHECKED%><label for="ven">Venerdì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="sab" value="sab"><label for="sab">Sabato </label>
+                            <input type="radio" name="free_day" id="sab" value="sab" %SAB_CHECKED%><label for="sab">Sabato </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="dom" value="dom"><label for="dom">Domenica</label>
+                            <input type="radio" name="free_day" id="dom" value="dom" %DOM_CHECKED%><label for="dom">Domenica</label>
                         </li>
                     </ul>
                   
@@ -104,22 +104,22 @@
 
                     <div id="indirizzo">
                         <label for="via">Via: </label>
-                        <input type="text" name="via" id="via" />
+                        <input type="text" name="via" id="via" value="%VIA%"/>
     
                         <label for="civico">Civico: </label>
-                        <input type="text" name="civico" id="civico" />    
+                        <input type="text" name="civico" id="civico" value="%CIVICO%"/>    
                     </div>
                     
                     <div>
                         <label for="citta">Città: </label>
-                        <input type="text" name="citta" id="citta" />
+                        <input type="text" name="citta" id="citta" value="%CITTA%"/>
     
                         <label for="cap">CAP: </label>
-                        <input type="text" name="cap" id="cap" /> 
+                        <input type="text" name="cap" id="cap" value="%CAP%"/> 
                     </div>
                    
                     <label for="nazione">Nazione: </label>
-                    <input type="text" name="nazione" id="nazione" />
+                    <input type="text" name="nazione" id="nazione" value="%NAZIONE%"/>
                 </fieldset>
 
                 <fieldset>
