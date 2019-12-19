@@ -20,9 +20,9 @@ html, body {
 
 .a_btn {
     padding: 1em; 
-    color: #000; 
+    color: #fff; 
     text-decoration: none; 
-    background-color: #ddd; 
+    background-color: #1565c0; 
     margin-top: 1em; 
     border-radius: 1px; 
     cursor: pointer; 
@@ -34,11 +34,7 @@ html, body {
 }
 
 .a_btn:hover {
-    background-color: #ccc; 
-}
-
-a:visited {
-    color: #cc0033;
+    background-color: #00428A; 
 }
 
 #header #title {
@@ -70,8 +66,9 @@ ul, dl {
     font-size: 1.15em;
 }
 
-#menu ul li:hover{
-    background-color: #ddd;
+.active, #menu ul li:hover{
+    background-color: #00428A; 
+    color: #fff;    
 }
 
 #menu ul li a {
@@ -83,7 +80,6 @@ ul, dl {
 /* elemento attivo nel menu */ 
 .active {
     padding: 1em 0; 
-    background-color: #ddd; 
 }
 
 #content, .cr_content, #full_content{
@@ -374,7 +370,7 @@ textarea {
 /* --------------------- CSS login ----------------------- */
 .vertical_input_form fieldset{
     padding: 1.5em 0.5em 1em 1.5em; 
-    border: 2px solid #ccc;  
+    border: 2px solid #00428A;  
 }
 
 .vertical_input_form legend {
@@ -909,7 +905,6 @@ progress {
         margin: 1em auto;
         display: block; 
     }
-    
 }
 
 @media only screen and (max-width: 600px) {
