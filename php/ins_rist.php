@@ -123,7 +123,7 @@
         $page=str_replace('%ERR_CIV%',$errors['civ'],$page);
         $page=str_replace('%ERR_CAP%',$errors['cap'],$page);
 
-        $page=str_replace('[','<p class="msg_box err_box">',$page);
+        $page=str_replace('[','<p class="msg_box error_box">',$page);
         $page=str_replace(']','</p>',$page);
 
         $page=str_replace('%VALUE_NOME%',$nome,$page);
