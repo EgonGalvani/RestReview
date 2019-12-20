@@ -13,4 +13,32 @@
         }
         return false;
     }
+
+    function check_nome($nome){
+        if(preg_match('/^([a-zA-Z]+)$/',$nome)==1){
+            return true;
+        }
+        return false;
+    }
+
+    function check_tel($tel){
+        if(preg_match('/^(\d{10})$/',$tel)==1){
+            return true;
+        }
+        return false;
+    }
+
+    function check_num($num){
+        if(preg_match('/^([1-9][0-9]*)$/',$num)==1){
+            return true;
+        }
+        return false;
+    }
+
+    function check_cap($cap){
+        if(preg_match('/^(\d{5})$/',$cap)==1){
+            return true;
+        }
+        return false;
+    }
 ?>

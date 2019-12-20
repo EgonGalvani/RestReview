@@ -1,4 +1,5 @@
 <?php
+    require_once('reg_ex.php');
     class ristorante{
 
         public $nome;
@@ -35,12 +36,41 @@
             $this->nazione=$naz;
         }
 
-        public function errors(){
-            
+        public function getErrors(){
+            $err_array=array("nome"=>"",
+                            "desc"=>"",
+                            "tel"=>"",
+                            "email"=>"",
+                            "civ"=>"",
+                            "cap"=>"");
+            if(!check_nome($this->nome)){
+                $err_array['nome']="[Il nome può contenere solo lettere]";
+            }
+            if(strlen($this->descrizione)<20){
+                $err_array['desc']="[La descrizione deve essere lunga almeno 20 caratteri]";
+            }
+            if(!check_tel($this->telefono)){
+                $err_array['tel']="[Il numero deve essere composto da dieci cifre]";
+            }
+            if(!check_email($this->email)){
+                $err_array['email']="[L'email inserita non è valida]";
+            }
+            if(!check_num($this->civico)){
+                $err_array['civ']="[Il numo civico deve essere un numero]";
+            }
+            if(!check_cap($this->cap)){
+                $err_array['cap']="[Il cap è un numero di cinque cifre]";
+            }
+            return $err_array;
         }
 
-        public function numErrors(){
-            
+        public function numErrors($err_array){
+            $count=0;
+            foreach($err_array as $key=>$value){
+                if($value!=''){
+                    $count++;
+                }
+            }
         }
 
 

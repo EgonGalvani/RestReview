@@ -6,8 +6,8 @@
         <title>RestReview - Le migliori recensioni di ristoranti</title>
         <meta name="title" content="Inserimento nuovo ristorante - RestReview" />
 
-        <meta name="description" content="Pagina di inserimento di un nuovo ristorante" />
-        <meta name="keywords" content="inserisci ristorante, nuovo ristorante, aggiungi ristorante" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
@@ -19,7 +19,7 @@
         </div>
     
         <div id="breadcrumb">
-            Ti trovi in: <a href="imieirist.html">I miei ristoranti</a> &#8250; Aggiungi ristorante
+            Ti trovi in: %PATH% 
         </div>
 
         <div id="menu">
@@ -31,7 +31,8 @@
             <h2 id="sub_title">Compila il seguente <span lang="en">form</span> e fai conoscere a tutti i nostri utenti il tuo ristorante!</h2>
             <h3>Tutti i campi sono OBBLIGATORI!</h3>
             
-            <form id="nuovo_rist_form" class="vertical_input_form">
+            <form method="POST" id="nuovo_rist_form" action="../php/ins_rist.php" class="vertical_input_form">
+                
                 <fieldset>
                     <legend>Dettagli ristorante</legend>
 
@@ -41,59 +42,62 @@
                             NON ESSERE DISPONIBILI
                         </div>
                     </noscript>
-
+                    
+                    %NUM_ERRORI%
+                    %ERR_NOME%
                     <label for="nome">Nome ristorante: </label>
-                    <input type="text" name="nome" id="nome" value="%NOME%"/>
+                    <input type="text" name="nome" id="nome" value="%VALUE_NOME%"/>
 
+                    %ERR_DESC%
                     <label for="b_descrizione">Breve Descrizione: </label>
-                    <textarea name="b_descrizione" id="b_descrizione" rows="3">%DESCRIZIONE%</textarea>
+                    <textarea name="b_descrizione" id="b_descrizione" value="%VALUE_DESC%" rows="3"></textarea>
 
                     <label for="tipolgia">Tipologia: </label>
-                    <select name="tipologia">
+                    <select name="tipologia" value="%VALUE_TIPO%">
                         %TIPOLOGIA%
                     </select>
-
+                    %ERR_TEL%
                     <label for="telefono">Telefono: </label>
-                    <input type="tel" name="telefono" id="telefono" value="%TELEFONO%"/>
-
+                    <input type="tel" name="telefono" id="telefono" value="%VALUE_TEL%"/>
+                    %ERR_EMAIL%
                     <label for="email">Email: </label>
-                    <input type="email" name="email" id="email" value="%EMAIL%"/>
+                    <input type="email" name="email" id="email" value="%VALUE_EMAIL%"/>
 
                     <label for="sito">Sito: </label>
-                    <input type="url" name="sito" id="sito" value="%SITO%"/>
+                    <input type="url" name="sito" id="sito" value="%VALUE_SITO%"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Orari</legend>
                         
                     <label for="o_apertura">Orario di apertura: </label>
-                    <input type="time" name="o_apertura" id="o_apertura" value="%ORA_APERTURA%"/>
+                    <input type="time" name="o_apertura" id="o_apertura" value="%VALUE_OR_AP%"/>
 
                     <label for="o_chiusura">Orario di chiusura: </label>
-                    <input type="time" name="o_chiusura" id="o_chiusura" value="%ORA_CHIUSURA%"/>
+                    <input type="time" name="o_chiusura" id="o_chiusura" value="%VALUE_OR_CH%"/>
                     
                     <span>Giorno di chiusura: </span>
                     <ul id="free_day_list">
                         <li>
-                            <input type="radio" name="free_day" id="lun" value="lun" %LUN_CHECKED% ><label for="lun">Lunedì </label>
+                            <input type="radio" name="free_day" id="lun" value="lun" %LUN%><label for="lun">Lunedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mar" value="mar" %MAR_CHECKED%><label for="mar">Martedì <label>
+                            <input type="radio" name="free_day" id="mar" value="mar" %MAR%><label for="mar">Martedì <label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mer" value="mer" %MER_CHECKED%><label for="mer">Mercoledì</label>
+                            <input type="radio" name="free_day" id="mer" value="mer" %MER%><label for="mer">Mercoledì</label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="gio" value="gio" %GIO_CHECKED%><label for="gio">Giovedì </label>
+                            <input type="radio" name="free_day" id="gio" value="gio" %GIO%><label for="gio">Giovedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="ven" value="ven" %VEN_CHECKED%><label for="ven">Venerdì </label>
+                            <input type="radio" name="free_day" id="ven" value="ven" %VEN%><label for="ven">Venerdì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="sab" value="sab" %SAB_CHECKED%><label for="sab">Sabato </label>
+                            <input type="radio" name="free_day" id="sab" value="sab" %SAB%><label for="sab">Sabato </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="dom" value="dom" %DOM_CHECKED%><label for="dom">Domenica</label>
+                            <input type="radio" name="free_day" id="dom" value="dom" %DOM%><label for="dom">Domenica</label>
                         </li>
                     </ul>
                   
@@ -104,22 +108,22 @@
 
                     <div id="indirizzo">
                         <label for="via">Via: </label>
-                        <input type="text" name="via" id="via" value="%VIA%"/>
-    
+                        <input type="text" name="via" id="via" value="%VALUE_VIA%"/>
+                        %ERR_CIV%
                         <label for="civico">Civico: </label>
-                        <input type="text" name="civico" id="civico" value="%CIVICO%"/>    
+                        <input type="text" name="civico" id="civico" value="%VALUE_CIV%"/>    
                     </div>
                     
                     <div>
                         <label for="citta">Città: </label>
-                        <input type="text" name="citta" id="citta" value="%CITTA%"/>
-    
+                        <input type="text" name="citta" id="citta" value="%VALUE_CITTA%"/>
+                        %ERR_CAP%
                         <label for="cap">CAP: </label>
-                        <input type="text" name="cap" id="cap" value="%CAP%"/> 
+                        <input type="text" name="cap" id="cap" value="%VALUE_CAP%"/> 
                     </div>
                    
                     <label for="nazione">Nazione: </label>
-                    <input type="text" name="nazione" id="nazione" value="%NAZIONE%"/>
+                    <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%"/>
                 </fieldset>
 
                 <fieldset>
@@ -133,7 +137,7 @@
 
                 </fieldset>
 
-                <input type="submit" id="ins_rest_submit" value="Inserisci ristorante!" />
+                <input type="submit" id="ins_rest_submit" name="submit" value="Inserisci ristorante!" />
             </form>
             
         </div>
