@@ -21,7 +21,7 @@
             $pwd=$_POST['password'];
         }
         if(isset($_POST['remember_me'])){
-            $check='checked';
+            $check='checked="checked"';
         }
 
         /* crea connessione al DB */
@@ -52,7 +52,7 @@
             $obj_connection->close_connection();
 
         }else{
-            $error="[Errore di connesione al database]";
+            $error="[Errore di connessione al database]";
         }
 
     }

@@ -44,19 +44,19 @@
                             "civ"=>"",
                             "cap"=>"");
             if(!check_nome($this->nome)){
-                $err_array['nome']="[Il nome può contenere solo lettere]";
+                $err_array['nome']="[Il nome può contenere solo lettere e non può essere vuoto]";
             }
             if(strlen($this->descrizione)<20){
                 $err_array['desc']="[La descrizione deve essere lunga almeno 20 caratteri]";
             }
             if(!check_tel($this->telefono)){
-                $err_array['tel']="[Il numero deve essere composto da dieci cifre]";
+                $err_array['tel']="[Il numero di telefono deve essere composto da dieci cifre]";
             }
             if(!check_email($this->email)){
                 $err_array['email']="[L'email inserita non è valida]";
             }
             if(!check_num($this->civico)){
-                $err_array['civ']="[Il numo civico deve essere un numero]";
+                $err_array['civ']="[Il numo civico può contenere solo cifre]";
             }
             if(!check_cap($this->cap)){
                 $err_array['cap']="[Il cap è un numero di cinque cifre]";
