@@ -6,9 +6,10 @@
         <title>RestReview - Le migliori recensioni di ristoranti</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
+        <meta name="description" content="Visualizza i dettagli del ristorante che hai selezionato" />
+        <meta name="keywords" content="dettagli ristorante, ristorante, informazioni ristorante" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
         
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
     </head>
@@ -28,34 +29,43 @@
 
         <div id="content">
              <div id= "all_photoes">
-                <img id="mainphoto" src="../img/esempio.jpg" alt=""/>
-                <img class="photoes" src="../img/esempio1.jpg" alt=""/>
-                <img class="photoes" src="../img/esempio2.jpg" alt=""/>
-                <img class="photoes" src="../img/esempio3.jpg" alt=""/>
+                <img id="mainphoto" src="../img/ristoranti/8.jpeg" alt=""/>
+                <img class="photoes" src="../img/ristoranti/8.jpeg" alt=""/>
+                <img class="photoes" src="../img/ristoranti/5.jpeg" alt=""/>
+                <img class="photoes" src="../img/ristoranti/3.jpeg" alt=""/>
+                <img class="photoes" src="../img/ristoranti/4.jpeg" alt=""/>
             </div>
+            <div id="information">
             <h1 id="nomeRist">Nome Ristorante</h1>
-        <div id="information">
-            <span id="restaurant_type">Categoria: categoria</span>
-            <p id="restaurant_description">Descrizione: descrizione fornita dal proprietario </p>
-            <span><p>Orario di apertura</p></span>
-            <ul id="orario">
-                <li><p>Lunedì: 00:00-23:59</p></li>
-                <li><p>Martedì: 00:00-23:59</p></li>
-                <li><p>Mercoledì: 00:00-23:59</p></li>
-                <li><p>Giovedì: 00:00-23:59</p></li>
-                <li><p>Venerdì: 00:00-23:59</p></li>
-                <li><p>Sabato: 00:00-23:59</p></li>
-                <li><p>Domenica: 00:00-23:59</p></li>
-            </ul>
+            <dl id="restaurant_information">
+                <dt>Categoria:</dt>
+                <dd> categoria </dd>
+                <dt>Descrizione: </dt>
+                <dd> fornita dal proprietario</dd>
+                <dt id="orari">Orario di apertura</dt>
+                <dd>
+                    <ul>
+                    <li>Lunedì: 00:00-23:59</li>
+                    <li>Martedì: 00:00-23:59</li>
+                    <li>Mercoledì: 00:00-23:59</li>
+                    <li>Giovedì: 00:00-23:59</li>
+                    <li>Venerdì: 00:00-23:59</li>
+                    <li>Sabato: 00:00-23:59</li>
+                    <li>Domenica: 00:00-23:59</li>
+                    </ul>
+                </dd>
+                <dt> Giorno di chiusura </dt>
+                <dd> Sabato </dd>
+            </dl>
             <dl id="contatto">
-                <dt id="telefono">Telefono: </dt>
+                <dt>Telefono: </dt>
                 <dd> +39 xxxxxxxxxx</dd>
-                <dt id="email">Email: </dt>
+                <dt><span xml:lang="en">Email:</span> </dt>
                 <dd> <a href="">indirizzoemail@mail.com</a></dd>
                 <dt>Indirizzo: </dt>
                 <dd>via VIA NUMERO, CITTA</dd>
-                <dt>Sito<span xml:lang="en">web</span> </dt> 
-                <dd><a href=""> <span xml:lang="en">sitoweb:</span></a> </dd>
+                <dt>Sito<span xml:lang="en"> web:</span> </dt> 
+                <dd><a href=""> <span xml:lang="en">sitoweb</span></a> </dd>
             </dl>
         </div>
             <h2 id="review_main_title">Recensioni: </h2>

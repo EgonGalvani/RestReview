@@ -1,42 +1,40 @@
 <?php
-    //$subjectPath= pagina html a cui aggiungere le cose
-    //$addMenu= true di default, passare false come parametro se non si vuole aggiungere il menu
-    //ritorna una stringa con il contenuto della pagina modificata
+    //n$subjectPath= pagina html a cui aggiungere le cose
+    // $addMenu= true di default, passare false come parametro se non si vuole aggiungere il menu
+    // ritorna una stringa con il contenuto della pagina modificata
     function addItems($subjectPath,$addMenu=true){
         $file_content = file_get_contents($subjectPath);
+        
+        // aggiunge menù 
         if($addMenu){
-        //Aggiunge menu
-        $menu = file_get_contents("../components/menu.html");
-        //Aggiunta menu generico
-        $file_content=str_replace("%MENU%",$menu,$file_content);
-        if(isset($_SESSION['permesso'])){
-            //Aggiunta menu admin
-            if($_SESSION['permesso']==="Admin"){
-                $toAdd='
-                <li xml:lang="en"><a href="../php/index.php">Home</a></li>
-                <li><a href="../php/pannello_amministratore.php">Pannello amministratore</a></li>
-                ';
-                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
+
+            // menù di base 
+            $menu = '<ul><li xml:lang="en"><a href="index.php">Home</a></li>'; 
+          
+            if(isset($_SESSION['permesso'])){
+               
+                switch($_SESSION['permesso']) {
+                    case 'Admin': 
+                            $menu .= '<li><a href="pannello_amministratore.php">Pannello amministratore</a></li>';
+                        break; 
+                    case 'Ristoratore': 
+                            $menu .= '<li><a href="profilo.php">Il mio profilo</a></li>
+                                       <li><a href="imieirist.php">I miei ristoranti</a></li>'; 
+                        break; 
+                    case 'Utente': 
+                            $menu .= '<li><a href="profilo.php">Il mio profilo</a></li>
+                                      <li><a href="lemierecensioni.php">Le mie recensioni</a></li>';
+                        break;  
+                    }          
             }
-            //Aggiunta menu ristoratore
-            if($_SESSION['permesso']==="Ristoratore"){
-                $toAdd='
-                <li xml:lang="en"><a href="../php/index.php">Home</a></li>
-                <li><a href="../php/profilo.php">Il mio profilo</a></li>
-                <li><a href="../php/imieirist.php">I miei ristoranti</a></li>
-                <li><a href="../php/ins_rist.php">Inserisci nuovo ristorante</a></li>';
-                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
-            }
-            //Aggiunta menu utente loggato
-            if($_SESSION['permesso']==="Utente"){
-                $toAdd='
-                <li xml:lang="en"><a href="../php/index.php">Home</a></li>
-                <li><a href="../php/profilo.php">Il mio profilo</a></li>
-                <li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>
-                ';
-                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
-            }
-        }
+
+            $menu .= '<li><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a></li>
+                <li><a href="casuale.php">Ristorante casuale</a></li>
+                <li><a href="regolamento.php">Regolamento</a></li>
+                <li><a href="faq.php"><abbr xml:lang="en" title="Frequently Asked Questions">FAQ</abbr></a></li>
+                <li><a href="chisiamo.php">Chi Siamo</a></li></ul>';
+
+            $file_content = str_replace('%MENU%', $menu, $file_content);
         }       
         
         //Aggiunge header
@@ -48,12 +46,14 @@
                                     "",$header);
             $header=str_replace("toReplace",'<a href="../php/logout_script.php" class="a_btn">LOGOUT</a>',$header);
         }
+       
         if(basename($_SERVER["REQUEST_URI"])=="login.php"){
             $header ='<h1 id="title">RestReview</h1>
             <a id="hamburger" href="#menu" class="a_btn">MENU</a>
             <a href="../php/registrazione.php" class="a_btn">REGISTRAZIONE</a>
             ';
         }
+      
         if(basename($_SERVER["REQUEST_URI"])=="registrazione.php"){
             $header ='<h1 id="title">RestReview</h1>
             <a id="hamburger" href="#menu" class="a_btn">MENU</a>
@@ -67,3 +67,4 @@
         return str_replace("%FOOTER%",$footer,$file_content);
        
     }
+?>
