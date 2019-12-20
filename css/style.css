@@ -369,7 +369,7 @@ textarea {
 
 /* --------------------- CSS login ----------------------- */
 .vertical_input_form fieldset{
-    padding: 1.5em 0.5em 1em 1.5em; 
+    padding: 1.5em 1.5em 1em 1.5em; 
     border: 2px solid #00428A;  
 }
 
