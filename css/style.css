@@ -18,23 +18,25 @@ html, body {
     background-color: #fff; 
 }
 
-.a_btn {
-    padding: 1em; 
+.btn {
+    padding: 0.75em; 
     color: #fff; 
     text-decoration: none; 
     background-color: #1565c0; 
-    margin-top: 1em; 
+    border: 2px solid #00428A;
     border-radius: 1px; 
     cursor: pointer; 
-    margin-right: 0.5em; 
+    margin: 0.75em;
 }
 
-#header .a_btn {
+#header .btn {
     float: right; 
+    margin: 0.25em;
 }
 
-.a_btn:hover {
+.btn:hover {
     background-color: #00428A; 
+    border-color: #1565c0;
 }
 
 #header #title {
@@ -70,6 +72,8 @@ ul, dl {
     background-color: #00428A; 
     color: #fff;    
 }
+
+#menu li:hover a { color: #fff; }
 
 #menu ul li a {
     display: inline-block;  
@@ -187,7 +191,7 @@ input[type="text"], input[type="password"], input[type= "email"],
 
     padding: 0.75em; 
     border: 0; 
-    border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #1565c0; 
     transition: border-color ease-in-out 200ms; 
 }
 
@@ -195,7 +199,7 @@ input[type="text"]:focus, input[type="password"]:focus,
     input[type= "email"]:focus, input[type="tel"]:focus, 
     input[type="url"]:focus,  select:focus  {
 
-    border-bottom-color: #000; 
+    border-bottom-color: #00428A; 
     outline: none; 
 }
 
@@ -290,7 +294,7 @@ textarea {
 
 /* ------------- FORM DI RICERCA  (USATO IN INDEX / CASUALE / RISULTATI) ---------- */
 #form_ricerca {
-    border-left: 5px solid #ddd; 
+    border-left: 5px solid #1565c0; 
 }
 
 #form_ricerca fieldset {
@@ -328,10 +332,6 @@ textarea {
 
 #tipologia {
     margin-right: 1em; 
-}
-
-#search_btn {
-    padding: 0.75em; 
 }
 
 /*---------------Pagina ultimi ristoranti-------------*/
@@ -496,12 +496,6 @@ textarea {
     border: 2px solid #ddd;
     padding: 1em; 
     margin-bottom: 1em; 
-}
-
-input[type="submit"], input[type="reset"]{
-    padding: 0.75em; 
-    margin: 0.75em;
-    cursor: pointer;
 }
 
 dd form, dd fieldset {
@@ -837,7 +831,7 @@ progress {
         border: 0;
     }
 
-    #header .a_btn {
+    #header .btn {
         margin-top: 0.5em; 
     }
 
@@ -914,7 +908,7 @@ progress {
         font-size: 3.5em 
     }
 
-    #header .a_btn {
+    #header .btn {
         float: none;
         padding: 0.5em; 
     }

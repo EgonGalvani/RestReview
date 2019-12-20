@@ -40,24 +40,24 @@
         //Aggiunge header
         $header = file_get_contents("../components/header.html");
         if(isset($_SESSION['logged'])&&$_SESSION['logged']){            
-            $header=str_replace('<a href="../php/login.php" class="a_btn">LOGIN</a>',
+            $header=str_replace('<a href="../php/login.php" class="btn">LOGIN</a>',
                                     "toReplace",$header);
-            $header=str_replace('<a href="../php/registrazione.php" class="a_btn">REGISTRAZIONE</a>',
+            $header=str_replace('<a href="../php/registrazione.php" class="btn">REGISTRAZIONE</a>',
                                     "",$header);
-            $header=str_replace("toReplace",'<a href="../php/logout_script.php" class="a_btn">LOGOUT</a>',$header);
+            $header=str_replace("toReplace",'<a href="../php/logout_script.php" class="btn">LOGOUT</a>',$header);
         }
        
         if(basename($_SERVER["REQUEST_URI"])=="login.php"){
             $header ='<h1 id="title">RestReview</h1>
-            <a id="hamburger" href="#menu" class="a_btn">MENU</a>
-            <a href="../php/registrazione.php" class="a_btn">REGISTRAZIONE</a>
+            <a id="hamburger" href="#menu" class="btn">MENU</a>
+            <a href="../php/registrazione.php" class="btn">REGISTRAZIONE</a>
             ';
         }
       
         if(basename($_SERVER["REQUEST_URI"])=="registrazione.php"){
             $header ='<h1 id="title">RestReview</h1>
-            <a id="hamburger" href="#menu" class="a_btn">MENU</a>
-            <a href="../php/login.php" class="a_btn">LOGIN</a>
+            <a id="hamburger" href="#menu" class="btn">MENU</a>
+            <a href="../php/login.php" class="btn">LOGIN</a>
             ';
         }
         $file_content=str_replace("%HEADER%",$header,$file_content);

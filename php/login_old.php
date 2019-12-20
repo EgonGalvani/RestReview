@@ -26,7 +26,7 @@
     /*Aggiunta header*/
     $header='<div id="header">
     <h1 id="title">RestReview</h1>
-    <a id="hamburger" href="#menu" class="a_btn">MENU</a></div>'; 
+    <a id="hamburger" href="#menu" class="btn">MENU</a></div>'; 
     $file_content=str_replace('%HEADER%',$header,$file_content);
 
     /* Aggiunta menu*/
