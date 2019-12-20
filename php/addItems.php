@@ -16,25 +16,25 @@
                 <li xml:lang="en"><a href="../php/index.php">Home</a></li>
                 <li><a href="../php/pannello_amministratore.php">Pannello amministratore</a></li>
                 ';
-                $file_content=str_replace('<li class="active" xml:lang="en">Home</li>',$toAdd,$file_content);
+                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
             }
             //Aggiunta menu ristoratore
             if($_SESSION['permesso']==="Ristoratore"){
                 $toAdd='
                 <li xml:lang="en"><a href="../php/index.php">Home</a></li>
-                <li><a href="../php/mio_profilo.php">Il mio profilo</a></li>
-                <li><a href="../php/miei_ristoranti.php">I miei ristoranti</a></li>
-                ';
-                $file_content=str_replace('<li class="active" xml:lang="en">Home</li>',$toAdd,$file_content);
+                <li><a href="../php/profilo.php">Il mio profilo</a></li>
+                <li><a href="../php/imieirist.php">I miei ristoranti</a></li>
+                <li><a href="../php/ins_rist.php">Inserisci nuovo ristorante</a></li>';
+                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
             }
             //Aggiunta menu utente loggato
             if($_SESSION['permesso']==="Utente"){
                 $toAdd='
                 <li xml:lang="en"><a href="../php/index.php">Home</a></li>
-                <li><a href="../php/mio_profilo.php">Il mio profilo</a></li>
-                <li><a href="../php/mie_recensioni.php">Le mie recensioni</a></li>
+                <li><a href="../php/profilo.php">Il mio profilo</a></li>
+                <li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>
                 ';
-                $file_content=str_replace('<li class="active" xml:lang="en">Home</li>',$toAdd,$file_content);
+                $file_content=str_replace('<li xml:lang="en"><a href="../php/index.php">Home</a></li>',$toAdd,$file_content);
             }
         }
         }       

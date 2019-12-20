@@ -1,31 +1,101 @@
 <?php
 
     require_once("sessione.php");
-    $_SESSION['current_page']='ins_rist.php';
 
     //check se loggato
     if($_SESSION['logged']==false){
-        header('location: index.php');
+        header('location: login.php');
         exit;
     }
 
+    require_once("addItems.php");
+    $page=addItems('../html/ins_rist.html');
+
     if($_SESSION['permesso']=='Ristoratore'){
 
-        $file_content=file_get_contents('../html/ins_rist.html');
+        $error='';
+        $errori=0;
+        $nome='';
+        $desc='';
+        $tipo='';
+        $tel='';
+        $email='';
+        $
 
-        /* menu, da cambiare con addItems */
-        require_once('menu_list.php');
-        $menuList=new menuList('ristoratore');
-        $search='<li><a href="../php/ins_rist.php">Inserisci nuovo ristorante</a></li>';
-        $replace='<li class="active">Inserisci nuovo ristorante<li>';
-        $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
-        $file_content=str_replace('%MENU%',$menu,$file_content);
+        /* controllo se è stato fatto il submit */
+        if(isset($_POST['nome'])){
+            $nome=$_POST['nome'];
+            
+            // check sul nome
 
-        str_replace('%TIPOLOGIA%',);
+            if(isset($_POST['b_descrizione'])){
+                $desc=$_POST['b_descrizione'];
+            }
 
-        echo $file_content;
+            if(isset($_POST['tipologia'])){
+                $tipo=$_POST['tipologia'];
+            }
+
+            if(isset($_POST['telefono'])){
+                $tel=$_POST['telefono'];
+            }
+
+            //check telefono
+
+            if(isset($_POST['email'])){
+                $email=$_POST['email'];
+            }
+
+            //check email
+
+            if(isset($_POST['sito'])){
+                $sito=$_POST['sito'];
+            }
+
+            //check sito
+
+            if(isset($_POST['o_apertura'])){
+                $ora_ap=$_POST['o_apertura'];
+            }
+
+            if(isset($_POST['o_chiusura'])){
+                $ora_chiu=$_POST['o_chiusura'];
+            }
+             /*
+                FARE PER RADIO BUTTON
+             */
+
+            if(isset($_POST['via'])){
+                $via=$_POST['via'];
+            }
+            if(isset($_POST['civico'])){
+                $civico=$_POST['civico'];
+            }
+
+            //check civico
+
+            if(isset($_POST['citta'])){
+                $citta=$_POST['citta'];
+            }
+            if(isset($_POST['cap'])){
+                $cap=$_POST['cap'];
+            }
+
+            //check cap
+
+            if(isset($_POST['nazione'])){
+                $nazione=$_POST['nazione'];
+            }
+            /*
+                FARE PER IMMAGINI
+            */
+        }
+        
+
     }else{
         header('location: access_denied.php');
         exit;
     }
+
+    echo $page;
 ?>
