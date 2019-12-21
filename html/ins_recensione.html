@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>RestReview - Le migliori recensioni di ristoranti</title>
+        <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
+
+        <meta name="description" content=" " />
+        <meta name="keywords" content=" " />
+  
+        <meta name="author" content="##NOME DEL GRUPPO##" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+    </head>
+
+    <body>
+        <div id="header">
+            %HEADER%
+        </div>
+    
+        <div id="breadcrumb">
+            Ti trovi in: <a href="profilo.php">Ricerca</a> &#8250; <a href="profilo.php">Dettaglio Ristorante</a> &#8250; Inserimento recensione
+        </div>
+
+        <div id="menu">
+           %MENU%
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">Inserimento nuova recensione</h1>
+            
+            <img src="../img/ristoranti/2.jpeg" />
+            <span>Fvsion Cortina Restaurant</span>
+            <span>Via lungoboite 35 a | Piazzale Crignes, 32043 Cortina d'Ampezzo, Italia</span>
+            
+            <h2 id="sub_title">La tua esperienza personale può essere di grande aiuto agli altri viaggiatori. Grazie!</h2>
+       
+            <form class="vertical_input_form" method="POST" action="">
+                <fieldset>
+                    <legend>Inserimento nuova recensione</legend>
+
+                    <label>Valuta la tua esperienza: </label>
+                    <select>
+                        <option>1 stella</option>
+                        <option>2 stella</option>
+                        <option>3 stella</option>
+                        <option>4 stella</option>
+                        <option>5 stella</option>
+                    </select>
+                    
+                    <label for="titolo_recensione">Titolo della tua recensione: </label>
+                    <input type="text" id="titolo_recensione" name="titolo_recensione" />
+
+                    <label for="contenuto_recensione">La tua recensione: </label>
+                    <textarea id="contenuto_recensione" name="contenuto_recensione"></textarea>
+ 
+                    <input type="submit" class="btn right" value="Invia recensione!" />
+                </fieldset>
+            </form>
+        </div>
+    
+        <div id="footer">
+            %FOOTER%
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>
