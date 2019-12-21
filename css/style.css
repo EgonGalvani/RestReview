@@ -31,7 +31,7 @@ html, body {
 
 #header .btn {
     float: right; 
-    margin: 0.25em;
+    margin: 1.25em 0.25em 0 0.25em; 
 }
 
 .btn:hover {
@@ -91,7 +91,7 @@ ul, dl {
     min-height: 50em; 
     margin: 0em 0 0.5em 19%; 
     background-color: #fff; 
-    padding: 2em 2em 1em 2em;   
+    padding: 2em 2em 2em 2em;   
     overflow: hidden; 
 }
 
@@ -112,7 +112,7 @@ ul, dl {
     margin-bottom: 0.5em; 
 }
 
-#sub_title {
+#sub_title, #ins_recensione_subtite{
     font-size: 1.25em; 
 }
 
@@ -824,6 +824,39 @@ progress {
     margin-left: 2em; 
 }
 
+/* ---------- INSERIMENTO RECENSIONE -----------------*/
+
+#ins_rec_rist {
+    display: block;
+    font-size: 1.5em; 
+    font-weight: bold;
+}
+
+#ins_rec_img {
+    float: left;
+    margin: 0 1em 2em 0;  
+}
+
+#ins_recensione_subtite {
+    margin-bottom: 1em; 
+    clear: left; 
+}
+
+#n_stelle {
+    width: 50%; 
+}
+
+#titolo_recensione {
+    width: 75%; 
+}
+
+#contenuto_recensione {
+    width: 100%; 
+    height: 5em; 
+    margin: 0.75em 0; 
+}
+
+
 @media only screen and (max-width: 768px) {
     
     body {
@@ -989,6 +1022,14 @@ progress {
 
     #page_title {
         display: block;
+    }
+
+    #ins_rec_img {
+        margin-bottom: 1em; 
+    }
+
+    #ins_recensione_subtite {
+        margin-top: 1em; 
     }
 }
 

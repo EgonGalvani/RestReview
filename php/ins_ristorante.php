@@ -9,7 +9,7 @@
     }
 
     require_once("addItems.php");
-    $page=addItems('../html/ins_rist.html');
+    $page=addItems('../html/ins_ristorante.html');
 
     if($_SESSION['permesso']=='Ristoratore'){
 

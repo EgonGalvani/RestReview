@@ -42,31 +42,33 @@
         <div id="content">
             <h1 id="page_title">Inserimento nuova recensione</h1>
             
-            <img src="../img/ristoranti/2.jpeg" />
-            <span>Fvsion Cortina Restaurant</span>
-            <span>Via lungoboite 35 a | Piazzale Crignes, 32043 Cortina d'Ampezzo, Italia</span>
+            <img src="../img/ristoranti/2.jpeg" id="ins_rec_img" />
+            <span id="ins_rec_rist">%NOME_RISTORANTE%</span>
+            <span>%INDIRIZZO_RISTORANTE%</span>
             
-            <h2 id="sub_title">La tua esperienza personale può essere di grande aiuto agli altri viaggiatori. Grazie!</h2>
+            <h2 id="ins_recensione_subtite" class="">
+                La tua esperienza personale può essere di grande aiuto agli altri viaggiatori. Grazie!
+            </h2>
        
             <form class="vertical_input_form" method="POST" action="">
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
 
                     <label>Valuta la tua esperienza: </label>
-                    <select>
-                        <option>1 stella</option>
-                        <option>2 stella</option>
-                        <option>3 stella</option>
-                        <option>4 stella</option>
-                        <option>5 stella</option>
+                    <select id="n_stelle" name="n_stelle">
+                        <option value="1">1 stella</option>
+                        <option value="2">2 stelle</option>
+                        <option value="3">3 stelle</option>
+                        <option value="4">4 stelle</option>
+                        <option value="5">5 stelle</option>
                     </select>
                     
                     <label for="titolo_recensione">Titolo della tua recensione: </label>
-                    <input type="text" id="titolo_recensione" name="titolo_recensione" />
+                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%"/>
 
                     <label for="contenuto_recensione">La tua recensione: </label>
-                    <textarea id="contenuto_recensione" name="contenuto_recensione"></textarea>
- 
+                    <textarea id="contenuto_recensione" name="contenuto_recensione">%CONTENUTO_RECENSIONE%</textarea>
+                    
                     <input type="submit" class="btn right" value="Invia recensione!" />
                 </fieldset>
             </form>
