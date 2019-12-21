@@ -39,48 +39,51 @@
         </div>
 
         <div id="content">
-             <div id= "all_photoes">
+            <h1 id="page_title">Nome Ristorante</h1>
+            
+            <div id= "all_photoes">
                 <img id="mainphoto" src="../img/ristoranti/8.jpeg" alt=""/>
-                <img class="photoes" src="../img/ristoranti/8.jpeg" alt=""/>
+                <img class="photoes selected_photo" src="../img/ristoranti/8.jpeg" alt=""/>
                 <img class="photoes" src="../img/ristoranti/5.jpeg" alt=""/>
                 <img class="photoes" src="../img/ristoranti/3.jpeg" alt=""/>
                 <img class="photoes" src="../img/ristoranti/4.jpeg" alt=""/>
             </div>
+          
             <div id="information">
-            <h1 id="nomeRist">Nome Ristorante</h1>
-            <dl id="restaurant_information">
-                <dt>Categoria:</dt>
-                <dd> categoria </dd>
-                <dt>Descrizione: </dt>
-                <dd> fornita dal proprietario</dd>
-                <dt id="orari">Orario di apertura</dt>
-                <dd>
-                    <ul>
-                    <li>Lunedì: 00:00-23:59</li>
-                    <li>Martedì: 00:00-23:59</li>
-                    <li>Mercoledì: 00:00-23:59</li>
-                    <li>Giovedì: 00:00-23:59</li>
-                    <li>Venerdì: 00:00-23:59</li>
-                    <li>Sabato: 00:00-23:59</li>
-                    <li>Domenica: 00:00-23:59</li>
-                    </ul>
-                </dd>
-                <dt> Giorno di chiusura </dt>
-                <dd> Sabato </dd>
-            </dl>
-            <dl id="contatto">
-                <dt>Telefono: </dt>
-                <dd> +39 xxxxxxxxxx</dd>
-                <dt><span xml:lang="en">Email:</span> </dt>
-                <dd> <a href="">indirizzoemail@mail.com</a></dd>
-                <dt>Indirizzo: </dt>
-                <dd>via VIA NUMERO, CITTA</dd>
-                <dt>Sito<span xml:lang="en"> web:</span> </dt> 
-                <dd><a href=""> <span xml:lang="en">sitoweb</span></a> </dd>
-            </dl>
-        </div>
+                <dl id="restaurant_information">
+                    <dt>Categoria:</dt>
+                    <dd>%CATEGORIA%</dd>
+                    <dt>Descrizione: </dt>
+                    <dd>%DESCRIZIONE%</dd>
+                    <dt id="orari">Orario di apertura</dt>
+                    <dd>
+                        <ul>
+                            <li>Lunedì: 00:00-23:59</li>
+                            <li>Martedì: 00:00-23:59</li>
+                            <li>Mercoledì: 00:00-23:59</li>
+                            <li>Giovedì: 00:00-23:59</li>
+                            <li>Venerdì: 00:00-23:59</li>
+                            <li>Sabato: 00:00-23:59</li>
+                            <li>Domenica: 00:00-23:59</li>
+                        </ul>
+                    </dd>
+                    <dt>Giorno di chiusura</dt>
+                    <dd>%GIORNO_CHIUSURA%</dd>
+                    <dt>Telefono: </dt>
+                    <dd>%TELEFONO%</dd>
+                    <dt><span xml:lang="en">Email:</span> </dt>
+                    <dd><a href="mailto:%EMAIL%">%EMAIL</a></dd>
+                    <dt>Indirizzo: </dt>
+                    <dd>%INDIRIZZO%</dd>
+                    <dt>Sito<span xml:lang="en"> web:</span> </dt> 
+                    <dd><a href="%SITO%">%SITO%</a></dd>
+                </dl>
+            </div>
+
             <h2 id="review_main_title">Recensioni: </h2>
-            <a href="ins_recensione.html" class="btn">Inserisci recensione</a>
+            <span class="stelle_item">Stelle %NUMERO_STELLE%/5
+                <span class="stelle_counter">%LISTA_STELLE%</span>
+            </span>
             <h3 class="review_info_title">Numero di recensioni totali: %NUMERO_RECENSIONI%</h3>
             
             <ul>
@@ -112,14 +115,14 @@
             </ul>
 
             <h3 class="review_info_title">Recensioni degli utenti: </h3>
-            
+            <a href="ins_recensione.html" class="btn">Inserisci recensione</a>
             <form action="%URL_PAGINA%" method="GET">
                 <label for="ordinamento">Ordinamento: </label>
                 <select id="ordinamento" for="ordinamento">
                     <option value="0" selected="selected">Più votati</option>
                     <option value="1">Più recenti</option>
                 </select>
-                <input type="submit" value="Cambia ordinamento" />  
+                <input type="submit" value="Cambia ordinamento" class="btn"/>  
             </form>
 
             %LIST%

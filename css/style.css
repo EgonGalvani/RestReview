@@ -503,13 +503,13 @@ dd form, dd fieldset {
     border: 0;
 }
 
-dd .stelle_item{
+.stelle_item{
     font-size: 1.1em;
     padding: 0em 0.5em; 
     display: block; 
 }
 
-dd .stelle_counter {
+.stelle_counter {
     color: gold; 
     font-size: 1.5em; 
 }
@@ -724,59 +724,65 @@ dd .stelle_counter {
 .review_info_title {
     margin: 1em 0; 
 }
+
 #review_main_title{
     padding-top: 2em;
     clear: both;
 }
+
 progress {
     padding: 1em;  
     width: 60%;
 }
+
 #nomeRist{
-    font-size: 2.1em;
-    padding-bottom: 1em;
-    display: block;
+    font-size: 2em; 
 }
+
 #all_photoes{
     float: left;
     width: 45%;
-    padding-bottom: 7.7em;
+    margin-left: 3em;
 }
+
 #mainphoto{
+    margin: 1em auto; 
+    width: 100%; 
     display: block;
-    margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
 }
-.photoes{
-    margin-top: 31%;
-    width: 20%;
+
+.photoes {
+    width: 23%;
+    margin-top: 2em;     
+    cursor: pointer; 
 }
+
+.selected_photo {
+    border: 3px solid #000; 
+}
+
 #information{
-    margin-left: 45%;
-    font-size: 1.3em;
-    padding-left: 5em;
-    border-bottom: none;
+    margin-left: 55%;
 }
+
 #orari{
     margin-top: 0.6em;
     font-weight: bold;
 }
-#contatto dt{
-    float: left;
-    font-weight: bold;
-}
+
+#restaurant_information {
+    padding-left: 1em; 
+} 
+
 #restaurant_information dt{
     font-weight: bold;
+    margin-top: 0.5em; 
 }
-#restaurant_information{
-    margin-right: 5em;
-    margin-bottom: 0.6em;
+
+#restaurant_information dd {
+    margin-left: 1em; 
 }
-#contatto dd{
-    margin-left: 6em; 
-    font-style: italic;
-}
+
 /** ------- I MIEI RISTORANTI ------- **/ 
 .tab {
     overflow: hidden;
@@ -839,7 +845,7 @@ progress {
 }
 
 #ins_recensione_subtite {
-    margin-bottom: 1em; 
+    margin: 1em 0; 
     clear: left; 
 }
 
@@ -927,16 +933,6 @@ progress {
         width: 45%;
         margin: 1em auto;
         display: block; 
-    }
-    #all_photoes{
-        background-color: transparent;
-        float: none;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    #information{
-        margin-left: 0em;
-        padding-left: 0em;
     }
     
 }
@@ -1030,9 +1026,6 @@ progress {
         width: 60%; 
     }
 
-    #ins_recensione_subtite {
-        margin-top: 1em; 
-    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1077,5 +1070,13 @@ progress {
     
     #profile-view {
         margin-left: 0em; 
+    }
+
+    #all_photoes {
+        margin-left: 1em;
+    }
+
+    #information {
+        margin-left: 50%;
     }
 }
