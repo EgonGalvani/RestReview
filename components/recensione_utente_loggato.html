@@ -16,17 +16,17 @@
         %LIKE_FORM% 
     </div>
     
-    <form action="remove_review.php" method="POST" class="input_btn_form">
+    <form action="remove_review.php" method="POST">
         <fieldset>
             <input type="hidden" name="id_ristorante" value="%ID_RECENSIONE%"/>
-            <input type="submit" class="input_recensioni" name="Elimina" value="Elimina" tabindex="2" />
+            <input type="submit" class="btn" name="Elimina" value="Elimina" tabindex="2" />
         </fieldset>
     </form>
     
-    <form action="dettaglioristorante.html" method="GET" class="input_btn_form" >
+    <form action="dettaglioristorante.html" method="GET">
         <fieldset>
             <input type="hidden" name="id_ristorante" value="%ID_RISTORANTE%"/>
-            <input type="submit" class="input_recensioni" name="Visita" value="Vai al ristorante" tabindex="3" />
+            <input type="submit" class="btn" name="Visita" value="Vai al ristorante" tabindex="3" />
         </fieldset>
     </form>
 </dd>

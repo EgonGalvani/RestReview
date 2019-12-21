@@ -22,7 +22,7 @@
     $id_utente=$_SESSION['ID'];
 
     require_once("addItems.php");
-    $page=addItems('../html/lemierecensioni.html');
+    $page = addItems('../html/lemierecensioni.html');
 
     $page=str_replace('<li><a href="lemierecensioni.php">Le mie recensioni</a></li>',
                     '<li class="active">Le mie recensioni</li>',$page);
@@ -32,7 +32,7 @@
         if(!$result = $obj_connection->connessione->query("SELECT * FROM recensione WHERE ID_Utente=$id_utente")){
             $page=str_replace("%LIST%","Non è possibile visualizzare le tue recensioni",$page);
         }else{
-            $list = "";
+            $list = '<dl class="card_list rec_list">';
             if($result->num_rows>0){
                 while($row=$result->fetch_array(MYSQLI_ASSOC)){
                     $item = file_get_contents("../components/recensione_utente_loggato.html");
@@ -53,19 +53,22 @@
                     $item=str_replace("%NOME_RISTORANTE%",$rest_name,$item);
 
                     $id_recensione=$row["ID"];
-                    $num_likes="";
+                    $num_likes="0";
+
                     if($likes = $obj_connection->connessione->query("SELECT COUNT(*) AS num FROM mi_piace AS m, recensione AS r 
                         WHERE r.ID_Utente=$id_utente AND m.ID_Recensione=$id_recensione")){
-                        $num_likes=$likes->fetch_array(MYSQLI_ASSOC)["num"];
+                        $num_likes = $likes->fetch_array(MYSQLI_ASSOC)["num"];
                         $likes->free();
                     }
-                    $item=str_replace("%NUMERO_MI_PIACE%",$num_likes,$item);  
 
-                    $item=str_replace("%LIKE_FORM%","",$item);
+                    $item = str_replace("%NUMERO_MI_PIACE%",$num_likes,$item);  
+                    $item = str_replace("%LIKE_FORM%","",$item);
 
-                    $list=$list.$item;
+                    $list .= $item;
                 }
             }
+
+            $list .= '</dl>';
             $page= str_replace("%LIST%",$list,$page);
 
             $result->free();

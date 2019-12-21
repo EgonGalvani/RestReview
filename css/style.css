@@ -268,7 +268,7 @@ textarea {
     background-position: left;
     padding: 0.5em 0.3em 0.5em 1.5em;
     cursor: pointer;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #1565c0;
     background-size: 1em 1em; 
 }
 
@@ -483,7 +483,7 @@ textarea {
 
 .card_list dt {
     padding: 0.5em; 
-    border: 2px solid #ddd; 
+    border: 2px solid #1565c0; 
     border-bottom: 0; 
 }
 
@@ -493,7 +493,7 @@ textarea {
 }
 
 .card_list dd {
-    border: 2px solid #ddd;
+    border: 2px solid #1565c0;
     padding: 1em; 
     margin-bottom: 1em; 
 }
@@ -571,6 +571,11 @@ dd .stelle_counter {
 .rec_list .review_details {
     vertical-align: top;
     margin-left: 1.5em; 
+}
+
+.rec_list .btn {
+    padding: 0.5em; 
+    margin: 0.75em 0 0 0.25em; 
 }
 
 /*PAGINA 404*/
