@@ -783,6 +783,10 @@ progress {
     margin-left: 1em; 
 }
 
+#ordinamento_form {
+    margin: 1.5em 0; 
+}
+
 /** ------- I MIEI RISTORANTI ------- **/ 
 .tab {
     overflow: hidden;
