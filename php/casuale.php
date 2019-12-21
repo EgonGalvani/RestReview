@@ -1,17 +1,13 @@
 <?php
 
-    $file_content=file_get_contents('../html/casuale.html');
+    require_once('sessione.php');
 
-    require_once('menu_list.php');
-    $menuList=new menuList('utente');
+    require_once("addItems.php");
+    $page=addItems('../html/casuale.html');
 
-    $search='<li><a href="../php/casuale.php">Ristorante casuale</a></li>';
-    $replace='<li class="active">Ristorante casuale</li>';
-    
-    $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
+    $page=str_replace('<li><a href="casuale.php">Ristorante casuale</a></li>',
+                    '<li class="active">Ristorante casuale</li>',$page);
 
-    $file_content=str_replace('%MENU%',$menu,$file_content);
-
-    echo $file_content;
+    echo $page;
 
 ?>

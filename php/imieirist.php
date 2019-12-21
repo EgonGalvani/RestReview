@@ -1,17 +1,13 @@
 <?php
 
-    $file_content=file_get_contents('../html/imieirist.html');
+    require_once('sessione.php');
 
-    require_once('menu_list.php');
-    $menuList=new menuList('ristoratore');
+    require_once("addItems.php");
+    $page=addItems('../html/imieirist.html');
 
-    $search='<li><a href="../php/imieirist.php">I miei ristoranti</a></li>';
-    $replace='<li class="active">I miei ristoranti</li>';
-    
-    $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
+    $page=str_replace('<li><a href="imieirist.php">I miei ristoranti</a></li>',
+                '<li class="active">I miei ristoranti</li>',$page);
 
-    $file_content=str_replace('%MENU%',$menu,$file_content);
-
-    echo $file_content;
+    echo $page;
 
 ?>

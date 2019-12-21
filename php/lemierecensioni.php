@@ -13,34 +13,24 @@
         return $stelle;
     }
     
-    session_start();
+    require_once('sessione.php');
 
     require_once("connessione.php");
     $obj_connection = new DBConnection();
     $connected = $obj_connection->create_connection();
 
     $id_utente=$_SESSION['ID'];
-    $file_content = file_get_contents('../html/lemierecensioni.html');
 
-    /* Creazione header */
-    require_once('header.php');
-    $head=new pageHeader(false);
-    $file_content = str_replace("%HEADER%",$head->getHeader(),$file_content);
+    require_once("addItems.php");
+    $page=addItems('../html/lemierecensioni.html');
 
-    /* Creazione menu */
-    require_once('menu_list.php');
-    $menuList=new menuList('utente');
-    $search='<li><a href="../php/lemierecensioni.php">Le mie recensioni</a></li>';
-    $replace='<li class="active">Le mie recensioni</li>';
-    
-    $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
-
-    $file_content=str_replace("%MENU%",$menu,$file_content);
+    $page=str_replace('<li><a href="lemierecensioni.php">Le mie recensioni</a></li>',
+                    '<li class="active">Le mie recensioni</li>',$page);
 
     /* Recupero lista recensioni dal database */
     if($connected){
         if(!$result = $obj_connection->connessione->query("SELECT * FROM recensione WHERE ID_Utente=$id_utente")){
-            $file_content=str_replace("%LIST%","Non è possibile visualizzare le tue recensioni",$file_content);
+            $page=str_replace("%LIST%","Non è possibile visualizzare le tue recensioni",$page);
         }else{
             $list = "";
             if($result->num_rows>0){
@@ -76,11 +66,11 @@
                     $list=$list.$item;
                 }
             }
-            $file_content= str_replace("%LIST%",$list,$file_content);
+            $page= str_replace("%LIST%",$list,$page);
 
             $result->free();
         }
     }
-    echo $file_content;
+    echo $page;
 
 ?>
