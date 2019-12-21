@@ -15,7 +15,7 @@
     }
 
     function check_nome($nome){
-        if(preg_match('/^([a-zA-Z]+)$/',$nome)==1){
+        if(preg_match('/^([a-zA-Z]*)$/',$nome)==1){
             return true;
         }
         return false;

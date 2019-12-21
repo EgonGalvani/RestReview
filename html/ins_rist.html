@@ -34,6 +34,7 @@
             
             <form method="POST" id="nuovo_rist_form" action="../php/ins_rist.php" class="vertical_input_form">
                 
+                %MESSAGGIO%
                 <fieldset>
                     <legend>Dettagli ristorante</legend>
 
@@ -43,8 +44,7 @@
                             NON ESSERE DISPONIBILI
                         </div>
                     </noscript>
-                    
-                    %NUM_ERRORI%
+                
                     %ERR_NOME%
                     <label for="nome">Nome ristorante: </label>
                     <input type="text" name="nome" id="nome" value="%VALUE_NOME%"/>
@@ -53,8 +53,9 @@
                     <label for="b_descrizione">Breve Descrizione: </label>
                     <textarea name="b_descrizione" id="b_descrizione" rows="3">%VALUE_DESC%</textarea>
 
+                    %ERR_CAT%
                     <label for="categoria">Categoria: </label>
-                    <select name="categoria" value="%VALUE_CAT%">
+                    <select name="categoria">
                         %CATEGORIA%
                     </select>
                     %ERR_TEL%
@@ -63,20 +64,21 @@
                     %ERR_EMAIL%
                     <label for="email">Email: </label>
                     <input type="email" name="email" id="email" value="%VALUE_EMAIL%"/>
-
+                    %ERR_SITO%
                     <label for="sito">Sito: </label>
                     <input type="url" name="sito" id="sito" value="%VALUE_SITO%"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Orari</legend>
-                        
+                    %ERR_OR_AP%    
                     <label for="o_apertura">Orario di apertura: </label>
                     <input type="time" name="o_apertura" id="o_apertura" value="%VALUE_OR_AP%"/>
-
+                    %ERR_OR_CH%
                     <label for="o_chiusura">Orario di chiusura: </label>
                     <input type="time" name="o_chiusura" id="o_chiusura" value="%VALUE_OR_CH%"/>
                     
+                    %ERR_GIORNO%
                     <span>Giorno di chiusura: </span>
                     <ul id="free_day_list">
                         <li>
@@ -106,8 +108,9 @@
                   
                 <fieldset>
                     <legend>Indirizzo ristorante</legend>
-
+                    
                     <div id="indirizzo">
+                        %ERR_VIA%
                         <label for="via">Via: </label>
                         <input type="text" name="via" id="via" value="%VALUE_VIA%"/>
                         %ERR_CIV%
@@ -116,20 +119,21 @@
                     </div>
                     
                     <div>
+                        %ERR_CITTA%
                         <label for="citta">Città: </label>
                         <input type="text" name="citta" id="citta" value="%VALUE_CITTA%"/>
                         %ERR_CAP%
                         <label for="cap">CAP: </label>
                         <input type="text" name="cap" id="cap" value="%VALUE_CAP%"/> 
                     </div>
-                   
+                    %ERR_NAZ%
                     <label for="nazione">Nazione: </label>
                     <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Immagini</legend>
-
+                    %ERR_IMG%
                     <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
                     <input type="file" name="main_photo" />
 

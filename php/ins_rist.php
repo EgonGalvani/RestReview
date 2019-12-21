@@ -14,11 +14,19 @@
     if($_SESSION['permesso']=='Ristoratore'){
 
         $errors=array("nome"=>"",
-                            "desc"=>"",
-                            "tel"=>"",
-                            "email"=>"",
-                            "civ"=>"",
-                            "cap"=>"");
+                    "desc"=>"",
+                    "cat"=>"",
+                    "tel"=>"",
+                    "email"=>"",
+                    "sito"=>"",
+                    "ora_ap"=>"",
+                    "ora_chiu"=>"",
+                    "giorno"=>"",
+                    "via"=>"",
+                    "civ"=>"",
+                    "citta"=>"",
+                    "cap"=>"",
+                    "naz"=>"");
         $num_errori=0;
 
         $nome='';
@@ -44,59 +52,59 @@
 
         /* controllo se è stato fatto il submit */
         if(isset($_POST['nome'])){
-            $nome=$_POST['nome'];
+            $nome=htmlentities(trim($_POST['nome']));
 
             if(isset($_POST['b_descrizione'])){
-                $desc=$_POST['b_descrizione'];
+                $desc=htmlentities(trim($_POST['b_descrizione']));
             }
 
             if(isset($_POST['categoria'])){
-                $categoria=$_POST['categoria'];
+                $categoria=htmlentities(trim($_POST['categoria']));
             }
 
             if(isset($_POST['telefono'])){
-                $tel=$_POST['telefono'];
+                $tel=htmlentities(trim($_POST['telefono']));
             }
 
             if(isset($_POST['email'])){
-                $email=$_POST['email'];
+                $email=htmlentities(trim($_POST['email']));
             }
 
             if(isset($_POST['sito'])){
-                $sito=$_POST['sito'];
+                $sito=htmlentities(trim($_POST['sito']));
             }
 
             if(isset($_POST['o_apertura'])){
-                $ora_ap=$_POST['o_apertura'];
+                $ora_ap=htmlentities(trim($_POST['o_apertura']));
             }
 
             if(isset($_POST['o_chiusura'])){
-                $ora_chiu=$_POST['o_chiusura'];
+                $ora_chiu=htmlentities(trim($_POST['o_chiusura']));
             }
             
             if(isset($_POST['free_day'])){
-                $giorno=$_POST['free_day'];
+                $giorno=htmlentities(trim($_POST['free_day']));
                 $arr_giorno["$giorno"]='checked="checked"';
             }else{
                 $giorno='';
             }
 
             if(isset($_POST['via'])){
-                $via=$_POST['via'];
+                $via=htmlentities(trim($_POST['via']));
             }
             if(isset($_POST['civico'])){
-                $civico=$_POST['civico'];
+                $civico=htmlentities(trim($_POST['civico']));
             }
 
             if(isset($_POST['citta'])){
-                $citta=$_POST['citta'];
+                $citta=htmlentities(trim($_POST['citta']));
             }
             if(isset($_POST['cap'])){
-                $cap=$_POST['cap'];
+                $cap=htmlentities(trim($_POST['cap']));
             }
 
             if(isset($_POST['nazione'])){
-                $nazione=$_POST['nazione'];
+                $nazione=htmlentities(trim($_POST['nazione']));
             }
             /*
                 FARE PER IMMAGINI
@@ -108,6 +116,14 @@
             $errors=$ristorante->getErrors();
             $num_errori=$ristorante->numErrors($errors);
            
+            //Inserimento
+            if($num_errori==0){
+                if($insert=$ristorante->insertIntoDB()){
+                    $page=str_replace('%MESSAGGIO%','<p class="msg_box">Inserimento avvenuto con successo</p>',$page);
+                }else{
+                    $page=str_replace('%MESSAGGIO%','<p class="msg_box error_box">Inserimento fallito</p>',$page);
+                }
+            }
         }   
         if($num_errori>0){
             $err="[Sono presenti $num_errori campi compilati non correttamente]";
@@ -115,13 +131,21 @@
             $err='';
         }
 
-        $page=str_replace('%NUM_ERRORI%',$err,$page);
+        $page=str_replace('%MESSAGGIO%',$err,$page);
         $page=str_replace('%ERR_NOME%',$errors['nome'],$page);
         $page=str_replace('%ERR_DESC%',$errors['desc'],$page);
+        $page=str_replace('%ERR_CAT%',$errors['cat'],$page);
         $page=str_replace('%ERR_TEL%',$errors['tel'],$page);
         $page=str_replace('%ERR_EMAIL%',$errors['email'],$page);
+        $page=str_replace('%ERR_SITO%',$errors['sito'],$page);
+        $page=str_replace('%ERR_OR_AP%',$errors['ora_ap'],$page);
+        $page=str_replace('%ERR_OR_CH%',$errors['ora_chiu'],$page);
+        $page=str_replace('%ERR_GIORNO%',$errors['giorno'],$page);
+        $page=str_replace('%ERR_VIA%',$errors['via'],$page);
         $page=str_replace('%ERR_CIV%',$errors['civ'],$page);
+        $page=str_replace('%ERR_CITTA%',$errors['citta'],$page);
         $page=str_replace('%ERR_CAP%',$errors['cap'],$page);
+        $page=str_replace('%ERR_NAZ%',$errors['naz'],$page);
 
         $page=str_replace('[','<p class="msg_box error_box">',$page);
         $page=str_replace(']','</p>',$page);
