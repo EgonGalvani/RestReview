@@ -55,7 +55,7 @@
                     <legend>Inserimento nuova recensione</legend>
 
                     <label>Valuta la tua esperienza: </label>
-                    <select id="n_stelle" name="n_stelle">
+                    <select id="n_stelle" name="n_stelle" class="input_field">
                         <option value="1">1 stella</option>
                         <option value="2">2 stelle</option>
                         <option value="3">3 stelle</option>
@@ -64,10 +64,10 @@
                     </select>
                     
                     <label for="titolo_recensione">Titolo della tua recensione: </label>
-                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%"/>
+                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" class="input_field full_width_input"/>
 
                     <label for="contenuto_recensione">La tua recensione: </label>
-                    <textarea id="contenuto_recensione" name="contenuto_recensione">%CONTENUTO_RECENSIONE%</textarea>
+                    <textarea id="contenuto_recensione" name="contenuto_recensione" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
                     
                     <input type="submit" class="btn right" value="Invia recensione!" />
                 </fieldset>
