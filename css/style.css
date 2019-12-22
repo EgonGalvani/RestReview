@@ -194,7 +194,7 @@ input:not([type="textarea"]):not([type="file"]):not([type="reset"]):not([type="s
     transition: border-color ease-in-out 200ms; 
 }
 
-input:not([type="textarea"]):not([type="file"]):not([type="reset"]):not([type="submit"]):focus, +
+input:not([type="textarea"]):not([type="file"]):not([type="reset"]):not([type="submit"]):focus, 
 select:focus{
     border-bottom-color: #00428A; 
     outline: none; 
@@ -697,16 +697,6 @@ dd form, dd fieldset {
     margin-top: 1.5em; 
 }
 
-#edit_personal_data input[type="submit"],
-#edit_account_data input[type="submit"],
-#edit_foto_profilo input[type="submit"], 
-#edit_personal_data input[type="reset"],
-#edit_account_data input[type="reset"],
-#edit_foto_profilo input[type="reset"] {
-    float: right; 
-    margin-left: 0; 
-}
-
 /* --------------- DETTAGLIO RISTORANTE ---------- */
 
 .review_info_title {
@@ -1066,10 +1056,16 @@ progress {
     }
 
     #all_photoes {
-        margin-left: 1em;
+        float: none; 
+        width: 90%;
+        margin: 1em auto; 
+    }
+
+    #mainphoto {
+        width: 80%;
     }
 
     #information {
-        margin-left: 50%;
+        margin: 2em 0 0 0;
     }
 }
