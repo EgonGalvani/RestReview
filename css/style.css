@@ -110,6 +110,7 @@ ul, dl {
 #page_title {
     font-size: 2.5em; 
     margin-bottom: 0.5em; 
+    word-break: break-all;
 }
 
 #sub_title, #ins_recensione_subtite{

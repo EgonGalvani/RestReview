@@ -39,14 +39,12 @@
         </div>
 
         <div id="content">
-            <h1 id="page_title">Nome Ristorante</h1>
+            <h1 id="page_title">%NOME_RISTORANTE%</h1>
             
             <div id= "all_photoes">
-                <img id="mainphoto" src="../img/ristoranti/8.jpeg" alt=""/>
-                <img class="photoes selected_photo" src="../img/ristoranti/8.jpeg" alt=""/>
-                <img class="photoes" src="../img/ristoranti/5.jpeg" alt=""/>
-                <img class="photoes" src="../img/ristoranti/3.jpeg" alt=""/>
-                <img class="photoes" src="../img/ristoranti/4.jpeg" alt=""/>
+                <img id="mainphoto" src="%MAIN_IMG_PATH%" alt="%MAIN_IMG_DESC" />
+                <img class="photoes selected_photo" src="%MAIN_IMG_PATH%" alt="%MAIN_IMG_DESC" />
+                %EXTRA_PHOTO% <!-- OGNUNA DEVE AVERE class="photoes" -->
             </div>
           
             <div id="information">
@@ -58,13 +56,7 @@
                     <dt id="orari">Orario di apertura</dt>
                     <dd>
                         <ul>
-                            <li>Lunedì: 00:00-23:59</li>
-                            <li>Martedì: 00:00-23:59</li>
-                            <li>Mercoledì: 00:00-23:59</li>
-                            <li>Giovedì: 00:00-23:59</li>
-                            <li>Venerdì: 00:00-23:59</li>
-                            <li>Sabato: 00:00-23:59</li>
-                            <li>Domenica: 00:00-23:59</li>
+                            %ORARI%
                         </ul>
                     </dd>
                     <dt>Giorno di chiusura</dt>
