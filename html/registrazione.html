@@ -15,15 +15,15 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
 
         <!-- favicon - realfavicongenerator.net -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-        <link rel="manifest" href="../favicon/site.webmanifest">
-        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a">
-        <link rel="shortcut icon" href="../favicon/favicon.ico">
-        <meta name="msapplication-TileColor" content="#00aba9">
-        <meta name="msapplication-config" content="../favicon/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="../favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a"/>
+        <link rel="shortcut icon" href="../favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#00aba9"/>
+        <meta name="msapplication-config" content="../favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
     </head>
 
     <body>
@@ -40,7 +40,7 @@
         </div>
 
         <div id="content">
-            <form method="POST" action="registrazione.php" enctype="multipart/form-data" id="form_registrazione" class="vertical_input_form">
+            <form method="post" action="registrazione.php" enctype="multipart/form-data" id="form_registrazione" class="vertical_input_form">
                 <!--multipart/form-data	Non vengono codificati i caratteri,
                 è necessario per i form che fanno file upload.
                 (https://www.w3schools.com/tags/att_form_enc  type.asp)-->
@@ -49,9 +49,9 @@
                                         
                     <label for="recensore">Tipologia di registrazione: </label>
                     <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore" checked="checked" />
-                    <label class="radio_label" for="recensore">Recensore</label>
-                    <input type="radio" name="tipo_utente" value="1"  id="ristoratore" />
-                    <label class="radio_label" for="ristoratore">Ristoratore</label>
+		    <label class="radio_label" for="recensore">Recensore</label>
+		    <input type="radio" name="tipo_utente" value="1"  id="ristoratore" />
+		    <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
                     <label for="email" lang="en">Email:</label>
                     <input type="email" name="email" id="email" required="required" tabindex="2" />

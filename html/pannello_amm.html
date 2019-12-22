@@ -14,15 +14,15 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
 
         <!-- favicon - realfavicongenerator.net -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-        <link rel="manifest" href="../favicon/site.webmanifest">
-        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a">
-        <link rel="shortcut icon" href="../favicon/favicon.ico">
-        <meta name="msapplication-TileColor" content="#00aba9">
-        <meta name="msapplication-config" content="../favicon/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="../favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a"/>
+        <link rel="shortcut icon" href="../favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#00aba9"/>
+        <meta name="msapplication-config" content="../favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
     </head>
 
     <body>
@@ -41,7 +41,7 @@
         <div id="content">
             <h1 id="page_title">Pannello amministratore</h1>
            
-            <form class="vertical_input_form" id="ins_cat_form" method="POST" action=""> 
+            <form class="vertical_input_form" id="ins_cat_form" method="post" action=""> 
                 <fieldset>
                     <legend>Inserimento nuova categoria</legend>
                     
@@ -67,16 +67,16 @@
         </span>
 
         <p class="rist_descrizione">%DESCRIZIONE%</p>
-
-        <form method="POST" action="">
+        <form method="post" action="">
             <fieldset>
+		<legend> rifiuta richiesta ristorante </legend>
                 <input type="hidden" value="%ID_RISTORANTE%" />
                 <input type="submit" class="msg_box error_box" value="RIFIUTA RICHIESTA" />
             </fieldset>
         </form>
-
-        <form method="POST" action="">
+        <form method="post" action="">
             <fieldset>
+		<legend> accetta richiesta ristorante</legend>
                 <input type="hidden" value="%ID_RISTORANTE%" />
                 <input type="submit" class="msg_box success_box" value="ACCETTA RICHIESTA" />
             </fieldset>

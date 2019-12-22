@@ -14,15 +14,15 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
 
         <!-- favicon - realfavicongenerator.net -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-        <link rel="manifest" href="../favicon/site.webmanifest">
-        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a">
-        <link rel="shortcut icon" href="../favicon/favicon.ico">
-        <meta name="msapplication-TileColor" content="#00aba9">
-        <meta name="msapplication-config" content="../favicon/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+        <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="../favicon/site.webmanifest"/>
+        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#00428a"/>
+        <link rel="shortcut icon" href="../favicon/favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#00aba9"/>
+        <meta name="msapplication-config" content="../favicon/browserconfig.xml"/>
+        <meta name="theme-color" content="#ffffff"/>
     </head>
 
     <body>
@@ -48,20 +48,21 @@
 
             <h1>Modifica il mio profilo</h1>
            
-            <form method="POST" action="" id="edit_foto_profilo" class="vertical_input_form">
+            <form method="post" action="" id="edit_foto_profilo" class="vertical_input_form">
                 <fieldset>
                     <legend>Foto Profilo</legend>
                     
                     %IMG_ERROR% 
 
                     <img class="img_profilo" id="img_profilo-modify" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
+		   		     <label for="new_foto_profilo"> modifica foto profilo </label>
                     <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
 
                     <input type="submit" value="Modifica foto profilo" />
                 </fieldset>
             </form>
             
-            <form method="POST" action="" id="edit_account_data" class="vertical_input_form">
+            <form method="post" action="" id="edit_account_data" class="vertical_input_form">
                 <fieldset>
                     <legend>Cambio Password</legend>
                         
@@ -81,7 +82,7 @@
             </form>
          
 
-            <form method="POST" action="" class="vertical_input_form" id="edit_personal_data">
+            <form method="post" action="" class="vertical_input_form" id="edit_personal_data">
                 <fieldset>
                     <legend>I miei dati personali</legend>
 
@@ -92,14 +93,14 @@
                     <input type="text" name="cognome" id="cognome" value="%COGNOME%" tabindex="8" />
                     
                     <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" value="uomo" tabindex="9">
+                    <select name="sesso" id="sesso" tabindex="9">
                         <option value="uomo">Uomo</option>
                         <option value="donna">Donna</option>
                         <option value="altro">Altro</option>
                     </select>
                     
                     <label for="nascita">Data di nascita:</label>
-                    <input type="date" name="nascita" id="nascita" value="%DATA_NASCITA%" tabindex="10">
+                    <input type="text" name="nascita" id="nascita" value="%DATA_NASCITA%" tabindex="10"/>
 
                     <label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>
                     <input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="11" />
