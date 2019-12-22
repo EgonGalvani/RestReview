@@ -237,13 +237,13 @@ Esempio:
     <div class="center">
         <div class="pagination">
             <span class="disabled">&laquo;</span>
-            <a href="" class="">1</a>
+            <a href="" >1</a>
             <span class="active">2</span>
-            <a href="#" class="">3</a>
-            <a href="#" class="">4</a>
-            <a href="#" class="">5</a>
-            <a href="#" class="">6</a>
-            <a href="#" class="">&raquo;</a>
+            <a href="#" >3</a>
+            <a href="#" >4</a>
+            <a href="#" >5</a>
+            <a href="#" >6</a>
+            <a href="#" >&raquo;</a>
         </div>
     </div>
 ```

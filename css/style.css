@@ -186,14 +186,16 @@ input[type="radio"], input[type="checkbox"] {
     vertical-align: middle;
 }
 
-.input_field {
+
+input:not([type="textarea"]):not([type="file"]):not([type="reset"]):not([type="submit"]),  select {
     padding: 0.75em; 
     border: 0; 
     border-bottom: 1px solid #1565c0; 
     transition: border-color ease-in-out 200ms; 
 }
 
-.input_field:focus{
+input:not([type="textarea"]):not([type="file"]):not([type="reset"]):not([type="submit"]):focus, +
+select:focus{
     border-bottom-color: #00428A; 
     outline: none; 
 }
@@ -622,7 +624,7 @@ dd form, dd fieldset {
 }
 
 #nuovo_rist_form input[type="file"] {
-    margin-bottom: 0.5em; 
+    margin-bottom: 1em; 
 }
 
 #via, #civico, #citta, #cap {
