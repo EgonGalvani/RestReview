@@ -204,27 +204,38 @@ abbr::after {
     display: block;
 }
 
-.rist_list dt {
+.card_list dt{
     border: 1px solid #000; 
     border-bottom: none; 
-    text-align: center; 
-    font-size: 16pt;
     margin-top: 0.25cm; 
 }
 
-.rist_list dd {
+.rist_list dt {
+    text-align: center; 
+    font-size: 16pt;
+}
+
+.card_list dd {
     border: 1px solid #000; 
 }
 
-.rist_list form {
+.card_list form {
     display: inline-block;
 }
 
-.rist_list fieldset {
+.card_list fieldset {
     border: 0; 
 }
 
-.rist_list legend {
+.card_list legend {
     display: none;
 }
 
+/*---------------- ITEM RECENSIONE ------------------*/
+.rec_list dt h2 {
+   display: inline;
+}
+
+.rec_list .data_item {
+    float: right; 
+}
