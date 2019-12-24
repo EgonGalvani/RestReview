@@ -1,10 +1,28 @@
 * {
     font-family: "Times New Roman", Times, serif;
+    padding: 0; 
+    margin: 0; 
 }
 
-#header .btn, 
-#menu {
+a, a:visited {
+    color: #000; 
+}
+
+a::after{
+    content: " (" attr(href) ") ";
+}
+
+abbr::after {
+    content: " (" attr(title) ")";  
+}
+
+#header .btn, #menu {
     display: none;
+}
+
+.btn { 
+    background-color: #fff;
+    border: 0.5px solid #000; 
 }
 
 #breadcrumb {
@@ -21,19 +39,19 @@
 
 #header #title {
     font-size: 3em;
-    margin: 0.25em 0;
 }
 
 #content {
     font-size: 1em;
+    padding: 0.25cm 0.25cm 1cm 0.25cm;
 }
 
 #page_title {
-    margin: 0.25em 0; 
+    margin-top: 0.25em; 
 }
 
-#form_ricerca {
-    padding: 0.5em; 
+#sub_title {
+    margin-bottom: 0.1em;
 }
 
 #content * {
@@ -44,4 +62,106 @@
     padding: 0.5em; 
     border-top: 0.1em solid #000;
     border-bottom: 0.1em solid  #000;
+}
+
+
+.msg_box {
+    padding: 1.25em; 
+    font-weight: bold;
+    margin: 0.5em 0; 
+    background-repeat: no-repeat;
+    background-position: 0.5em center;
+    padding-left: 4em; 
+    font-size: 1em; 
+    background-size: 3em; 
+}
+
+.error_box {
+    background-image: url(../img/error_icon.svg);   
+}
+
+.success_box {
+    background-image: url(../img/success_icon.svg);
+}
+
+.warning_box {
+    background-image: url(../img/warning_icon.svg);
+}
+
+/*------------ FAQ ---------*/
+.faq_control_close, .faq_control_open {
+    display: none;  
+}
+
+.faq_title::before{
+    content: "■ ";
+}
+
+.faq_list dt {
+    font-weight: bold;
+}
+
+.faq_list dd {
+    margin-left: 0.5cm; 
+}
+
+/* -------------- REGOLAMENTO -----------*/
+.cr_content h2::before {
+    content: "■ ";
+}
+
+.cr_content ul, .cr_content ol {
+    margin-left: 1cm; 
+}
+
+.cr_content ul {
+    list-style-type: circle;
+}
+
+/* --------------- IL MIO PROFILO --------------*/
+.img_profilo {
+    float: left; 
+    width: 30%;
+}
+
+#profile-view {
+    margin-left: 45%;
+    margin-bottom: 1cm; 
+}
+
+.list_profilo dd {
+    font-weight: bold;
+    margin-left: 0.5cm; 
+}
+
+/* -------------- MODIFICA PROFILO ----------- */
+.vertical_input_form input:not([type="submit"]):not([type="reset"]):not([type="radio"]), select {
+    display: block;
+    width: 50%;     
+    margin: 0.25cm 1cm 0.5cm 1cm; 
+}
+
+.vertical_input_form {
+    width: 75%;
+    display: block; 
+    margin-left: 12%;
+    margin-bottom: 0.5cm; 
+}
+
+.vertical_input_form .btn {
+    float: right; 
+    margin-right: 0.25cm; 
+    margin-bottom: 0.25cm; 
+}
+
+/*------------ REGISTRAZIONE -----------------*/
+#form_registrazione label[for="email"] {
+    display: block;
+    margin-top: 0.25cm; 
+}
+
+#img_profilo_preview {
+    display: block;
+    width: 30%;
+    margin-left: 35%;
 }
