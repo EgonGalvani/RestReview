@@ -165,3 +165,66 @@ abbr::after {
     width: 30%;
     margin-left: 35%;
 }
+
+/*-------------- INDEX -----------*/
+#search_btn {
+    float: right; 
+    margin-right: 0.25em; 
+    margin-bottom: 0.25cm; 
+}
+
+#search {
+    display: block;
+    width: 90%;
+    margin: 0.25cm 0.5cm; 
+}
+
+.in_wrapper input[type="radio"] {
+    margin: 0 0.25cm 0 0.75cm;  
+}
+
+/*--------------DETTAGLIO RISTORANTE--------*/
+#restaurant_information dt {
+    font-weight: bold;
+}
+
+#restaurant_information dd {
+    margin-left: 0.5cm; 
+}
+
+/*--------------- ITEM RECENSIONE -------------- */
+
+
+/* ----------------- ITEM RISTORANTE ----------------- */
+.rist_list .rist_img {
+    float: right; 
+}
+
+.rist_list span {
+    display: block;
+}
+
+.rist_list dt {
+    border: 1px solid #000; 
+    border-bottom: none; 
+    text-align: center; 
+    font-size: 16pt;
+    margin-top: 0.25cm; 
+}
+
+.rist_list dd {
+    border: 1px solid #000; 
+}
+
+.rist_list form {
+    display: inline-block;
+}
+
+.rist_list fieldset {
+    border: 0; 
+}
+
+.rist_list legend {
+    display: none;
+}
+
