@@ -51,61 +51,8 @@
                 </fieldset>
             </form>
 
-            <h2>Richieste di inserimento ristoranti: </h2>
-            <dl class="card_list rist_list">
-                <dt >%NOME%</dt>
-<dd>
-    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
-
-    <div class="rist_dett">
-        <span>%INDIRIZZO%</span>
-        <span>%TIPOLOGIA%</span>
-
-        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
-            <span class="stelle_counter">%LISTA_STELLE%</span>
-        </span>
-
-        <p class="rist_descrizione">%DESCRIZIONE%</p>
-        <form method="post" action="">
-            <fieldset>
-		<legend> rifiuta richiesta ristorante </legend>
-                <input type="hidden" value="%ID_RISTORANTE%" />
-                <input type="submit" class="msg_box error_box" value="RIFIUTA RICHIESTA" />
-            </fieldset>
-        </form>
-        <form method="post" action="">
-            <fieldset>
-		<legend> accetta richiesta ristorante</legend>
-                <input type="hidden" value="%ID_RISTORANTE%" />
-                <input type="submit" class="msg_box success_box" value="ACCETTA RICHIESTA" />
-            </fieldset>
-        </form>
-               
-    </div> 
-</dd>
-
-<dt >%NOME%</dt>
-<dd>
-    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
-
-    <div class="rist_dett">
-        <span>%INDIRIZZO%</span>
-        <span>%TIPOLOGIA%</span>
-
-        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
-            <span class="stelle_counter">%LISTA_STELLE%</span>
-        </span>
-
-        <p class="rist_descrizione">%DESCRIZIONE%</p>
-
-        %FORMS% 
-               
-    </div> 
-</dd>
-
-            </dl>
-        </div>
-    
+            %LIST%
+            
         <div id="footer">
             %FOOTER%
         </div>
