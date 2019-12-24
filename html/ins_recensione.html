@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
         <title>RestReview - Le migliori recensioni di ristoranti</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
-        <meta name="description" content=" " />
-        <meta name="keywords" content=" " />
+        <meta name="description" content="inserisci, recensione, stelle"/>
+        <meta name="keywords" content="pagina di inserimento recensioni"/>
   
         <meta name="author" content="##NOME DEL GRUPPO##" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -52,7 +52,7 @@
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
 
-                    <label>Valuta la tua esperienza: </label>
+                    <label for="n_stelle">Valuta la tua esperienza: </label>
                     <select id="n_stelle" name="n_stelle" >
                         <option value="1">1 stella</option>
                         <option value="2">2 stelle</option>
@@ -62,10 +62,10 @@
                     </select>
                     
                     <label for="titolo_recensione">Titolo della tua recensione: </label>
-                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" class=" full_width_input"/>
+                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" class="full_width_input"/>
 
                     <label for="contenuto_recensione">La tua recensione: </label>
-                    <textarea id="contenuto_recensione" name="contenuto_recensione" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
+                    <textarea id="contenuto_recensione" rows="50" cols="50" name="contenuto_recensione" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
                     
                     <input type="submit" class="btn right" value="Invia recensione!" />
                 </fieldset>

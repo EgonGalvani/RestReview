@@ -300,6 +300,9 @@ textarea {
     padding: 0.5em 0 0.5em 1em; 
     margin: 2em 0 2.5em 0; 
 }
+#form_ricerca legend {
+    display: none
+}
 
 #form_ricerca input[type="radio"]{
     margin-left: 0.25em; 
