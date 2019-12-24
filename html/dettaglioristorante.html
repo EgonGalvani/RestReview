@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
         <title>RestReview - Le migliori recensioni di ristoranti</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
@@ -63,11 +63,11 @@
                     <dd>%GIORNO_CHIUSURA%</dd>
                     <dt>Telefono: </dt>
                     <dd>%TELEFONO%</dd>
-                    <dt><span xml:lang="en">Email:</span> </dt>
+                    <dt><span xml:lang="en" lang="en">Email:</span> </dt>
                     <dd><a href="mailto:%EMAIL%">%EMAIL</a></dd>
                     <dt>Indirizzo: </dt>
                     <dd>%INDIRIZZO%</dd>
-                    <dt>Sito<span xml:lang="en"> web:</span> </dt> 
+                    <dt>Sito<span xml:lang="en" lang="en"> web:</span> </dt> 
                     <dd><a href="%SITO%">%SITO%</a></dd>
                 </dl>
             </div>
@@ -110,7 +110,7 @@
             <a href="ins_recensione.html" class="btn">Inserisci recensione</a>
             <form action="%URL_PAGINA%" method="get" id="ordinamento_form">
                 <label for="ordinamento">Ordinamento: </label>
-                <select id="ordinamento" for="ordinamento">
+                <select id="ordinamento">
                     <option value="0" selected="selected">Più votati</option>
                     <option value="1">Più recenti</option>
                 </select>
