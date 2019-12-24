@@ -1,0 +1,47 @@
+* {
+    font-family: "Times New Roman", Times, serif;
+}
+
+#header .btn, 
+#menu {
+    display: none;
+}
+
+#breadcrumb {
+    padding: 0.5em; 
+    border-top: 0.1em solid #000;
+    border-bottom: 0.1em solid #000;
+}
+
+#header {
+    width: 100%; 
+    text-align: center; 
+    border-top: 0.1em solid #000;
+}
+
+#header #title {
+    font-size: 3em;
+    margin: 0.25em 0;
+}
+
+#content {
+    font-size: 1em;
+}
+
+#page_title {
+    margin: 0.25em 0; 
+}
+
+#form_ricerca {
+    padding: 0.5em; 
+}
+
+#content * {
+    padding: 0.25em; 
+}
+
+#footer {
+    padding: 0.5em; 
+    border-top: 0.1em solid #000;
+    border-bottom: 0.1em solid  #000;
+}

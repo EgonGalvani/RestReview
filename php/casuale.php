@@ -11,7 +11,7 @@
     require_once('categoria.php');
     $page=str_replace('%TIPOLOGIA%',$list_categorie,$page);
 
-    $risultto='';
+    $risultato='';
     if(isset($_GET['search'])){
         $search=$_GET['search'];
 
@@ -59,7 +59,7 @@
                     $risultato=str_replace('%DESCRIZIONE%',$ristorante['Descrizione'],$risultato);
 
                     require_once('addForms.php');
-                    $dettaglioForm=new formRistorante('Dettaglio',$ristorante['ID']);
+                    $dettaglioForm = new formRistorante('Dettaglio',$ristorante['ID']);
                     $risultato=str_replace('%FORMS%',$dettaglioForm->getForm(),$risultato);
                 }else{
                     $risultato="Siamo spiacenti, non ci sono ristoranti di questo tipo nella zona scelta";

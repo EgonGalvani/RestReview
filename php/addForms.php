@@ -44,7 +44,7 @@
             $form="<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
                         <fieldset>
                             <input type=\"hidden\" name=\"id\" value=\"$this->ristID\">
-                            <input type=\"submit\" name=\"$name\" value=\"$value\" />
+                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn\">
                         </fieldset>
                     </form>";
 
