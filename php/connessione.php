@@ -15,13 +15,15 @@
         }
 
         public function queryDB($query){
-            $queryResult = $this->connessione->query($query);
+            if($queryResult = $this->connessione->query($query)){
 
-            if($queryResult->num_rows>0){
                 $result=array();
-                while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
-                    array_push($result,$row);
+                if($queryResult->num_rows>0){
+                    while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
+                        array_push($result,$row);
+                    }
                 }
+                
                 return $result;
             }else{
                 return false;
