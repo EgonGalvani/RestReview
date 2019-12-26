@@ -425,13 +425,11 @@ textarea {
     width: 45%;
     margin: 0 auto; 
 }
-#form_registrazione span{
-    display: block;
-}   
 
-#form_registrazione label:first-of-type {
-    margin-bottom: 0.75em; 
-}
+#form_registrazione fieldset > span{
+    display: block;
+    margin-bottom: 0.25em; 
+}   
 
 .vertical_input_form input[type="radio"]{
     display: inline-block;
