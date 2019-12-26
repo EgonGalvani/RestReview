@@ -1,69 +1,86 @@
+/* UTILS */ 
+
+function hasClass(element, className) { return element.classList.contains(className); }
+
+function removeClass(element, className) { element.classList.remove(className); }
+
+function addClass(element, className) { element.classList.add(className); }
+
+
+/** FAQ */
+
+function openAll(listElement) {
+    var dtElements = listElement.getElementsByTagName("dt"); 
+    for(var i = 0; i < dtElements.length; i++)
+        openDT(dtElements[i]); 
+}
+
+function closeAll(listElement) {
+    var dtElements = listElement.getElementsByTagName("dt"); 
+    for(var i = 0; i < dtElements.length; i++)
+        closeDT(dtElements[i]); 
+}
+
+function dtClick(dtElement) {
+    if(hasClass(dtElement, "faq_closed"))
+        openDT(dtElement); 
+    else closeDT(dtElement); 
+}
+
+function openDT(dtElement) {
+    removeClass(dtElement, "faq_closed"); 
+    removeClass(dtElement.nextElementSibling, "hide"); 
+}
+
+function closeDT(dtElement) {
+    addClass(dtElement, "faq_closed"); 
+    addClass(dtElement.nextElementSibling, "hide"); 
+}
+
+
 function faq_init() {
-    var fLists = document.getElementsByClassName("faq_list"); 
-   
-    if(fLists) {
-        // instanzio tutte le liste di FAQ
-        var fListObj = []; 
-        for(var i = 0; i < fLists.length; i++)
-            fListObj.push(new FaqList(fLists[i])); 
+    var faqDTs = document.querySelectorAll(".faq_list dt"); 
+    for(var i = 0; i < faqDTs.length; i++) {
+        faqDTs[i].addEventListener("click", (e) => dtClick(e.target)); 
+        closeDT(faqDTs[i]); 
+    }
 
-        // gestione dei controlli di apertura e chisura
-        var controls = document.querySelectorAll(".faq_control_close, .faq_control_open");  
-        var controlsObjs = []; 
-
-        for(var i = 0; i < controls.length; i++) {
-
-            // associo ad ogni controllo la lista corrispondente
-
-            var refList = fListObj.find( function(element) {
-                
-                // trovo l'id relativo alla lista 
-                var listID = controls[i].getAttribute("href").substr(1); 
-            
-                return element.getListID() == listID; 
-            }); 
-
-            controlsObjs.push(new FaqControl(controls[i],  refList)); 
-        }
-
-        // chiudo tutte le liste ( di default sono aperte per permettere ad utenti senza js abilitato 
-        // di leggere le risposte ) 
-        for(var i = 0; i < fListObj.length; i++) {
-            fListObj[i].closeAll(); 
-        }
+    var closeControls = document.getElementsByClassName("faq_control_close"); 
+    for(var i = 0; i < closeControls.length; i++) {
+        closeControls[i].addEventListener("click", function(e) {
+            e.preventDefault(); 
+            closeAll( document.getElementById(e.target.getAttribute("href").substr(1) ) ); 
+        });  
+    }
+    
+    var openControls = document.getElementsByClassName("faq_control_open"); 
+    for(var i = 0; i < openControls.length; i++) {
+        openControls[i].addEventListener("click", function(e) {
+            e.preventDefault(); 
+            openAll( document.getElementById(e.target.getAttribute("href").substr(1) ) ); 
+        });  
     }
 }
 
-/* 
+
+
+
 // ETA' MINIMA PER ISCRIVERSI
 const MIN_AGE = 12; 
 
-// MESSAGGI DI ERRORE
-var errorMSGs = {
-    "empty_email" : new MsgBox(MSG_TYPES.ERROR, "Inserire una email!"), 
-    "empty_password": new MsgBox(MSG_TYPES.ERROR, "Inserire una password!"), 
-    "wrong_email": new MsgBox(MSG_TYPES.ERROR, "L'email inserita non è valida!"), 
-    "wrong_password" : new MsgBox(MSG_TYPES.ERROR, "La password deve avere una lunghezza minima di 8 caratteri. Può contenere lettere e numeri. Deve contenere almeno: una lettere maiuscola, una lettera minuscola e una cifra!"), 
-    "psw_match": new MsgBox(MSG_TYPES.ERROR, "La password e la relativa ripetizione non coincidono!"), 
-    "empty_fields" : new MsgBox(MSG_TYPES.ERROR, "Tutti i campi sono obbligatori!"), 
-    "too_young": new MsgBox(MSG_TYPES.ERROR, "Ci dispiace ma, per il regolamento, l'età minima è di " + MIN_AGE + " anni.")
-}; 
 
 function login_init() {
     var loginForm = document.getElementById("login_form"); 
+    var msgManager = new MsgManager(); 
+
     if(loginForm) {
         var loginBtn = document.getElementById("login_btn"); 
      
-        // se ci sono eventuali messaggi di errore, li mostro come figli del 
-        // fieldset 
-        var msgsParent = loginForm.firstElementChild; 
-
         loginBtn.addEventListener("click", function(e) {
-                        
-            // rimuovo gli eventuali messaggi
-            for (var key in errorMSGs) {
-                errorMSGs[key].delete(); 
-            }
+            e.preventDefault(); 
+
+                // rimuovo gli eventuali messaggi
+            msgManager.clearAll(); 
 
             var fUtils = new FormUtils(); 
             var email = document.getElementById("email"); 
@@ -71,15 +88,15 @@ function login_init() {
 
             var allOK = true; 
             if(fUtils.isEmpty(psw.value)) {
-                errorMSGs['empty_password'].show(msgsParent); 
+                msgManager.showNew("Inserire una password", psw); 
                 allOK = false; 
             }
 
             if(fUtils.isEmpty(email.value)) {
-                errorMSGs['empty_email'].show(msgsParent); 
+                msgManager.showNew("Inserire una mail", email); 
                 allOK = false; 
             } else if(!fUtils.isEmail(email.value.trim())) {
-                errorMSGs['wrong_email'].show(msgsParent); 
+                msgManager.showNew("La mail inserita non è valida", email); 
                 allOK = false;
             }
 
@@ -88,6 +105,7 @@ function login_init() {
     } 
 } 
 
+/*
 // crea una preview dell'immagine caricata tramite il "sourceElement" 
 // in "previewElement"
 function imgPreview(sourceElement, previewElement) {
@@ -193,7 +211,7 @@ window.onload = function() {
     faq_init(); 
 
     // ------------- LOGIN ---------------
-  //  login_init();
+    login_init();
 
     // ---------- REGISTRAZIONE -------------- 
    // reg_init(); 
