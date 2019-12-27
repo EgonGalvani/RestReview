@@ -1,6 +1,7 @@
 <?php
 
     require_once('sessione.php');
+    require_once('errore.php');
 
     require_once("addItems.php");
     $page=addItems('../html/casuale.html');
@@ -11,7 +12,8 @@
     require_once('categoria.php');
     $page=str_replace('%TIPOLOGIA%',$list_categorie,$page);
 
-    $risultto='';
+    $risultato='';
+    $error_msg='';
     if(isset($_GET['search'])){
         $search=$_GET['search'];
 
@@ -66,11 +68,17 @@
                 }
             }else{
                 $risultato="";
+                $error=new errore('query');
+                $error_msg=$error->printHTMLerror();
             }
             $obj_connection->close_connection();
+        }else{
+            $error=new errore('DBConnection');
+            $error_msg=$error->printHTMLerror();
         }
 
     }
+    $page=str_replace('%ERRORI%',$error_msg,$page);
     $page=str_replace('%RISULTATO%',$risultato,$page);
 
     echo $page;
