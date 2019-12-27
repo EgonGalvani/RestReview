@@ -57,7 +57,7 @@
 
     }
 
-    $error=str_replace("[","<div>",$error);
+    $error=str_replace("[",'<div class="msg_box error_box">',$error);
     $error=str_replace("]","</div>",$error);
     $page=str_replace("%ERROR%",$error,$page);
     $page=str_replace("%VALUE_EMAIL%",$email,$page);

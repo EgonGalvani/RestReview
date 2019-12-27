@@ -63,12 +63,96 @@ function faq_init() {
 }
 
 
+/** GESTIONE DEI CONTROLLI SU CAMPI DI INPUT */
+MSG_TYPES = {
+    ERROR: -1, 
+    WARNING: 0, 
+    SUCCESS: 1
+}; 
 
+function createHTMLBox(msg, type) {
+    var box = document.createElement("div");
+    box.classList.add("msg_box"); 
 
-// ETA' MINIMA PER ISCRIVERSI
-const MIN_AGE = 12; 
+    var msgClass = "success_box"; 
+    if(type == MSG_TYPES.ERROR)
+        msgClass = "error_box"; 
+    else if(type == MSG_TYPES.WARNING)
+        msgClass = "warning_box"; 
 
+    box.classList.add(msgClass); 
 
+    var textNode = document.createTextNode(msg); 
+    box.appendChild(textNode); 
+    
+    return box; 
+}
+
+function showAlertBox(element, conditions, msg) {
+   
+    // rimuovo eventuali box 
+    var prevElement = element.previousElementSibling; 
+    if(hasClass(prevElement, "msg_box"))
+        prevElement.parentNode.removeChild(prevElement); 
+
+    // se non rispetto le condizioni, mostro un messaggio di errore
+    if(!conditions) { 
+        var box = createHTMLBox(msg, MSG_TYPES.ERROR); 
+        element.parentNode.insertBefore(box, element); 
+    }  
+}
+
+function isEmail(email) {
+    return new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/).test(email); 
+}
+
+function isPsw(psw) {
+    return new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).test(psw); 
+}
+
+function isEmpty(str) { 
+    return !str || !str.trim().length; 
+}
+
+function hasNYear(dateValue, yearOld) {
+    var today = new Date(); 
+    var bDay = new Date(dateValue);
+    
+    // differenza rispetto al 1970 (unix timestamp)
+    var diff =new Date(today - bDay); 
+    return diff.getFullYear() >= 1970 + yearOld; 
+}
+
+function equals(str1, str2) {
+    return str1.trim() == str2.trim(); 
+}
+
+function login_init() {
+    
+    if(document.getElementById("login_form")) {
+
+        var emailField = document.getElementById("email"); 
+        var pswField = document.getElementById("password"); 
+
+        emailField.addEventListener("focusout", (e) =>  showAlertBox(emailField, isEmail(emailField.value), "Inserire una e-mail valida.")); 
+        pswField.addEventListener("focusout", (e) =>  showAlertBox(pswField, !isEmpty(pswField.value), "Inserire una password.")); 
+    
+        var loginBtn = document.getElementById("login_btn"); 
+        loginBtn.addEventListener("click", function(e) {
+            triggerEvent(emailField, "focusout");
+            triggerEvent(pswField, "focusout"); 
+            
+            
+            console.log(hasErrorMSG(loginBtn.parentElement)); 
+
+           // if(hasErrorMSG(loginBtn.parentElement))
+                e.preventDefault();      
+        });     
+    
+    }
+}
+
+/*
 function login_init() {
     var loginForm = document.getElementById("login_form"); 
     var msgManager = new MsgManager(); 
@@ -104,7 +188,7 @@ function login_init() {
         }); 
     } 
 } 
-
+*/
 /*
 // crea una preview dell'immagine caricata tramite il "sourceElement" 
 // in "previewElement"
