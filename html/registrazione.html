@@ -7,12 +7,13 @@
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
         <meta name="description" content="pagina di registrazione al sito" />
-        <meta name="keywords" content="registrazione, registrati" />
+        <meta name="keywords" content="registrazione, registrati, ristreview, recensioni, ristoranti" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         
-        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/>  
 
         <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" />
@@ -21,7 +22,9 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />  
+        
+        <script type="text/javascript" src="../js/classes.js"></script>
     </head>
 
     <body>
@@ -45,43 +48,43 @@
                 <fieldset>
                     <legend>Registrazione</legend>
                                         
-                    <label for="recensore">Tipologia di registrazione: </label>
-                    <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore" checked="checked" />
+                    <span> Tipologia di registrazione: </span>
+                    <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore" checked="%REC_CHECKED%" />
                     <label class="radio_label" for="recensore">Recensore</label>
-                    <input type="radio" name="tipo_utente" value="1"  id="ristoratore" />
+                    <input type="radio" name="tipo_utente" value="1"  id="ristoratore" checked="%RIST_CHECKED%" />
                     <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
                     <label for="email" lang="en">Email:</label>
-                    <input type="email" name="email" id="email" required="required" tabindex="2" class=" full_width_input"/>
+                    <input type="email" name="email" id="email" required="required" tabindex="2" class="full_width_input" value="%MAIL_VALUE%"/>
                     
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required="required" tabindex="3" class=" full_width_input"/>
+                    <input type="text" name="nome" id="nome" required="required" tabindex="3" class="full_width_input" value="%NOME_VALUE%"/>
                     
                     <label for="cognome">Cognome:</label>
-                    <input type="text" name="cognome" id="cognome" required="required" tabindex="4" class=" full_width_input"/>
+                    <input type="text" name="cognome" id="cognome" required="required" tabindex="4" class="full_width_input" value="%COGNOME_VALUE%"/>
                     
                     <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" required="required" tabindex="5" class=" full_width_input">
-                        <option value="ns" selected="selected">Non Specificato</option>
-                        <option value="uomo">Uomo</option>
-                        <option value="donna">Donna</option>
-                        <option value="altro">Altro</option>
+                    <select name="sesso" id="sesso" required="required" tabindex="5" class="full_width_input">
+                        <option value="ns" selected="%SEL_NS%">Non Specificato</option>
+                        <option value="Uomo" selected="%SEL_UOMO%">Uomo</option>
+                        <option value="Donna" selected="%SEL_DONNA%">Donna</option>
+                        <option value="Altro" selected="%SEL_ALTRO%">Altro</option>
                     </select>
                     
                     <label for="nascita">Data di nascita:</label>
-                    <input type="date" name="nascita" id="nascita" required="required" tabindex="6" class=" full_width_input"/>
+                    <input type="date" name="nascita" id="nascita" required="required" tabindex="6" class="full_width_input" value="%DATAN_VALUE%"/>
                     
                     <label for="password" lang="en">Password:</label>
-                    <input type="password" name="password" id="password" required="required" tabindex="7" class=" full_width_input"/>
+                    <input type="password" name="password" id="password" required="required" tabindex="7" class="full_width_input" value="%PWD1_VALUE%"/>
                     
                     <label for="repeatpassword">Ripeti <span lang="en">password</span>:</label>
-                    <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8" class=" full_width_input"/>
+                    <input type="password" name="repeatpassword" id="repeatpassword" required="required" tabindex="8" class="full_width_input" value="%PWD2_VALUE%"/>
                     
                     <label id="piva_l" for="piva">Partita IVA:</label>
-                    <input id="piva" type="text" name="piva" tabindex="9" class=" full_width_input" />
+                    <input id="piva" type="text" name="piva" tabindex="9" class="full_width_input" value="%PIVA_VALUE%"/>
                     
                     <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
-                    <input id="rsoc" type="text" name="rsoc" tabindex="10" class=" full_width_input"/>
+                    <input id="rsoc" type="text" name="rsoc" tabindex="10" class="full_width_input" value="%RSOC_VALUE%"/>
 
                     <div id="img_sel">
                         <label for="img_profilo">Immagine profilo:</label>

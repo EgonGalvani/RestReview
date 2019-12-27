@@ -6,13 +6,15 @@
         <title>RestReview - Le migliori recensioni di ristoranti</title>
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
+
         <meta name="description" content="Stanco dei soliti locali? Questa è la funzione giusta
                 per te. Trova il locale dei tuo sogni" />
-        <meta name="keywords" content="casuale,ricerca,ricerca casuale" />
+        <meta name="keywords" content="casuale, ricerca casuale, restreview, recensioni, ristoranti" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/>  
 
         <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" />
@@ -21,7 +23,9 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />  
+        
+        <script type="text/javascript" src="../js/classes.js"></script>
     </head>
 
     <body>
@@ -47,10 +51,10 @@
 
             <form id="form_ricerca" method="get" action="casuale.php">
                 <fieldset>
-		    <legend> ricerca casuale ristorante </legend>
+		            <legend>Ricerca casuale ristorante </legend>
                     <div class="in_wrapper">
                         <label for="search" class="in_wrapper_title">Zona:</label>
-                        <input id="search" tabindex="1" name="search" type="text"    />
+                        <input id="search" tabindex="1" name="search" type="text"/>
                     </div>
                     
                     <div class="in_wrapper">
@@ -66,7 +70,7 @@
 
             %ERRORI%
 
-            <dl>
+            <dl class="card_list rist_list">
                 %RISULTATO%
             </dl>
 

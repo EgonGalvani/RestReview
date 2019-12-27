@@ -9,10 +9,10 @@
         <meta name="description" content="Pagina per accedere al sito." />
         <meta name="keywords" content="RistReview, login, email, password, accesso" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         
-        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/>  
 
         <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" />
@@ -21,7 +21,9 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />  
+        
+        <script type="text/javascript" src="../js/classes.js"></script>
     </head>
     <body>
         <div id="header">
@@ -49,10 +51,10 @@
                     </noscript>                 
                     %ERROR%
                     <label for="email" xml:lang="en">Email:</label>
-                    <input type="text" name="email" id="email" value="%VALUE_EMAIL%" maxlength="30" tabindex="1" class=" full_width_input"/>
+                    <input type="text" name="email" id="email" value="%VALUE_EMAIL%" maxlength="30" tabindex="1" class="full_width_input"/>
 
                     <label for= "password" xml:lang="en">Password:</label>
-                    <input type="password" name="password" id="password" value="%VALUE_PASSWORD%" maxlength= "15" tabindex="2" class=" full_width_input"/>
+                    <input type="password" name="password" id="password" value="%VALUE_PASSWORD%" maxlength= "15" tabindex="2" class="full_width_input"/>
                     
                     <input type="checkbox" id="remember_me" name="remember_me" %CHECKED%/>
                     <label for="remember_me">Ricordati di me</label>

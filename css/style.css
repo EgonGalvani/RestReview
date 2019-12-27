@@ -300,6 +300,9 @@ textarea {
     padding: 0.5em 0 0.5em 1em; 
     margin: 2em 0 2.5em 0; 
 }
+#form_ricerca legend {
+    display: none
+}
 
 #form_ricerca input[type="radio"]{
     margin-left: 0.25em; 
@@ -421,12 +424,12 @@ textarea {
 #form_registrazione {
     width: 45%;
     margin: 0 auto; 
-}   
-
-#form_registrazione label:first-of-type {
-    display: block;
-    margin-bottom: 0.75em; 
 }
+
+#form_registrazione fieldset > span{
+    display: block;
+    margin-bottom: 0.25em; 
+}   
 
 .vertical_input_form input[type="radio"]{
     display: inline-block;

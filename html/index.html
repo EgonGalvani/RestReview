@@ -7,11 +7,12 @@
         <meta name="title" content="RistReview" />
 
         <meta name="description" content="Benvenuto! ti trovi nella home di RestReview" />
-        <meta name="keywords" content="restreview, ristoranti, recensioni, ricerca, pranzo, cena, home" />
+        <meta name="keywords" content="ristreview, ristoranti, recensioni, ricerca, pranzo, cena, home" />
         <meta name="author" content="##NOME_GRUPPO##" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+          <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/> 
 
         <!-- favicon - realfavicongenerator.net -->
         <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
@@ -21,7 +22,7 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />  <script type="text/javascript" src="../js/classes.js"></script>
     </head>
 
     <body>
@@ -42,7 +43,8 @@
            
             <form id="form_ricerca" method="get" action="index.php">
                 <fieldset>
-
+                    <legend>Form di ricerca: </legend>
+                    
                     <div class="in_wrapper">
                         <label for="search" class="in_wrapper_title">Informazioni:</label>
                         <input id="search" tabindex="1" name="search" type="text" />

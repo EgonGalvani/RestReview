@@ -18,7 +18,7 @@
             if($queryResult = $this->connessione->query($query)){
 
                 $result=array();
-                if($queryResult->num_rows>0){
+                if($queryResult && $queryResult->num_rows>0){
                     while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
                         array_push($result,$row);
                     }
@@ -28,6 +28,10 @@
             }else{
                 return false;
             }
+        }
+
+        public function insertDB($query){
+            $this->connessione->query($query);
         }
 
         public function close_connection(){

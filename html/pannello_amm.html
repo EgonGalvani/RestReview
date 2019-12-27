@@ -7,11 +7,12 @@
         <meta name="title" content="RistReview - Le migliori recensioni di ristoranti" />
 
         <meta name="description" content="Pannello riservato all'amministratore" />
-        <meta name="keywords" content="pannello amministratore, richieste di inserimento ristoranti, amministrazione, admin" />
+        <meta name="keywords" content="pannello amministratore, amministrazione, admin, ristreview, recensioni, ristorante" />
         <meta name="author" content="##NOME DEL GRUPPO##" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <link rel="stylesheet" type="text/css" href="../css/style.css" /> 
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/>  
 
         <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" />
@@ -20,7 +21,9 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" /> 
+        
+        <script type="text/javascript" src="../js/classes.js"></script>
     </head>
 
     <body>
@@ -46,65 +49,13 @@
                     <label for="nome_categoria">Nome categoria: </label>
                     <input type="text" id="nome_categoria" name="nome_categoria" />
 
-                    <input type="submit" value="Inserisci" id="ins_cat" name="ins_cat"/>
+                    <input type="submit" value="Inserisci" class="btn" id="ins_cat" name="ins_cat"/>
                 </fieldset>
             </form>
 
-            <h2>Richieste di inserimento ristoranti: </h2>
-            <dl class="card_list rist_list">
-                <dt >%NOME%</dt>
-<dd>
-    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
-
-    <div class="rist_dett">
-        <span>%INDIRIZZO%</span>
-        <span>%TIPOLOGIA%</span>
-
-        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
-            <span class="stelle_counter">%LISTA_STELLE%</span>
-        </span>
-
-        <p class="rist_descrizione">%DESCRIZIONE%</p>
-        <form method="post" action="">
-            <fieldset>
-		<legend> rifiuta richiesta ristorante </legend>
-                <input type="hidden" value="%ID_RISTORANTE%" />
-                <input type="submit" class="msg_box error_box" value="RIFIUTA RICHIESTA" />
-            </fieldset>
-        </form>
-        <form method="post" action="">
-            <fieldset>
-		<legend> accetta richiesta ristorante</legend>
-                <input type="hidden" value="%ID_RISTORANTE%" />
-                <input type="submit" class="msg_box success_box" value="ACCETTA RICHIESTA" />
-            </fieldset>
-        </form>
-               
-    </div> 
-</dd>
-
-<dt >%NOME%</dt>
-<dd>
-    <img class="rist_img" src="%PATH_IMG%" alt="Immagine principale ristorante %NOME%" />      
-
-    <div class="rist_dett">
-        <span>%INDIRIZZO%</span>
-        <span>%TIPOLOGIA%</span>
-
-        <span class="stelle_item">Stelle %NUMERO_STELLE%/5 
-            <span class="stelle_counter">%LISTA_STELLE%</span>
-        </span>
-
-        <p class="rist_descrizione">%DESCRIZIONE%</p>
-
-        %FORMS% 
-               
-    </div> 
-</dd>
-
-            </dl>
+            %LIST%
         </div>
-    
+            
         <div id="footer">
             %FOOTER%
         </div>
