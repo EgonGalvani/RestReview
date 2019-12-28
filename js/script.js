@@ -82,8 +82,7 @@ function createHTMLBox(msg, type) {
 
     box.classList.add(msgClass); 
 
-    var textNode = document.createTextNode(msg); 
-    box.appendChild(textNode); 
+    box.innerHTML = msg; 
     
     return box; 
 }
@@ -124,6 +123,20 @@ function equals(str1, str2) {
     return str1.trim() == str2.trim(); 
 }
 
+/** NOTA: I CONTOLLI SONO NELLA SEGUENTE FORMA: 
+ * 
+ * { 
+ *    idCampo0 => [
+ *      [controllo0, messaggioDiErrore0], 
+ *      ...
+ *      [controlloN, messaggioDiErroreN], 
+ *    ], 
+ * 
+ *    ...
+ * }
+ */
+
+ // aggiunge ai vari field di input indicati in fields i relativi eventi e controlli 
 function addFocusEvents(fields) {
 
      // per ogni campo 
@@ -131,12 +144,10 @@ function addFocusEvents(fields) {
 
         var fieldElement = document.getElementById(field); 
 
-        // quando il campo acquista il focus, rimuovo gli errori che erano presenti  
-        fieldElement.addEventListener("focusin", (e) => removePreviousBox(e.target));
-
         // quando il campo perde il focus vengono eseguiti i vari controlli 
         fieldElement.addEventListener("focusout", function(e) {
-
+            removePreviousBox(e.target); 
+            
             // controlli relativi al campo attuale 
             var fieldControls = fields[e.target.id]; 
             
@@ -150,9 +161,9 @@ function addFocusEvents(fields) {
             }
         } ); 
     }
-
 }
 
+// fa i controlli sui vari campi indicati in fields e ritorno TRUE sse i valori di TUTTI i campi rispettano i relativi controlli 
 function executeControls(fields) {
 
     var allOK = true; 
@@ -185,6 +196,7 @@ function executeControls(fields) {
     return allOK; 
 }
 
+/** GESTIONE DEI CONTROLLI SUL FORM DI LOGIN */
 function login_init() {
     
     if(document.getElementById("login_form")) {
@@ -200,9 +212,7 @@ function login_init() {
     }
 }
 
-/*
-// crea una preview dell'immagine caricata tramite il "sourceElement" 
-// in "previewElement"
+/** GESTIONE DELLA PAGINA DI REGISTRAZIONE */
 function imgPreview(sourceElement, previewElement) {
     if(sourceElement.files && sourceElement.files[0]) {
         var reader = new FileReader(); 
@@ -213,81 +223,89 @@ function imgPreview(sourceElement, previewElement) {
     }
 }
 
+function isExtensionOK(filepath) {
+    var extensions = ['png','jpg','jpeg'];
+	return extensions.includes(filepath.split('.').pop());
+}
+
+function isSizeOK(fileSize) {
+    return fileSize <= 5 * 1048576; // dimensione massima: 5MB
+}
+
+function isPIVA(piva) {
+    return new RegExp(/^[0-9]{11}$/).test(piva); 
+}
+
 function reg_init() {
-    var reg_form = document.getElementById("form_registrazione"); 
-    if(reg_form) {
-        
+
+    if( document.getElementById("form_registrazione") ) {
+
         // preview dell'immagine
         var fileInput = document.getElementById("img_profilo"); 
         fileInput.addEventListener("change", function(e) {
             imgPreview(this, document.getElementById("img_profilo_preview"));
         }); 
+        
+        // controlli da applicare sempre
+        var regControls = {}; 
+        regControls["email"] = [ [isNotEmpty, "Inserire un'email."], [isEmail, "L'email inserita non è valida."]];
+        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."]];
+        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."] ];
+        regControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
+        regControls["nascita"] = [ [isNotEmpty, "Inserire una data di nascita."], [has12Year, "L'età minima per poter utilizzare questo sito è 12 anni."] ]        
+        addFocusEvents(regControls); 
 
-        // setto il click listener
-        var reg_btn = document.getElementById("reg_btn"); 
-        reg_btn.addEventListener("click", function (e) {
-            e.preventDefault(); 
-
-            // rimuovo gli eventuali messaggi
-            for (var key in errorMSGs) {
-                errorMSGs[key].delete(); 
-            }
-
-            var reg_fieldset = reg_form.firstElementChild; 
-
-            var email = document.getElementById("email").value; 
-            var name = document.getElementById("nome").value; 
-            var surname = document.getElementById("cognome").value; 
-            var psw = document.getElementById("password").value; 
-            var rpsw = document.getElementById("repeatpassword").value; 
-          
-            var ristoratore = document.getElementById("ristoratore").value;
-            var piva = document.getElementById("piva").value;
-            var rsoc = document.getElementById("rsoc").value; 
-    
-            var dNascita = document.getElementById("nascita").value; 
-            
-            var fUtils = new FormUtils(); 
-            var allOk = true; 
-
-            if(fUtils.isEmpty(name) || fUtils.isEmpty(surname) || fUtils.isEmpty(psw) 
-                || fUtils.isEmpty(rpsw) || fUtils.isEmpty(dNascita)) {
-                
-                errorMSGs['empty_fields'].show(reg_fieldset); 
-                allOk = false; 
-            } else if(ristoratore.checked && (fUtils.isEmpty(piva) || fUtils.isEmpty(rsoc)) ) {
-                errorMSGs['empty_fields'].show(reg_fieldset); 
-                allOk = false; 
-            } 
-
-            if(allOk) {
-                if(!fUtils.isEmail(email)) {
-                    errorMSGs['wrong_email'].show(reg_fieldset); 
-                    allOk = false; 
-                }
-
-                if(!fUtils.isPsw(psw)) {
-                    errorMSGs['wrong_password'].show(reg_fieldset); 
-                    allOk = false; 
-                } else if(!fUtils.equals(psw, rpsw)) {
-                    errorMSGs['psw_match'].show(reg_fieldset); 
-                    allOk = false; 
-                }
-
-                if(!fUtils.hasNYear(dNascita, MIN_AGE)) {
-                    errorMSGs['too_young'].show(reg_fieldset); 
-                    allOk = false; 
-                } 
-            }
-
-            if(allOk) {
-                reg_form.submit(); 
-            }
+        // controlli più complessi 
+        var repatPswField = document.getElementById("repeatpassword"); 
+        repatPswField.addEventListener("focusout", function(e) { 
+            removePreviousBox(e.target); 
+            if(!equals(e.target.value, document.getElementById("password").value)) 
+                showAlertBox(e.target, "Le due password non coincidono."); 
         }); 
+
+        // controlli da applicare solo nel caso in cui l'utente sia un ristoratore  
+        var ristoControls = {}; 
+        ristoControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"]], [isPIVA, "La partita IVA inserita non è corretta."]; 
+        ristoControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
+        addFocusEvents(ristoControls); 
+        
+        document.getElementById("reg_btn").addEventListener("click", (e) => { reg_btn_click(e, regControls, ristoControls); }); 
     }
 }
-*/
-/***************CODICE PAGINA PROFILO *****************/
+
+function reg_btn_click(e, regControls, ristoControls) {
+
+    // controllo che i campi della registrazione rispettino i controlli indicati
+    var ok = executeControls(regControls); 
+    
+    // controlli solo se il tipo selezionato è ristoratore
+    if( document.getElementById("ristoratore").checked )  
+         ok = ok & executeControls(ristoControls); 
+
+    // controlli sulle password 
+    var repatPswField = document.getElementById("repeatpassword"); 
+    if(!equals(repatPswField.value, document.getElementById("password").value)) {
+        removePreviousBox(repatPswField); 
+        showAlertBox(repatPswField, "Le due password non coincidono."); 
+        ok = false; 
+    }
+
+    // controlli sulla foto di profilo 
+    var photoField = document.getElementById("img_profilo"); 
+    if(isNotEmpty(photoField.value)) {
+        removePreviousBox(photoField); 
+        if(!isExtensionOK(photoField.value)) {
+            showAlertBox(photoField, "L'estensione del file non appartiene a quelle permesse (png, jpg, jpeg)");
+            ok = false; 
+        } else if(!isSizeOK(photoField.files[0].size)) {    
+            showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
+            ok = false ;
+        }
+    }
+        
+    if(!ok) e.preventDefault(); 
+}
+
 /*
 function profile_init(){
 
@@ -309,7 +327,7 @@ window.onload = function() {
     login_init();
 
     // ---------- REGISTRAZIONE -------------- 
-   // reg_init(); 
+    reg_init(); 
 
     // ----------- PROFILO ---------------
   //  profile_init()

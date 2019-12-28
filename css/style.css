@@ -216,6 +216,11 @@ textarea {
     background-size: 3em; 
 }
 
+.msg_box ul {
+    padding-left: 2em; 
+    list-style-type: disc;
+}
+
 .error_box {
     background-image: url(../img/error_icon.svg);   
     background-color: #fce4e4;
