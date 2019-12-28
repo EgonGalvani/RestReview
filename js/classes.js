@@ -72,7 +72,7 @@ class FormUtils {
     emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
     pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
-    isEmail(email) {
+   isEmail(email) {
         return new RegExp(this.emailRegex).test(email); 
     }
 
@@ -83,7 +83,7 @@ class FormUtils {
     isEmpty(str) { 
         return !str.trim().length; 
     }
-
+ 
     hasNYear(dateValue, yearOld) {
         var today = new Date(); 
         var bDay = new Date(dateValue);
