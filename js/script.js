@@ -236,6 +236,11 @@ function isPIVA(piva) {
     return new RegExp(/^[0-9]{11}$/).test(piva); 
 }
 
+function isWord(word) {
+    word = word.trim(); 
+    return new RegExp(/^[a-zA-Z]/).test(word) && word.length >= 4; 
+}
+
 function reg_init() {
 
     if( document.getElementById("form_registrazione") ) {
@@ -249,8 +254,8 @@ function reg_init() {
         // controlli da applicare sempre
         var regControls = {}; 
         regControls["email"] = [ [isNotEmpty, "Inserire un'email."], [isEmail, "L'email inserita non è valida."]];
-        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."]];
-        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."] ];
+        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
+        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];
         regControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
         regControls["nascita"] = [ [isNotEmpty, "Inserire una data di nascita."], [has12Year, "L'età minima per poter utilizzare questo sito è 12 anni."] ]        
         addFocusEvents(regControls); 
