@@ -404,8 +404,31 @@ function init_index() {
     }
 }
 
-function init_ins_recensione() {
+function hasLengthBetween(string, min, max) {
+    var stringL = string.trim().length; 
+    return stringL >= min && stringL <= max;  
+}
 
+// un titolo deve contenere tra i 25 e 50 caratteri; 
+function isTitle(titolo) { 
+    return hasLengthBetween(titolo, 25, 50); 
+}
+
+// una recensione deve avere tra i 100 e 250 caratteri 
+function isReview(review) {
+    return hasLengthBetween(review, 100, 250); 
+}
+
+function init_ins_recensione() {
+    if(document.getElementById("new_review_form")) {
+      
+        var reviewControls = {}; 
+        reviewControls["titolo_recensione"] = [ [isNotEmpty, "Inserire un titolo per la recensione."], [isTitle, "Il titolo deve avere tra i 25 e 50 cartteri."]]; 
+        reviewControls["contenuto_recensione"] = [ [isNotEmpty, "Inserire un contenuto alla recensione."], [isReview, "Il contenuto della recensione deve avere tra i 100 e 250 caratteri."]]; 
+        addFocusEvents(reviewControls); 
+
+        document.getElementById("send_review").addEventListener("click", (e) => { if(!executeControls(reviewControls)) e.preventDefault();})
+    }
 
 }
 
