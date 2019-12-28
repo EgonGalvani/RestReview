@@ -432,9 +432,45 @@ function init_ins_recensione() {
 
 }
 
+
+/*---------- INSERIMENTO RISTORANTE ------------*/
+
+function isUrl(url) { return new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi).test(); }
+
+function isBriefDescription(desc) { return hasLengthBetween(desc, 20, 75); }
+
+function isPhoneNumber(number) { return new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/).test(number); }
+
+function isNumber(num) { return new RegExp(/^\d+$/).test(num); }
+
+function isCAP(cap) { return new RegExp(/^\d{5}$/).test(cap); }
+
 function init_ins_risto() {
+    
+    if(document.getElementById("nuovo_rist_form")) {
 
+        var ristControls = {}; 
+        ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 25 ai 70 caratteri"]]; 
+        ristControls["telefono"] = [ [isNotEmpty, "Inserire il numero di telefono del ristorante"], [isPhoneNumber, "Il valore inserito non corrisponde ad un numero di telefono valido."]]; 
+        ristControls["email"] = [ [isNotEmpty, "Inserire l'email del ristorante."], [isEmail, "L'email inserita non è valida."]]; 
+        ristControls["sito"] = [ [isNotEmpty, "Inserire il sito del ristorante."], [isUrl, "Il valore inserito non corrisponde ad un URL valido"]]; 
+        ristControls["o_apertura"] = [ [isNotEmpty, "Inserire un orario di apertura"] ]; 
+        ristControls["o_chiusura"] = [ [isNotEmpty, "Inserire un orario di chiusura."] ]; 
+        ristControls["via"] = [ [isNotEmpty, "Inserire la via del ristorante."] ]; 
+        ristControls["civico"] = [ [isNotEmpty, "Inserire il civico del ristorante."], [isNumber, "Il civico può essere solo un numero."]]; 
+        ristControls["citta"] = [ [isNotEmpty, "Inserire la città in cui si trova il ristorante."] ]; 
+        ristControls["cap"] = [ [isNotEmpty, "Inserire il CAP della provincia in cui si trova il ristorante."], [isCAP, "Il CAP inserito non risulta essere valido (5 cifre)"]]; 
+        ristControls["nazione"] = [ [isNotEmpty, "Inserire la nazione in cui si trova il ristorante."] ]; 
+        ristControls["main_photo"] = [ [isNotEmpty, "Inserire una foto principale del ristorante."] ]; 
+        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+        
+        addFocusEvents(ristControls); 
+        // free_day
 
+        document.getElementById("ins_rest_submit").addEventListener("click", (e) => { if(!executeControls(ristControls)) e.preventDefault();})
+
+    }
 }
 
 window.onload = function() {
