@@ -223,11 +223,13 @@ function imgPreview(sourceElement, previewElement) {
     }
 }
 
+// estensioni valide per file
 function isExtensionOK(filepath) {
     var extensions = ['png','jpg','jpeg'];
 	return extensions.includes(filepath.split('.').pop());
 }
 
+// controlla che il file non superi la dimensione massima
 function isSizeOK(fileSize) {
     return fileSize <= 5 * 1048576; // dimensione massima: 5MB
 }
@@ -236,9 +238,28 @@ function isPIVA(piva) {
     return new RegExp(/^[0-9]{11}$/).test(piva); 
 }
 
+// una parola deve avere lunghezza maggiore o uguale a 4, ed essere composta solo da lettere
 function isWord(word) {
     word = word.trim(); 
     return new RegExp(/^[a-zA-Z]/).test(word) && word.length >= 4; 
+}
+
+// controllo sulle foto 
+function photoControl(photoField) {
+    var ok = true; 
+
+    if(isNotEmpty(photoField.value)) {
+        removePreviousBox(photoField); 
+        if(!isExtensionOK(photoField.value)) {
+            showAlertBox(photoField, "L'estensione del file non appartiene a quelle permesse (png, jpg, jpeg)");
+            ok = false; 
+        } else if(!isSizeOK(photoField.files[0].size)) {    
+            showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
+            ok = false ;
+        }
+    }
+
+    return ok; 
 }
 
 function reg_init() {
@@ -270,7 +291,7 @@ function reg_init() {
 
         // controlli da applicare solo nel caso in cui l'utente sia un ristoratore  
         var ristoControls = {}; 
-        ristoControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"]], [isPIVA, "La partita IVA inserita non è corretta."]; 
+        ristoControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."] ]; 
         ristoControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
         addFocusEvents(ristoControls); 
         
@@ -296,32 +317,102 @@ function reg_btn_click(e, regControls, ristoControls) {
     }
 
     // controlli sulla foto di profilo 
-    var photoField = document.getElementById("img_profilo"); 
-    if(isNotEmpty(photoField.value)) {
-        removePreviousBox(photoField); 
-        if(!isExtensionOK(photoField.value)) {
-            showAlertBox(photoField, "L'estensione del file non appartiene a quelle permesse (png, jpg, jpeg)");
-            ok = false; 
-        } else if(!isSizeOK(photoField.files[0].size)) {    
-            showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
-            ok = false ;
-        }
-    }
-        
+    ok = ok & photoControl( document.getElementById("img_profilo") ); 
+   
     if(!ok) e.preventDefault(); 
 }
 
-/*
-function profile_init(){
 
-    var prof_form = document.getElementById("modifica_dati");
-    if(prof_form){
-        var fileInput = document.getElementById("new_foto_profilo");
-        fileInput.addEventListener("change", function(e) {
-            imgPreview(this, document.getElementById("img_profilo"));
-        });
+function modify_profile_init(){
+ 
+    if(document.getElementById("edit_foto_profilo")) {
+        document.getElementById("change_photo").addEventListener("click", function(e) {
+            // controllo se l'immagine va bene
+            if(!photoControl(document.getElementById("new_foto_profilo"))) 
+                e.preventDefault(); 
+        }); 
     }
-}*/
+
+    if(document.getElementById("edit_psw_data")) {
+        
+        //  controlli su password vecchia e nuova  
+        var pswControls = {}; 
+        pswControls["old_password"] = [ [isNotEmpty, "Inserisci la tua password attuale."] ];
+        pswControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
+        addFocusEvents(pswControls); 
+
+        // controllo che le due password coincidano 
+        var repatPswField = document.getElementById("repeat_pwd"); 
+        repatPswField.addEventListener("focusout", function(e) { 
+            removePreviousBox(e.target); 
+            if(!equals(e.target.value, document.getElementById("password").value)) 
+                showAlertBox(e.target, "Le due password non coincidono."); 
+        }); 
+
+        // gestione del submit del form 
+        document.getElementById("change_psw_btn").addEventListener("click", (e) => edit_psw_click(e, pswControls)); 
+    }
+
+    if(document.getElementById("edit_personal_data")) {
+        var modifyControls = {}; 
+        modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
+        modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];   
+        modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
+        modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
+        addFocusEvents(modifyControls); 
+        
+        document.getElementById("modify_profile_btn").addEventListener("click", (e) => { if(!executeControls(modifyControls)) e.preventDefault(); });
+    }
+}
+
+function edit_psw_click(e, pswControls) {
+
+    var ok = executeControls(pswControls);  
+
+    var repatPswField = document.getElementById("repeat_pwd"); 
+    if(!equals(repatPswField.value, document.getElementById("password").value)) {
+        removePreviousBox(repatPswField); 
+        ok = false; 
+        showAlertBox(repatPswField, "Le due password non coincidono."); 
+    }
+
+    if(!ok) 
+        e.preventDefault();
+}
+
+/*** INDEX */
+function init_index() {
+    if(document.getElementById("form_ricerca")) {
+
+        var searchField = document.getElementById("search"); 
+
+        // quando perde il focus
+        searchField.addEventListener("focusout", function(e) {
+            // se rispetta i controlli ed era presente un box di errore, lo rimuove 
+            if(searchField.value.trim().length > 0) {
+                removePreviousBox(searchField); 
+            }
+        }); 
+
+        document.getElementById("search_btn").addEventListener("click", function(e) {
+            // mostra un messaggio di errore se non è presente alcun valore da cercare
+            if(searchField.value.trim().length == 0) {
+                showAlertBox(searchField, "E' necessario inserire un valore da cercare");
+                e.preventDefault();
+            }            
+        }); 
+    }
+}
+
+function init_ins_recensione() {
+
+
+}
+
+function init_ins_risto() {
+
+
+}
 
 window.onload = function() {
 
@@ -335,6 +426,15 @@ window.onload = function() {
     reg_init(); 
 
     // ----------- PROFILO ---------------
-  //  profile_init()
+    modify_profile_init(); 
+
+    // ---------- INDEX -------------
+    init_index();
+
+    // --------- INSERIMENTO RECENSIONE -------
+    init_ins_recensione(); 
+
+    // ---------- INSERIMENTO RISTORANTE -------
+    init_ins_risto(); 
 }; 
     
