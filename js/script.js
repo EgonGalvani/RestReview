@@ -88,18 +88,15 @@ function createHTMLBox(msg, type) {
     return box; 
 }
 
-function showAlertBox(element, conditions, msg) {
-   
-    // rimuovo eventuali box 
+function showAlertBox(element, msg) {
+    var box = createHTMLBox(msg, MSG_TYPES.ERROR); 
+    element.parentNode.insertBefore(box, element); 
+}
+
+function removePreviousBox(element) {
     var prevElement = element.previousElementSibling; 
     if(hasClass(prevElement, "msg_box"))
         prevElement.parentNode.removeChild(prevElement); 
-
-    // se non rispetto le condizioni, mostro un messaggio di errore
-    if(!conditions) { 
-        var box = createHTMLBox(msg, MSG_TYPES.ERROR); 
-        element.parentNode.insertBefore(box, element); 
-    }  
 }
 
 function isEmail(email) {
@@ -110,85 +107,99 @@ function isPsw(psw) {
     return new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).test(psw); 
 }
 
-function isEmpty(str) { 
-    return !str || !str.trim().length; 
+function isNotEmpty(str) { 
+    return str && str.trim().length > 0; 
 }
 
-function hasNYear(dateValue, yearOld) {
+function has12Year(dateValue) {
     var today = new Date(); 
     var bDay = new Date(dateValue);
     
     // differenza rispetto al 1970 (unix timestamp)
     var diff =new Date(today - bDay); 
-    return diff.getFullYear() >= 1970 + yearOld; 
+    return diff.getFullYear() >= 1970 + 12; 
 }
 
 function equals(str1, str2) {
     return str1.trim() == str2.trim(); 
 }
 
+function addFocusEvents(fields) {
+
+     // per ogni campo 
+     for( field in fields ) {
+
+        var fieldElement = document.getElementById(field); 
+
+        // quando il campo acquista il focus, rimuovo gli errori che erano presenti  
+        fieldElement.addEventListener("focusin", (e) => removePreviousBox(e.target));
+
+        // quando il campo perde il focus vengono eseguiti i vari controlli 
+        fieldElement.addEventListener("focusout", function(e) {
+
+            // controlli relativi al campo attuale 
+            var fieldControls = fields[e.target.id]; 
+            
+            for(var i = 0; i < fieldControls.length; i++) {
+
+                // mostro il messaggio di errore del primo controllo non rispettato 
+                if(!fieldControls[i][0](e.target.value)) {
+                    showAlertBox(e.target, fieldControls[i][1]); 
+                    break; 
+                }
+            }
+        } ); 
+    }
+
+}
+
+function executeControls(fields) {
+
+    var allOK = true; 
+
+    // per ogni campo 
+    for( field in fields ) {
+
+        // campo da controllare
+        var currentField = document.getElementById(field); 
+
+        // elimino eventuali errori 
+        removePreviousBox(currentField); 
+
+        // controlli relativi a quel campo 
+        var currentFieldControls = fields[field]; 
+        
+        // per ogni controllo relativo a quel campo 
+        for(var i = 0; i < currentFieldControls.length; i++) {
+
+            // controllo se il campo lo rispetta, e in caso negativo mostro un messaggio di errore
+            if(!currentFieldControls[i][0](currentField.value)) {
+                allOK = false;
+                showAlertBox(currentField, currentFieldControls[i][1]); 
+                break; 
+            } 
+        }
+    }
+
+    // ritorno TRUE sse i valori di TUTTI i campi rispettano i relativi controlli 
+    return allOK; 
+}
+
 function login_init() {
     
     if(document.getElementById("login_form")) {
 
-        var emailField = document.getElementById("email"); 
-        var pswField = document.getElementById("password"); 
+        var loginControls = {}; 
+        loginControls["email"] = [ [isEmail, "Inserire una e-mail valida. "] ]; 
+        loginControls["password"] = [ [isNotEmpty, "Inserire una password. " ] ];
 
-        emailField.addEventListener("focusout", (e) =>  showAlertBox(emailField, isEmail(emailField.value), "Inserire una e-mail valida.")); 
-        pswField.addEventListener("focusout", (e) =>  showAlertBox(pswField, !isEmpty(pswField.value), "Inserire una password.")); 
-    
+        addFocusEvents(loginControls); 
+
         var loginBtn = document.getElementById("login_btn"); 
-        loginBtn.addEventListener("click", function(e) {
-            triggerEvent(emailField, "focusout");
-            triggerEvent(pswField, "focusout"); 
-            
-            
-            console.log(hasErrorMSG(loginBtn.parentElement)); 
-
-           // if(hasErrorMSG(loginBtn.parentElement))
-                e.preventDefault();      
-        });     
-    
+        loginBtn.addEventListener("click", (e) => { if(!executeControls(loginControls)) e.preventDefault();} );  
     }
 }
 
-/*
-function login_init() {
-    var loginForm = document.getElementById("login_form"); 
-    var msgManager = new MsgManager(); 
-
-    if(loginForm) {
-        var loginBtn = document.getElementById("login_btn"); 
-     
-        loginBtn.addEventListener("click", function(e) {
-            e.preventDefault(); 
-
-                // rimuovo gli eventuali messaggi
-            msgManager.clearAll(); 
-
-            var fUtils = new FormUtils(); 
-            var email = document.getElementById("email"); 
-            var psw = document.getElementById("password"); 
-
-            var allOK = true; 
-            if(fUtils.isEmpty(psw.value)) {
-                msgManager.showNew("Inserire una password", psw); 
-                allOK = false; 
-            }
-
-            if(fUtils.isEmpty(email.value)) {
-                msgManager.showNew("Inserire una mail", email); 
-                allOK = false; 
-            } else if(!fUtils.isEmail(email.value.trim())) {
-                msgManager.showNew("La mail inserita non è valida", email); 
-                allOK = false;
-            }
-
-            return allOK;      
-        }); 
-    } 
-} 
-*/
 /*
 // crea una preview dell'immagine caricata tramite il "sourceElement" 
 // in "previewElement"
