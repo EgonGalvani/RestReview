@@ -397,7 +397,7 @@ function init_index() {
         document.getElementById("search_btn").addEventListener("click", function(e) {
             // mostra un messaggio di errore se non è presente alcun valore da cercare
             if(searchField.value.trim().length == 0) {
-                showAlertBox(searchField, "E' necessario inserire un valore da cercare");
+                showAlertBox(searchField, "È necessario inserire un valore da cercare");
                 e.preventDefault();
             }            
         }); 
@@ -419,6 +419,7 @@ function isReview(review) {
     return hasLengthBetween(review, 100, 250); 
 }
 
+/** PAGINA DI INSERIMENTO NUOVA RECENSIONE  */
 function init_ins_recensione() {
     if(document.getElementById("new_review_form")) {
       
@@ -429,13 +430,12 @@ function init_ins_recensione() {
 
         document.getElementById("send_review").addEventListener("click", (e) => { if(!executeControls(reviewControls)) e.preventDefault();})
     }
-
 }
 
 
 /*---------- INSERIMENTO RISTORANTE ------------*/
 
-function isUrl(url) { return new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi).test(); }
+function isUrl(url) { return new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/).test(url); }
 
 function isBriefDescription(desc) { return hasLengthBetween(desc, 20, 75); }
 
@@ -449,6 +449,7 @@ function init_ins_risto() {
     
     if(document.getElementById("nuovo_rist_form")) {
 
+        // controlli generali del form di inserimento 
         var ristControls = {}; 
         ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
         ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 25 ai 70 caratteri"]]; 
@@ -464,13 +465,56 @@ function init_ins_risto() {
         ristControls["nazione"] = [ [isNotEmpty, "Inserire la nazione in cui si trova il ristorante."] ]; 
         ristControls["main_photo"] = [ [isNotEmpty, "Inserire una foto principale del ristorante."] ]; 
         ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
-        
+         
         addFocusEvents(ristControls); 
-        // free_day
-
-        document.getElementById("ins_rest_submit").addEventListener("click", (e) => { if(!executeControls(ristControls)) e.preventDefault();})
-
+        
+        document.getElementById("ins_rest_submit").addEventListener("click", (e) => ins_rist_btn_click(e, ristControls) ); 
     }
+}
+
+function ins_rist_btn_click(e, ristControls) {
+    var ok = executeControls(ristControls); 
+
+    // controllo che la foto principale rispetti i vincoli 
+    ok = ok & photoControl( document.getElementById("main_photo")); 
+
+    // controllo sul numero massimo di foto
+    var minorPhoto = document.getElementById("minor_photo"); 
+    
+    
+    // rimuovo eventuali messaggi di errore passati 
+    removePreviousBox(minorPhoto); 
+    for(var i = 1; i <= 3; i++) 
+        removePreviousBox(document.getElementById(i+"_photo_description")); 
+
+    // controllo che il numero di file non sia maggiore del limite
+    if(minorPhoto.files.length > 3) {
+        showAlertBox(minorPhoto, "È consentito l'upload di al massimo 3 foto"); 
+        ok = false; 
+    } else {
+
+        // controllo che tutti i file rispettino i vincoli 
+        var minorPhotoOK = true; 
+        for(var i = 0; i < minorPhoto.files.length && minorPhotoOK; i++) {
+            if( !isExtensionOK(minorPhoto.files[i].name) || !isSizeOK(minorPhoto.files[i].size) )
+                minorPhotoOK = false; 
+        }         
+        
+        // se almeno un file non rispetta i vincoli mostro un messaggio di errore
+        if(!minorPhotoOK)
+            showAlertBox(minorPhoto, "Almeno un file tra quelli caricati non presenta estensione corretta (png, jpg, jpeg) o ha dimensione maggiore di quella massima (5MB)")
+        else {
+            
+            // controllo che per ogni foto caricata ci sia una descrizione adeguata 
+            for(var i = 0; i < minorPhoto.files.length; i++) {              
+                var currentDesc = document.getElementById( (i+1) + "_photo_description"); 
+                if(!isWord(currentDesc.value))
+                    showAlertBox(currentDesc, "La descrizione delle foto deve contenere solo lettere ed essere lungo almeno 4 caratteri.")
+            }
+        }
+    }
+
+    if(!ok) e.preventDefault();
 }
 
 window.onload = function() {
