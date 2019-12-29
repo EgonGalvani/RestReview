@@ -66,7 +66,7 @@
                     <dt>Telefono: </dt>
                     <dd>%TELEFONO%</dd>
                     <dt><span xml:lang="en" lang="en">Email:</span> </dt>
-                    <dd><a href="mailto:%EMAIL%">%EMAIL</a></dd>
+                    <dd><a href="mailto:%EMAIL%">%EMAIL%</a></dd>
                     <dt>Indirizzo: </dt>
                     <dd>%INDIRIZZO%</dd>
                     <dt>Sito<span xml:lang="en" lang="en"> web:</span> </dt> 
@@ -83,28 +83,28 @@
             <ul>
                 <li>
                     <label for="progress_5">5 stelle</label>
-                    <progress id="progress_5"  max="100" value="10"></progress>
-                    <span>10%</span>
+                    <progress id="progress_5"  max="100" value="%5_star_perc%"></progress>
+                    <span>%5_star_perc%%</span>
                 </li>
                 <li>
                     <label for="progress_4">4 stelle</label>
-                    <progress id="progress_4"  max="100" value="40"></progress>
-                    <span>40%</span>
+                    <progress id="progress_4"  max="100" value="%4_star_perc%"></progress>
+                    <span>%4_star_perc%%</span>
                 </li>
                 <li>
                     <label for="progress_3">3 stelle</label>
-                    <progress id="progress_3"  max="100" value="30"></progress>
-                    <span>30%</span>
+                    <progress id="progress_3"  max="100" value="%3_star_perc%"></progress>
+                    <span>%3_star_perc%%</span>
                 </li>
                 <li>
                     <label for="progress_2">2 stelle</label>
-                    <progress id="progress_2"  max="100" value="25"></progress>
-                    <span>25%</span>
+                    <progress id="progress_2"  max="100" value="%2_star_perc%"></progress>
+                    <span>%2_star_perc%%</span>
                 </li>
                 <li>               
                     <label for="progress_1">1 stelle</label>
-                    <progress id="progress_1"  max="100" value="5"></progress>
-                    <span>5%</span>
+                    <progress id="progress_1"  max="100" value="%1_star_perc%"></progress>
+                    <span>%1_star_perc%%</span>
                 </li>
             </ul>
 
@@ -116,7 +116,8 @@
                     <option value="0" selected="selected">Più votati</option>
                     <option value="1">Più recenti</option>
                 </select>
-                <input type="submit" value="Cambia ordinamento" class="btn"/>  
+                <input type="hidden" name="id" value="%ID_RIST%" />
+                <input type="submit" name="sub" value="Cambia ordinamento" class="btn"/>  
             </form>
 
             %LIST%

@@ -41,7 +41,7 @@
                     $risultato=str_replace('%TIPOLOGIA%',$ristorante['Categoria'],$risultato);
 
                     //stelle
-                    if($query_star=$obj_connection->queryDB("SELECT COUNT(Stelle) AS numero, AVG(Stelle) AS media FROM recensione WHERE ID_Ristorante=\"".$ristorante['ID']."\"")){
+                    if($query_star=$obj_connection->queryDB("SELECT COUNT(*) AS numero, AVG(Stelle) AS media FROM recensione WHERE ID_Ristorante=\"".$ristorante['ID']."\"")){
                         if(count($query_star)>0 && $query_star[0]['numero']>0){
                             require_once('stelle.php');
                             $num_stelle=round($query_star[0]['media'],1);

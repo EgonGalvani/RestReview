@@ -12,7 +12,7 @@
                 return "";
             }
             $stelle="";
-            for($i=1;$i<$this->numero;$i++){
+            for($i=1;$i<=$this->numero;$i++){
                 $stelle.="&#9733;";
             }
             for($i=5;$i>$this->numero;$i--){

@@ -27,7 +27,7 @@
                         $class='msg_box error_box'; 
                     break;
                 case 'Dettaglio':
-                        $method='post';
+                        $method='get';
                         $action='dettaglioristorante.php';
                         $name='visitaRist';
                         $value='Vai al ristorante';
@@ -51,5 +51,11 @@
 
             return $form;
         }
+    }
+
+    class formRecensione{
+
+        public $type;
+        public $recID;
     }
 ?>
