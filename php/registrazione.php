@@ -4,6 +4,7 @@
     require_once('connessione.php');
     require_once("reg_ex.php");
     require_once('addItems.php');
+    require_once("imgUpload.php");
     if($_SESSION['logged']==true){
         header('location:index.php');
         exit();
@@ -22,9 +23,10 @@
     $pwd2='';
     $piva=NULL;
     $rsoc=NULL;
-    $id_foto=0;
+    $id_foto=1;
     $no_error=true;
     $error="";
+    $filePath="../img/Utenti/";
     /* se ci sono valori in _POST cerca di fare registrazione o stampa errore */
     if(isset($_POST['registrati'])){
         if(isset($_POST['tipo_utente'])){
@@ -101,7 +103,23 @@
             $error="<div class=\"msg_box error_box\">Per poterti registrare devi avere almeno 12 anni.</div>";
             $no_error=false;
         }*/
-
+        if($no_error){//Controllo non ci siano errori prima di caricare l'immagine
+            if($_FILES['fileToUpload']['size'] != 0){
+                $uploadResult = uploadImage("Utenti/");
+                if($uploadResult['error']==""){
+                    $filePath=$uploadResult['path'];
+                }
+                else{
+                    $error=$error.$uploadResult['error'];
+                    $no_error=false;
+                }
+            }
+            if($filePath!=="../img/Utenti/"&&$uploadResult['error']==""){//è stato caricato qualcosa
+                $obj_connection->insertDB("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");
+                $result=$obj_connection->queryDB("SELECT * FROM foto WHERE Path='".$filePath."'");
+                $id_foto=$result[0]['ID'];
+            }
+        }
         if($no_error){
             
             $tipo=$obj_connection->escape_str(trim($tipo));
@@ -116,25 +134,22 @@
 
             if($tipo==0){//utente
                 $permessi="Utente";
-                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", NULL, NULL, NULL, \"$permessi\", \"$sesso\");");
+                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
             }else if($tipo==1){//ristoratore
                 $permessi="Ristoratore";
-                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", NULL, \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\");");         
-            }
+                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")");         
+            }   
 
             //check dati inseriti
             if(!$obj_connection->queryDB("SELECT * FROM utente WHERE Mail='".$mail."'")){
-                $error="<div>Errore nell'inserimento dei dati</div>";
+                $error="<div class=\"msg_box error_box\">Errore nell'inserimento dei dati</div>";
             }else{
                 $obj_connection->close_connection();
                 header('location: login.php');
                 exit;
             }
             $obj_connection->close_connection();
-        }
-
-
-        
+        }       
 
     }
     if($tipo==1){
