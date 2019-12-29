@@ -22,8 +22,6 @@
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />  
-        
-        <script type="text/javascript" src="../js/classes.js"></script>
     </head>
 
     <body>
@@ -59,11 +57,11 @@
 		   		    <label for="new_foto_profilo">Seleziona nuova foto: </label>
                     <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
 
-                    <input type="submit" value="Modifica foto profilo" class="btn right"/>
+                    <input type="submit" value="Modifica foto profilo" id="change_photo" class="btn right"/>
                 </fieldset>
             </form>
             
-            <form method="post" action="" id="edit_account_data" class="vertical_input_form">
+            <form method="post" action="" id="edit_psw_data" class="vertical_input_form">
                 <fieldset>
                     <legend>Cambio Password</legend>
                         
@@ -78,7 +76,7 @@
                     <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeat_pwd" id="repeat_pwd" tabindex="5" class="full_width_input"/>
 
-                    <input type="submit" value="Cambia password" class="btn right"/>
+                    <input type="submit" id="change_psw_btn" value="Cambia password" class="btn right"/>
                 </fieldset>
             </form>
          
@@ -100,9 +98,6 @@
                         <option value="altro">Altro</option>
                     </select>
                     
-                    <label for="nascita">Data di nascita:</label>
-                    <input type="text" name="nascita" id="nascita" value="%DATA_NASCITA%" tabindex="10" class="full_width_input"/>
-
                     <label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>
                     <input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="11" class="full_width_input"/>
                     
@@ -110,12 +105,9 @@
                     <input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="12" class="full_width_input"/>
 
                     <input type="reset" value="Resetta form" class="btn right"/>
-                    <input type="submit" value="Applica modifiche" class="btn right"/>
+                    <input type="submit" id="modify_profile_btn" value="Applica modifiche" class="btn right"/>
                 </fieldset>
-            </form>
-
-
-            
+            </form>            
         </div>
 
         <div id="footer">

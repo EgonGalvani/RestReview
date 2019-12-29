@@ -22,9 +22,7 @@
         <link rel="shortcut icon" href="../favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
-        <meta name="theme-color" content="#ffffff" />  
-        
-        <script type="text/javascript" src="../js/classes.js"></script>
+        <meta name="theme-color" content="#ffffff" />        
     </head>
 
     <body>
@@ -51,7 +49,8 @@
                     <span> Tipologia di registrazione: </span>
                     <input type="radio" name="tipo_utente" value="0" tabindex="1" id="recensore" checked="%REC_CHECKED%" />
                     <label class="radio_label" for="recensore">Recensore</label>
-                    <input type="radio" name="tipo_utente" value="1"  id="ristoratore" checked="%RIST_CHECKED%" />
+                
+                    <input type="radio" name="tipo_utente" value="1" id="ristoratore" checked="%RIST_CHECKED%" />
                     <label class="radio_label" for="ristoratore">Ristoratore</label>
                     
                     <label for="email" lang="en">Email:</label>
@@ -87,9 +86,9 @@
                     <input id="rsoc" type="text" name="rsoc" tabindex="10" class="full_width_input" value="%RSOC_VALUE%"/>
 
                     <div id="img_sel">
-                        <label for="img_profilo">Immagine profilo:</label>
+                        <label for="fileToUpload">Immagine profilo:</label>
                         <img id="img_profilo_preview" src="../img/imgnotfound.jpg" alt="immagine di profilo" />
-                        <input type="file" name="img_profilo" id="img_profilo" tabindex="11" />
+                        <input type="file" name="fileToUpload" id="img_profilo" tabindex="11" />
                     </div>
                     <input id="reg_btn" type="submit" value="Registrati" class="btn" name="registrati" tabindex="12"/>
                 </fieldset>
@@ -100,8 +99,8 @@
             %FOOTER%
         </div>
 
-        <!--<script type="text/javascript" src="../js/script.js"></script>-->
-		<noscript>
+        <script type="text/javascript" src="../js/script.js"></script>
+        <noscript>
 			<div class="msg_box warning_box">
 				ATTENZIONE: <span lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
 				NON ESSERE DISPONIBILI

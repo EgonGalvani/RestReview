@@ -216,6 +216,11 @@ textarea {
     background-size: 3em; 
 }
 
+.msg_box ul {
+    padding-left: 2em; 
+    list-style-type: disc;
+}
+
 .error_box {
     background-image: url(../img/error_icon.svg);   
     background-color: #fce4e4;
@@ -693,11 +698,11 @@ dd form, dd fieldset {
     margin-right: 1em; 
 }
 
-#edit_personal_data, #edit_account_data {
+#edit_personal_data, #edit_psw_data {
     margin-left: 50%; 
 }
 
-#edit_personal_data, #edit_account_data, #edit_foto_profilo {
+#edit_personal_data, #edit_psw_data, #edit_foto_profilo {
     margin-top: 1.5em; 
 }
 
@@ -974,7 +979,7 @@ progress {
     }
 
     #edit_foto_profilo, 
-    #edit_account_data,
+    #edit_psw_data,
     #edit_personal_data {
         width: 100%; 
         margin-left: 0; 

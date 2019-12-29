@@ -82,24 +82,20 @@ function createHTMLBox(msg, type) {
 
     box.classList.add(msgClass); 
 
-    var textNode = document.createTextNode(msg); 
-    box.appendChild(textNode); 
+    box.innerHTML = msg; 
     
     return box; 
 }
 
-function showAlertBox(element, conditions, msg) {
-   
-    // rimuovo eventuali box 
+function showAlertBox(element, msg) {
+    var box = createHTMLBox(msg, MSG_TYPES.ERROR); 
+    element.parentNode.insertBefore(box, element); 
+}
+
+function removePreviousBox(element) {
     var prevElement = element.previousElementSibling; 
     if(hasClass(prevElement, "msg_box"))
         prevElement.parentNode.removeChild(prevElement); 
-
-    // se non rispetto le condizioni, mostro un messaggio di errore
-    if(!conditions) { 
-        var box = createHTMLBox(msg, MSG_TYPES.ERROR); 
-        element.parentNode.insertBefore(box, element); 
-    }  
 }
 
 function isEmail(email) {
@@ -110,88 +106,113 @@ function isPsw(psw) {
     return new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/).test(psw); 
 }
 
-function isEmpty(str) { 
-    return !str || !str.trim().length; 
+function isNotEmpty(str) { 
+    return str && str.trim().length > 0; 
 }
 
-function hasNYear(dateValue, yearOld) {
+function has12Year(dateValue) {
     var today = new Date(); 
     var bDay = new Date(dateValue);
     
     // differenza rispetto al 1970 (unix timestamp)
     var diff =new Date(today - bDay); 
-    return diff.getFullYear() >= 1970 + yearOld; 
+    return diff.getFullYear() >= 1970 + 12; 
 }
 
 function equals(str1, str2) {
     return str1.trim() == str2.trim(); 
 }
 
+/** NOTA: I CONTOLLI SONO NELLA SEGUENTE FORMA: 
+ * 
+ * { 
+ *    idCampo0 => [
+ *      [controllo0, messaggioDiErrore0], 
+ *      ...
+ *      [controlloN, messaggioDiErroreN], 
+ *    ], 
+ * 
+ *    ...
+ * }
+ */
+
+ // aggiunge ai vari field di input indicati in fields i relativi eventi e controlli 
+function addFocusEvents(fields) {
+
+     // per ogni campo 
+     for( field in fields ) {
+
+        var fieldElement = document.getElementById(field); 
+
+        // quando il campo perde il focus vengono eseguiti i vari controlli 
+        fieldElement.addEventListener("focusout", function(e) {
+            removePreviousBox(e.target); 
+            
+            // controlli relativi al campo attuale 
+            var fieldControls = fields[e.target.id]; 
+            
+            for(var i = 0; i < fieldControls.length; i++) {
+
+                // mostro il messaggio di errore del primo controllo non rispettato 
+                if(!fieldControls[i][0](e.target.value)) {
+                    showAlertBox(e.target, fieldControls[i][1]); 
+                    break; 
+                }
+            }
+        } ); 
+    }
+}
+
+// fa i controlli sui vari campi indicati in fields e ritorno TRUE sse i valori di TUTTI i campi rispettano i relativi controlli 
+function executeControls(fields) {
+
+    var allOK = true; 
+
+    // per ogni campo 
+    for( field in fields ) {
+
+        // campo da controllare
+        var currentField = document.getElementById(field); 
+
+        // elimino eventuali errori 
+        removePreviousBox(currentField); 
+
+        // controlli relativi a quel campo 
+        var currentFieldControls = fields[field]; 
+        
+        // per ogni controllo relativo a quel campo 
+        for(var i = 0; i < currentFieldControls.length; i++) {
+
+            // controllo se il campo lo rispetta, e in caso negativo mostro un messaggio di errore
+            if(!currentFieldControls[i][0](currentField.value)) {
+                allOK = false;
+                showAlertBox(currentField, currentFieldControls[i][1]); 
+                break; 
+            } 
+        }
+    }
+
+    // ritorno TRUE sse i valori di TUTTI i campi rispettano i relativi controlli 
+    return allOK; 
+}
+
+/** GESTIONE DEI CONTROLLI SUL FORM DI LOGIN */
 function login_init() {
     
     if(document.getElementById("login_form")) {
 
-        var emailField = document.getElementById("email"); 
-        var pswField = document.getElementById("password"); 
+        var loginControls = {}; 
+        loginControls["email"] = [ [isEmail, "Inserire una e-mail valida. "] ]; 
+        loginControls["password"] = [ [isNotEmpty, "Inserire una password. " ] ];
 
-        emailField.addEventListener("focusout", (e) =>  showAlertBox(emailField, isEmail(emailField.value), "Inserire una e-mail valida.")); 
-        pswField.addEventListener("focusout", (e) =>  showAlertBox(pswField, !isEmpty(pswField.value), "Inserire una password.")); 
-    
+        addFocusEvents(loginControls); 
+
         var loginBtn = document.getElementById("login_btn"); 
-        loginBtn.addEventListener("click", function(e) {
-            triggerEvent(emailField, "focusout");
-            triggerEvent(pswField, "focusout"); 
-            
-            
-            console.log(hasErrorMSG(loginBtn.parentElement)); 
-
-           // if(hasErrorMSG(loginBtn.parentElement))
-                e.preventDefault();      
-        });     
-    
+        loginBtn.addEventListener("click", (e) => { if(!executeControls(loginControls)) e.preventDefault();} );  
     }
 }
 
-/*
-function login_init() {
-    var loginForm = document.getElementById("login_form"); 
-    var msgManager = new MsgManager(); 
-
-    if(loginForm) {
-        var loginBtn = document.getElementById("login_btn"); 
-     
-        loginBtn.addEventListener("click", function(e) {
-            e.preventDefault(); 
-
-                // rimuovo gli eventuali messaggi
-            msgManager.clearAll(); 
-
-            var fUtils = new FormUtils(); 
-            var email = document.getElementById("email"); 
-            var psw = document.getElementById("password"); 
-
-            var allOK = true; 
-            if(fUtils.isEmpty(psw.value)) {
-                msgManager.showNew("Inserire una password", psw); 
-                allOK = false; 
-            }
-
-            if(fUtils.isEmpty(email.value)) {
-                msgManager.showNew("Inserire una mail", email); 
-                allOK = false; 
-            } else if(!fUtils.isEmail(email.value.trim())) {
-                msgManager.showNew("La mail inserita non è valida", email); 
-                allOK = false;
-            }
-
-            return allOK;      
-        }); 
-    } 
-} 
-*/
-/*
-// crea una preview dell'immagine caricata tramite il "sourceElement" 
-// in "previewElement"
+/** GESTIONE DELLA PAGINA DI REGISTRAZIONE */
 function imgPreview(sourceElement, previewElement) {
     if(sourceElement.files && sourceElement.files[0]) {
         var reader = new FileReader(); 
@@ -202,92 +223,299 @@ function imgPreview(sourceElement, previewElement) {
     }
 }
 
+// estensioni valide per file
+function isExtensionOK(filepath) {
+    var extensions = ['png','jpg','jpeg'];
+	return extensions.includes(filepath.split('.').pop());
+}
+
+// controlla che il file non superi la dimensione massima
+function isSizeOK(fileSize) {
+    return fileSize <= 5 * 1048576; // dimensione massima: 5MB
+}
+
+function isPIVA(piva) {
+    return new RegExp(/^[0-9]{11}$/).test(piva); 
+}
+
+// una parola deve avere lunghezza maggiore o uguale a 4, ed essere composta solo da lettere
+function isWord(word) {
+    word = word.trim(); 
+    return new RegExp(/^[a-zA-Z]/).test(word) && word.length >= 4; 
+}
+
+// controllo sulle foto 
+function photoControl(photoField) {
+    var ok = true; 
+
+    if(isNotEmpty(photoField.value)) {
+        removePreviousBox(photoField); 
+        if(!isExtensionOK(photoField.value)) {
+            showAlertBox(photoField, "L'estensione del file non appartiene a quelle permesse (png, jpg, jpeg)");
+            ok = false; 
+        } else if(!isSizeOK(photoField.files[0].size)) {    
+            showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
+            ok = false ;
+        }
+    }
+
+    return ok; 
+}
+
 function reg_init() {
-    var reg_form = document.getElementById("form_registrazione"); 
-    if(reg_form) {
-        
+
+    if( document.getElementById("form_registrazione") ) {
+
         // preview dell'immagine
         var fileInput = document.getElementById("img_profilo"); 
         fileInput.addEventListener("change", function(e) {
             imgPreview(this, document.getElementById("img_profilo_preview"));
         }); 
+        
+        // controlli da applicare sempre
+        var regControls = {}; 
+        regControls["email"] = [ [isNotEmpty, "Inserire un'email."], [isEmail, "L'email inserita non è valida."]];
+        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
+        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];
+        regControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
+        regControls["nascita"] = [ [isNotEmpty, "Inserire una data di nascita."], [has12Year, "L'età minima per poter utilizzare questo sito è 12 anni."] ]        
+        addFocusEvents(regControls); 
 
-        // setto il click listener
-        var reg_btn = document.getElementById("reg_btn"); 
-        reg_btn.addEventListener("click", function (e) {
-            e.preventDefault(); 
+        // controlli più complessi 
+        var repatPswField = document.getElementById("repeatpassword"); 
+        repatPswField.addEventListener("focusout", function(e) { 
+            removePreviousBox(e.target); 
+            if(!equals(e.target.value, document.getElementById("password").value)) 
+                showAlertBox(e.target, "Le due password non coincidono."); 
+        }); 
 
-            // rimuovo gli eventuali messaggi
-            for (var key in errorMSGs) {
-                errorMSGs[key].delete(); 
-            }
+        // controlli da applicare solo nel caso in cui l'utente sia un ristoratore  
+        var ristoControls = {}; 
+        ristoControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."] ]; 
+        ristoControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
+        addFocusEvents(ristoControls); 
+        
+        document.getElementById("reg_btn").addEventListener("click", (e) => { reg_btn_click(e, regControls, ristoControls); }); 
+    }
+}
 
-            var reg_fieldset = reg_form.firstElementChild; 
+function reg_btn_click(e, regControls, ristoControls) {
 
-            var email = document.getElementById("email").value; 
-            var name = document.getElementById("nome").value; 
-            var surname = document.getElementById("cognome").value; 
-            var psw = document.getElementById("password").value; 
-            var rpsw = document.getElementById("repeatpassword").value; 
-          
-            var ristoratore = document.getElementById("ristoratore").value;
-            var piva = document.getElementById("piva").value;
-            var rsoc = document.getElementById("rsoc").value; 
+    // controllo che i campi della registrazione rispettino i controlli indicati
+    var ok = executeControls(regControls); 
     
-            var dNascita = document.getElementById("nascita").value; 
-            
-            var fUtils = new FormUtils(); 
-            var allOk = true; 
+    // controlli solo se il tipo selezionato è ristoratore
+    if( document.getElementById("ristoratore").checked )  
+         ok = ok & executeControls(ristoControls); 
 
-            if(fUtils.isEmpty(name) || fUtils.isEmpty(surname) || fUtils.isEmpty(psw) 
-                || fUtils.isEmpty(rpsw) || fUtils.isEmpty(dNascita)) {
-                
-                errorMSGs['empty_fields'].show(reg_fieldset); 
-                allOk = false; 
-            } else if(ristoratore.checked && (fUtils.isEmpty(piva) || fUtils.isEmpty(rsoc)) ) {
-                errorMSGs['empty_fields'].show(reg_fieldset); 
-                allOk = false; 
-            } 
+    // controlli sulle password 
+    var repatPswField = document.getElementById("repeatpassword"); 
+    if(!equals(repatPswField.value, document.getElementById("password").value)) {
+        removePreviousBox(repatPswField); 
+        showAlertBox(repatPswField, "Le due password non coincidono."); 
+        ok = false; 
+    }
 
-            if(allOk) {
-                if(!fUtils.isEmail(email)) {
-                    errorMSGs['wrong_email'].show(reg_fieldset); 
-                    allOk = false; 
-                }
+    // controlli sulla foto di profilo 
+    ok = ok & photoControl( document.getElementById("img_profilo") ); 
+   
+    if(!ok) e.preventDefault(); 
+}
 
-                if(!fUtils.isPsw(psw)) {
-                    errorMSGs['wrong_password'].show(reg_fieldset); 
-                    allOk = false; 
-                } else if(!fUtils.equals(psw, rpsw)) {
-                    errorMSGs['psw_match'].show(reg_fieldset); 
-                    allOk = false; 
-                }
 
-                if(!fUtils.hasNYear(dNascita, MIN_AGE)) {
-                    errorMSGs['too_young'].show(reg_fieldset); 
-                    allOk = false; 
-                } 
+function modify_profile_init(){
+ 
+    if(document.getElementById("edit_foto_profilo")) {
+        document.getElementById("change_photo").addEventListener("click", function(e) {
+            // controllo se l'immagine va bene
+            if(!photoControl(document.getElementById("new_foto_profilo"))) 
+                e.preventDefault(); 
+        }); 
+    }
+
+    if(document.getElementById("edit_psw_data")) {
+        
+        //  controlli su password vecchia e nuova  
+        var pswControls = {}; 
+        pswControls["old_password"] = [ [isNotEmpty, "Inserisci la tua password attuale."] ];
+        pswControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
+        addFocusEvents(pswControls); 
+
+        // controllo che le due password coincidano 
+        var repatPswField = document.getElementById("repeat_pwd"); 
+        repatPswField.addEventListener("focusout", function(e) { 
+            removePreviousBox(e.target); 
+            if(!equals(e.target.value, document.getElementById("password").value)) 
+                showAlertBox(e.target, "Le due password non coincidono."); 
+        }); 
+
+        // gestione del submit del form 
+        document.getElementById("change_psw_btn").addEventListener("click", (e) => edit_psw_click(e, pswControls)); 
+    }
+
+    if(document.getElementById("edit_personal_data")) {
+        var modifyControls = {}; 
+        modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
+        modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];   
+        modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
+        modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
+        addFocusEvents(modifyControls); 
+        
+        document.getElementById("modify_profile_btn").addEventListener("click", (e) => { if(!executeControls(modifyControls)) e.preventDefault(); });
+    }
+}
+
+function edit_psw_click(e, pswControls) {
+
+    var ok = executeControls(pswControls);  
+
+    var repatPswField = document.getElementById("repeat_pwd"); 
+    if(!equals(repatPswField.value, document.getElementById("password").value)) {
+        removePreviousBox(repatPswField); 
+        ok = false; 
+        showAlertBox(repatPswField, "Le due password non coincidono."); 
+    }
+
+    if(!ok) 
+        e.preventDefault();
+}
+
+/*** INDEX */
+function init_index() {
+    if(document.getElementById("form_ricerca")) {
+
+        var searchField = document.getElementById("search"); 
+
+        // quando perde il focus
+        searchField.addEventListener("focusout", function(e) {
+            // se rispetta i controlli ed era presente un box di errore, lo rimuove 
+            if(searchField.value.trim().length > 0) {
+                removePreviousBox(searchField); 
             }
+        }); 
 
-            if(allOk) {
-                reg_form.submit(); 
-            }
+        document.getElementById("search_btn").addEventListener("click", function(e) {
+            // mostra un messaggio di errore se non è presente alcun valore da cercare
+            if(searchField.value.trim().length == 0) {
+                showAlertBox(searchField, "È necessario inserire un valore da cercare");
+                e.preventDefault();
+            }            
         }); 
     }
 }
-*/
-/***************CODICE PAGINA PROFILO *****************/
-/*
-function profile_init(){
 
-    var prof_form = document.getElementById("modifica_dati");
-    if(prof_form){
-        var fileInput = document.getElementById("new_foto_profilo");
-        fileInput.addEventListener("change", function(e) {
-            imgPreview(this, document.getElementById("img_profilo"));
-        });
+function hasLengthBetween(string, min, max) {
+    var stringL = string.trim().length; 
+    return stringL >= min && stringL <= max;  
+}
+
+// un titolo deve contenere tra i 25 e 50 caratteri; 
+function isTitle(titolo) { 
+    return hasLengthBetween(titolo, 25, 50); 
+}
+
+// una recensione deve avere tra i 100 e 250 caratteri 
+function isReview(review) {
+    return hasLengthBetween(review, 100, 250); 
+}
+
+/** PAGINA DI INSERIMENTO NUOVA RECENSIONE  */
+function init_ins_recensione() {
+    if(document.getElementById("new_review_form")) {
+      
+        var reviewControls = {}; 
+        reviewControls["titolo_recensione"] = [ [isNotEmpty, "Inserire un titolo per la recensione."], [isTitle, "Il titolo deve avere tra i 25 e 50 cartteri."]]; 
+        reviewControls["contenuto_recensione"] = [ [isNotEmpty, "Inserire un contenuto alla recensione."], [isReview, "Il contenuto della recensione deve avere tra i 100 e 250 caratteri."]]; 
+        addFocusEvents(reviewControls); 
+
+        document.getElementById("send_review").addEventListener("click", (e) => { if(!executeControls(reviewControls)) e.preventDefault();})
     }
-}*/
+}
+
+
+/*---------- INSERIMENTO RISTORANTE ------------*/
+
+function isUrl(url) { return new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/).test(url); }
+
+function isBriefDescription(desc) { return hasLengthBetween(desc, 20, 75); }
+
+function isPhoneNumber(number) { return new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/).test(number); }
+
+function isNumber(num) { return new RegExp(/^\d+$/).test(num); }
+
+function isCAP(cap) { return new RegExp(/^\d{5}$/).test(cap); }
+
+function init_ins_risto() {
+    
+    if(document.getElementById("nuovo_rist_form")) {
+
+        // controlli generali del form di inserimento 
+        var ristControls = {}; 
+        ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 25 ai 70 caratteri"]]; 
+        ristControls["telefono"] = [ [isNotEmpty, "Inserire il numero di telefono del ristorante"], [isPhoneNumber, "Il valore inserito non corrisponde ad un numero di telefono valido."]]; 
+        ristControls["email"] = [ [isNotEmpty, "Inserire l'email del ristorante."], [isEmail, "L'email inserita non è valida."]]; 
+        ristControls["sito"] = [ [isNotEmpty, "Inserire il sito del ristorante."], [isUrl, "Il valore inserito non corrisponde ad un URL valido"]]; 
+        ristControls["o_apertura"] = [ [isNotEmpty, "Inserire un orario di apertura"] ]; 
+        ristControls["o_chiusura"] = [ [isNotEmpty, "Inserire un orario di chiusura."] ]; 
+        ristControls["via"] = [ [isNotEmpty, "Inserire la via del ristorante."] ]; 
+        ristControls["civico"] = [ [isNotEmpty, "Inserire il civico del ristorante."], [isNumber, "Il civico può essere solo un numero."]]; 
+        ristControls["citta"] = [ [isNotEmpty, "Inserire la città in cui si trova il ristorante."] ]; 
+        ristControls["cap"] = [ [isNotEmpty, "Inserire il CAP della provincia in cui si trova il ristorante."], [isCAP, "Il CAP inserito non risulta essere valido (5 cifre)"]]; 
+        ristControls["nazione"] = [ [isNotEmpty, "Inserire la nazione in cui si trova il ristorante."] ]; 
+        ristControls["main_photo"] = [ [isNotEmpty, "Inserire una foto principale del ristorante."] ]; 
+        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+         
+        addFocusEvents(ristControls); 
+        
+        document.getElementById("ins_rest_submit").addEventListener("click", (e) => ins_rist_btn_click(e, ristControls) ); 
+    }
+}
+
+function ins_rist_btn_click(e, ristControls) {
+    var ok = executeControls(ristControls); 
+
+    // controllo che la foto principale rispetti i vincoli 
+    ok = ok & photoControl( document.getElementById("main_photo")); 
+
+    // controllo sul numero massimo di foto
+    var minorPhoto = document.getElementById("minor_photo"); 
+    
+    
+    // rimuovo eventuali messaggi di errore passati 
+    removePreviousBox(minorPhoto); 
+    for(var i = 1; i <= 3; i++) 
+        removePreviousBox(document.getElementById(i+"_photo_description")); 
+
+    // controllo che il numero di file non sia maggiore del limite
+    if(minorPhoto.files.length > 3) {
+        showAlertBox(minorPhoto, "È consentito l'upload di al massimo 3 foto"); 
+        ok = false; 
+    } else {
+
+        // controllo che tutti i file rispettino i vincoli 
+        var minorPhotoOK = true; 
+        for(var i = 0; i < minorPhoto.files.length && minorPhotoOK; i++) {
+            if( !isExtensionOK(minorPhoto.files[i].name) || !isSizeOK(minorPhoto.files[i].size) )
+                minorPhotoOK = false; 
+        }         
+        
+        // se almeno un file non rispetta i vincoli mostro un messaggio di errore
+        if(!minorPhotoOK)
+            showAlertBox(minorPhoto, "Almeno un file tra quelli caricati non presenta estensione corretta (png, jpg, jpeg) o ha dimensione maggiore di quella massima (5MB)")
+        else {
+            
+            // controllo che per ogni foto caricata ci sia una descrizione adeguata 
+            for(var i = 0; i < minorPhoto.files.length; i++) {              
+                var currentDesc = document.getElementById( (i+1) + "_photo_description"); 
+                if(!isWord(currentDesc.value))
+                    showAlertBox(currentDesc, "La descrizione delle foto deve contenere solo lettere ed essere lungo almeno 4 caratteri.")
+            }
+        }
+    }
+
+    if(!ok) e.preventDefault();
+}
 
 window.onload = function() {
 
@@ -298,9 +526,18 @@ window.onload = function() {
     login_init();
 
     // ---------- REGISTRAZIONE -------------- 
-   // reg_init(); 
+    reg_init(); 
 
     // ----------- PROFILO ---------------
-  //  profile_init()
+    modify_profile_init(); 
+
+    // ---------- INDEX -------------
+    init_index();
+
+    // --------- INSERIMENTO RECENSIONE -------
+    init_ins_recensione(); 
+
+    // ---------- INSERIMENTO RISTORANTE -------
+    init_ins_risto(); 
 }; 
     

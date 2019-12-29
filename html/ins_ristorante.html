@@ -25,7 +25,7 @@
         <meta name="msapplication-config" content="../favicon/browserconfig.xml"/>
         <meta name="theme-color" content="#ffffff" />  
         
-        <script type="text/javascript" src="../js/classes.js"></script>
+      
     </head>
 
     <body>
@@ -96,7 +96,7 @@
                     <span>Giorno di chiusura: </span>
                     <ul id="free_day_list">
                         <li>
-                            <input type="radio" name="free_day" id="lun" value="lun" %LUN%><label for="lun">Lunedì </label>
+                            <input type="radio" name="free_day" checked="checked" id="lun" value="lun" %LUN%><label for="lun">Lunedì </label>
                         </li> 
                         <li>
                             <input type="radio" name="free_day" id="mar" value="mar" %MAR%><label for="mar">Martedì <label>
@@ -148,14 +148,14 @@
                 <fieldset>
                     <legend>Immagini</legend>
                     %ERR_IMG%
-                    <label id="main_photo" for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
-                    <input type="file" name="main_photo" />
+                    <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
+                    <input type="file" id="main_photo" name="main_photo" />
                     
                     <label for="main_photo_description">Descrizione immagine principale: </label>
                     <input id="main_photo_description" name="main_photo_description" value="%DESC_MAIN_IMG%" type="text" class="full_width_input" />
                   
-                    <label id="minor_photo" for="minor_photo" class="file_label">Altre immagini del ristorante (massimo 3): </label>
-                    <input type="file" name="minor_photo" multiple="multiple"/>
+                    <label for="minor_photo" class="file_label">Altre immagini del ristorante (massimo 3): </label>
+                    <input type="file" id="minor_photo" name="minor_photo" id="minor_photo" multiple="multiple"/>
                   
                     <label for="1_photo_description">Descrizione prima immagine: (solo se inserita) </label>
                     <input id="1_photo_description" value="%DESC_1_IMG%" name="1_photo_description" type="text" class="full_width_input" />
