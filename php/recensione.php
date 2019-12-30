@@ -63,7 +63,12 @@
                 }//errore query
                 
             }else{
-                $recensione=str_replace('%LIKE_FORM%','',$recensione);
+                if($viewer_permission=='Visitatore'){
+                    $link='<a href="login.php" title="Accedi per mettere mi piace">Accedi per mettere mi piace</a>';
+                    $recensione=str_replace('%LIKE_FORM%',$link,$recensione);
+                }else{
+                    $recensione=str_replace('%LIKE_FORM%','',$recensione);
+                }
             }
             //delete form
             if($viewer_permission=='Admin' || $this->id_utente==$viewer_id){

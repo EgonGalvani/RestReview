@@ -16,6 +16,10 @@
                 if(count($query_result)>0){
                     $ristorante=$query_result[0];
 
+                    //modificare, il path,descrizione e estensione vanno cercate nel db
+                    $page=str_replace('%MAIN_IMG_PATH%','../img/ristoranti/'.$id_ristorante.'.jpeg',$page);
+                    $page=str_replace('%MAIN_IMG_DESC%','',$page);
+
                     $page=str_replace('%NOME_RISTORANTE%',$ristorante['Nome'],$page);
                     $page=str_replace('%CATEGORIA%',$ristorante['Categoria'],$page);
                     $page=str_replace('%DESCRIZIONE%',$ristorante['Descrizione'],$page);
