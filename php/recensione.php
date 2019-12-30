@@ -19,7 +19,7 @@
             $this->id_ristorante=$array['ID_Ristorante'];
         }
 
-        public function createItemRecensione(){
+        public function createItemRecensione($viewer_id,$viewer_permission){
             $recensione=file_get_contents('../components/item_recensione.html');
             $recensione=str_replace('%TITOLO%',$this->oggetto,$recensione);
             $recensione=str_replace('%DATA%',$this->data,$recensione);
@@ -49,8 +49,29 @@
             $likes=$query_likes[0];
             $recensione=str_replace('%NUMERO_MI_PIACE%',$likes['numero'],$recensione);
 
-            //aggiungere form
-            /*$recensione=str_replace('%LIKE_FORM%','',$recensione);*/
+            require_once('addForms.php');
+            //like form
+            if($viewer_permission=='Utente'){
+                if($query_like_result=$connection->connessione->query("SELECT * FROM mi_piace WHERE ID_Utente=$viewer_id AND ID_Recensione=$this->id")){
+                    if($array_like_result=$connection->queryToArray($query_like_result)){
+                        $dislike_form=new formRecensione('Dislike',$this->id,$viewer_id);
+                        $recensione=str_replace('%LIKE_FORM%',$dislike_form->getForm(),$recensione);
+                    }else{
+                        $like_form=new formRecensione('Like',$this->id,$viewer_id);
+                        $recensione=str_replace('%LIKE_FORM%',$like_form->getForm(),$recensione);
+                    }
+                }//errore query
+                
+            }else{
+                $recensione=str_replace('%LIKE_FORM%','',$recensione);
+            }
+            //delete form
+            if($viewer_permission=='Admin' || $this->id_utente==$viewer_id){
+                $delete_form=new formRecensione('Elimina',$this->id,$viewer_id);
+                $recensione=str_replace('%DELETE_FORM%',$delete_form->getForm(),$recensione);
+            }else{
+                $recensione=str_replace('%DELETE_FORM%','',$recensione);
+            }
 
             $connection->close_connection();
 

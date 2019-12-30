@@ -3,7 +3,7 @@
     require_once('sessione.php');
     require_once('errore.php');
 
-    require_once("addItems.php");
+    require_once('addItems.php');
     $page=addItems('../html/casuale.html');
 
     $page=str_replace('<li><a href="casuale.php">Ristorante casuale</a></li>',
@@ -40,7 +40,7 @@
                     if($tipo=='default'){
                         $risultato="<p>Siamo spiacenti, non ci sono ristoranti nella zona scelta</p>";
                     }else{
-                        $risultato="<p>Siamo spiacenti, non ci sono ristoranti di tipo $tipo nella zona scelta</p>";
+                        $risultato="<p>Siamo spiacenti, non ci sono ristoranti di tipo \"$tipo\" nella zona scelta</p>";
                     }
                 }
             }else{

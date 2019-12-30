@@ -56,10 +56,12 @@
 
         public $type;
         public $recID;
+        public $viewerID;
 
-        public function __construct($t,$id){
+        public function __construct($t,$rec_id,$view_id =''){
             $this->type=$t;
-            $this->recID=$id;
+            $this->recID=$rec_id;
+            $this->viewerID=$view_id;
         }
 
         public function getForm(){
@@ -67,23 +69,31 @@
             switch($this->type){
                 case 'Like':
                     $method='post';
-                    $action='';
-                    $name='';
+                    $action='ins_like.php';
+                    $name='submit';
                     $value='Mi piace';
+                    $class=''; 
+                break;
+                case 'Dislike':
+                    $method='post';
+                    $action='remove_like.php';
+                    $name='submit';
+                    $value='Non mi piace più';
                     $class=''; 
                 break;
                 case 'Elimina':
                     $method='post';
                     $action='';
-                    $name='';
-                    $value='Elimina ristorante';
+                    $name='submit';
+                    $value='Elimina recensione';
                     $class=''; 
                 break;
             }
 
             $form = "<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
                         <fieldset>
-                            <input type=\"hidden\" name=\"id\" value=\"$this->ristID\">
+                            <input type=\"hidden\" name=\"ID_Recensione\" value=\"$this->recID\">
+                            <input type=\"hidden\" name=\"ID_Viewer\" value=\"$this->viewerID\">
                             <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\">
                         </fieldset> 
                     </form>";

@@ -5,6 +5,7 @@
         header('location:index.php');
         exit();
     }
+    unset($_SESSION['current_page']);
 
     /*Aggiunta header,menu e footer*/
     require_once('addItems.php');
