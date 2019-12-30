@@ -61,7 +61,21 @@
                     $page=str_replace('%5_star_perc%',$percentages[4],$page);
 
                     $list_recensioni='';
-                    if($query_recensioni=$obj_connection->queryDB("SELECT * FROM recensione WHERE ID_Ristorante=\"".$id_ristorante."\"")){
+                    $query="SELECT * FROM recensione WHERE ID_Ristorante=\"".$id_ristorante."\"";
+                    if(isset($_GET['ordinamento']) && $_GET['ordinamento']==1){
+                        $query.=" ORDER BY Data DESC";
+                        $recenti='selected="selected"';
+                        $votati='';
+                        
+                    }else{
+                        $query.=" ORDER BY Stelle DESC";
+                        $recenti='';
+                        $votati='selected="selected"';
+                    }
+                    $page=str_replace('%PIU_RECENTI%',$recenti,$page);
+                    $page=str_replace('%PIU_VOTATI%',$votati,$page);
+
+                    if($query_recensioni=$obj_connection->queryDB($query)){
                         if(count($query_recensioni)>0){
                             $list_recensioni='<dl>';
                             foreach($query_recensioni as $value){
@@ -76,7 +90,6 @@
                         }
                     }// errore query
                     $page=str_replace('%LIST%',$list_recensioni,$page);
-                    $page=str_replace('%URL_PAGINA%',basename($_SERVER['REQUEST_URI']),$page);
                     $page=str_replace('%ID_RIST%',$id_ristorante,$page);
 
 

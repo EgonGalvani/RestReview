@@ -9,65 +9,41 @@
     $page=str_replace('<li><a href="casuale.php">Ristorante casuale</a></li>',
                     '<li class="active">Ristorante casuale</li>',$page);
 
-    require_once('categoria.php');
-    $page=str_replace('%TIPOLOGIA%',$list_categorie,$page);
-
     $risultato='';
     $error_msg='';
+
+    if(isset($_GET['tipologia'])){
+        $tipo=$_GET['tipologia'];
+    }else{
+        $tipo='default';
+    }
+    $search='';
     if(isset($_GET['search'])){
         $search=$_GET['search'];
-
-        $tipo='';
-        if(isset($_GET['tipologia'])){
-            $tipo=$_GET['tipologia'];
-        }
 
         require_once('connessione.php');
         $obj_connection=new DBConnection();
         
         if($obj_connection->create_connection()){
-
-            if($query_res=$obj_connection->queryDB("SELECT * FROM ristorante WHERE Citta=\"$search\" AND Categoria=\"$tipo\"")){
-                if(count($query_res)>0){
-                    $random=rand(0,count($query_res)-1);
-                    $ristorante=$query_res[$random];
-
-                    $risultato=file_get_contents('../components/item_ristorante.html');
-                    $risultato=str_replace('%NOME%',$ristorante['Nome'],$risultato);
-
-                    require_once('indirizzo.php');
-                    $indirizzo=new indirizzo($ristorante['Via'],$ristorante['Civico'],$ristorante['Citta'],$ristorante['CAP'],$ristorante['Nazione']);
-                    $risultato=str_replace('%INDIRIZZO%',$indirizzo->getIndirizzo(),$risultato);
-                    $risultato=str_replace('%TIPOLOGIA%',$ristorante['Categoria'],$risultato);
-
-                    //stelle
-                    if($query_star=$obj_connection->queryDB("SELECT COUNT(*) AS numero, AVG(Stelle) AS media FROM recensione WHERE ID_Ristorante=\"".$ristorante['ID']."\"")){
-                        if(count($query_star)>0 && $query_star[0]['numero']>0){
-                            require_once('stelle.php');
-                            $num_stelle=round($query_star[0]['media'],1);
-                            $stelle=new stelle($num_stelle);
-                            $lista_stelle=$stelle->printStars();
-                        }else{
-                            $num_stelle='-';
-                            $lista_stelle='';
-                        }
-                    }else{
-                        $num_stelle='-';
-                        $lista_stelle='';
-                    }
-                    $risultato=str_replace('%NUMERO_STELLE%',$num_stelle,$risultato);
-                    $risultato=str_replace('%LISTA_STELLE%',$lista_stelle,$risultato);
-
-                    $risultato=str_replace('%DESCRIZIONE%',$ristorante['Descrizione'],$risultato);
-
-                    require_once('addForms.php');
-                    $dettaglioForm = new formRistorante('Dettaglio',$ristorante['ID']);
-                    $risultato=str_replace('%FORMS%',$dettaglioForm->getForm(),$risultato);
+            $query="SELECT * FROM ristorante WHERE Citta=\"$search\"";
+            if($tipo!='default')
+                $query.=" AND Categoria=\"$tipo\"";
+            if($query_res=$obj_connection->connessione->query($query)){
+                if($query_res->num_rows>0){
+                    $array_res=$obj_connection->queryToArray($query_res);
+                    $query_res->close();
+                    $random=rand(0,count($array_res)-1);
+                    $ristorante=$array_res[$random];
+                    header("location: dettaglioristorante.php?id=".$ristorante['ID']);
+                    exit;
                 }else{
-                    $risultato="Siamo spiacenti, non ci sono ristoranti di questo tipo nella zona scelta";
+                    if($tipo=='default'){
+                        $risultato="<p>Siamo spiacenti, non ci sono ristoranti nella zona scelta</p>";
+                    }else{
+                        $risultato="<p>Siamo spiacenti, non ci sono ristoranti di tipo $tipo nella zona scelta</p>";
+                    }
                 }
             }else{
-                $risultato="";
                 $error=new errore('query');
                 $error_msg=$error->printHTMLerror();
             }
@@ -76,8 +52,22 @@
             $error=new errore('DBConnection');
             $error_msg=$error->printHTMLerror();
         }
-
     }
+
+    $page=str_replace('%SEARCH_VALUE%',$search,$page);
+    
+    require_once('categoria.php');
+    $categorie=new categorie('Ricerca');
+    $page=str_replace('%TIPOLOGIA%',$categorie->getHTMLList(),$page);
+    foreach($categorie->getCatArray() as $value){
+        if($tipo==$value){
+            $page=str_replace('%VALUE_'.strtoupper($value).'_CAT%','selected="selected"',$page);
+        }else{
+            $page=str_replace('%VALUE_'.strtoupper($value).'_CAT%','',$page);
+        }
+    }
+
+
     $page=str_replace('%ERRORI%',$error_msg,$page);
     $page=str_replace('%RISULTATO%',$risultato,$page);
 

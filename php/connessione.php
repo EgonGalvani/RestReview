@@ -24,10 +24,23 @@
                     }
                 }
                 
+                $queryResult->close();
                 return $result;
             }else{
                 return false;
             }
+        }
+
+        //restituisce matrice contenente tabelle risultato della query passata
+        public function queryToArray($query_res){
+            
+            $arr=array();
+            if($query_res){
+                while($row=$query_res->fetch_array(MYSQLI_ASSOC)){
+                    array_push($arr,$row);
+                }
+            }
+            return $arr;
         }
 
         public function insertDB($query){

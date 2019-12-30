@@ -110,14 +110,14 @@
 
             <h3 class="review_info_title">Recensioni degli utenti: </h3>
             <a href="ins_recensione.html" class="btn">Inserisci recensione</a>
-            <form action="%URL_PAGINA%" method="get" id="ordinamento_form">
+            <form action="dettaglioristorante.php" method="get" id="ordinamento_form">
                 <label for="ordinamento">Ordinamento: </label>
-                <select id="ordinamento">
-                    <option value="0" selected="selected">Più votati</option>
-                    <option value="1">Più recenti</option>
+                <select id="ordinamento" name="ordinamento">
+                    <option value="0" %PIU_VOTATI%>Più votati</option>
+                    <option value="1" %PIU_RECENTI%>Più recenti</option>
                 </select>
                 <input type="hidden" name="id" value="%ID_RIST%" />
-                <input type="submit" name="sub" value="Cambia ordinamento" class="btn"/>  
+                <input type="submit" value="Cambia ordinamento" class="btn"/>  
             </form>
 
             %LIST%
