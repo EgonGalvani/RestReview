@@ -115,9 +115,10 @@
                 }
             }
             if($filePath!=="../img/Utenti/"&&$uploadResult['error']==""){//è stato caricato qualcosa
-                $obj_connection->insertDB("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");
-                $result=$obj_connection->queryDB("SELECT * FROM foto WHERE Path='".$filePath."'");
-                $id_foto=$result[0]['ID'];
+                $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
+                $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE Path='".$filePath."'");
+                $row=$queryResult->fetch_array(MYSQLI_ASSOC);//C'è sicuramente solo un risultato, quello appena inserito
+                $id_foto=$row['ID'] ;
             }
         }
         if($no_error){
@@ -134,10 +135,10 @@
 
             if($tipo==0){//utente
                 $permessi="Utente";
-                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
+                $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
             }else if($tipo==1){//ristoratore
                 $permessi="Ristoratore";
-                $obj_connection->insertDB("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")");         
+                $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")");         
             }   
 
             //check dati inseriti
