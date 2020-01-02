@@ -238,10 +238,10 @@ function isPIVA(piva) {
     return new RegExp(/^[0-9]{11}$/).test(piva); 
 }
 
-// una parola deve avere lunghezza maggiore o uguale a 4, ed essere composta solo da lettere
+// una parola deve avere lunghezza maggiore o uguale a 3, ed essere composta solo da lettere
 function isWord(word) {
     word = word.trim(); 
-    return new RegExp(/^[a-zA-Z]/).test(word) && word.length >= 4; 
+    return new RegExp(/^[a-zA-Z]/).test(word) && word.length >= 3; 
 }
 
 // controllo sulle foto 
