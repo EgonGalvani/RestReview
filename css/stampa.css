@@ -160,10 +160,11 @@ abbr::after {
     margin-top: 0.25cm; 
 }
 
-#img_profilo_preview {
+#img_profilo_view {
     display: block;
     width: 30%;
     margin-left: 35%;
+    height: fit-content; 
 }
 
 /*-------------- INDEX -----------*/

@@ -676,6 +676,7 @@ dd form, dd fieldset {
     width: 30%;
     margin-left: 2em; 
     float: left; 
+    height: fit-content; 
 } 
 
 #img_profilo-modify{
