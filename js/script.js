@@ -275,8 +275,8 @@ function reg_init() {
         // controlli da applicare sempre
         var regControls = {}; 
         regControls["email"] = [ [isNotEmpty, "Inserire un'email."], [isEmail, "L'email inserita non è valida."]];
-        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
-        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];
+        regControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 3 caratteri"]];
+        regControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 3 caratteri"] ];
         regControls["password"] = [ [isNotEmpty, "Inserire una password."], [isPsw, "La password inserita non è valida. La password deve contentere almeno: <ul><li>8 caratteri ALFANUMERICI</li><li>1 lettera maiuscola</li><li>1 lettera minuscola</li><li>1 numero</li></ul>"]];
         regControls["nascita"] = [ [isNotEmpty, "Inserire una data di nascita."], [has12Year, "L'età minima per poter utilizzare questo sito è 12 anni."] ]        
         addFocusEvents(regControls); 
@@ -355,8 +355,8 @@ function modify_profile_init(){
 
     if(document.getElementById("edit_personal_data")) {
         var modifyControls = {}; 
-        modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 4 caratteri"]];
-        modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 4 caratteri"] ];   
+        modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 3 caratteri"]];
+        modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 3 caratteri"] ];   
         modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
         modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
         addFocusEvents(modifyControls); 
@@ -451,7 +451,7 @@ function init_ins_risto() {
 
         // controlli generali del form di inserimento 
         var ristControls = {}; 
-        ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+        ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 3 caratteri."]]; 
         ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 25 ai 70 caratteri"]]; 
         ristControls["telefono"] = [ [isNotEmpty, "Inserire il numero di telefono del ristorante"], [isPhoneNumber, "Il valore inserito non corrisponde ad un numero di telefono valido."]]; 
         ristControls["email"] = [ [isNotEmpty, "Inserire l'email del ristorante."], [isEmail, "L'email inserita non è valida."]]; 
@@ -464,7 +464,7 @@ function init_ins_risto() {
         ristControls["cap"] = [ [isNotEmpty, "Inserire il CAP della provincia in cui si trova il ristorante."], [isCAP, "Il CAP inserito non risulta essere valido (5 cifre)"]]; 
         ristControls["nazione"] = [ [isNotEmpty, "Inserire la nazione in cui si trova il ristorante."] ]; 
         ristControls["main_photo"] = [ [isNotEmpty, "Inserire una foto principale del ristorante."] ]; 
-        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 4 caratteri."]]; 
+        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 3 caratteri."]]; 
          
         addFocusEvents(ristControls); 
         
@@ -509,12 +509,23 @@ function ins_rist_btn_click(e, ristControls) {
             for(var i = 0; i < minorPhoto.files.length; i++) {              
                 var currentDesc = document.getElementById( (i+1) + "_photo_description"); 
                 if(!isWord(currentDesc.value))
-                    showAlertBox(currentDesc, "La descrizione delle foto deve contenere solo lettere ed essere lungo almeno 4 caratteri.")
+                    showAlertBox(currentDesc, "La descrizione delle foto deve contenere solo lettere ed essere lungo almeno 3 caratteri.")
             }
         }
     }
 
     if(!ok) e.preventDefault();
+}
+
+// funzione per avvisare l'utente in caso di eliminazione profilo 
+function init_profile() {
+    if(document.getElementById("remove_profile_btn")) {
+
+        document.getElementById("remove_profile_btn").addEventListener("click", function(e) {
+            if(!confirm("Sei sicuro di voler eliminare il tuo profilo?"))
+                e.preventDefault(); 
+        });  
+    }
 }
 
 window.onload = function() {
@@ -529,7 +540,8 @@ window.onload = function() {
     reg_init(); 
 
     // ----------- PROFILO ---------------
-    modify_profile_init(); 
+    init_profile(); 
+    modify_profile_init(); // pagina di modifica profilo 
 
     // ---------- INDEX -------------
     init_index();
