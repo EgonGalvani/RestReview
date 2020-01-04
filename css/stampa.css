@@ -164,7 +164,6 @@ abbr::after {
     display: block;
     width: 30%;
     margin-left: 35%;
-    height: fit-content; 
 }
 
 /*-------------- INDEX -----------*/
