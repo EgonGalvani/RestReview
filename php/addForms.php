@@ -43,8 +43,8 @@
 
             $form = "<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
                         <fieldset>
-                            <input type=\"hidden\" name=\"id\" value=\"$this->ristID\">
-                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\">
+                            <input type=\"hidden\" name=\"id\" value=\"$this->ristID\" />
+                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\" />
                         </fieldset> 
                     </form>";
 
@@ -71,30 +71,33 @@
                     $method='post';
                     $action='ins_like.php';
                     $name='submit';
-                    $value='Mi piace';
-                    $class=''; 
+                    $value=''; 
+                    $title='Metti mi piace';
+                    $class='like_button'; 
                 break;
                 case 'Dislike':
                     $method='post';
                     $action='remove_like.php';
                     $name='submit';
-                    $value='Non mi piace più';
-                    $class=''; 
+                    $value='';
+                    $title='Togli mi piace.';
+                    $class='like_button has_like'; 
                 break;
                 case 'Elimina':
                     $method='post';
                     $action='';
                     $name='submit';
                     $value='Elimina recensione';
-                    $class=''; 
+                    $class='btn'; 
+                    $title=''; 
                 break;
             }
 
             $form = "<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
                         <fieldset>
-                            <input type=\"hidden\" name=\"ID_Recensione\" value=\"$this->recID\">
-                            <input type=\"hidden\" name=\"ID_Viewer\" value=\"$this->viewerID\">
-                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\">
+                            <input type=\"hidden\" name=\"ID_Recensione\" value=\"$this->recID\" />
+                            <input type=\"hidden\" name=\"ID_Viewer\" value=\"$this->viewerID\" />
+                            <input type=\"submit\" name=\"$name\" title=\"$title\" value=\"$value\" class=\"$class\" />
                         </fieldset> 
                     </form>";
 

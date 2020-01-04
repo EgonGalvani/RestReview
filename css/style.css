@@ -495,6 +495,7 @@ textarea {
     border: 2px solid #1565c0;
     padding: 1em; 
     margin-bottom: 1em; 
+    overflow: hidden;
 }
 
 dd form, dd fieldset {
@@ -544,14 +545,20 @@ dd form, dd fieldset {
     background-image: url(../img/like_button.svg);
 }
 
-.rec_list .has_like {
-    width: 2em; 
+.rec_list .like_button.has_like:hover {
+    background-image: url(../img/like_button.svg);
+} 
+
+.rec_list .like_button:hover,
+.rec_list .like_button.has_like {
+    background-image: url(../img/has_like_button.svg); 
 }
 
 /* rewview item generale (utente diverso da quello loggato) */
-.rec_list .user_details, 
-.rec_list .review_details {
-    display: inline-block;
+
+.rec_list .user_details {
+    float: left; 
+    width: 15%; 
 }
 
 .rec_list .user_details *{
@@ -561,15 +568,17 @@ dd form, dd fieldset {
 
 .rec_list .user_details img {
     border-radius: 50%;
-    width: 7em; 
-    margin: 0 auto 1em auto; 
-    height: 7em; 
+    width: 75%; 
+    display: block;
+    margin: 0 auto 0.5em auto; 
+    height: 8em; 
     border: solid 2px #000;
 }
 
 .rec_list .review_details {
     vertical-align: top;
-    margin-left: 1.5em; 
+    width: 85%; 
+    margin-left: 15%; 
 }
 
 .rec_list .btn {
@@ -1048,11 +1057,23 @@ progress {
         width: 100%; 
     }
 
-
     #nuovo_rist_form {
         width: 100%;
     }
-     
+
+    .rec_list .user_details {
+        width: 25%; 
+    }
+
+    .rec_list .review_details {
+        width: 70%; 
+        margin-left: 27.5%; 
+    }
+
+    .rec_list .user_details img {
+        height: 6em; 
+    }
+
     .rist_list .rist_img {
         float: none; 
         width: 50%; 
