@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    header('location: index.php');
+    header("location: ".$_SESSION['prev_page']);
     
     session_unset();
 ?>

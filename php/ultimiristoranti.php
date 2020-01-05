@@ -1,17 +1,7 @@
 <?php
 
-    $file_content=file_get_contents('../html/ultimiristoranti.html');
-
-    require_once('menu_list.php');
-    $menuList=new menuList('utente');
-    
-    $search='<li><a href="../php/ultimiristoranti.php">Ultimi ristoranti inseriti</a></li>';
-    $replace='<li class="active">Ultimi ristoranti inseriti</li>';
-    
-    $menu=str_replace($search,$replace,$menuList->getHTMLmenu());
-
-    $file_content=str_replace('%MENU%',$menu,$file_content);
-
-    echo $file_content;
-
+    require_once('sessione.php');
+    require_once('addItems.php');
+    $page=addItems('../html/ultimiristoranti.html');
+    echo $page;
 ?>

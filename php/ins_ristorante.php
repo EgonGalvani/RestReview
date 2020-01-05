@@ -1,6 +1,8 @@
 <?php
 
     require_once("sessione.php");
+    require_once("uploadImg.php");
+    require_once('connessione.php');
 
     //check se loggato
     if($_SESSION['logged']==false){
@@ -28,10 +30,11 @@
                     "cap"=>"",
                     "naz"=>"");
         $num_errori=0;
+        $img_error='';
 
         $nome='';
         $desc='';
-        $categoria='';
+        $categoria='default';
         $tel='';
         $email='';
         $sito='';
@@ -49,6 +52,10 @@
         $cap='';
         $citta='';
         $nazione='';
+        $main_foto_desc='';
+        $desc_img_1='';
+        $desc_img_2='';
+        $desc_img_3='';
 
         /* controllo se è stato fatto il submit */
         if(isset($_POST['nome'])){
@@ -106,9 +113,12 @@
             if(isset($_POST['nazione'])){
                 $nazione=htmlentities(trim($_POST['nazione']));
             }
-            /*
-                FARE PER IMMAGINI
-            */
+
+            //immagini
+            if(isset($_POST['main_photo_description'])){
+                $main_foto_desc=htmlentities(trim($_POST['main_photo_description']));
+            }
+            
             require_once('ristorante.php');
             $ristorante=new ristorante($nome, $desc, $categoria, $tel, $email, $sito, $ora_ap, $ora_chiu,$giorno, $via, $civico,
                              $cap, $citta, $nazione);
@@ -122,6 +132,22 @@
                     $page=str_replace('%MESSAGGIO%','<p class="msg_box">Inserimento avvenuto con successo</p>',$page);
                 }else{
                     $page=str_replace('%MESSAGGIO%','<p class="msg_box error_box">Inserimento fallito</p>',$page);
+                }
+                
+                if($_FILES["main_photo"]['size'] != 0){
+                    $uploadResult = uploadImage("ristoranti/","main_photo");
+                    if($uploadResult['error']==""){
+                        $filePath=$uploadResult['path'];
+                    }
+                    else{
+                        $img_error=$img_error.$uploadResult['error'];
+                    }
+                }
+                $obj_connection=new DBConnection();
+                $obj_connection->create_connection();
+                if($filePath!=="../img/ritoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
+                    $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
+                    $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE Path='".$filePath."'");
                 }
             }
         }   
@@ -146,6 +172,7 @@
         $page=str_replace('%ERR_CITTA%',$errors['citta'],$page);
         $page=str_replace('%ERR_CAP%',$errors['cap'],$page);
         $page=str_replace('%ERR_NAZ%',$errors['naz'],$page);
+        $page=str_replace('%ERR_IMG%',$img_error,$page);
 
         $page=str_replace('[','<p class="msg_box error_box">',$page);
         $page=str_replace(']','</p>',$page);
@@ -154,14 +181,13 @@
         $page=str_replace('%VALUE_DESC%',$desc,$page);
         
         require_once("categoria.php");
-        $page=str_replace('%CATEGORIA%',$list_categorie,$page);
-        foreach($cat_result as $row){
-            foreach($row as $value){
-                if ($value!=$categoria){
-                    $page=str_replace("%VALUE_".strtoupper($value)."_CAT%","",$page);
-                }else{
-                    $page=str_replace("%VALUE_".strtoupper($value)."_CAT%",'selected="selected"',$page);
-                }
+        $category=new categorie('Inserimento');
+        $page=str_replace('%CATEGORIA%',$category->getHTMLList(),$page);
+        foreach($category->getCatArray() as $value){
+            if($categoria==$value){
+                $page=str_replace('%VALUE_'.strtoupper($value).'_CAT%','selected="selected"',$page);
+            }else{
+                $page=str_replace('%VALUE_'.strtoupper($value).'_CAT%','',$page);
             }
         }
 
@@ -183,6 +209,11 @@
         $page=str_replace('%VALUE_CITTA%',$citta,$page);
         $page=str_replace('%VALUE_CAP%',$cap,$page);
         $page=str_replace('%VALUE_NAZ%',$nazione,$page);
+        $page=str_replace('%DESC_MAIN_IMG%',$main_foto_desc,$page);
+        $page=str_replace('%DESC_1_IMG%',$desc_img_1,$page);
+        $page=str_replace('%DESC_2_IMG%',$desc_img_2,$page);
+        $page=str_replace('%DESC_3_IMG%',$desc_img_3,$page);
+
         
 
     }else{
