@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Dic 06, 2019 alle 19:36
--- Versione del server: 10.1.30-MariaDB
--- Versione PHP: 7.2.1
+-- Host: 127.0.0.1
+-- Creato il: Gen 05, 2020 alle 15:27
+-- Versione del server: 10.1.37-MariaDB
+-- Versione PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `TecWeb`
+-- Database: `tecweb`
 --
 
 -- --------------------------------------------------------
@@ -88,7 +88,7 @@ CREATE TABLE `foto` (
 --
 
 INSERT INTO `foto` (`ID`, `Path`) VALUES
-(1, '../img/Utenti/1.jpg'),
+(1, '../img/Utenti/1.jpeg'),
 (2, '../img/Utenti/2.jpg'),
 (3, '../img/Utenti/3.jpg'),
 (4, '../img/Utenti/4.jpg'),
@@ -120,7 +120,8 @@ INSERT INTO `foto` (`ID`, `Path`) VALUES
 (30, '../img/ristoranti/6.jpg'),
 (31, '../img/ristoranti/7.jpg'),
 (32, '../img/ristoranti/8.jpg'),
-(33, '../img/ristoranti/9.jpg');
+(33, '../img/ristoranti/9.jpg'),
+(46, '../img/Utenti/ragioniere.JPG');
 
 -- --------------------------------------------------------
 
@@ -284,9 +285,9 @@ CREATE TABLE `utente` (
   `Data_Nascita` date NOT NULL,
   `ID_Foto` int(11) DEFAULT NULL,
   `Ragione_Sociale` varchar(64) DEFAULT NULL,
-  `P_IVA` int(11) DEFAULT NULL,
+  `P_IVA` varchar(11) DEFAULT NULL,
   `Permessi` enum('Utente','Ristoratore','Admin') DEFAULT NULL,
-  `Sesso` enum('Maschio','Femmina','Altro','Sconosciuto') DEFAULT 'Sconosciuto'
+  `Sesso` enum('Uomo','Donna','Altro','Sconosciuto') DEFAULT 'Sconosciuto'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -294,36 +295,37 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES
-(1, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'leila.pagnotto@rhyta.com', 'Leila', 'Pagnotto', '1993-10-27', 1, NULL, NULL, 'Utente', 'Femmina'),
-(2, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'DinoGenovese@dayrep.com', 'Dino', 'Genovese', '2004-07-21', 2, NULL, NULL, 'Utente', 'Maschio'),
-(3, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'NestoreMancini@dayrep.com', 'Nestore', 'Mancini', '1973-03-26', 3, NULL, NULL, 'Utente', 'Maschio'),
-(4, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AlvisaLongo@jourrapide.com', 'Alvisa', 'Longo', '1963-04-03', 4, NULL, NULL, 'Utente', 'Femmina'),
-(5, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'CarisioDavide@teleworm.us', 'Davide', 'Carisio', '1988-10-23', 5, NULL, NULL, 'Utente', 'Maschio'),
-(6, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'alessandrodiscalzi98@gmail.com', 'Alessandro', 'Discalzi', '1998-10-23', 6, NULL, NULL, 'Utente', 'Maschio'),
-(7, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'albertococco98@gmail.com', 'Alberto', 'Cocco', '1998-06-15', 7, NULL, NULL, 'Utente', 'Maschio'),
-(8, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'galvaniegon@gmail.com', 'Egon', 'Galvani', '1999-11-17', 8, NULL, NULL, 'Utente', 'Maschio'),
-(9, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'matteomunari@gmail.com', 'Matteo', 'Munari', '1998-01-18', 9, NULL, NULL, 'Utente', 'Maschio'),
-(10, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'frostmourne96@teleworm.us', 'Marco', 'Fonta', '1996-12-08', 10, NULL, NULL, 'Utente', 'Maschio'),
-(11, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AleardoMilano@armyspy.com', 'Aleardo', 'Milan', '1962-02-18', 11, NULL, NULL, 'Utente', 'Maschio'),
-(12, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'TamaraSiciliani@armyspy.com', 'Tamara', 'Siciliani', '1982-02-18', 12, NULL, NULL, 'Utente', 'Femmina'),
-(13, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AbelardaMoretti@dayrep.com', 'Abelarda', 'Moretti', '1955-09-26', 13, NULL, NULL, 'Utente', 'Femmina'),
-(14, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GiudittaNuci@jourrapide.com', '', 'Nuci', '1978-11-29', 14, NULL, NULL, 'Utente', 'Femmina'),
-(15, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'stanislawmanfrin@armyspy.com', 'Stanislao', 'Manfrin', '1978-10-11', 15, NULL, NULL, 'Utente', 'Maschio'),
-(16, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'generosamarcelo@dayrep.com', 'Generosa', 'Marcelo', '1980-11-16', 16, NULL, NULL, 'Utente', 'Femmina'),
-(17, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'benedetta.lettiere@teleworm.us', 'Benedetta', 'Lettiere', '1993-04-11', 17, NULL, NULL, 'Utente', 'Femmina'),
-(18, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'adarosi@teleworm.us', 'Adalberta', 'Rossi', '1978-02-10', 18, NULL, NULL, 'Utente', 'Femmina'),
-(19, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lucrezia.piccio@jourrapide.com', 'Lucrezia', 'Piccio', '1996-08-08', 19, NULL, NULL, 'Utente', 'Femmina'),
-(20, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giocchinofenice@dayrep.com', 'Gioacchino', 'Fenice', '1968-07-15', 20, NULL, NULL, 'Utente', 'Maschio'),
-(21, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giuseppalori@teleworm.us', 'Giuseppa', 'Lori', '1975-05-02', 21, 'Country Club Markets', 0, 'Ristoratore', 'Femmina'),
-(22, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'paola.sagese@teleworm.us', 'Paola', 'Sagese', '1990-12-12', 22, 'StopAndShop', 0, 'Ristoratore', 'Sconosciuto'),
-(23, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'bernicebeneventi@dayrep.com', 'Bernice', 'Beneventi', '1971-05-05', 23, 'Best Bar Restaurants', 0, 'Ristoratore', 'Femmina'),
-(24, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'sofia.reticci@rhyta.com', 'Sofia', 'Reticci', '1974-07-01', 24, 'FoodConsumers SRL', 0, 'Ristoratore', 'Femmina'),
-(25, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'grazianopiazza@teleworm.us', 'Graziano', 'Piazza', '1957-03-18', 25, 'Piazza e F.', 0, 'Ristoratore', 'Maschio'),
-(26, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lidiarossi@dayrep.com', 'Lidia', 'Rossi', '1965-08-08', NULL, NULL, 0, 'Ristoratore', 'Femmina'),
-(27, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Giordano', 'Fantino', 'fantinogiordano@jourrapide.com', '1981-01-21', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
-(28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
-(29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', NULL, NULL, 0, 'Ristoratore', 'Maschio'),
-(30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', NULL, NULL, 0, 'Ristoratore', 'Maschio');
+(1, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'leila.pagnotto@rhyta.com', 'Leila', 'Pagnotto', '1993-10-27', 1, NULL, NULL, 'Utente', ''),
+(2, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'DinoGenovese@dayrep.com', 'Dino', 'Genovese', '2004-07-21', 2, NULL, NULL, 'Utente', ''),
+(3, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'NestoreMancini@dayrep.com', 'Nestore', 'Mancini', '1973-03-26', 3, NULL, NULL, 'Utente', ''),
+(4, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AlvisaLongo@jourrapide.com', 'Alvisa', 'Longo', '1963-04-03', 4, NULL, NULL, 'Utente', ''),
+(5, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'CarisioDavide@teleworm.us', 'Davide', 'Carisio', '1988-10-23', 5, NULL, NULL, 'Utente', ''),
+(6, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'alessandrodiscalzi98@gmail.com', 'Alessandro', 'Discalzi', '1998-10-23', 6, NULL, NULL, 'Utente', ''),
+(7, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'albertococco98@gmail.com', 'Alberto', 'Cocco', '1998-06-15', 7, NULL, NULL, 'Utente', ''),
+(8, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'galvaniegon@gmail.com', 'Egon', 'Galvani', '1999-11-17', 8, NULL, NULL, 'Utente', ''),
+(9, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'matteomunari@gmail.com', 'Matteo', 'Munari', '1998-01-18', 9, NULL, NULL, 'Utente', ''),
+(10, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'frostmourne96@teleworm.us', 'Marco', 'Fonta', '1996-12-08', 10, NULL, NULL, 'Utente', ''),
+(11, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AleardoMilano@armyspy.com', 'Aleardo', 'Milan', '1962-02-18', 11, NULL, NULL, 'Utente', ''),
+(12, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'TamaraSiciliani@armyspy.com', 'Tamara', 'Siciliani', '1982-02-18', 12, NULL, NULL, 'Utente', ''),
+(13, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'AbelardaMoretti@dayrep.com', 'Abelarda', 'Moretti', '1955-09-26', 13, NULL, NULL, 'Utente', ''),
+(14, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GiudittaNuci@jourrapide.com', '', 'Nuci', '1978-11-29', 14, NULL, NULL, 'Utente', ''),
+(15, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'stanislawmanfrin@armyspy.com', 'Stanislao', 'Manfrin', '1978-10-11', 15, NULL, NULL, 'Utente', ''),
+(16, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'generosamarcelo@dayrep.com', 'Generosa', 'Marcelo', '1980-11-16', 16, NULL, NULL, 'Utente', ''),
+(17, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'benedetta.lettiere@teleworm.us', 'Benedetta', 'Lettiere', '1993-04-11', 17, NULL, NULL, 'Utente', ''),
+(18, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'adarosi@teleworm.us', 'Adalberta', 'Rossi', '1978-02-10', 18, NULL, NULL, 'Utente', ''),
+(19, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lucrezia.piccio@jourrapide.com', 'Lucrezia', 'Piccio', '1996-08-08', 19, NULL, NULL, 'Utente', ''),
+(20, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giocchinofenice@dayrep.com', 'Gioacchino', 'Fenice', '1968-07-15', 20, NULL, NULL, 'Utente', ''),
+(21, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'giuseppalori@teleworm.us', 'Giuseppa', 'Lori', '1975-05-02', 21, 'Country Club Markets', '0', 'Ristoratore', ''),
+(22, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'paola.sagese@teleworm.us', 'Paola', 'Sagese', '1990-12-12', 22, 'StopAndShop', '0', 'Ristoratore', 'Sconosciuto'),
+(23, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'bernicebeneventi@dayrep.com', 'Bernice', 'Beneventi', '1971-05-05', 23, 'Best Bar Restaurants', '0', 'Ristoratore', ''),
+(24, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'sofia.reticci@rhyta.com', 'Sofia', 'Reticci', '1974-07-01', 24, 'FoodConsumers SRL', '12345678900', 'Ristoratore', 'Altro'),
+(25, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'grazianopiazza@teleworm.us', 'Graziano', 'Piazza', '1957-03-18', 25, 'Piazza e F.', '0', 'Ristoratore', ''),
+(26, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lidiarossi@dayrep.com', 'Lidia', 'Rossi', '1965-08-08', NULL, NULL, '0', 'Ristoratore', ''),
+(27, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'fantinogiordano@jourrapide.com', 'Giordano', 'Fantino', '1981-01-21', NULL, NULL, '0', 'Ristoratore', ''),
+(28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', NULL, NULL, '0', 'Ristoratore', ''),
+(29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', NULL, NULL, '0', 'Ristoratore', ''),
+(30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', NULL, NULL, '0', 'Ristoratore', ''),
+(78, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'paolovillaggio@gmail.com', 'Paolo', 'Villaggio', '1932-12-30', 46, NULL, NULL, 'Utente', 'Uomo');
 
 --
 -- Indici per le tabelle scaricate
@@ -386,7 +388,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT per la tabella `recensione`
@@ -404,7 +406,7 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- Limiti per le tabelle scaricate

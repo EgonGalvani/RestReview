@@ -46,8 +46,8 @@
             </noscript>
 
             <h1>Modifica il mio profilo</h1>
-           
-            <form method="post" action="" id="edit_foto_profilo" class="vertical_input_form">
+           %ERROR%
+            <form method="post" action="" enctype="multipart/form-data" id="edit_foto_profilo" class="vertical_input_form">
                 <fieldset>
                     <legend>Foto Profilo</legend>
                     
@@ -57,11 +57,11 @@
 		   		    <label for="new_foto_profilo">Seleziona nuova foto: </label>
                     <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="2"/>
 
-                    <input type="submit" value="Modifica foto profilo" id="change_photo" class="btn right"/>
+                    <input type="submit" name="mod_foto" value="Modifica foto profilo" id="change_photo" class="btn right"/>
                 </fieldset>
             </form>
             
-            <form method="post" action="" id="edit_psw_data" class="vertical_input_form">
+            <form method="post" action="modifica_profilo.php" id="edit_psw_data" class="vertical_input_form">
                 <fieldset>
                     <legend>Cambio Password</legend>
                         
@@ -76,7 +76,7 @@
                     <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
                     <input type="password" name="repeat_pwd" id="repeat_pwd" tabindex="5" class="full_width_input"/>
 
-                    <input type="submit" id="change_psw_btn" value="Cambia password" class="btn right"/>
+                    <input type="submit" name="mod_pwd" id="change_psw_btn" value="Cambia password" class="btn right"/>
                 </fieldset>
             </form>
          
@@ -84,7 +84,7 @@
             <form method="post" action="" class="vertical_input_form" id="edit_personal_data">
                 <fieldset>
                     <legend>I miei dati personali</legend>
-
+                    %DATI_ERROR% 
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" id="nome" value="%NOME%" tabindex="7" class="full_width_input"/>
                     
@@ -92,10 +92,11 @@
                     <input type="text" name="cognome" id="cognome" value="%COGNOME%" tabindex="8" class="full_width_input"/>
                     
                     <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" tabindex="9" class="full_width_input">
-                        <option value="uomo">Uomo</option>
-                        <option value="donna">Donna</option>
-                        <option value="altro">Altro</option>
+                    <select name="sesso" id="sesso" required="required" tabindex="5" class="full_width_input">
+                        <option value="ns" selected="%SEL_NS%">Non Specificato</option>
+                        <option value="Uomo" selected="%SEL_UOMO%">Uomo</option>
+                        <option value="Donna" selected="%SEL_DONNA%">Donna</option>
+                        <option value="Altro" selected="%SEL_ALTRO%">Altro</option>
                     </select>
                     
                     <label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>
@@ -105,7 +106,7 @@
                     <input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="12" class="full_width_input"/>
 
                     <input type="reset" value="Resetta form" class="btn right"/>
-                    <input type="submit" id="modify_profile_btn" value="Applica modifiche" class="btn right"/>
+                    <input type="submit" name="mod_prof" id="modify_profile_btn" value="Applica modifiche" class="btn right"/>
                 </fieldset>
             </form>            
         </div>

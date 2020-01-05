@@ -4,7 +4,7 @@
     require_once('connessione.php');
     require_once("reg_ex.php");
     require_once('addItems.php');
-    require_once("imgUpload.php");
+    require_once("uploadImg.php");
     if($_SESSION['logged']==true){
         header('location:index.php');
         exit();
@@ -23,11 +23,10 @@
     $pwd2='';
     $piva=NULL;
     $rsoc=NULL;
-    $id_foto=1;
+    $id_foto=NULL;
     $no_error=true;
     $error="";
     $filePath="../img/Utenti/";
-    /* se ci sono valori in _POST cerca di fare registrazione o stampa errore */
     if(isset($_POST['registrati'])){
         if(isset($_POST['tipo_utente'])){
             $tipo=$_POST['tipo_utente'];
@@ -80,11 +79,11 @@
             $no_error=false;
         }
         if(!check_nome($cognome)){
-            $error=$error."<div class=\"msg_box error_box\">Il cognome deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+            $error=$error."<div class=\"msg_box error_box\">Il cognome deve avere lunghezza minima di 3 caratteri e non può presentare numeri al proprio interno.</div>";
             $no_error=false;
         }
         if($pwd!=$pwd2){
-            $error=$error."<div class=\"msg_box error_box\">Il cognome deve avere lunghezza minima di 2 caratteri e non può presentare numeri al proprio interno.</div>";
+            $error=$error."<div class=\"msg_box error_box\">Password e Ripeti Password non coincidono.</div>";
             $no_error=false;
         }
         if(!check_pwd($pwd)){
@@ -105,7 +104,7 @@
         }*/
         if($no_error){//Controllo non ci siano errori prima di caricare l'immagine
             if($_FILES['fileToUpload']['size'] != 0){
-                $uploadResult = uploadImage("Utenti/");
+                $uploadResult = uploadImage("Utenti/","fileToUpload");
                 if($uploadResult['error']==""){
                     $filePath=$uploadResult['path'];
                 }
@@ -135,10 +134,20 @@
 
             if($tipo==0){//utente
                 $permessi="Utente";
-                $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
+                if($id_foto){
+                    $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", NULL, NULL, \"$permessi\", \"$sesso\")");
+                }
+                else{
+                    $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", NULL, NULL, \"$permessi\", \"$sesso\")");
+                }
             }else if($tipo==1){//ristoratore
                 $permessi="Ristoratore";
-                $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")");         
+                if($id_foto){
+                    $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `ID_Foto`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$id_foto\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")");         
+                }
+                else{
+                    $obj_connection->connessione->query("INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `Ragione_Sociale`, `P_IVA`, `Permessi`, `Sesso`) VALUES (NULL,\"$hashed_pwd\", \"$mail\", \"$nome\", \"$cognome\", \"$datan\", \"$rsoc\", \"$piva\", \"$permessi\", \"$sesso\")"); 
+                }
             }   
 
             //check dati inseriti
