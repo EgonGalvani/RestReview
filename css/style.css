@@ -732,6 +732,10 @@ progress {
     margin-left: 3em;
 }
 
+#all_photoes fieldset {
+    border: 0; 
+}
+
 #mainphoto{
     margin: 1em auto; 
     width: 100%; 

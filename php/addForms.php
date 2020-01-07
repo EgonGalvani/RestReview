@@ -41,7 +41,7 @@
                 break;
             }
 
-            $form = "<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
+            $form = "<form method=\"$method\" action=\"$action\">
                         <fieldset>
                             <input type=\"hidden\" name=\"id\" value=\"$this->ristID\" />
                             <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\" />
@@ -93,7 +93,7 @@
                 break;
             }
 
-            $form = "<form method=\"$method\" action=\"$action\" class=\"input_btn_form\">
+            $form = "<form method=\"$method\" action=\"$action\">
                         <fieldset>
                             <input type=\"hidden\" name=\"ID_Recensione\" value=\"$this->recID\" />
                             <input type=\"hidden\" name=\"ID_Viewer\" value=\"$this->viewerID\" />

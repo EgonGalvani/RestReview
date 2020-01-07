@@ -43,11 +43,20 @@
         <div id="content">
             <h1 id="page_title">%NOME_RISTORANTE%</h1>
             
-            <div id= "all_photoes">
+            <div id="all_photoes">
                 <img id="mainphoto" src="%MAIN_IMG_PATH%" alt="%MAIN_IMG_DESC%" />
                 <img class="photoes selected_photo" src="%MAIN_IMG_PATH%" alt="%MAIN_IMG_DESC%" />
                 %EXTRA_PHOTO% <!-- OGNUNA DEVE AVERE class="photoes" -->
+
+                <form>
+                    <fieldset>
+                        <input type="hidden" value="%ID_RIST%"/>
+                        <input type="submit" value="Inserisci nuova foto" class="btn" id="new_photo_button" />
+                    </fieldset>
+                </form>
             </div>
+
+          
           
             <div id="information">
                 <dl id="restaurant_information">
