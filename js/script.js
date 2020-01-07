@@ -467,7 +467,11 @@ function init_ins_risto() {
         ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isBriefDescription, "La descrizione deve avere dai 20 ai 70 caratteri"]]; 
          
         addFocusEvents(ristControls); 
-        
+
+        // controlli sull'immagine
+        document.getElementById("main_photo").addEventListener("focusout", (e) => photoControl(e.target)); 
+
+        // click listener sul bottone di submit 
         document.getElementById("ins_rest_submit").addEventListener("click",
              (e) =>  { if(!executeControls(ristControls) || !photoControl(document.getElementById("main_photo"))) e.preventDefault();} ); 
     }
