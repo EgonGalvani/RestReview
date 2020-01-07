@@ -113,7 +113,7 @@ ul, dl {
     word-break: break-all;
 }
 
-#sub_title, #ins_recensione_subtite{
+#sub_title, #ins_subtitle{
     font-size: 1.25em; 
 }
 
@@ -828,7 +828,7 @@ progress {
 
 /* ---------- INSERIMENTO RECENSIONE -----------------*/
 
-#ins_rec_rist {
+#ins_title {
     display: block;
     font-size: 1.5em; 
     font-weight: bold;
@@ -840,7 +840,7 @@ progress {
     width: 40%; 
 }
 
-#ins_recensione_subtite {
+#ins_subtitle {
     margin: 1em 0; 
     clear: left; 
 }

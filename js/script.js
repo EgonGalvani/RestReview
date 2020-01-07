@@ -488,6 +488,27 @@ function init_profile() {
     }
 }
 
+function init_dettaglio_rist() {
+    if(document.getElementById("new_photo_form")) {
+        
+        // controlli sull foto e descrizione 
+        var detControls = {}; 
+        detControls["descrizione_foto"] = [ [isNotEmpty, "Inserire una descrizione per la foto."], [isWord, "La descrizione deve contenere solo lettere ed essere lunga almeno 3 caratteri."]]; 
+        detControls["nuova_foto"] = [[isNotEmpty, "Inserire una foto."]]; 
+        addFocusEvents(detControls); 
+
+        document.getElementById("nuova_foto").addEventListener("change", (e) => {
+            // se la foto rispetta i vincoli, allora la mostro come preview, altrimenti mostro la preview di default
+            if(photoControl(e.target)) 
+                imgPreview(e.target, document.getElementById("preview_nuova_foto")); 
+            else document.getElementById("preview_nuova_foto").setAttribute("src", "../img/placeholder_new_photo.png"); 
+        });          
+        
+        document.getElementById("send_photo").addEventListener("click", 
+            (e) => { if(!executeControls(detControls) || !photoControl(document.getElementById("nuova_foto"))) e.preventDefault(); })
+    }
+}
+
 window.onload = function() {
 
     // ----------- FAQ  ---------------
@@ -511,5 +532,8 @@ window.onload = function() {
 
     // ---------- INSERIMENTO RISTORANTE -------
     init_ins_risto(); 
+
+    // ----- DETTAGLIO RISTORANTE ---
+    init_dettaglio_rist(); 
 }; 
     
