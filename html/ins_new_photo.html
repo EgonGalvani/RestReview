@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title>RestReview - Inserimento nuova foto ristorante</title>
+        <meta name="title" content="RistReview - Inserimento nuova foto ristorante" />
+
+        <meta name="description" content="inserisci, foto, ristorante, ristreview"/>
+        <meta name="keywords" content="inserimento, foto, ristorante"/>
+  
+        <meta name="author" content="Alberto Cocco, Alessandro Discalzi, Egon Galvani, Matteo Munari" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/stampa.css" media="print"/>  
+
+        <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" />
+        <link rel="manifest" href="../favicon/site.webmanifest" />
+        <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" />
+        <link rel="shortcut icon" href="../favicon/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#00aba9" />
+        <meta name="msapplication-config" content="../favicon/browserconfig.xml" />
+        <meta name="theme-color" content="#ffffff" />  
+    </head>
+
+    <body>
+        <div id="header">
+            %HEADER%
+        </div>
+    
+        <div id="breadcrumb">
+           Ti trovi in: <a href="%PATH_RISTO%">Dettagli ristorante</a> &#8250; Inserimento nuova foto 
+        </div>
+
+        <div id="menu">
+           %MENU%
+        </div>
+
+        <div id="content">
+            <h1 id="page_title">Inserimento nuova foto</h1>
+            
+            <span id="ins_rec_rist">%NOME_RISTORANTE%</span>
+            <span>%INDIRIZZO_RISTORANTE%</span>
+            
+            <h2 id="ins_recensione_subtite">
+                Tramite foto autentiche e accattivanti potrai attirare più clienti.
+            </h2>
+       
+            <form class="vertical_input_form" method="post" action="" id="new_photo_form"> 
+                <fieldset>
+                    <legend>Inserimento nuova foto</legend>
+                    
+                    <img src="../img/placeholder_new_photo.png" alt="Preview nuova foto" id="preview_nuova_foto" />
+                    
+                    <span>Carica una foto: </span>
+                    <input type="file" id="nuova_foto" name="nuova_foto" />
+
+                    <label for="descrizione_foto">Descrizione della foto: </label>
+                    <input type="text" id="descrizione_foto" name="descrizione_foto" value="%DESCRIZIONE_FOTO%" class="full_width_input"/>
+
+                    <input type="submit" class="btn right" value="Carica foto" id="send_photo"/>
+                </fieldset>
+            </form>
+        </div>
+    
+        <div id="footer">
+            <ul>
+                <li> <small> RistReview - Trova i migliori ristoranti </small> </li>
+                <li> <small> ristreview@dayrep.com </small> </li>
+                <li> <small> 049-0000000 - Padova, Via Trieste 13</small> </li>
+                <li> <small> Copyright &copy 2019-2020 all rights reserved </small> </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="../js/script.js"></script>
+    </body>
+</html>

@@ -855,6 +855,18 @@ progress {
     margin-left: 0; 
 }
 
+/* --------------- INSERIMENTO NUOVA FOTO ----------------------*/
+#preview_nuova_foto {
+    width: 35%; 
+    display: block;
+    margin: 0 auto 1em auto; 
+    max-height: 20em; /* evito che la preview abbia dimensioni troppo grandi */ 
+}
+
+#nuova_foto {
+    margin: 0.25em 0 0.75em 1em;  
+}
+
 @media only screen and (max-width: 768px) {
     
     body {
@@ -924,6 +936,10 @@ progress {
         width: 45%;
         margin: 1em auto;
         display: block; 
+    }
+
+    #preview_nuova_foto {
+        width: 50%;     
     }
     
 }
@@ -1083,4 +1099,9 @@ progress {
     #information {
         margin: 2em 0 0 0;
     }
+
+    #preview_nuova_foto {
+        width: 100%; 
+    }
+    
 }
