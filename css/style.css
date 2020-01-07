@@ -645,18 +645,9 @@ dd form, dd fieldset {
     margin-bottom: 1em; 
 }
 
-#via, #civico, #citta, #cap {
-    display: inline-block;
-}
-
-#via, #citta { 
-    width: 40%;
-    margin: 0 1em 0 0.25em; 
-}
-
-#civico, #cap {
-    width: 20%;
-    margin-left: 0.25em; 
+#cap, #civico {
+    margin-bottom: 0.75em;
+    margin-left: 1em;
 }
 
 /*  PAGINE VISUALIZZAZIONE PROFILO */
@@ -975,12 +966,6 @@ progress {
 
     #img_404 {
         width: 60%; 
-    }
-
-    #via, #civico, #citta, #cap {
-        margin-bottom: 0.75em; 
-        box-sizing: border-box;
-        width: 100%;
     }
 
     #nuovo_rist_form {

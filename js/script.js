@@ -250,10 +250,10 @@ function photoControl(photoField) {
 
     if(isNotEmpty(photoField.value)) {
         removePreviousBox(photoField); 
-        if(!isExtensionOK(photoField.value)) {
+        if(!isExtensionOK(photoField.value)) { // controllo che l'estensione sia accetata 
             showAlertBox(photoField, "L'estensione del file non appartiene a quelle permesse (png, jpg, jpeg)");
             ok = false; 
-        } else if(!isSizeOK(photoField.files[0].size)) {    
+        } else if(!isSizeOK(photoField.files[0].size)) {    // controllo che sia dentro la dimensione massima  
             showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
             ok = false ;
         }
@@ -452,7 +452,7 @@ function init_ins_risto() {
         // controlli generali del form di inserimento 
         var ristControls = {}; 
         ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 3 caratteri."]]; 
-        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 25 ai 70 caratteri"]]; 
+        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 20 ai 70 caratteri"]]; 
         ristControls["telefono"] = [ [isNotEmpty, "Inserire il numero di telefono del ristorante"], [isPhoneNumber, "Il valore inserito non corrisponde ad un numero di telefono valido."]]; 
         ristControls["email"] = [ [isNotEmpty, "Inserire l'email del ristorante."], [isEmail, "L'email inserita non è valida."]]; 
         ristControls["sito"] = [ [isNotEmpty, "Inserire il sito del ristorante."], [isUrl, "Il valore inserito non corrisponde ad un URL valido"]]; 
@@ -464,57 +464,13 @@ function init_ins_risto() {
         ristControls["cap"] = [ [isNotEmpty, "Inserire il CAP della provincia in cui si trova il ristorante."], [isCAP, "Il CAP inserito non risulta essere valido (5 cifre)"]]; 
         ristControls["nazione"] = [ [isNotEmpty, "Inserire la nazione in cui si trova il ristorante."] ]; 
         ristControls["main_photo"] = [ [isNotEmpty, "Inserire una foto principale del ristorante."] ]; 
-        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isWord, "La descrizione deve contenere solo lettere ed essere lungo almeno 3 caratteri."]]; 
+        ristControls["main_photo_description"] = [ [isNotEmpty, "Inserire la descrizione della foto principale."], [isBriefDescription, "La descrizione deve avere dai 20 ai 70 caratteri"]]; 
          
         addFocusEvents(ristControls); 
         
-        document.getElementById("ins_rest_submit").addEventListener("click", (e) => ins_rist_btn_click(e, ristControls) ); 
+        document.getElementById("ins_rest_submit").addEventListener("click",
+             (e) =>  { if(!executeControls(ristControls) || !photoControl(document.getElementById("main_photo"))) e.preventDefault();} ); 
     }
-}
-
-function ins_rist_btn_click(e, ristControls) {
-    var ok = executeControls(ristControls); 
-
-    // controllo che la foto principale rispetti i vincoli 
-    ok = ok & photoControl( document.getElementById("main_photo")); 
-
-    // controllo sul numero massimo di foto
-    var minorPhoto = document.getElementById("minor_photo"); 
-    
-    
-    // rimuovo eventuali messaggi di errore passati 
-    removePreviousBox(minorPhoto); 
-    for(var i = 1; i <= 3; i++) 
-        removePreviousBox(document.getElementById(i+"_photo_description")); 
-
-    // controllo che il numero di file non sia maggiore del limite
-    if(minorPhoto.files.length > 3) {
-        showAlertBox(minorPhoto, "È consentito l'upload di al massimo 3 foto"); 
-        ok = false; 
-    } else {
-
-        // controllo che tutti i file rispettino i vincoli 
-        var minorPhotoOK = true; 
-        for(var i = 0; i < minorPhoto.files.length && minorPhotoOK; i++) {
-            if( !isExtensionOK(minorPhoto.files[i].name) || !isSizeOK(minorPhoto.files[i].size) )
-                minorPhotoOK = false; 
-        }         
-        
-        // se almeno un file non rispetta i vincoli mostro un messaggio di errore
-        if(!minorPhotoOK)
-            showAlertBox(minorPhoto, "Almeno un file tra quelli caricati non presenta estensione corretta (png, jpg, jpeg) o ha dimensione maggiore di quella massima (5MB)")
-        else {
-            
-            // controllo che per ogni foto caricata ci sia una descrizione adeguata 
-            for(var i = 0; i < minorPhoto.files.length; i++) {              
-                var currentDesc = document.getElementById( (i+1) + "_photo_description"); 
-                if(!isWord(currentDesc.value))
-                    showAlertBox(currentDesc, "La descrizione delle foto deve contenere solo lettere ed essere lungo almeno 3 caratteri.")
-            }
-        }
-    }
-
-    if(!ok) e.preventDefault();
 }
 
 // funzione per avvisare l'utente in caso di eliminazione profilo 

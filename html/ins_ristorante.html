@@ -34,7 +34,7 @@
         </div>
     
         <div id="breadcrumb">
-            Ti trovi in: <a href="imieirist.html">I miei ristoranti</a> &#8250; Aggiungi ristorante 
+            Ti trovi in: <a href="imieirist.php">I miei ristoranti</a> &#8250; Aggiungi ristorante 
         </div>
 
         <div id="menu">
@@ -47,18 +47,17 @@
             <h3>Tutti i campi sono OBBLIGATORI!</h3>
             
             <form method="post" id="nuovo_rist_form" action="../php/ins_ristorante.php" class="vertical_input_form" enctype="multipart/form-data">
-                
+                <noscript>
+                    <div class="msg_box warning_box">
+                        ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
+                        NON ESSERE DISPONIBILI
+                    </div>
+                </noscript>
+
                 %MESSAGGIO%
                 <fieldset>
                     <legend>Dettagli ristorante</legend>
 
-                    <noscript>
-                        <div class="msg_box warning_box">
-                            ATTENZIONE: <span xml:lang="en">JAVASCRIPT</span> NON E' ATTIVO, ALCUNE FUNZIONALITA' POTREBBERO 
-                            NON ESSERE DISPONIBILI
-                        </div>
-                    </noscript>
-                
                     %ERR_NOME%
                     <label for="nome">Nome ristorante: </label>
                     <input type="text" name="nome" id="nome" class="full_width_input" value="%VALUE_NOME%"/>
@@ -126,7 +125,7 @@
                     <div id="indirizzo">
                         %ERR_VIA%
                         <label for="via">Via: </label>
-                        <input type="text" name="via" id="via" value="%VALUE_VIA%"  />
+                        <input type="text" name="via" id="via" value="%VALUE_VIA%" class="full_width_input" />
                         %ERR_CIV%
                         <label for="civico">Civico: </label>
                         <input type="text" name="civico" id="civico" value="%VALUE_CIV%" />    
@@ -135,37 +134,25 @@
                     <div>
                         %ERR_CITTA%
                         <label for="citta">Città: </label>
-                        <input type="text" name="citta" id="citta" value="%VALUE_CITTA%"  />
+                        <input type="text" name="citta" id="citta" value="%VALUE_CITTA%"  class="full_width_input" />
                         %ERR_CAP%
                         <label for="cap">CAP: </label>
                         <input type="text" name="cap" id="cap" value="%VALUE_CAP%"  /> 
                     </div>
                     %ERR_NAZ%
                     <label for="nazione">Nazione: </label>
-                    <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%" />
+                    <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%"  class="full_width_input"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Immagini</legend>
                     %ERR_IMG%
                     <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
+                    <label>L'immagine può avere una dimensione massima di 5MB e un'estensione tra: jpg, png, jpeg</label>
                     <input type="file" id="main_photo" name="main_photo" />
                     
                     <label for="main_photo_description">Descrizione immagine principale: </label>
-                    <input id="main_photo_description" name="main_photo_description" value="%DESC_MAIN_IMG%" type="text" class="full_width_input" />
-                  
-                    <label for="minor_photo" class="file_label">Altre immagini del ristorante (massimo 3): </label>
-                    <input type="file" id="minor_photo" name="minor_photo" id="minor_photo" multiple="multiple"/>
-                  
-                    <label for="1_photo_description">Descrizione prima immagine: (solo se inserita) </label>
-                    <input id="1_photo_description" value="%DESC_1_IMG%" name="1_photo_description" type="text" class="full_width_input" />
-                  
-                    <label for="2_photo_description">Descrizione seconda immagine: (solo se inserita) </label>
-                    <input id="2_photo_description" value="%DESC_2_IMG%" name="2_photo_description" type="text" class="full_width_input" />
-                  
-                    <label for="3_photo_description">Descrizione terza immagine: (solo se inserita) </label>
-                    <input id="3_photo_description" value="%DESC_3_IMG%" name="3_photo_description" type="text" class="full_width_input" />
-                  
+                    <input id="main_photo_description" name="main_photo_description" value="%DESC_MAIN_IMG%" type="text" class="full_width_input" />                  
                 </fieldset>
 
                 <input type="submit" id="ins_rest_submit" name="submit" class="btn" value="Inserisci ristorante!" />
