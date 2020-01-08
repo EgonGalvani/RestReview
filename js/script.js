@@ -357,9 +357,14 @@ function modify_profile_init(){
         var modifyControls = {}; 
         modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 3 caratteri"]];
         modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 3 caratteri"] ];   
-        modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
-        modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
-        addFocusEvents(modifyControls); 
+		
+		// controlli necessari solo se l'utente e' ristoratore
+		if(document.getElementById("piva"))) {
+			modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
+			modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
+		}
+
+		addFocusEvents(modifyControls); 
         
         document.getElementById("modify_profile_btn").addEventListener("click", (e) => { if(!executeControls(modifyControls)) e.preventDefault(); });
     }
