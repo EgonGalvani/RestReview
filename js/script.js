@@ -500,7 +500,7 @@ function init_profile() {
     }
 }
 
-function init_dettaglio_rist() {
+function nuova_foto_rist_init() {
     if(document.getElementById("new_photo_form")) {
         
         // controlli sull foto e descrizione 
@@ -565,7 +565,7 @@ window.onload = function() {
     // ---------- INSERIMENTO RISTORANTE -------
     init_ins_risto(); 
 
-    // ----- DETTAGLIO RISTORANTE ---
-    init_dettaglio_rist(); 
+    // ----- INSERIMENTO FOTO RISTORANTE ---
+    nuova_foto_rist_init(); 
 }; 
     
