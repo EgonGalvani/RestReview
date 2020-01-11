@@ -325,14 +325,20 @@ function reg_btn_click(e, regControls, ristoControls) {
 
 function modify_profile_init(){
  
+    // form di modifica password
     if(document.getElementById("edit_foto_profilo")) {
-        document.getElementById("change_photo").addEventListener("click", function(e) {
-            // controllo se l'immagine va bene
-            if(!photoControl(document.getElementById("new_foto_profilo"))) 
-                e.preventDefault(); 
+
+        var nuovaFoto = document.getElementById("new_foto_profilo"); 
+        nuovaFoto.addEventListener("change", function(e) {
+            if(photoControl(e.target))
+                imgPreview(nuovaFoto, document.getElementById("img_profilo-modify")); 
         }); 
+
+        document.getElementById("change_photo").addEventListener("click", 
+            (e) => { if(!photoControl(nuovaFoto)) e.preventDefault(); }); 
     }
 
+    // form di modifica password
     if(document.getElementById("edit_psw_data")) {
         
         //  controlli su password vecchia e nuova  
@@ -353,13 +359,14 @@ function modify_profile_init(){
         document.getElementById("change_psw_btn").addEventListener("click", (e) => edit_psw_click(e, pswControls)); 
     }
 
+    // form di modifica dati personali 
     if(document.getElementById("edit_personal_data")) {
         var modifyControls = {}; 
         modifyControls["nome"] = [ [isNotEmpty, "Inserire un nome."], [isWord, "Il nome può contenere solo lettere e deve essere lungo almeno 3 caratteri"]];
         modifyControls["cognome"] = [ [isNotEmpty, "Inserire un cognome."], [isWord, "Il cognome può contenere solo lettere e deve essere lungo almeno 3 caratteri"] ];   
 		
 		// controlli necessari solo se l'utente e' ristoratore
-		if(document.getElementById("piva"))) {
+		if(document.getElementById("piva")) {
 			modifyControls["piva"] = [ [isNotEmpty, "Inserire una partita iva"], [isPIVA, "La partita IVA inserita non è corretta."]]; 
 			modifyControls["rsoc"] = [ [isNotEmpty, "Inserire una ragione sociale"] ]; 
 		}
