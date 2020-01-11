@@ -16,6 +16,12 @@ abbr::after {
     content: " (" attr(title) ")";  
 }
 
+img { 
+    filter: grayscale(100%); 
+}
+
+#scrollBtn { display: none; }
+
 #header .btn, #menu {
     display: none;
 }
@@ -26,9 +32,8 @@ abbr::after {
 }
 
 #breadcrumb {
-    padding: 0.5em; 
-    border-top: 0.1em solid #000;
-    border-bottom: 0.1em solid #000;
+    padding: 0.5em;   
+    border-top: 0.1em solid #000; 
 }
 
 #header {
@@ -44,6 +49,7 @@ abbr::after {
 #content {
     font-size: 1em;
     padding: 0.25cm 0.25cm 1cm 0.25cm;
+    border-top: 0.1em solid #000; 
 }
 
 #page_title {
@@ -160,10 +166,15 @@ abbr::after {
     margin-top: 0.25cm; 
 }
 
-#img_profilo_view {
+#img_profilo_preview {
     display: block;
     width: 30%;
     margin-left: 35%;
+}
+
+/*------------ LOGIN ----------- */ 
+#remember_me, label[for="remember_me"] {
+    display: none;
 }
 
 /*-------------- INDEX -----------*/
@@ -192,8 +203,42 @@ abbr::after {
     margin-left: 0.5cm; 
 }
 
-/*--------------- ITEM RECENSIONE -------------- */
+#mainphoto { 
+    display: none; 
+}
 
+.photoes {
+    width: 25%; 
+}
+
+#all_photoes fieldset {
+    border: 0; 
+}
+
+.rec_list .user_details {
+    float: left; 
+    width: 15%; 
+}
+
+.rec_list .user_details *{
+    display: block;
+    text-align: center;  
+    line-height: normal;
+}
+
+.rec_list .user_details img {
+    width: 2cm; 
+    display: block;
+    margin: 0 auto 0.5em auto; 
+    height: 2cm; 
+    border-radius: 50%;
+}
+
+.rec_list .review_details {
+    vertical-align: top;
+    width: 85%; 
+    margin-left: 15%; 
+}
 
 /* ----------------- ITEM RISTORANTE ----------------- */
 .rist_list .rist_img {
@@ -217,7 +262,9 @@ abbr::after {
 
 .card_list dd {
     border: 1px solid #000; 
+    overflow: hidden;
 }
+
 
 .card_list form {
     display: inline-block;
@@ -238,4 +285,44 @@ abbr::after {
 
 .rec_list .data_item {
     float: right; 
+}
+
+/* ----------------- INSERIMENTO NUOVA RECENSIONE -------------- */ 
+#new_review_form, #new_photo_form {
+    width: 100%; 
+    margin-left: 0; 
+}
+
+#contenuto_recensione {
+    display: block;
+    width: 95%; 
+    margin: 0.25cm auto; 
+    height: 5cm; 
+    overflow: visible;
+}
+
+/* ---------------- INSERIMENTO NUOVA FOTO --------------- */ 
+#preview_nuova_foto {
+    display: block; 
+    margin: 0.5cm auto; 
+    width: 35%; 
+}
+
+/* ----------------- 404 ----------------- */ 
+#title_404 {
+    font-size: 16pt; 
+    text-align: center; 
+    margin: 0.25cm 0; 
+}
+
+#subtitle_404 {
+    font-size: 12pt; 
+    text-align: center; 
+}
+
+#img_404 {
+    width: 4cm; 
+    height: 4cm; 
+    margin: 0.5cm auto; 
+    display: block;
 }
