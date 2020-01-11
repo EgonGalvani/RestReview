@@ -5,8 +5,10 @@
     if(!$_SESSION['logged']){
         header('location: access_denied.php');
     }
-    $page=addItems('../html/profilo.html');
-
+   
+    $page= (new addItems)->add("../html/profilo.html");
+    $page=str_replace('><a href="profilo.php">Il mio profilo</a>', 'class="active">Il mio profilo',$page);
+   
     $no_error=true;
     $error='';
     //connessione db
@@ -42,7 +44,6 @@
                 $page=str_replace('../img/imgnotfound.jpg',$row['Path'],$page);
             }
         }   
-
     }
 
     $page=str_replace("%ERROR%",$error,$page);

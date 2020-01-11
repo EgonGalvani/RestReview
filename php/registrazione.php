@@ -11,7 +11,7 @@
     }
 
     /*Aggiunta header,menu e footer*/
-    $page=addItems('../html/registrazione.html');
+    $page= (new addItems)->add("../html/registrazione.html");
 
     $tipo=0;
     $mail='';

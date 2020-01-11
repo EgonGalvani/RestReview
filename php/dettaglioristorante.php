@@ -1,9 +1,8 @@
 <?php
-
     require_once('sessione.php');
-
     require_once("addItems.php");
-    $page=addItems('../html/dettaglioristorante.html');
+
+    $page= (new addItems)->add("../html/dettaglioristorante.html");
 
     if(isset($_GET['id'])){
         $id_ristorante=$_GET['id'];

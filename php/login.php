@@ -1,15 +1,15 @@
 <?php 
-
+    require_once('addItems.php');
     require_once("sessione.php");
+    
     if($_SESSION['logged']==true){
         header('location:index.php');
         exit();
     }
 
-    /*Aggiunta header,menu e footer*/
-    require_once('addItems.php');
-    $page=addItems('../html/login.html');
-
+    /*Aggiunta header e menu*/
+    $page= (new addItems)->add("../html/login.html");
+      
     if(isset($_COOKIE['user_email'])){
         $email=$_COOKIE['user_email'];
         $check='checked="checked"';

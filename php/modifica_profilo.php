@@ -4,11 +4,13 @@
     require_once("reg_ex.php");
     require_once('addItems.php');
     require_once("uploadImg.php");
+  
     if(!$_SESSION['logged']){
         header('location: access_denied.php');
     }
-    $page=addItems('../html/modifica_profilo.html');
-
+    
+    $page= (new addItems)->add("../html/modifica_profilo.html");
+ 
     $no_error=true;
     $error='';
     $img_error="";

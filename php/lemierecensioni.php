@@ -1,4 +1,8 @@
 <?php
+    require_once('sessione.php');
+    require_once("connessione.php");
+    require_once("addItems.php");
+
     function stars($num){
         if($num<0 || $num>5){
             return "";
@@ -11,21 +15,15 @@
             $stelle=$stelle."&#9734;";
         }
         return $stelle;
-    }
-    
-    require_once('sessione.php');
+    }   
 
-    require_once("connessione.php");
     $obj_connection = new DBConnection();
     $connected = $obj_connection->create_connection();
-
     $id_utente=$_SESSION['ID'];
 
-    require_once("addItems.php");
-    $page = addItems('../html/lemierecensioni.html');
-
-    $page=str_replace('<li><a href="lemierecensioni.php">Le mie recensioni</a></li>',
-                    '<li class="active">Le mie recensioni</li>',$page);
+    
+    $page= (new addItems)->add("../html/lemierecensioni.html");
+    $page = str_replace('><a href="lemierecensioni.php">Le mie recensioni</a>', 'class="active">Le mie recensioni',$page);
 
     /* Recupero lista recensioni dal database */
     if($connected){

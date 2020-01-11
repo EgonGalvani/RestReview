@@ -1,18 +1,17 @@
 <?php
-
     require_once("sessione.php");
     require_once("uploadImg.php");
     require_once('connessione.php');
+    require_once("addItems.php");
 
     //check se loggato
     if($_SESSION['logged']==false){
         header('location: login.php');
         exit;
     }
-
-    require_once("addItems.php");
-    $page=addItems('../html/ins_ristorante.html');
-
+    
+    $page= (new addItems)->add("../html/ins_ristorante.html");
+   
     if($_SESSION['permesso']=='Ristoratore'){
 
         $errors=array("nome"=>"",

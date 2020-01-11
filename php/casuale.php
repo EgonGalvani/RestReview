@@ -1,13 +1,10 @@
 <?php
-
     require_once('sessione.php');
     require_once('errore.php');
-
     require_once('addItems.php');
-    $page=addItems('../html/casuale.html');
 
-    $page=str_replace('<li><a href="casuale.php">Ristorante casuale</a></li>',
-                    '<li class="active">Ristorante casuale</li>',$page);
+    $page= (new addItems)->add("../html/casuale.html");
+    $page=str_replace('><a href="casuale.php">Ristorante casuale</a>', 'class="active">Ristorante casuale',$page);
 
     $risultato='';
     $error_msg='';
