@@ -521,7 +521,25 @@ function init_dettaglio_rist() {
     }
 }
 
+function torna_su_init() {
+
+    var btn = document.getElementById("scrollBtn"); 
+
+    console.log("Y offset: " + window.pageYOffset); 
+    console.log("Width: " + window.screen.availWidth); 
+
+    if(window.pageYOffset > 50 && window.screen.availWidth <= 768) {
+        removeClass(btn, "hide"); 
+    } else {
+        if(!hasClass(btn, "hide"))
+            addClass(btn, "hide"); 
+    }
+}
+
 window.onload = function() {
+
+    // ----------- BOTTONE "TORNA SU" ------------
+    window.onscroll = torna_su_init; 
 
     // ----------- FAQ  ---------------
     faq_init(); 
@@ -534,7 +552,9 @@ window.onload = function() {
 
     // ----------- PROFILO ---------------
     init_profile(); 
-    modify_profile_init(); // pagina di modifica profilo 
+
+    // ------------ MODIFICA PROFIFLO ----------------
+    modify_profile_init(); 
 
     // ---------- INDEX -------------
     init_index();
