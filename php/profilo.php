@@ -38,7 +38,7 @@
         }
         //query per img profilo
         if($row['ID_Foto']){
-            $queryResult=$obj_connection->connessione->query("SELECT * FROM Foto WHERE ID='".$row['ID_Foto']."'");
+            $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE ID='".$row['ID_Foto']."'");
             if($queryResult){
                 $row=$queryResult->fetch_array(MYSQLI_ASSOC);
                 $page=str_replace('../img/imgnotfound.jpg',$row['Path'],$page);

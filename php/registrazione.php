@@ -90,6 +90,13 @@
             $error=$error."<div class=\"msg_box error_box\">La password deve essere lunga almeno 8 caratteri, contenere almeno una lettera maiuscola una minuscola e un numero.</div>";
             $no_error=false;
         }
+        if($tipo==1){
+            if(!check_piva($piva)){
+                $error=$error."<div class=\"msg_box error_box\">La partita IVA inserita non è corretta.</div>";
+                $no_error=false;
+            }
+        }
+        
         //calcola età
         //date in mm/dd/yyyy format; or it can be in other formats as well
         //explode the date to get month, day and year

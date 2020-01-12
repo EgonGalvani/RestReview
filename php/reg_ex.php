@@ -41,4 +41,11 @@
         }
         return false;
     }
+
+    function check_piva($piva){
+        if(preg_match('/^[0-9]{11}$/',$piva)==1){
+            return true;
+        }
+        return false;
+    }
 ?>

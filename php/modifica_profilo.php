@@ -42,7 +42,7 @@
         }
         //query per img profilo
         if($row['ID_Foto']){
-            $queryResult=$obj_connection->connessione->query("SELECT * FROM Foto WHERE ID='".$row['ID_Foto']."'");
+            $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE ID='".$row['ID_Foto']."'");
             if($queryResult){
                 $row=$queryResult->fetch_array(MYSQLI_ASSOC);
                 $page=str_replace($oldpath,$row['Path'],$page);
@@ -110,6 +110,12 @@
         if(!check_nome($cognome)){
             $dati_error=$dati_error."<div class=\"msg_box error_box\">Il cognome deve avere lunghezza minima di 3 caratteri e non può presentare numeri al proprio interno.</div>";
             $mod_dati_no_error=false;
+        }
+        if($_SESSION['permesso']==='Ristoratore'){
+            if(!check_piva($piva)){
+                $dati_error=$dati_error."<div class=\"msg_box error_box\">La partita IVA inserita non è corretta.</div>";
+                $no_error=false;
+            }
         }
         if($mod_dati_no_error){
             if($_SESSION['permesso']==='Ristoratore'){
