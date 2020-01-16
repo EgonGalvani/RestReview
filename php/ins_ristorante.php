@@ -129,24 +129,28 @@
             if($num_errori==0){
                 if($insert=$ristorante->insertIntoDB()){
                     $page=str_replace('%MESSAGGIO%','<p class="msg_box">Inserimento avvenuto con successo</p>',$page);
+                
+                    if($_FILES["main_photo"]['size'] != 0){
+                        $uploadResult = uploadImage("ristoranti/","main_photo");
+                        if($uploadResult['error']==""){
+                            $filePath=$uploadResult['path'];
+                        }
+                        else{
+                            $img_error=$img_error.$uploadResult['error'];
+                        }
+                    }
+                    $obj_connection=new DBConnection();
+                    $obj_connection->create_connection();
+                    if($filePath!=="../img/ritoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
+                        $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
+                        $queryResult=$obj_connection->connessione->query("SELECT ID FROM foto WHERE Path='".$filePath."'");
+                        $arrayResult=$obj_connection->queryToArray($queryResult);
+                        $obj_connection->connessione->query("INSERT INTO corrispondenza VALUES (".$arrayResult[0]['ID'].",\"$insert\")");
+                    }
+                    header('location: imieirist.php');
+                    exit;
                 }else{
                     $page=str_replace('%MESSAGGIO%','<p class="msg_box error_box">Inserimento fallito</p>',$page);
-                }
-                
-                if($_FILES["main_photo"]['size'] != 0){
-                    $uploadResult = uploadImage("ristoranti/","main_photo");
-                    if($uploadResult['error']==""){
-                        $filePath=$uploadResult['path'];
-                    }
-                    else{
-                        $img_error=$img_error.$uploadResult['error'];
-                    }
-                }
-                $obj_connection=new DBConnection();
-                $obj_connection->create_connection();
-                if($filePath!=="../img/ritoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
-                    $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
-                    $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE Path='".$filePath."'");
                 }
             }
         }   

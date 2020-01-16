@@ -183,7 +183,7 @@
                         "\",\"".$this->ora_chiu."\",\"".$this->nazione."\",\"".$this->citta.
                         "\",\"".$this->cap."\",\"".$this->via."\",\"".$this->civico."\",\"In Attesa\",\"".$this->sito."\")";
             if($obj_connection->connessione->query($ins)){
-                return true;
+                return $rist_id;
             }else{
                 return false;
             }

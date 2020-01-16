@@ -15,9 +15,15 @@
                 if(count($query_result)>0){
                     $ristorante=$query_result[0];
 
-                    //modificare, il path,descrizione e estensione vanno cercate nel db
-                    $page=str_replace('%MAIN_IMG_PATH%','../img/ristoranti/'.$id_ristorante.'.jpeg',$page);
-                    $page=str_replace('%MAIN_IMG_DESC%','',$page);
+                    // il path,descrizione e estensione vanno cercate nel db
+                    if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
+                        $arrayFoto=$obj_connection->queryToArray($queryFoto);
+                        $page=str_replace('%MAIN_IMG_PATH%',$arrayFoto[0]['Percorso'],$page);
+                        $page=str_replace('%MAIN_IMG_DESC%','',$page);
+                    }else{
+                        $page=str_replace('%MAIN_IMG_PATH%','',$page);
+                        $page=str_replace('%MAIN_IMG_DESC%','',$page);
+                    }
 
                     $page=str_replace('%NOME_RISTORANTE%',$ristorante['Nome'],$page);
                     $page=str_replace('%CATEGORIA%',$ristorante['Categoria'],$page);
