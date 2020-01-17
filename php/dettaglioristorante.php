@@ -106,7 +106,15 @@
                     $page=str_replace('%LIST%',$list_recensioni,$page);
                     $page=str_replace('%ID_RIST%',$id_ristorante,$page);
 
-
+                    //form inserimento recensione
+                    $ins_form='';
+                    if($_SESSION['permesso']=='Utente'){
+                        $ins_form='<form action="ins_recensione.php" method="post">
+                                    <input type="hidden" name="id_ristoranate" value="%ID_RIST%"/>
+                                    <input type="submit" value="Inserisci recensione" class="btn"/>
+                                    </form>';
+                    }
+                    $page=str_replace('%FORM_INSERIMENTO_RECENSIONE%',$ins_form,$page);
 
                 }else{
                     //ristorante non presente
