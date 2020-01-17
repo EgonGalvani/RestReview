@@ -119,7 +119,20 @@
             }
             
             require_once('ristorante.php');
-            $rist_fields=array($nome, $desc, $categoria, $tel, $email, $sito, $ora_ap, $ora_chiu,$giorno, $via, $civico,$cap, $citta, $nazione);
+            $rist_fields=array("Nome"=>$nome,
+                                "Descrizione"=> $desc,
+                                "Categoria"=> $categoria,
+                                "Tel"=> $tel,
+                                "Mail"=> $email,
+                                "sito"=> $sito,
+                                "Ora_Apertura"=> $ora_ap,
+                                "Ora_Chiusura"=> $ora_chiu,
+                                "Giorno_Chiusura"=> $giorno, 
+                                "Via"=> $via,
+                                "Civico"=> $civico,
+                                "CAP"=>$cap,
+                                "Citta"=> $citta,
+                                "Nazione"=> $nazione);
             $ristorante=new ristorante($rist_fields);
 
             $errors=$ristorante->getErrors();
@@ -147,7 +160,7 @@
                         $arrayResult=$obj_connection->queryToArray($queryResult);
                         $obj_connection->connessione->query("INSERT INTO corrispondenza VALUES (".$arrayResult[0]['ID'].",\"$insert\")");
                     }
-                    header('location: imieirist.php');
+                    header('location: imieirist.php?type=0');
                     exit;
                 }else{
                     $page=str_replace('%MESSAGGIO%','<p class="msg_box error_box">Inserimento fallito</p>',$page);

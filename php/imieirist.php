@@ -6,11 +6,20 @@
 
     $page= (new addItems)->add("../html/imieirist.html");
     $page=str_replace('><a href="imieirist.php?type=0">I miei ristoranti</a>', 'class="active">I miei ristoranti',$page);
-
+    $msg='';
     if($_SESSION['logged']==true){
         if($_SESSION['permesso']=='Ristoratore'){
             //3 visualizzazioni
-
+            if(isset($_POST['eliminaRist'])){
+                $obj_connection=new DBConnection();
+                $obj_connection->create_connection();
+                if($obj_connection->connessione->query("DELETE FROM ristorante WHERE ID=".$_POST['id'])){
+                    $msg='<p>Ristorante eliminato</p>';
+                }else{
+                    $msg='<p>Eliminazione fallita</p>';
+                }
+                $obj_connection->close_connection();
+            }
             //tab ristoranti approvati
             $tab='';
             if(isset($_GET['type'])){
@@ -73,6 +82,6 @@
         header('location: index.php');
         exit;
     }
-
+    $page=str_replace('%MESSAGGIO%',$msg,$page);
     echo $page;
 ?>

@@ -34,8 +34,8 @@
                 break;
                 case 'Elimina':
                     $method='post';
-                    $action='';
-                    $name='';
+                    $action=$_SESSION['current_page'];
+                    $name='eliminaRist';
                     $value='Elimina ristorante';
                     $class=''; 
                 break;
