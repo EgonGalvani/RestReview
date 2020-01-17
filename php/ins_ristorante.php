@@ -119,8 +119,8 @@
             }
             
             require_once('ristorante.php');
-            $ristorante=new ristorante($nome, $desc, $categoria, $tel, $email, $sito, $ora_ap, $ora_chiu,$giorno, $via, $civico,
-                             $cap, $citta, $nazione);
+            $rist_fields=array($nome, $desc, $categoria, $tel, $email, $sito, $ora_ap, $ora_chiu,$giorno, $via, $civico,$cap, $citta, $nazione);
+            $ristorante=new ristorante($rist_fields);
 
             $errors=$ristorante->getErrors();
             $num_errori=$ristorante->numErrors($errors);

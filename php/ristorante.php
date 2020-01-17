@@ -1,7 +1,7 @@
 <?php
     require_once('reg_ex.php');
     class ristorante{
-
+        public $id = -1;
         public $nome;
         public $descrizione;
         public $categoria;
@@ -12,14 +12,13 @@
         public $ora_chiu;
         public $giorno;
 
-        //si può fare una class indirizzo
         public $via;
         public $civico;
         public $cap;
         public $citta;
         public $nazione;
 
-        public function __construct($n,$d,$cat,$tel,$e,$s,$oap,$och,$g,$v,$civ,$cp,$cit,$naz){
+        /*public function __construct($n,$d,$cat,$tel,$e,$s,$oap,$och,$g,$v,$civ,$cp,$cit,$naz){
             $this->nome=$n;
             $this->descrizione=$d;
             $this->categoria=$cat;
@@ -34,6 +33,26 @@
             $this->cap=$cp;
             $this->citta=$cit;
             $this->nazione=$naz;
+        }*/
+
+        public function __construct($array){
+            if(isset($array['ID'])){
+                $this->id=$array['ID'];
+            }
+            $this->nome=$array['Nome'];
+            $this->descrizione=$array['Descrizione'];
+            $this->categoria=$array['Categoria'];
+            $this->telefono=$array['Tel'];
+            $this->email=$array['Mail'];
+            $this->sito=$array['sito'];
+            $this->ora_ap=$array['Ora_Apertura'];
+            $this->ora_chiu=$array['Ora_Chiusura'];
+            $this->giorno=$array['Giorno_Chiusura'];
+            $this->via=$array['Via'];
+            $this->civico=$array['Civico'];
+            $this->cap=$array['CAP'];
+            $this->citta=$array['Citta'];
+            $this->nazione=$array['Nazione'];
         }
 
         public function getErrors(){
@@ -188,6 +207,65 @@
                 return false;
             }
 
+        }
+
+        public function createItemRistorante(){
+            $ristorante=file_get_contents('../components/item_ristorante.html');
+            $ristorante=str_replace('%NOME%',$this->nome,$ristorante);
+
+            require_once('indirizzo.php');
+            $indirizzo=new indirizzo($this->via,$this->civico,$this->citta,$this->cap,$this->nazione);
+            $ristorante=str_replace('%INDIRIZZO%',$indirizzo->getIndirizzo(),$ristorante);
+            $ristorante=str_replace('%TIPOLOGIA%',$this->categoria,$ristorante);
+
+            $ristorante=str_replace('%DESCRIZIONE%',$this->descrizione,$ristorante);
+
+            require_once('connessione.php');
+            $connection=new DBConnection();
+            $connection->create_connection();
+            //immagine
+            if($queryFoto=$connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$this->id AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
+                $arrayFoto=$connection->queryToArray($queryFoto);
+                if(count($arrayFoto)>0)
+                    $ristorante=str_replace('%PATH_IMG%',$arrayFoto[0]['Percorso'],$ristorante);
+            }
+            //stelle
+            $num_stelle='-';
+            $lista_stelle='';
+            if($query_star_avg=$connection->connessione->query("SELECT COUNT(Stelle) AS numero, AVG(Stelle) AS media FROM recensione WHERE ID_Ristorante=\"".$this->id."\"")){
+                $array_star_avg=$connection->queryToArray($query_star_avg);
+                if(count($array_star_avg)>0 && $array_star_avg[0]['numero']>0){
+                    require_once('stelle.php');
+                    $num_stelle=round($array_star_avg[0]['media'],1);
+                    $stelle=new stelle($num_stelle);
+                    $lista_stelle=$stelle->printStars();
+                }
+                $query_star_avg->close();
+            }
+            $ristorante=str_replace('%NUMERO_STELLE%',$num_stelle,$ristorante);
+            $ristorante=str_replace('%LISTA_STELLE%',$lista_stelle,$ristorante);
+
+            //forms
+            $form_list='';
+            require_once('addForms.php');
+            $detail_form=new formRistorante('Dettaglio',$this->id);
+            $form_list.=$detail_form->getForm();
+            if($_SESSION['permesso']=='Ristoratore'){
+                $delete_form=new formRistorante('Elimina',$this->id);
+                $form_list.=$delete_form->getForm();
+            }else{
+                if($_SESSION['permesso']=='Admin'){
+                    $accept_form= new formRistorante('Accetta',$this->id);
+                    $form_list.=$accept_form->getForm();
+                    $deny_form= new formRistorante('Rifiuta',$this->id);
+                    $form_list.=$deny_form->getForm();
+                }
+            }
+            $ristorante=str_replace('%FORMS%',$form_list,$ristorante);
+
+            $connection->close_connection();
+
+            return $ristorante;
         }
 
     }
