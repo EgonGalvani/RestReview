@@ -46,12 +46,7 @@
                 <img class="photoes selected_photo" src="%MAIN_IMG_PATH%" alt="%MAIN_IMG_DESC%" />
                 %EXTRA_PHOTO% <!-- OGNUNA DEVE AVERE class="photoes" -->
 
-                <form>
-                    <fieldset>
-                        <input type="hidden" value="%ID_RIST%"/>
-                        <input type="submit" value="Inserisci nuova foto" class="btn" id="new_photo_button" />
-                    </fieldset>
-                </form>
+                %FORM_INSERIMENTO_FOTO%
             </div>
 
             <div id="information">
@@ -75,7 +70,7 @@
                     <dt>Indirizzo: </dt>
                     <dd>%INDIRIZZO%</dd>
                     <dt>Sito<span xml:lang="en" lang="en"> web:</span> </dt> 
-                    <dd><a href="%SITO%">%SITO%</a></dd>
+                    <dd><a href="http://%SITO%">%SITO%</a></dd>
                 </dl>
             </div>
 

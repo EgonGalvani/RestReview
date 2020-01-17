@@ -104,17 +104,33 @@
                         $query_recensioni->close();
                     }// errore query
                     $page=str_replace('%LIST%',$list_recensioni,$page);
-                    $page=str_replace('%ID_RIST%',$id_ristorante,$page);
 
                     //form inserimento recensione
-                    $ins_form='';
+                    $ins_rec_form='';
                     if($_SESSION['permesso']=='Utente'){
-                        $ins_form='<form action="ins_recensione.php" method="post">
+                        $ins_rec_form='<form action="ins_recensione.php" method="post">
                                     <input type="hidden" name="id_ristoranate" value="%ID_RIST%"/>
                                     <input type="submit" value="Inserisci recensione" class="btn"/>
                                     </form>';
+                    }else{
+                        if($_SESSION['permesso']=='Visitatore')
+                            $ins_rec_form='<p><a href="login.php">Effettua il login per inserire una recensione</a></p>';
                     }
-                    $page=str_replace('%FORM_INSERIMENTO_RECENSIONE%',$ins_form,$page);
+                    $page=str_replace('%FORM_INSERIMENTO_RECENSIONE%',$ins_rec_form,$page);
+
+                    //form inserimento foto
+                    $ins_foto_form='';
+                    if($_SESSION['permesso']=='Ristoratore'){
+                        $ins_foto_form='<form action="ins_new_photo.php" method="post">
+                                            <fieldset>
+                                            <input type="hidden" value="%ID_RIST%"/>
+                                            <input type="submit" value="Inserisci nuova foto" class="btn" id="new_photo_button" />
+                                            </fieldset>
+                                        </form>';
+                    }
+                    $page=str_replace('%FORM_INSERIMENTO_FOTO%',$ins_foto_form,$page);
+                    
+                    $page=str_replace('%ID_RIST%',$id_ristorante,$page);
 
                 }else{
                     //ristorante non presente
