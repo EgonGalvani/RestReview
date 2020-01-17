@@ -5,7 +5,7 @@
     require_once('ristorante.php');
 
     $page= (new addItems)->add("../html/imieirist.html");
-    $page=str_replace('><a href="imieirist.php">I miei ristoranti</a>', 'class="active">I miei ristoranti',$page);
+    $page=str_replace('><a href="imieirist.php?type=0">I miei ristoranti</a>', 'class="active">I miei ristoranti',$page);
 
     if($_SESSION['logged']==true){
         if($_SESSION['permesso']=='Ristoratore'){

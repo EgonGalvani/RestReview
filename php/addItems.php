@@ -56,7 +56,7 @@ class addItems {
                     break; 
                 case 'Ristoratore': 
                         $menu .= '<li tabindex="' . $tabindex++ . '"><a href="profilo.php">Il mio profilo</a></li>
-                                    <li tabindex="' . $tabindex++ . '"><a href="imieirist.php">I miei ristoranti</a></li>'; 
+                                    <li tabindex="' . $tabindex++ . '"><a href="imieirist.php?type=0">I miei ristoranti</a></li>'; 
                     break; 
                 case 'Utente': 
                         $menu .= '<li tabindex="' . $tabindex++ . '"><a href="profilo.php">Il mio profilo</a></li>
