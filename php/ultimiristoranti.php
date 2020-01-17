@@ -6,7 +6,7 @@
     $page= (new addItems)->add("../html/ultimiristoranti.html");
     $page = str_replace('><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a>', 'class="active">Ultimi ristoranti inseriti',$page);
     $error="";
-    $list="";
+    $list='<dl class="card_list rist_list">';
     $no_error=true;
     $obj_connection = new DBConnection();
     if(!$obj_connection->create_connection()){
@@ -34,27 +34,29 @@
             $indirizzo=$citta.", ".$via." N° ".$civico.", ".$nazione ;
             $tipologia=$row['Categoria'];
             
-            $list=$list."
-            <dt >$nome</dt>
-            <dd>
-                <img class=\"rist_img\" src=\"$path\" alt=\"Immagine principale ristorante $nome\" />      
+            $list = $list ."
+                <dt >$nome</dt>
+                <dd>
+                    <img class=\"rist_img\" src=\"$path\" alt=\"Immagine principale ristorante $nome\" />      
 
-                <div class=\"rist_dett\">
-                    <span>$indirizzo</span>
-                    <span>Categoria: $tipologia</span>
+                    <div class=\"rist_dett\">
+                        <span>$indirizzo</span>
+                        <span>Categoria: $tipologia</span>
 
-                    <span class=\"stelle_item\">Stelle: %NUMERO_STELLE%/5 
-                        <span class=\"stelle_counter\">%LISTA_STELLE%</span>
-                    </span>
+                        <span class=\"stelle_item\">Stelle: %NUMERO_STELLE%/5 
+                            <span class=\"stelle_counter\">%LISTA_STELLE%</span>
+                        </span>
 
-                    <p class=\"rist_descrizione\">%DESCRIZIONE%</p>
+                        <p class=\"rist_descrizione\">%DESCRIZIONE%</p>
 
-                    %FORMS% 
-                        
-                </div> 
-            </dd>
-            ";
+                        %FORMS% 
+                            
+                    </div> 
+                </dd>
+                ";
         }
+
+        $list .= "</dl>";
     }
 
     $page = str_replace('%ERROR%', $error,$page);
