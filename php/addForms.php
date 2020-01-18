@@ -85,8 +85,8 @@
                 break;
                 case 'Elimina':
                     $method='post';
-                    $action='';
-                    $name='submit';
+                    $action=$_SESSION['current_page'];
+                    $name='eliminaRec';
                     $value='Elimina recensione';
                     $class='btn'; 
                     $title=''; 
