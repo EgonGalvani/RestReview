@@ -33,7 +33,27 @@
             $nazione=$row['Nazione'];
             $indirizzo=$citta.", ".$via." N° ".$civico.", ".$nazione ;
             $tipologia=$row['Categoria'];
-            
+            $stelle=0;
+            $queryStelle=$obj_connection->connessione->query("SELECT AVG(Stelle) AS Media FROM `recensione` WHERE `ID_Ristorante`=$id");
+            if($queryStelle){
+                $rowStelle=$queryStelle->fetch_array(MYSQLI_ASSOC);
+                $stelle=round($rowStelle['Media'],1);
+                
+            }
+            $i=0;
+            $stelleInt=round($stelle,0);
+            $listaStelle="";
+            while($i<$stelleInt){
+                $listaStelle=$listaStelle."&#9733";
+                $i++;
+            }
+            $i=0;
+            while($i<5-$stelleInt){
+                $listaStelle=$listaStelle."&#9734";
+                $i++;
+            }
+            $descrizione=$row['Descrizione'];
+            $forms="<a href=\"dettaglioristorante.php?id=$id\">Vai al ristorante</a>";
             $list = $list ."
                 <dt >$nome</dt>
                 <dd>
@@ -43,13 +63,13 @@
                         <span>$indirizzo</span>
                         <span>Categoria: $tipologia</span>
 
-                        <span class=\"stelle_item\">Stelle: %NUMERO_STELLE%/5 
-                            <span class=\"stelle_counter\">%LISTA_STELLE%</span>
+                        <span class=\"stelle_item\">Stelle: $stelle/5 
+                            <span class=\"stelle_counter\">$listaStelle</span>
                         </span>
 
-                        <p class=\"rist_descrizione\">%DESCRIZIONE%</p>
+                        <p class=\"rist_descrizione\">$descrizione</p>
 
-                        %FORMS% 
+                        $forms 
                             
                     </div> 
                 </dd>
