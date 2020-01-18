@@ -109,7 +109,7 @@
                     $ins_rec_form='';
                     if($_SESSION['permesso']=='Utente'){
                         $ins_rec_form='<form action="ins_recensione.php" method="post">
-                                    <input type="hidden" name="id_ristoranate" value="%ID_RIST%"/>
+                                    <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
                                     <input type="submit" value="Inserisci recensione" class="btn"/>
                                     </form>';
                     }else{

@@ -61,7 +61,7 @@
             <form class="vertical_input_form" method="post" action="" id="new_review_form"> 
                 <fieldset>
                     <legend>Inserimento nuova recensione</legend>
-
+                    %MESSAGGIO%
                     <label for="n_stelle">Valuta la tua esperienza: </label>
                     <select id="n_stelle" name="n_stelle" >
                         <option value="1">1 stella</option>
@@ -71,12 +71,15 @@
                         <option value="5">5 stelle</option>
                     </select>
                     
+                    %ERR_TITOLO%
                     <label for="titolo_recensione">Titolo della tua recensione: </label>
                     <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" class="full_width_input"/>
 
+                    %ERR_CONTENUTO%
                     <label for="contenuto_recensione">La tua recensione: </label>
                     <textarea id="contenuto_recensione" rows="50" cols="50" name="contenuto_recensione" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
                     
+                    <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
                     <input type="submit" class="btn right" value="Invia recensione!" id="send_review"/>
                 </fieldset>
             </form>

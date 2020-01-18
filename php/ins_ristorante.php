@@ -52,9 +52,6 @@
         $citta='';
         $nazione='';
         $main_foto_desc='';
-        $desc_img_1='';
-        $desc_img_2='';
-        $desc_img_3='';
 
         /* controllo se è stato fatto il submit */
         if(isset($_POST['nome'])){
@@ -141,7 +138,7 @@
             //Inserimento
             if($num_errori==0){
                 if($insert=$ristorante->insertIntoDB()){
-                    $page=str_replace('%MESSAGGIO%','<p class="msg_box">Inserimento avvenuto con successo</p>',$page);
+                    $page=str_replace('%MESSAGGIO%','<p class="msg_box success_box">Inserimento avvenuto con successo</p>',$page);
                 
                     if($_FILES["main_photo"]['size'] != 0){
                         $uploadResult = uploadImage("ristoranti/","main_photo");
@@ -226,9 +223,6 @@
         $page=str_replace('%VALUE_CAP%',$cap,$page);
         $page=str_replace('%VALUE_NAZ%',$nazione,$page);
         $page=str_replace('%DESC_MAIN_IMG%',$main_foto_desc,$page);
-        $page=str_replace('%DESC_1_IMG%',$desc_img_1,$page);
-        $page=str_replace('%DESC_2_IMG%',$desc_img_2,$page);
-        $page=str_replace('%DESC_3_IMG%',$desc_img_3,$page);
 
         
 
