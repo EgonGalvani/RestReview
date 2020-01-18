@@ -9,14 +9,14 @@
     $msg='';
     if($_SESSION['logged']==true){
         if($_SESSION['permesso']=='Ristoratore'){
-            //3 visualizzazioni
+            //eliminazione ristorante
             if(isset($_POST['eliminaRist'])){
                 $obj_connection=new DBConnection();
                 $obj_connection->create_connection();
                 if($obj_connection->connessione->query("DELETE FROM ristorante WHERE ID=".$_POST['id'])){
-                    $msg='<p>Ristorante eliminato</p>';
+                    $msg='<p class="msg_box success_box">Ristorante eliminato</p>';
                 }else{
-                    $msg='<p>Eliminazione fallita</p>';
+                    $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
                 }
                 $obj_connection->close_connection();
             }
@@ -25,7 +25,7 @@
             if(isset($_GET['type'])){
                 switch($_GET['type']){
                     case 0: {
-                        $tab='<span class="tab_item active_tab">Approvati</span>
+                        $tab='<span class="tab_item">Approvati</span>
                         <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
                         <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>';
                         $stato='Approvato';
@@ -33,7 +33,7 @@
                     }
                     case 1: {
                         $tab='<a class="tab_item" href="imieirist.php?type=0">Approvati</a>
-                        <span class="tab_item active_tab">In fase di approvazione</span>
+                        <span class="tab_item">In fase di approvazione</span>
                         <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>';
                         $stato='In attesa';
                     break;
@@ -41,7 +41,7 @@
                     case 2: {
                         $tab='<a class="tab_item" href="imieirist.php?type=0">Approvati</a>
                         <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
-                        <span class="tab_item active_tab">Rifiutati</span>';
+                        <span class="tab_item">Rifiutati</span>';
                         $stato='Rifiutato';
                     break;
                     }
