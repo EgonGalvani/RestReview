@@ -25,7 +25,7 @@
             if(isset($_GET['type'])){
                 switch($_GET['type']){
                     case 0: {
-                        $tab='<span class="tab_item">Approvati</span>
+                        $tab='<span class="tab_item active_tab">Approvati</span>
                         <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
                         <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>';
                         $stato='Approvato';
@@ -33,7 +33,7 @@
                     }
                     case 1: {
                         $tab='<a class="tab_item" href="imieirist.php?type=0">Approvati</a>
-                        <span class="tab_item">In fase di approvazione</span>
+                        <span class="tab_item active_tab">In fase di approvazione</span>
                         <a class="tab_item" href="imieirist.php?type=2">Rifiutati</a>';
                         $stato='In attesa';
                     break;
@@ -41,7 +41,7 @@
                     case 2: {
                         $tab='<a class="tab_item" href="imieirist.php?type=0">Approvati</a>
                         <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
-                        <span class="tab_item">Rifiutati</span>';
+                        <span class="tab_item active_tab">Rifiutati</span>';
                         $stato='Rifiutato';
                     break;
                     }
