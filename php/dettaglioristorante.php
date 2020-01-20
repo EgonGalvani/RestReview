@@ -77,14 +77,15 @@
                     $page=str_replace('%5_star_perc%',$percentages[4],$page);
 
                     $list_recensioni='';
-                    $query="SELECT * FROM recensione WHERE ID_Ristorante=\"".$id_ristorante."\"";
+                    //ordinamento
                     if(isset($_GET['ordinamento']) && $_GET['ordinamento']==1){
-                        $query.=" ORDER BY Data DESC";
+                        $query="SELECT * FROM recensione WHERE ID_Ristorante=\"".$id_ristorante."\" ORDER BY Data DESC";
                         $recenti='selected="selected"';
                         $votati='';
                         
                     }else{
-                        $query.=" ORDER BY Stelle DESC";
+                        $query="SELECT ID,Data,Stelle,Oggetto,Descrizione,r.ID_Utente,ID_Ristorante,COUNT(*) AS numero FROM mi_piace AS m, recensione AS r 
+                        WHERE ID_Ristorante=".$id_ristorante." AND ID_Recensione=ID GROUP BY ID ORDER BY numero DESC";
                         $recenti='';
                         $votati='selected="selected"';
                     }
