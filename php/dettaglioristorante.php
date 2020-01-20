@@ -14,6 +14,9 @@
                 $query_result=$obj_connection->queryToArray($result);
                 if(count($query_result)>0){
                     $ristorante=$query_result[0];
+                    //Breadcrumb
+                    $breadcrumb='<a href="index.php">Home</a>&gt&gt'.$ristorante['Nome'];
+                    $page=str_replace('%PATH%',$breadcrumb,$page);
 
                     // il path,descrizione e estensione vanno cercate nel db
                     if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
@@ -29,7 +32,7 @@
                     $page=str_replace('%CATEGORIA%',$ristorante['Categoria'],$page);
                     $page=str_replace('%DESCRIZIONE%',$ristorante['Descrizione'],$page);
 
-                    $orario=$ristorante['Ora_Apertura'].' - '.$ristorante['Ora_Chiusura'];
+                    $orario=date("H:i",strtotime($ristorante['Ora_Apertura'])).' - '.date("H:i",strtotime($ristorante['Ora_Chiusura']));
                     $page=str_replace('%ORARI%',$orario,$page); 
                     //mettere insieme orario chiusura, apertura
                     $page=str_replace('%GIORNO_CHIUSURA%',$ristorante['Giorno_Chiusura'],$page);
@@ -132,6 +135,20 @@
                     
                     $page=str_replace('%ID_RIST%',$id_ristorante,$page);
 
+                    //eliminazione recensione
+                    $msg='';
+                    if(isset($_POST['eliminaRec'])){
+                        $obj_connection=new DBConnection();
+                        $obj_connection->create_connection();
+                        if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
+                            $msg='<p class="msg_box success_box">Recensione eliminata</p>';
+                        }else{
+                            $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
+                        }
+                        $obj_connection->close_connection();
+                    }
+                    $page=str_replace('%MESSAGGIO%',$msg,$page);
+
                 }else{
                     //ristorante non presente
                     header('location: ../html/404.html');
@@ -146,7 +163,8 @@
         }
 
     }else{
-        //reindirizzamento altra pagina
+        header('location: ../html/404.html');
+        exit;
     }
 
     echo $page;
