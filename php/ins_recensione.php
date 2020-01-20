@@ -3,7 +3,7 @@
     require_once('addItems.php');
     require_once('connessione.php');
     require_once('indirizzo.php');
-
+    require_once('recensione.php');
     $page= (new addItems)->add("../html/ins_recensione.html");   
 
     if($_SESSION['logged']==true){
@@ -15,8 +15,41 @@
 
             $obj_connection=new DBConnection();
 
+            $titolo='';
+            $contenuto='';
+            $stelle=1;
             if(isset($_POST['titolo_recensione'])){
+                $titolo=$_POST['titolo_recensione'];
 
+                if(isset($_POST['contenuto_recensione'])){
+                    $contenuto=$_POST['contenuto_recensione'];
+                }
+
+                if(isset($_POST['n_stelle'])){
+                    $stelle=$_POST['n_stelle'];
+                }
+
+                date_default_timezone_set("Europe/Rome");
+                $data=date("Y-m-d H");
+                $rec_fields=array("Data"=> $data,
+                                    "Stelle"=>$stelle,
+                                    "Oggetto"=>$titolo,
+                                    "Descrizione"=>$contenuto,
+                                    "ID_Utente"=>$_SESSION['ID'],
+                                    "ID_Ristorante"=>$_POST['id_ristorante']);
+                $recensione=new recensione($rec_fields);
+
+                $errors=$recensione->getErrors();
+                $num_errori=$recensione->numErrors($errors);
+
+                if($num_errori==0){
+                    if($insert=$recensione->insertIntoDB()){
+                        header('location: dettaglioristorante.php?id='.$_POST['id_ristorante']);
+                        exit;
+                    }else{
+                        $err='[Inserimento fallito]';
+                    }
+                }
             }
             if($num_errors>0){
                 $err="[Sono presenti $num_errori campi compilati non correttamente]";
@@ -47,6 +80,14 @@
             }else{
                 //connessione fallita
             }
+            for($i=1;$i<=5;$i++){
+                if($i==$stelle){
+                    $page=str_replace('%VALUE_'.$i.'%','selected="selected"',$page);
+                }else{
+                    $page=str_replace('%VALUE_'.$i.'%','',$page);
+                }
+            }
+
             $page=str_replace('%NOME_RISTORANTE%',$nome_rist,$page);
             $page=str_replace('%URL_IMG%',$img_path,$page);
             $page=str_replace('%INDIRIZZO_RISTORANTE%',$indirizzo,$page);
@@ -55,6 +96,12 @@
             $page=str_replace('%MESSAGGIO%',$err,$page);
             $page=str_replace('%ERR_TITOLO%',$errors['titolo'],$page);
             $page=str_replace('%ERR_CONTENUTO%',$errors['contenuto'],$page);
+
+            $page=str_replace('[','<p class="msg_box error_box">',$page);
+            $page=str_replace(']','</p>',$page);
+
+            $page=str_replace('%TITOLO_RECENSIONE%',$titolo,$page);
+            $page=str_replace('%CONTENUTO_RECENSIONE%',$contenuto,$page);
 
         }else{
             header('location: access_denied.php');

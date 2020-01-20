@@ -18,23 +18,6 @@
         public $citta;
         public $nazione;
 
-        /*public function __construct($n,$d,$cat,$tel,$e,$s,$oap,$och,$g,$v,$civ,$cp,$cit,$naz){
-            $this->nome=$n;
-            $this->descrizione=$d;
-            $this->categoria=$cat;
-            $this->telefono=$tel;
-            $this->email=$e;
-            $this->sito=$s;
-            $this->ora_ap=$oap;
-            $this->ora_chiu=$och;
-            $this->giorno=$g;
-            $this->via=$v;
-            $this->civico=$civ;
-            $this->cap=$cp;
-            $this->citta=$cit;
-            $this->nazione=$naz;
-        }*/
-
         public function __construct($array){
             if(isset($array['ID'])){
                 $this->id=$array['ID'];

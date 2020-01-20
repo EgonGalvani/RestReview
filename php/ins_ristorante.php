@@ -55,64 +55,64 @@
 
         /* controllo se è stato fatto il submit */
         if(isset($_POST['nome'])){
-            $nome=htmlentities(trim($_POST['nome']));
+            $nome=trim($_POST['nome']);
 
             if(isset($_POST['b_descrizione'])){
-                $desc=htmlentities(trim($_POST['b_descrizione']));
+                $desc=trim($_POST['b_descrizione']);
             }
 
             if(isset($_POST['categoria'])){
-                $categoria=htmlentities(trim($_POST['categoria']));
+                $categoria=trim($_POST['categoria']);
             }
 
             if(isset($_POST['telefono'])){
-                $tel=htmlentities(trim($_POST['telefono']));
+                $tel=trim($_POST['telefono']);
             }
 
             if(isset($_POST['email'])){
-                $email=htmlentities(trim($_POST['email']));
+                $email=trim($_POST['email']);
             }
 
             if(isset($_POST['sito'])){
-                $sito=htmlentities(trim($_POST['sito']));
+                $sito=trim($_POST['sito']);
             }
 
             if(isset($_POST['o_apertura'])){
-                $ora_ap=htmlentities(trim($_POST['o_apertura']));
+                $ora_ap=trim($_POST['o_apertura']);
             }
 
             if(isset($_POST['o_chiusura'])){
-                $ora_chiu=htmlentities(trim($_POST['o_chiusura']));
+                $ora_chiu=trim($_POST['o_chiusura']);
             }
             
             if(isset($_POST['free_day'])){
-                $giorno=htmlentities(trim($_POST['free_day']));
+                $giorno=trim($_POST['free_day']);
                 $arr_giorno["$giorno"]='checked="checked"';
             }else{
                 $giorno='';
             }
 
             if(isset($_POST['via'])){
-                $via=htmlentities(trim($_POST['via']));
+                $via=trim($_POST['via']);
             }
             if(isset($_POST['civico'])){
-                $civico=htmlentities(trim($_POST['civico']));
+                $civico=trim($_POST['civico']);
             }
 
             if(isset($_POST['citta'])){
-                $citta=htmlentities(trim($_POST['citta']));
+                $citta=trim($_POST['citta']);
             }
             if(isset($_POST['cap'])){
-                $cap=htmlentities(trim($_POST['cap']));
+                $cap=trim($_POST['cap']);
             }
 
             if(isset($_POST['nazione'])){
-                $nazione=htmlentities(trim($_POST['nazione']));
+                $nazione=trim($_POST['nazione']);
             }
 
             //immagini
             if(isset($_POST['main_photo_description'])){
-                $main_foto_desc=htmlentities(trim($_POST['main_photo_description']));
+                $main_foto_desc=trim($_POST['main_photo_description']);
             }
             
             require_once('ristorante.php');
@@ -138,7 +138,7 @@
             //Inserimento
             if($num_errori==0){
                 if($insert=$ristorante->insertIntoDB()){
-                    $page=str_replace('%MESSAGGIO%','<p class="msg_box success_box">Inserimento avvenuto con successo</p>',$page);
+                    //$page=str_replace('%MESSAGGIO%','<p class="msg_box success_box">Inserimento avvenuto con successo</p>',$page);
                 
                     if($_FILES["main_photo"]['size'] != 0){
                         $uploadResult = uploadImage("ristoranti/","main_photo");

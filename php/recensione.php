@@ -1,7 +1,8 @@
 <?php
+    require_once('reg_ex.php');
 
     class recensione{
-        public $id;
+        public $id=-1;
         public $data;
         public $stelle;
         public $oggetto;
@@ -10,7 +11,9 @@
         public $id_ristorante;
 
         public function __construct($array){
-            $this->id=$array['ID'];
+            if(isset($array['ID'])){
+                $this->id=$array['ID'];
+            }
             $this->data=$array['Data'];
             $this->stelle=$array['Stelle'];
             $this->oggetto=$array['Oggetto'];
@@ -83,6 +86,65 @@
             return $recensione;
         }
 
+        public function insertIntoDB(){
+            require_once('sessione.php');
+            require_once('connessione.php');
+
+            $connection=new DBConnection();
+            $connection->create_connection();
+
+            $this->pulisciDati();
+            $ins="INSERT INTO recensione VALUES(NULL,\"$this->data\",$this->stelle,\"$this->oggetto\",
+                                                \"$this->descrizione\",$this->id_utente,
+                                                $this->id_ristorante)";
+            $query=$connection->connessione->query($ins);
+            if($connection->connessione->affected_rows>0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function getErrors(){
+            $err_array=array("titolo"=>"",
+                            "contenuto"=>"");
+
+            if($this->oggetto==''){
+                $err_array['titolo']='[Campo obbligatorio]';
+            }else{
+                if(strlen($this->oggetto)<25 || strlen($this->oggetto)>50){
+                    $err_array['titolo']='[Il titolo deve avere tra i 25 e 50 cartteri.]';
+                }
+            }
+
+            if($this->descrizione==''){
+                $err_array['contenuto']='[Campo obbligatorio]';
+            }else{
+                if(strlen($this->descrizione)<100 || strlen($this->descrizione)>250){
+                    $err_array['contenuto']='[Il contenuto della recensione deve avere tra i 100 e 250 caratteri.]';
+                }
+            }
+            return $err_array;
+        }
+
+        public function numErrors($err_array){
+            $count=0;
+            foreach($err_array as $value){
+                if($value!=''){
+                    $count++;
+                }
+            }
+            return $count;
+        }
+
+        private function pulisciDati(){
+            $this->data=htmlentities(trim($this->data));
+            $this->stelle=htmlentities(trim($this->stelle));
+            $this->oggetto=htmlentities(trim($this->oggetto));
+            $this->descrizione=htmlentities(trim($this->descrizione));
+            $this->id_utente=htmlentities(trim($this->id_utente));
+            $this->id_ristorante=htmlentities(trim($this->id_ristorante));
+        }
 
     }
 
