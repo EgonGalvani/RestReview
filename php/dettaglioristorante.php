@@ -127,7 +127,7 @@
                     if($_SESSION['permesso']=='Ristoratore'){
                         $ins_foto_form='<form action="ins_new_photo.php" method="post">
                                             <fieldset>
-                                            <input type="hidden" value="%ID_RIST%"/>
+                                            <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
                                             <input type="submit" value="Inserisci nuova foto" class="btn" id="new_photo_button" />
                                             </fieldset>
                                         </form>';
