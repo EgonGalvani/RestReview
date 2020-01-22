@@ -61,36 +61,36 @@
 
                     %ERR_NOME%
                     <label for="nome">Nome ristorante: </label>
-                    <input type="text" name="nome" id="nome" class="full_width_input" value="%VALUE_NOME%"/>
+                    <input type="text" name="nome" id="nome" class="full_width_input" tabindex="9" value="%VALUE_NOME%"/>
 
                     %ERR_DESC%
                     <label for="b_descrizione">Breve Descrizione: </label>
-                    <textarea name="b_descrizione" id="b_descrizione" rows="3">%VALUE_DESC%</textarea>
+                    <textarea name="b_descrizione" id="b_descrizione" rows="3" tabindex="10">%VALUE_DESC%</textarea>
 
                     %ERR_CAT%
                     <label for="categoria">Categoria: </label>
-                    <select name="categoria" class="full_width_input">
+                    <select name="categoria" class="full_width_input" tabindex="11">
                         %CATEGORIA%
                     </select>
                     %ERR_TEL%
                     <label for="telefono">Telefono: </label>
-                    <input type="tel" name="telefono" class="full_width_input" id="telefono" value="%VALUE_TEL%"/>
+                    <input type="tel" name="telefono" class="full_width_input" id="telefono" tabindex="12" value="%VALUE_TEL%"/>
                     %ERR_EMAIL%
                     <label for="email">Email: </label>
-                    <input type="email" name="email" class="full_width_input" id="email" value="%VALUE_EMAIL%"/>
+                    <input type="email" name="email" class="full_width_input" id="email" tabindex="13" value="%VALUE_EMAIL%"/>
                     %ERR_SITO%
                     <label for="sito">Sito: </label>
-                    <input type="url" name="sito" class="full_width_input" id="sito" value="%VALUE_SITO%"/>
+                    <input type="url" name="sito" class="full_width_input" id="sito" tabindex="14" value="%VALUE_SITO%"/>
                 </fieldset>
 
                 <fieldset>
                     <legend>Orari</legend>
                     %ERR_OR_AP%    
                     <label for="o_apertura">Orario di apertura: </label>
-                    <input type="time" name="o_apertura" id="o_apertura" value="%VALUE_OR_AP%"  />
+                    <input type="time" name="o_apertura" id="o_apertura" tabindex="15" value="%VALUE_OR_AP%"  />
                     %ERR_OR_CH%
                     <label for="o_chiusura">Orario di chiusura: </label>
-                    <input type="time" name="o_chiusura" id="o_chiusura" value="%VALUE_OR_CH%" />
+                    <input type="time" name="o_chiusura" id="o_chiusura" tabindex="16" value="%VALUE_OR_CH%" />
                     
                     %ERR_GIORNO%
                     <span>Giorno di chiusura: </span>
@@ -126,23 +126,23 @@
                     <div id="indirizzo">
                         %ERR_VIA%
                         <label for="via">Via: </label>
-                        <input type="text" name="via" id="via" value="%VALUE_VIA%" class="full_width_input" />
+                        <input type="text" name="via" id="via" value="%VALUE_VIA%" tabindex="17" class="full_width_input" />
                         %ERR_CIV%
                         <label for="civico">Civico: </label>
-                        <input type="text" name="civico" id="civico" value="%VALUE_CIV%" />    
+                        <input type="text" name="civico" id="civico" tabindex="18" value="%VALUE_CIV%" />    
                     </div>
                     
                     <div>
                         %ERR_CITTA%
                         <label for="citta">Città: </label>
-                        <input type="text" name="citta" id="citta" value="%VALUE_CITTA%"  class="full_width_input" />
+                        <input type="text" name="citta" id="citta" value="%VALUE_CITTA%" tabindex="19"  class="full_width_input" />
                         %ERR_CAP%
                         <label for="cap">CAP: </label>
-                        <input type="text" name="cap" id="cap" value="%VALUE_CAP%"  /> 
+                        <input type="text" name="cap" id="cap" tabindex="20" value="%VALUE_CAP%"  /> 
                     </div>
                     %ERR_NAZ%
                     <label for="nazione">Nazione: </label>
-                    <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%"  class="full_width_input"/>
+                    <input type="text" name="nazione" id="nazione" value="%VALUE_NAZ%" tabindex="21"  class="full_width_input"/>
                 </fieldset>
 
                 <fieldset>
@@ -150,13 +150,13 @@
                     %ERR_IMG%
                     <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
                     <label>L'immagine può avere una dimensione massima di 5MB e un'estensione tra: jpg, png, jpeg</label>
-                    <input type="file" id="main_photo" name="main_photo" />
+                    <input type="file" id="main_photo" name="main_photo" tabindex="22" />
                     
                     <label for="main_photo_description">Descrizione immagine principale: </label>
-                    <input id="main_photo_description" name="main_photo_description" value="%DESC_MAIN_IMG%" type="text" class="full_width_input" />                  
+                    <input id="main_photo_description" name="main_photo_description" value="%DESC_MAIN_IMG%" type="text" class="full_width_input" tabindex="23" />                  
                 </fieldset>
 
-                <input type="submit" id="ins_rest_submit" name="submit" class="btn" value="Inserisci ristorante!" />
+                <input type="submit" id="ins_rest_submit" name="submit" class="btn" tabindex="24" value="Inserisci ristorante!" />
             </form>
             
         </div>

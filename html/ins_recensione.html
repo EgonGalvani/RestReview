@@ -63,7 +63,7 @@
                     <legend>Inserimento nuova recensione</legend>
                     %MESSAGGIO%
                     <label for="n_stelle">Valuta la tua esperienza: </label>
-                    <select id="n_stelle" name="n_stelle" >
+                    <select id="n_stelle" name="n_stelle" tabindex="9">
                         <option value="1" %VALUE_1%>1 stella</option>
                         <option value="2" %VALUE_2%>2 stelle</option>
                         <option value="3" %VALUE_3%>3 stelle</option>
@@ -73,14 +73,14 @@
                     
                     %ERR_TITOLO%
                     <label for="titolo_recensione">Titolo della tua recensione: </label>
-                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" class="full_width_input"/>
+                    <input type="text" id="titolo_recensione" name="titolo_recensione" value="%TITOLO_RECENSIONE%" tabindex="10" class="full_width_input"/>
 
                     %ERR_CONTENUTO%
                     <label for="contenuto_recensione">La tua recensione: </label>
-                    <textarea id="contenuto_recensione" rows="50" cols="50" name="contenuto_recensione" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
+                    <textarea id="contenuto_recensione" rows="50" cols="50" name="contenuto_recensione" tabindex="11" class="full_width_input">%CONTENUTO_RECENSIONE%</textarea>
                     
                     <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
-                    <input type="submit" class="btn right" value="Invia recensione!" id="send_review"/>
+                    <input type="submit" class="btn right" value="Invia recensione!" tabindex="12" id="send_review"/>
                 </fieldset>
             </form>
         </div>
