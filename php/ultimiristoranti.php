@@ -75,10 +75,8 @@
                 </dd>
                 ";
         }
-
-        $list .= "</dl>";
     }
-
+    $list .= "</dl>";
     $page = str_replace('%ERROR%', $error,$page);
     $page = str_replace('%LIST%', $list,$page);
     echo $page;

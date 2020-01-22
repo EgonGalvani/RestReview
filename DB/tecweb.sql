@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Gen 06, 2020 alle 12:52
--- Versione del server: 10.1.30-MariaDB
--- Versione PHP: 7.2.1
+-- Host: 127.0.0.1
+-- Creato il: Gen 22, 2020 alle 19:10
+-- Versione del server: 10.1.37-MariaDB
+-- Versione PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categoria` (
-  `Nome` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Nome` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `categoria`
@@ -56,7 +56,7 @@ INSERT INTO `categoria` (`Nome`) VALUES
 CREATE TABLE `corrispondenza` (
   `ID_Foto` int(11) NOT NULL,
   `ID_Ristorante` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `corrispondenza`
@@ -80,48 +80,50 @@ INSERT INTO `corrispondenza` (`ID_Foto`, `ID_Ristorante`) VALUES
 
 CREATE TABLE `foto` (
   `ID` int(11) NOT NULL,
-  `Path` mediumtext COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `Path` text NOT NULL,
+  `Descrizione` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `foto`
 --
 
-INSERT INTO `foto` (`ID`, `Path`) VALUES
-(1, '../img/Utenti/1.jpeg'),
-(2, '../img/Utenti/2.jpg'),
-(3, '../img/Utenti/3.jpg'),
-(4, '../img/Utenti/4.jpg'),
-(5, '../img/Utenti/5.jpg'),
-(6, '../img/Utenti/6.jpg'),
-(7, '../img/Utenti/7.jpg'),
-(8, '../img/Utenti/8.jpg'),
-(9, '../img/Utenti/9.jpg'),
-(10, '../img/Utenti/10.jpg'),
-(11, '../img/Utenti/11.jpg'),
-(12, '../img/Utenti/12.jpg'),
-(13, '../img/Utenti/13.jpg'),
-(14, '../img/Utenti/14.jpg'),
-(15, '../img/Utenti/15.jpg'),
-(16, '../img/Utenti/16.jpg'),
-(17, '../img/Utenti/17.jpg'),
-(18, '../img/Utenti/18.jpg'),
-(19, '../img/Utenti/19.jpg'),
-(20, '../img/Utenti/20.jpg'),
-(21, '../img/Utenti/21.jpg'),
-(22, '../img/Utenti/22.jpg'),
-(23, '../img/Utenti/23.jpg'),
-(24, '../img/Utenti/24.jpg'),
-(25, '../img/Utenti/25.jpg'),
-(26, '../img/ristoranti/2.jpg'),
-(27, '../img/ristoranti/3.jpg'),
-(28, '../img/ristoranti/4.jpg'),
-(29, '../img/ristoranti/5.jpg'),
-(30, '../img/ristoranti/6.jpg'),
-(31, '../img/ristoranti/7.jpg'),
-(32, '../img/ristoranti/8.jpg'),
-(33, '../img/ristoranti/9.jpg'),
-(46, '../img/Utenti/ragioniere.JPG');
+INSERT INTO `foto` (`ID`, `Path`, `Descrizione`) VALUES
+(1, '../img/Utenti/1.jpeg', NULL),
+(2, '../img/Utenti/2.jpg', NULL),
+(3, '../img/Utenti/3.jpg', NULL),
+(4, '../img/Utenti/4.jpg', NULL),
+(5, '../img/Utenti/5.jpg', NULL),
+(6, '../img/Utenti/6.jpg', NULL),
+(7, '../img/Utenti/7.jpg', NULL),
+(8, '../img/Utenti/8.jpg', NULL),
+(9, '../img/Utenti/9.jpg', NULL),
+(10, '../img/Utenti/10.jpg', NULL),
+(11, '../img/Utenti/11.jpg', NULL),
+(12, '../img/Utenti/12.jpg', NULL),
+(13, '../img/Utenti/13.jpg', NULL),
+(14, '../img/Utenti/14.jpg', NULL),
+(15, '../img/Utenti/15.jpg', NULL),
+(16, '../img/Utenti/16.jpg', NULL),
+(17, '../img/Utenti/17.jpg', NULL),
+(18, '../img/Utenti/18.jpg', NULL),
+(19, '../img/Utenti/19.jpg', NULL),
+(20, '../img/Utenti/20.jpg', NULL),
+(21, '../img/Utenti/21.jpg', NULL),
+(22, '../img/Utenti/22.jpg', NULL),
+(23, '../img/Utenti/23.jpg', NULL),
+(24, '../img/Utenti/24.jpg', NULL),
+(25, '../img/Utenti/25.jpg', NULL),
+(26, '../img/ristoranti/2.jpeg', NULL),
+(27, '../img/ristoranti/3.jpeg', NULL),
+(28, '../img/ristoranti/4.jpeg', NULL),
+(29, '../img/ristoranti/5.jpeg', NULL),
+(30, '../img/ristoranti/6.jpeg', NULL),
+(31, '../img/ristoranti/7.jpeg', NULL),
+(32, '../img/ristoranti/8.jpeg', NULL),
+(33, '../img/ristoranti/9.jpeg', NULL),
+(46, '../img/Utenti/ragioniere.JPG', NULL),
+(47, '../img/Utenti/1578268256.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,7 @@ INSERT INTO `foto` (`ID`, `Path`) VALUES
 CREATE TABLE `mi_piace` (
   `ID_Utente` int(11) NOT NULL,
   `ID_Recensione` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `mi_piace`
@@ -199,12 +201,12 @@ INSERT INTO `mi_piace` (`ID_Utente`, `ID_Recensione`) VALUES
 CREATE TABLE `recensione` (
   `ID` int(11) NOT NULL,
   `Data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Stelle` enum('1','2','3','4','5') COLLATE utf8_unicode_ci NOT NULL,
-  `Oggetto` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `Descrizione` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `Stelle` enum('1','2','3','4','5') NOT NULL,
+  `Oggetto` varchar(64) NOT NULL,
+  `Descrizione` text NOT NULL,
   `ID_Utente` int(11) NOT NULL,
   `ID_Ristorante` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `recensione`
@@ -239,22 +241,22 @@ INSERT INTO `recensione` (`ID`, `Data`, `Stelle`, `Oggetto`, `Descrizione`, `ID_
 CREATE TABLE `ristorante` (
   `ID` int(11) NOT NULL,
   `ID_Proprietario` int(11) NOT NULL,
-  `Nome` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `Categoria` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `Descrizione` mediumtext COLLATE utf8_unicode_ci,
-  `Tel` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
-  `Mail` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `Giorno_Chiusura` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `Nome` varchar(64) NOT NULL,
+  `Categoria` varchar(32) NOT NULL,
+  `Descrizione` text,
+  `Tel` varchar(13) NOT NULL,
+  `Mail` varchar(128) NOT NULL,
+  `Giorno_Chiusura` varchar(16) NOT NULL,
   `Ora_Apertura` time NOT NULL,
   `Ora_Chiusura` time NOT NULL,
-  `Nazione` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `Citta` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `CAP` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `Via` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `Civico` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `Approvato` enum('Non approvato','In attesa','Approvato','') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'In attesa',
-  `sito` varchar(2048) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `Nazione` varchar(32) NOT NULL,
+  `Citta` varchar(32) NOT NULL,
+  `CAP` varchar(5) NOT NULL,
+  `Via` varchar(32) NOT NULL,
+  `Civico` varchar(16) NOT NULL,
+  `Approvato` enum('Non approvato','In attesa','Approvato','') NOT NULL DEFAULT 'In attesa',
+  `sito` varchar(2048) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `ristorante`
@@ -278,17 +280,17 @@ INSERT INTO `ristorante` (`ID`, `ID_Proprietario`, `Nome`, `Categoria`, `Descriz
 
 CREATE TABLE `utente` (
   `ID` int(11) NOT NULL,
-  `PWD` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `Mail` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `Nome` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `Cognome` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `PWD` varchar(64) NOT NULL,
+  `Mail` varchar(128) NOT NULL,
+  `Nome` varchar(64) NOT NULL,
+  `Cognome` varchar(64) NOT NULL,
   `Data_Nascita` date NOT NULL,
   `ID_Foto` int(11) DEFAULT NULL,
-  `Ragione_Sociale` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `P_IVA` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Permessi` enum('Utente','Ristoratore','Admin') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Sesso` enum('Uomo','Donna','Altro','Sconosciuto') COLLATE utf8_unicode_ci DEFAULT 'Sconosciuto'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `Ragione_Sociale` varchar(64) DEFAULT NULL,
+  `P_IVA` varchar(11) DEFAULT NULL,
+  `Permessi` enum('Utente','Ristoratore','Admin') DEFAULT NULL,
+  `Sesso` enum('Uomo','Donna','Altro','Sconosciuto') DEFAULT 'Sconosciuto'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `utente`
@@ -325,7 +327,8 @@ INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `I
 (28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', NULL, NULL, '0', 'Ristoratore', ''),
 (29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', NULL, NULL, '0', 'Ristoratore', ''),
 (30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', NULL, NULL, '0', 'Ristoratore', ''),
-(78, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'paolovillaggio@gmail.com', 'Paolo', 'Villaggio', '1932-12-30', 46, NULL, NULL, 'Utente', 'Uomo');
+(78, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'paolovillaggio@gmail.com', 'Paolo', 'Villaggio', '1932-12-30', 46, NULL, NULL, 'Utente', 'Uomo'),
+(79, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'vanessatroiani@ggg.it', 'Vanessa', 'Troiani', '1968-06-15', 47, NULL, NULL, 'Utente', 'Donna');
 
 --
 -- Indici per le tabelle scaricate
@@ -388,7 +391,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT per la tabella `recensione`
@@ -406,7 +409,7 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Limiti per le tabelle scaricate
@@ -432,6 +435,19 @@ ALTER TABLE `mi_piace`
 ALTER TABLE `recensione`
   ADD CONSTRAINT `recensione_ibfk_1` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `recensione_ibfk_2` FOREIGN KEY (`ID_Ristorante`) REFERENCES `ristorante` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `ristorante`
+--
+ALTER TABLE `ristorante`
+  ADD CONSTRAINT `ristorante_ibfk_1` FOREIGN KEY (`ID_Proprietario`) REFERENCES `utente` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ristorante_ibfk_2` FOREIGN KEY (`Categoria`) REFERENCES `categoria` (`Nome`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `utente`
+--
+ALTER TABLE `utente`
+  ADD CONSTRAINT `utente_ibfk_1` FOREIGN KEY (`ID_Foto`) REFERENCES `foto` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
