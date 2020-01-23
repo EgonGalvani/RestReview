@@ -129,15 +129,15 @@
         }
         if($no_error){
             
-            $tipo=$obj_connection->escape_str(trim($tipo));
-            $mail=$obj_connection->escape_str(trim($mail));
-            $nome=$obj_connection->escape_str(trim($nome));
-            $cognome=$obj_connection->escape_str(trim($cognome));
-            $sesso=$obj_connection->escape_str(trim($sesso));
-            $datan=$obj_connection->escape_str(trim($datan));
+            $tipo=$obj_connection->escape_str(trim(htmlentities($tipo)));
+            $mail=$obj_connection->escape_str(trim(htmlentities($mail)));
+            $nome=$obj_connection->escape_str(trim(htmlentities($nome)));
+            $cognome=$obj_connection->escape_str(trim(htmlentities($cognome)));
+            $sesso=$obj_connection->escape_str(trim(htmlentities($sesso)));
+            $datan=$obj_connection->escape_str(trim(htmlentities($datan)));
             $hashed_pwd=hash("sha256",$obj_connection->escape_str(trim($pwd)));
-            $piva=$obj_connection->escape_str(trim($piva));
-            $rsoc=$obj_connection->escape_str(trim($rsoc));
+            $piva=$obj_connection->escape_str(trim(htmlentities($piva)));
+            $rsoc=$obj_connection->escape_str(trim(htmlentities($rsoc)));
 
             if($tipo==0){//utente
                 $permessi="Utente";

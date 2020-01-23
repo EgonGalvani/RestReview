@@ -1,11 +1,14 @@
 <?php
 
     class DBConnection{
+        //const HOST_DB ="localhost";
+        //const USERNAME ="acocco";
+        //const PASSWORD ="Ail4uH6Udoo0lee1";
+        //const DATABASE_NAME ="acocco";
         const HOST_DB ="localhost";
-        const USERNAME ="acocco";
-        const PASSWORD ="Ail4uH6Udoo0lee1";
-        const DATABASE_NAME ="acocco";
-    
+        const USERNAME ="root";
+        const PASSWORD ="";
+        const DATABASE_NAME ="tecweb";
         public $connessione = null;
         
         public function create_connection(){
