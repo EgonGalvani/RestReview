@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("sessione.php");
     require_once("connessione.php");
     require_once("addItems.php");
     require_once("makeRestaurantCard.php");

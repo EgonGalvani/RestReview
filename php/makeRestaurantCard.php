@@ -1,4 +1,5 @@
 <?php
+require_once("sessione.php");
 function makeCard($id,$obj_connection){
         $approvazione="";
         $list="";
