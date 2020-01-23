@@ -130,9 +130,10 @@
             else{
                 $obj_connection->connessione->query("UPDATE `utente` SET `Nome`= '$nome', `Cognome`= '$cognome', `Sesso`= '$sesso' WHERE `utente`.`ID` = $id ");
             }
-            header('location: modifica_profilo.php');
+            $dati_error="<div class=\"msg_box success_box\">Dati modificati correttamente.</div>"; 
+            
         }
-         
+        
     }
 
     $page=str_replace("%ERROR%",$error,$page);
@@ -168,9 +169,9 @@
     }
     else{///toglie ragione sociale e p iva
         $page=str_replace('<label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>',"",$page);
-        $page=str_replace('<input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="11" class="full_width_input"/>',"",$page);
+        $page=str_replace('<input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="18" class="full_width_input"/>',"",$page);
         $page=str_replace('<label id="rsoc_l" for="rsoc">Ragione sociale:</label>',"",$page);
-        $page=str_replace('<input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="12" class="full_width_input"/>',"",$page);
+        $page=str_replace('<input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="19" class="full_width_input"/>',"",$page);
     }
 
     echo $page;
