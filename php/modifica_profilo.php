@@ -116,7 +116,13 @@
                 $dati_error=$dati_error."<div class=\"msg_box error_box\">La partita IVA inserita non è corretta.</div>";
                 $no_error=false;
             }
+            else{
+                $rsoc=$obj_connection->escape_str(trim(htmlentities($rsoc)));
+            }
         }
+        $nome=$obj_connection->escape_str(trim(htmlentities($nome)));
+        $cognome=$obj_connection->escape_str(trim(htmlentities($cognome)));
+        $sesso=$obj_connection->escape_str(trim(htmlentities($sesso)));
         if($mod_dati_no_error){
             if($_SESSION['permesso']==='Ristoratore'){
                 $obj_connection->connessione->query("UPDATE `utente` SET `Nome`= '$nome', `Cognome`= '$cognome', `Sesso`= '$sesso', `P_IVA`= '$piva', `Ragione_Sociale`= '$rsoc' WHERE `utente`.`ID` = $id ");
