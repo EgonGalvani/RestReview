@@ -12,6 +12,7 @@
 
             if($result=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE ID=$id_ristorante")){
                 $query_result=$obj_connection->queryToArray($result);
+                $result->close();
                 if(count($query_result)>0){
                     $ristorante=$query_result[0];
                     //Breadcrumb
@@ -89,13 +90,13 @@
                     $list_recensioni='';
                     //ordinamento
                     if(isset($_GET['ordinamento']) && $_GET['ordinamento']==1){
-                        $query="SELECT * FROM recensione WHERE ID_Ristorante=\"".$id_ristorante."\" ORDER BY Data DESC";
+                        $query="SELECT * FROM recensione WHERE ID_Ristorante=".$id_ristorante." ORDER BY Data DESC";
                         $recenti='selected="selected"';
                         $votati='';
                         
                     }else{
-                        $query="SELECT ID,Data,Stelle,Oggetto,Descrizione,r.ID_Utente,ID_Ristorante,COUNT(*) AS numero FROM mi_piace AS m, recensione AS r 
-                        WHERE ID_Ristorante=".$id_ristorante." AND ID_Recensione=ID GROUP BY ID ORDER BY numero DESC";
+                        $query="SELECT ID,Data,Stelle,Oggetto,Descrizione,r.ID_Utente,ID_Ristorante,COUNT(*) AS numero FROM mi_piace AS m RIGHT OUTER JOIN recensione AS r ON ID_Recensione=ID
+                        WHERE ID_Ristorante=".$id_ristorante." GROUP BY ID ORDER BY numero DESC";
                         $recenti='';
                         $votati='selected="selected"';
                     }
@@ -149,14 +150,11 @@
                     //eliminazione recensione
                     $msg='';
                     if(isset($_POST['eliminaRec'])){
-                        $obj_connection=new DBConnection();
-                        $obj_connection->create_connection();
                         if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
                             $msg='<p class="msg_box success_box">Recensione eliminata</p>';
                         }else{
                             $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
                         }
-                        $obj_connection->close_connection();
                     }
                     $page=str_replace('%MESSAGGIO%',$msg,$page);
 
