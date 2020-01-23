@@ -255,9 +255,9 @@ function photoControl(photoField) {
             ok = false; 
         } else if(!isSizeOK(photoField.files[0].size)) {    // controllo che sia dentro la dimensione massima  
             showAlertBox(photoField, "La dimensione del file supera la dimensione massima (5MB)"); 
-            ok = false ;
+            ok = false;
         }
-    }
+    } else ok = false; 
 
     return ok; 
 }
@@ -335,7 +335,15 @@ function modify_profile_init(){
         }); 
 
         document.getElementById("change_photo").addEventListener("click", 
-            (e) => { if(!photoControl(nuovaFoto)) e.preventDefault(); }); 
+            (e) => { 
+                removePreviousBox(e.target); 
+
+                if(!isNotEmpty(nuovaFoto.value)) {
+                    showAlertBox(e.target, "Caricare una foto"); 
+                    e.preventDefault();
+                } else if(!photoControl(nuovaFoto))
+                    e.preventDefault();
+            }); 
     }
 
     // form di modifica password
@@ -522,17 +530,33 @@ function nuova_foto_rist_init() {
 }
 
 function torna_su_init() {
-
     var btn = document.getElementById("scrollBtn"); 
-
-    console.log("Y offset: " + window.pageYOffset); 
-    console.log("Width: " + window.screen.availWidth); 
 
     if(window.pageYOffset > 50 && window.screen.availWidth <= 768) {
         removeClass(btn, "hide"); 
     } else {
         if(!hasClass(btn, "hide"))
             addClass(btn, "hide"); 
+    }
+}
+
+function dettaglioRist() {
+    var preview = document.getElementById("mainphoto"); 
+    var imgs = document.getElementsByClassName("photoes"); 
+
+    for(var i = 0; i < imgs.length; i++) {
+        imgs[i].addEventListener("mouseover", function(e) { 
+            preview.setAttribute("src", e.target.getAttribute("src")); 
+        }); 
+
+        imgs[i].addEventListener("mouseout", function(e) { 
+            preview.setAttribute("src", document.getElementsByClassName("selected_photo")[0].getAttribute("src")); 
+        }); 
+
+        imgs[i].addEventListener("click", function(e) { 
+            removeClass(document.getElementsByClassName("selected_photo")[0], "selected_photo"); 
+            if(!hasClass(e.target, "selected_photo")) addClass(e.target, "selected_photo"); 
+        }); 
     }
 }
 
@@ -566,6 +590,9 @@ window.onload = function() {
     init_ins_risto(); 
 
     // ----- INSERIMENTO FOTO RISTORANTE ---
-    nuova_foto_rist_init(); 
+    nuova_foto_rist_init();
+    
+    // ---------- DETTAGLIO RISTORANTE ------ 
+    dettaglioRist();
 }; 
     
