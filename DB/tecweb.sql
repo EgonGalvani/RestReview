@@ -89,7 +89,7 @@ CREATE TABLE `foto` (
 --
 
 INSERT INTO `foto` (`ID`, `Path`, `Descrizione`) VALUES
-(1, '../img/Utenti/1.jpeg', NULL),
+(1, '../img/Utenti/1.jpg', NULL),
 (2, '../img/Utenti/2.jpg', NULL),
 (3, '../img/Utenti/3.jpg', NULL),
 (4, '../img/Utenti/4.jpg', NULL),
@@ -114,14 +114,14 @@ INSERT INTO `foto` (`ID`, `Path`, `Descrizione`) VALUES
 (23, '../img/Utenti/23.jpg', NULL),
 (24, '../img/Utenti/24.jpg', NULL),
 (25, '../img/Utenti/25.jpg', NULL),
-(26, '../img/ristoranti/2.jpeg', NULL),
-(27, '../img/ristoranti/3.jpeg', NULL),
-(28, '../img/ristoranti/4.jpeg', NULL),
-(29, '../img/ristoranti/5.jpeg', NULL),
-(30, '../img/ristoranti/6.jpeg', NULL),
-(31, '../img/ristoranti/7.jpeg', NULL),
-(32, '../img/ristoranti/8.jpeg', NULL),
-(33, '../img/ristoranti/9.jpeg', NULL),
+(26, '../img/ristoranti/2.jpg', NULL),
+(27, '../img/ristoranti/3.jpg', NULL),
+(28, '../img/ristoranti/4.jpg', NULL),
+(29, '../img/ristoranti/5.jpg', NULL),
+(30, '../img/ristoranti/6.jpg', NULL),
+(31, '../img/ristoranti/7.jpg', NULL),
+(32, '../img/ristoranti/8.jpg', NULL),
+(33, '../img/ristoranti/9.jpg', NULL),
 (46, '../img/Utenti/ragioniere.JPG', NULL),
 (47, '../img/Utenti/1578268256.jpg', NULL);
 
