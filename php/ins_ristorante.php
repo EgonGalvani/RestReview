@@ -30,6 +30,7 @@
                     "naz"=>"");
         $num_errori=0;
         $img_error='';
+        $img_desc_error='';
 
         $nome='';
         $desc='';
@@ -110,10 +111,7 @@
                 $nazione=trim($_POST['nazione']);
             }
 
-            //immagini
-            if(isset($_POST['main_photo_description'])){
-                $main_foto_desc=trim($_POST['main_photo_description']);
-            }
+            
             
             require_once('ristorante.php');
             $rist_fields=array("Nome"=>$nome,
@@ -134,6 +132,19 @@
 
             $errors=$ristorante->getErrors();
             $num_errori=$ristorante->numErrors($errors);
+
+            //errore immagine
+            if(!isset($_FILES["main_photo"])){
+                $num_errori++;
+                $img_error='[Inserire un immagine]';
+            }
+            //descrizione immagine
+            if(isset($_POST['main_photo_description'])){
+                $main_foto_desc=trim($_POST['main_photo_description']);
+            }else{
+                $img_desc_error='[Inserire una descrizione]';
+                $num_errori++;
+            }
            
             //Inserimento
             if($num_errori==0){
@@ -186,6 +197,7 @@
         $page=str_replace('%ERR_CAP%',$errors['cap'],$page);
         $page=str_replace('%ERR_NAZ%',$errors['naz'],$page);
         $page=str_replace('%ERR_IMG%',$img_error,$page);
+        $page=str_replace('%ERR_IMG_DESC%',$img_desc_error,$page);
 
         $page=str_replace('[','<p class="msg_box error_box">',$page);
         $page=str_replace(']','</p>',$page);
