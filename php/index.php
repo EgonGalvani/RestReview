@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("sessione.php");
     require_once("connessione.php");
     require_once("addItems.php");
     require_once("makeRestaurantCard.php");
@@ -30,7 +30,7 @@
             $tipologia=$tipologia."<option value=\"$nome\">$nome</option>";
         }
         //Mette come suggerimenti i miglior recensiti
-        $queryResult=$obj_connection->connessione->query("SELECT ID_Ristorante, AVG(Stelle) AS Media FROM `recensione` GROUP BY ID_Ristorante ORDER BY Media DESC LIMIT 3");
+        $queryResult=$obj_connection->connessione->query("SELECT ID_Ristorante, AVG(Stelle) AS Media FROM `recensione` GROUP BY ID_Ristorante ORDER BY Media DESC LIMIT 3");//Se ha recensioni è già stato approvato
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
             $list=$list.makeCard($row['ID_Ristorante'],$obj_connection);
         }
@@ -41,7 +41,7 @@
                 $ricercaText=$_GET['search'];
             }
             else{
-                $error=$error."<div class=\"msg_box error_box\">'È necessario inserire un valore da cercare.</div>";
+                $error=$error."<div class=\"msg_box error_box\">È necessario inserire un valore da cercare.</div>";
             }
             $ricercaText=$obj_connection->escape_str(trim(htmlentities($ricercaText)));
             $ricercaPosONome=$_GET['filter'];
