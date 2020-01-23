@@ -1,8 +1,12 @@
 <?php
 function makeCard($id,$obj_connection){
+        $approvazione="";
         $list="";
-        $queryResult=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE Approvato='Approvato' AND ID=$id");
+        $queryResult=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE ID=$id");
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
+            if($_SESSION['permesso']=="Admin"&&$row['Approvato']=="In attesa"){
+                $approvazione="<div><a href=\"approva.php?id=$id\">Approva ristorante </a> <a href=\"rifiuta.php?id=$id\"> Rifuta ristorante</a></div>";
+            }
             $nome=$row['Nome'];
             $id=$row['ID'];
             $path="../img/ristoranti/default.jpg";
@@ -59,6 +63,7 @@ function makeCard($id,$obj_connection){
                         <p class=\"rist_descrizione\">$descrizione</p>
 
                         $forms 
+                        $approvazione
                             
                     </div> 
                 </dd>
