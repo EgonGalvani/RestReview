@@ -19,14 +19,24 @@
                     $page=str_replace('%PATH%',$breadcrumb,$page);
 
                     // il path,descrizione e estensione vanno cercate nel db
-                    if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
+                    $extra_foto='';
+                    if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso, f.Descrizione AS Descrizione FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
                         $arrayFoto=$obj_connection->queryToArray($queryFoto);
-                        $page=str_replace('%MAIN_IMG_PATH%',$arrayFoto[0]['Percorso'],$page);
-                        $page=str_replace('%MAIN_IMG_DESC%','',$page);
+                        if(count($arrayFoto)>0){  
+                            $page=str_replace('%MAIN_IMG_PATH%',$arrayFoto[0]['Percorso'],$page);
+                            $page=str_replace('%MAIN_IMG_DESC%',$arrayFoto[0]['Descrizione'],$page);
+                            for($i=1;$i<count($arrayFoto);$i++){
+                                $extra_foto.='<img class="photoes" src="'.$arrayFoto[$i]['Percorso'].'" alt="'.$arrayFoto[$i]['Descrizione'].'" />';
+                            }
+                        }else{
+                            $page=str_replace('%MAIN_IMG_PATH%','',$page);
+                            $page=str_replace('%MAIN_IMG_DESC%','',$page);
+                        }
                     }else{
                         $page=str_replace('%MAIN_IMG_PATH%','',$page);
                         $page=str_replace('%MAIN_IMG_DESC%','',$page);
                     }
+                    $page=str_replace('%EXTRA_PHOTO%',$extra_foto,$page);
 
                     $page=str_replace('%NOME_RISTORANTE%',$ristorante['Nome'],$page);
                     $page=str_replace('%CATEGORIA%',$ristorante['Categoria'],$page);

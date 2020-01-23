@@ -151,7 +151,7 @@
                     }
                     $obj_connection=new DBConnection();
                     $obj_connection->create_connection();
-                    if($filePath!=="../img/ritoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
+                    if($filePath!=="../img/ristoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
                         $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
                         $queryResult=$obj_connection->connessione->query("SELECT ID FROM foto WHERE Path='".$filePath."'");
                         $arrayResult=$obj_connection->queryToArray($queryResult);
