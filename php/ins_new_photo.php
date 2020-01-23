@@ -44,7 +44,7 @@
                 $err_foto='';
                 $err_desc='';
                 if(isset($_POST['descrizione_foto'])){
-                    $desc_foto=$_POST['descrizione_foto'];
+                    $desc_foto=htmlentities(trim($_POST['descrizione_foto']));
                     if($desc_foto==''){
                         $err_desc='<p class="msg_box error_box">Inserire una descrizione per la foto</p>';
                         $num_errori++;
