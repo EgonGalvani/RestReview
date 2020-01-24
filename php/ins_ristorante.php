@@ -152,7 +152,8 @@
                     //$page=str_replace('%MESSAGGIO%','<p class="msg_box success_box">Inserimento avvenuto con successo</p>',$page);
                 
                     if($_FILES["main_photo"]['size'] != 0){
-                        $uploadResult = uploadImage("ristoranti/","main_photo");
+                        $gestImg = new gestImg();
+                        $uploadResult = $gestImg->uploadImage("ristoranti/","main_photo");
                         if($uploadResult['error']==""){
                             $filePath=$uploadResult['path'];
                         }

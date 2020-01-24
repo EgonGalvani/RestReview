@@ -56,7 +56,8 @@
                     //inserimento
                     if($num_errori==0){
                         if($_FILES["nuova_foto"]['size'] != 0){
-                            $uploadResult = uploadImage("ristoranti/","nuova_foto");
+                            $gestImg = new gestImg();
+                            $uploadResult = $gestImg->uploadImage("ristoranti/","nuova_foto");
                             if($uploadResult['error']==""){
                                 $filePath=$uploadResult['path'];
                             }
