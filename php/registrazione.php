@@ -110,8 +110,9 @@
             $no_error=false;
         }*/
         if($no_error){//Controllo non ci siano errori prima di caricare l'immagine
+            $gestImg = new gestImg();
             if($_FILES['fileToUpload']['size'] != 0){
-                $uploadResult = uploadImage("Utenti/","fileToUpload");
+                $uploadResult = $gestImg->uploadImage("Utenti/","fileToUpload");
                 if($uploadResult['error']==""){
                     $filePath=$uploadResult['path'];
                 }

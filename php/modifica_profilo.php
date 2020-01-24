@@ -51,9 +51,10 @@
         }   
     }
     if(isset($_POST['mod_foto'])&&$no_error){
+        $gestImg = new gestImg();
         $filePath="../img/Utenti/";
         if(isset($_FILES['new_foto_profilo'])&&$_FILES['new_foto_profilo']['size'] != 0){
-            $uploadResult = uploadImage("Utenti/","new_foto_profilo");
+            $uploadResult = $gestImg->uploadImage("Utenti/","new_foto_profilo");
             if($uploadResult['error']==""){
                 $filePath=$uploadResult['path'];
             }
@@ -62,6 +63,12 @@
             }
         }
         if($filePath!=="../img/Utenti/"&&$uploadResult['error']==""){//è stato caricato qualcosa
+            //elimino la foto vecchia se c'è
+            //Elimino la vecchia foto dal db se c'è, se non c'è la queri non fa nulla
+            $obj_connection->connessione->query("DELETE FROM `foto` WHERE `foto`.`Path` = '$oldpath'");
+            //elimino dalla cartella
+            $gestImg->deleteImage($oldpath);
+            // $oldpath verrà sovrascitta appena caricata quella nuova
             $obj_connection->connessione->query("INSERT INTO `foto` (`ID`, `Path`) VALUES (NULL, \"$filePath\")");//se arrivo a questo punto inserisco sicuramente qualcosa
             $queryResult=$obj_connection->connessione->query("SELECT * FROM foto WHERE Path='".$filePath."'");
             $row=$queryResult->fetch_array(MYSQLI_ASSOC);//C'è sicuramente solo un risultato, quello appena inserito
