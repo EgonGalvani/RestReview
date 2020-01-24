@@ -791,15 +791,20 @@ progress {
 /** ------- I MIEI RISTORANTI ------- **/ 
 .tab {
     overflow: hidden;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc; 
     margin-top: 1.5em; 
 }
+
 .tab_item {
     background-color: inherit;
     float: left;
+    border: 1px solid #1565c0; 
+    border-left: none; 
     padding: 1em; 
     transition: 0.3s;
+}
+
+.tab_item:first-child {
+    border-left: 1px solid #1565c0; 
 }
 
 .tab_item a {
@@ -807,8 +812,8 @@ progress {
 }
 
 .tab_item:hover, .active_tab {
-    background-color: #bbb;
-    color: #000; 
+    background-color: #00428A;
+    color: #fff; 
 }
 
 #new_rist_btn {
