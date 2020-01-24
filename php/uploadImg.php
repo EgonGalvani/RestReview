@@ -15,7 +15,7 @@ class gestImg{
                 $uploadOk = 0;
             }
             // Check file size
-            if ($_FILES[$input_name]["size"] > 500000) {//500k
+            if ($_FILES[$input_name]["size"] > 5000000) {//5MB
                 $error= $error."<div class=\"msg_box error_box\">Il file è troppo grande, carica un file di dimensione minore di 500kB.</div>";
                 $uploadOk = 0;
             }
