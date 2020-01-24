@@ -9,7 +9,7 @@
 
         public function errorMsg(){
             switch($this->type){
-                case 'DBConnecton': return 'Impossibile connettersi al Database';
+                case 'DBConnection': return 'Impossibile connettersi al Database';
                 case 'query': return 'L\' interrogazione al Database non è andata a buon fine';
                 default: return '';
             }

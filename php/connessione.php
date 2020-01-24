@@ -13,7 +13,7 @@
         
         public function create_connection(){
             $this->connessione = new mysqli(static::HOST_DB,static::USERNAME,static::PASSWORD,static::DATABASE_NAME);
-            if(!$this->connessione){ return false;}
+            if($this->connessione->connect_error){ return false;}
             return true;
         }
 

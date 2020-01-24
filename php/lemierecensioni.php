@@ -3,6 +3,7 @@
     require_once("connessione.php");
     require_once("addItems.php");
     require_once('recensione.php');
+    require_once('errore.php');
 
     $page= (new addItems)->add("../html/lemierecensioni.html");
     $page = str_replace('><a href="lemierecensioni.php">Le mie recensioni</a>', 'class="active">Le mie recensioni',$page);
@@ -42,10 +43,20 @@
                     $query_recensioni->close();
                 }else{
                     //query fallita
+                    $page= (new addItems)->add("../html/base.html");
+                    $page=str_replace('%PATH%','Ricerca',$page);
+                    $page=str_replace('%MESSAGGIO%',(new errore('query'))->printHTMLerror(),$page);
+                    echo $page;
+                    exit;
                 }
                 $obj_connection->close_connection();
             }else{
                 //connessione fallita
+                $page= (new addItems)->add("../html/base.html");
+                $page=str_replace('%PATH%','Ricerca',$page);
+                $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
+                echo $page;
+                exit;
             }
             $page=str_replace('%MESSAGGIO%',$msg,$page);
             $page=str_replace('%LIST%',$list_recensioni,$page);

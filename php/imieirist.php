@@ -3,6 +3,7 @@
     require_once("addItems.php");
     require_once('connessione.php');
     require_once('ristorante.php');
+    require_once('errore.php');
 
     $page= (new addItems)->add("../html/imieirist.html");
     $page=str_replace('><a href="imieirist.php?type=0">I miei ristoranti</a>', 'class="active">I miei ristoranti',$page);
@@ -12,13 +13,16 @@
             //eliminazione ristorante
             if(isset($_POST['eliminaRist'])){
                 $obj_connection=new DBConnection();
-                $obj_connection->create_connection();
-                if($obj_connection->connessione->query("DELETE FROM ristorante WHERE ID=".$_POST['id'])){
-                    $msg='<p class="msg_box success_box">Ristorante eliminato</p>';
+                if($obj_connection->create_connection()){
+                    if($obj_connection->connessione->query("DELETE FROM ristorante WHERE ID=".$_POST['id'])){
+                        $msg='<p class="msg_box success_box">Ristorante eliminato</p>';
+                    }else{
+                        $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
+                    }
+                    $obj_connection->close_connection();
                 }else{
-                    $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
+                    $msg='<p class="msg_box error_box">Eliminazione fallita, non è stato possibile connettersi al Database</p>'
                 }
-                $obj_connection->close_connection();
             }
             //tab ristoranti approvati
             $tab='';
@@ -49,24 +53,35 @@
                 $page=str_replace('%TAB_MENU_CONTENT%',$tab,$page);
 
                 $obj_connection=new DBConnection();
-                $obj_connection->create_connection();
-                $query="SELECT * FROM ristorante WHERE ID_Proprietario=".$_SESSION['ID']." AND Approvato=\"$stato\"";
-                if($query_rist=$obj_connection->connessione->query($query)){
-                    $array_rist=$obj_connection->queryToArray($query_rist);
-                    if(count($array_rist)>0){
-                        $list_ristoranti='<dl class="card_list rist_list">';
-                        foreach($array_rist as $value){
-                            $ristorante=new ristorante($value);
-                            $list_ristoranti.=$ristorante->createItemRistorante();
+                if($obj_connection->create_connection()){
+                    $query="SELECT * FROM ristorante WHERE ID_Proprietario=".$_SESSION['ID']." AND Approvato=\"$stato\"";
+                    if($query_rist=$obj_connection->connessione->query($query)){
+                        $array_rist=$obj_connection->queryToArray($query_rist);
+                        if(count($array_rist)>0){
+                            $list_ristoranti='<dl class="card_list rist_list">';
+                            foreach($array_rist as $value){
+                                $ristorante=new ristorante($value);
+                                $list_ristoranti.=$ristorante->createItemRistorante();
+                            }
+                            $list_ristoranti.='</dl>';
+                        }else{
+                            $list_ristoranti='<p>Non sono presenti ristoranti</p>';
                         }
-                        $list_ristoranti.='</dl>';
+                        $page=str_replace('%LIST%',$list_ristoranti,$page);
                     }else{
-                        $list_ristoranti='<p>Non sono presenti ristoranti</p>';
+                        //errore nella query
+                        $page= (new addItems)->add("../html/base.html");
+                        $page=str_replace('%PATH%','Ricerca',$page);
+                        $page=str_replace('%MESSAGGIO%',(new errore('query'))->printHTMLerror(),$page);
                     }
-                    $page=str_replace('%LIST%',$list_ristoranti,$page);
+                    $obj_connection->close_connection();
                 }else{
-                    //errore nella query
+                    //errore di connessione
+                    $page= (new addItems)->add("../html/base.html");
+                    $page=str_replace('%PATH%','Ricerca',$page);
+                    $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
                 }
+                
 
             }else{
                 //reindirizzamento se non è definito il type

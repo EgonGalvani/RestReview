@@ -72,13 +72,13 @@
             $obj_connection->close_connection();
 
         }else{
-            $error="[Errore di connessione al database]";
+            $error=(new errore('DBConnection'))->printHTMLerror();
         }
 
     }
 
-    $error=str_replace("[",'<div class="msg_box error_box">',$error);
-    $error=str_replace("]","</div>",$error);
+    $error=str_replace("[",'<p class="msg_box error_box">',$error);
+    $error=str_replace("]","</p>",$error);
     $page=str_replace("%ERROR%",$error,$page);
     $page=str_replace("%VALUE_EMAIL%",$email,$page);
     $page=str_replace("%VALUE_PASSWORD%",$pwd,$page);

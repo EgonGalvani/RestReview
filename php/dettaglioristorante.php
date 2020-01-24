@@ -1,6 +1,7 @@
 <?php
     require_once('sessione.php');
     require_once("addItems.php");
+    require_once('errore.php');
 
     $page= (new addItems)->add("../html/dettaglioristorante.html");
 
@@ -9,7 +10,6 @@
         require_once('connessione.php');
         $obj_connection=new DBConnection();
         if($obj_connection->create_connection()){
-
             if($result=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE ID=$id_ristorante")){
                 $query_result=$obj_connection->queryToArray($result);
                 $result->close();
@@ -165,10 +165,16 @@
                 }
             }else{
                 //errore query DB
+                $page= (new addItems)->add("../html/base.html");
+                $page=str_replace('%PATH%','Ricerca',$page);
+                $page=str_replace('%MESSAGGIO%',(new errore('query'))->printHTMLerror(),$page);
             }
 
         }else{
             //connessione fallita
+            $page= (new addItems)->add("../html/base.html");
+            $page=str_replace('%PATH%','Ricerca',$page);
+            $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
         }
 
     }else{

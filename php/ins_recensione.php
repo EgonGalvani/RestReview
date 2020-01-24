@@ -4,6 +4,7 @@
     require_once('connessione.php');
     require_once('indirizzo.php');
     require_once('recensione.php');
+    require_once('errore.php');
     $page= (new addItems)->add("../html/ins_recensione.html");   
 
     if($_SESSION['logged']==true){
@@ -74,11 +75,21 @@
                     $query_rist->close();
                 }else{
                     //query fallita
+                    $page= (new addItems)->add("../html/base.html");
+                    $page=str_replace('%PATH%','Ricerca',$page);
+                    $page=str_replace('%MESSAGGIO%',(new errore('query'))->printHTMLerror(),$page);
+                    echo $page;
+                    exit;
                 }
 
                 $obj_connection->close_connection();
             }else{
                 //connessione fallita
+                $page= (new addItems)->add("../html/base.html");
+                $page=str_replace('%PATH%','Ricerca',$page);
+                $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
+                echo $page;
+                exit;
             }
             for($i=1;$i<=5;$i++){
                 if($i==$stelle){

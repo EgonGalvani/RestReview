@@ -4,6 +4,7 @@
     require_once('connessione.php');
     require_once('indirizzo.php');
     require_once('uploadImg.php');
+    require_once('errore.php');
 
     $page= (new addItems)->add("../html/ins_new_photo.html");
 
@@ -31,11 +32,21 @@
                         $query_rist->close();
                     }else{
                     //query fallita
+                        $page= (new addItems)->add("../html/base.html");
+                        $page=str_replace('%PATH%','Ricerca',$page);
+                        $page=str_replace('%MESSAGGIO%',(new errore('query'))->printHTMLerror(),$page);
+                        echo $page;
+                        exit;
                     }
 
                     $obj_connection->close_connection();
                 }else{
                 //connessione fallita
+                    $page= (new addItems)->add("../html/base.html");
+                    $page=str_replace('%PATH%','Ricerca',$page);
+                    $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
+                    echo $page;
+                    exit;
                 }
 
                 //check errori
@@ -65,16 +76,24 @@
                                 $img_error=$img_error.$uploadResult['error'];
                             }
                     
-                            $obj_connection->create_connection();
-                            if($filePath!=="../img/ristoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
-                                $obj_connection->connessione->query("INSERT INTO foto VALUES (NULL, \"$filePath\", \"$desc_foto\")");//se arrivo a questo punto inserisco sicuramente qualcosa
-                                $queryResult=$obj_connection->connessione->query("SELECT ID FROM foto WHERE Path='".$filePath."'");
-                                $arrayResult=$obj_connection->queryToArray($queryResult);
-                                $obj_connection->connessione->query("INSERT INTO corrispondenza VALUES (".$arrayResult[0]['ID'].",\"".$_POST['id_ristorante']."\")");
+                            if($obj_connection->create_connection()){
+                                if($filePath!=="../img/ristoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
+                                    $obj_connection->connessione->query("INSERT INTO foto VALUES (NULL, \"$filePath\", \"$desc_foto\")");//se arrivo a questo punto inserisco sicuramente qualcosa
+                                    $queryResult=$obj_connection->connessione->query("SELECT ID FROM foto WHERE Path='".$filePath."'");
+                                    $arrayResult=$obj_connection->queryToArray($queryResult);
+                                    $obj_connection->connessione->query("INSERT INTO corrispondenza VALUES (".$arrayResult[0]['ID'].",\"".$_POST['id_ristorante']."\")");
+                                }
+                                $obj_connection->close_connection();
+                                header('location: dettaglioristorante.php?id='.$_POST['id_ristorante']);
+                                exit;
+                            }else{
+                                //connessione fallita
+                                $page= (new addItems)->add("../html/base.html");
+                                $page=str_replace('%PATH%','Ricerca',$page);
+                                $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
+                                echo $page;
+                                exit;
                             }
-                            $obj_connection->close_connection();
-                            header('location: dettaglioristorante.php?id='.$_POST['id_ristorante']);
-                            exit;
                         }
                     }else{
                         $err="[Sono presenti $num_errori campi compilati non correttamente]";
