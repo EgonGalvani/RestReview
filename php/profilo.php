@@ -47,5 +47,6 @@
     }
 
     $page=str_replace("%ERROR%",$error,$page);
+    $obj_connection->close_connection();
     echo $page;
 ?>

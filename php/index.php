@@ -119,7 +119,7 @@
     $page = str_replace('%PAGESLIST%', $pagesList,$page);
     $page = str_replace('%LIST%', $list,$page);
     echo $page;
-
+    $obj_connection->close_connection();
     function clearInd($ind,$total_pages){
         for($z=1;$z<=$total_pages;$z++){//Evita che nell'url ci siano robe tipo &pagen=2&pagen=1&pagen=3&pagen=2&pagen=4 mettendo solo la pagina corrente e non tutta la history delle pagine visitate
             $ind=str_replace("&pagen=$z","",$ind);

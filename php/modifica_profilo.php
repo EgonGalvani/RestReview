@@ -180,6 +180,6 @@
         $page=str_replace('<label id="rsoc_l" for="rsoc">Ragione sociale:</label>',"",$page);
         $page=str_replace('<input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="19" class="full_width_input"/>',"",$page);
     }
-
+    $obj_connection->close_connection();
     echo $page;
 ?>

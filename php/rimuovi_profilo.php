@@ -21,4 +21,5 @@
         header('location: logout_script.php');
         
     }
+    $obj_connection->close_connection();
 ?>

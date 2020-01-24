@@ -17,6 +17,7 @@
             $obj_connection->connessione->query("UPDATE `ristorante` SET `Approvato` = 'Non approvato' WHERE `ristorante`.`ID` = $id");
             header('location: pannello_amministratore.php');
         }
+        $obj_connection->close_connection();
     }
     
 ?>

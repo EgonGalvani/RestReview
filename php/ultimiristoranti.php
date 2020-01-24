@@ -24,5 +24,6 @@
     $list .= "</dl>";
     $page = str_replace('%ERROR%', $error,$page);
     $page = str_replace('%LIST%', $list,$page);
+    $obj_connection->close_connection();
     echo $page;
 ?>

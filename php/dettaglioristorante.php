@@ -176,7 +176,7 @@
             $page=str_replace('%PATH%','Ricerca',$page);
             $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
         }
-
+        $obj_connection->close_connection();
     }else{
         header('location: ../html/404.html');
         exit;
