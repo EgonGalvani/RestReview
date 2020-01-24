@@ -345,6 +345,10 @@ textarea {
 
 /*---------------Pagina ultimi ristoranti-------------*/
 
+.rist_dett {
+    margin-right: 30%; 
+}
+
 .rist_list .rist_dett > span {
     display: block; 
     margin-bottom: 0.5em; 
@@ -1111,4 +1115,7 @@ progress {
         width: 100%; 
     }
     
+    .rist_dett {
+        margin-right: 0; 
+    }
 }
