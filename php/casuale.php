@@ -22,7 +22,7 @@
         $obj_connection=new DBConnection();
         
         if($obj_connection->create_connection()){
-            $query="SELECT * FROM ristorante WHERE Citta=\"$search\"";
+            $query="SELECT * FROM ristorante WHERE `Citta` LIKE '%$search%' ";
             if($tipo!='default')
                 $query.=" AND Categoria=\"$tipo\"";
             if($query_res=$obj_connection->connessione->query($query)){
