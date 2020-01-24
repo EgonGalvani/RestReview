@@ -2,7 +2,7 @@
     require_once('sessione.php');
     require_once('addItems.php');
     require_once('connessione.php');
-    require_once("makeRestaurantCard.php");
+    require_once("ristorante.php");
   
     $page= (new addItems)->add("../html/ultimiristoranti.html");
     $page = str_replace('><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a>', 'class="active">Ultimi ristoranti inseriti',$page);
@@ -17,7 +17,8 @@
     if($no_error){
         $queryResult=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE Approvato='Approvato' ORDER BY ID DESC LIMIT 5");
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
-            $list=$list.makeCard($row['ID'],$obj_connection);
+            $ristorante = new ristorante($row);
+            $list=$list.$ristorante->createItemRistorante();
         }
     }
     $list .= "</dl>";

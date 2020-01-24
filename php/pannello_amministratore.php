@@ -2,7 +2,7 @@
     require_once('sessione.php');
     require_once('addItems.php');
     require_once('connessione.php');
-    require_once("makeRestaurantCard.php");
+    require_once("ristorante.php");
     if($_SESSION['permesso']!="Admin"){
         header('location: access_denied.php');
     }
@@ -22,9 +22,10 @@
             $obj_connection->connessione->query("INSERT INTO `categoria` (`Nome`) VALUES ('$cat')");
             $error=$error."<div class=\"msg_box success_box\">Inserimento avvenuto con successo</div>";
         }
-        $queryResult=$obj_connection->connessione->query("SELECT ID FROM `ristorante` WHERE Approvato='In attesa'");
-        while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
-            $list=$list.makeCard($row['ID'],$obj_connection);
+        $queryResult=$obj_connection->connessione->query("SELECT * FROM `ristorante` WHERE Approvato='In attesa'");
+        while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){            
+            $ristorante = new ristorante($row);
+            $list=$list.$ristorante->createItemRistorante();
         }
     }
     $list .= "</dl>";

@@ -6,7 +6,7 @@ function makeCard($id,$obj_connection){
         $queryResult=$obj_connection->connessione->query("SELECT * FROM ristorante WHERE ID=$id");
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
             if($_SESSION['permesso']=="Admin"&&$row['Approvato']=="In attesa"){
-                $approvazione="<div><a href=\"approva.php?id=$id\">Approva ristorante </a> <a href=\"rifiuta.php?id=$id\"> Rifuta ristorante</a></div>";
+                $approvazione="<a href=\"approva.php?id=$id\" class=\"btn\">Approva ristorante </a> <a href=\"rifiuta.php?id=$id\" class=\"btn\"> Rifuta ristorante</a>";
             }
             $nome=$row['Nome'];
             $id=$row['ID'];
@@ -47,7 +47,7 @@ function makeCard($id,$obj_connection){
                 $i++;
             }
             $descrizione=$row['Descrizione'];
-            $forms="<a href=\"dettaglioristorante.php?id=$id\">Vai al ristorante</a>";
+            $forms="<a href=\"dettaglioristorante.php?id=$id\" class=\"btn\">Vai al ristorante</a>";
             $list = $list ."
                 <dt >$nome</dt>
                 <dd>

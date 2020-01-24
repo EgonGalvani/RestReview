@@ -1,4 +1,5 @@
 <?php
+    require_once('sessione.php');
     require_once('reg_ex.php');
     class ristorante{
         public $id = -1;
@@ -17,6 +18,8 @@
         public $cap;
         public $citta;
         public $nazione;
+        public $approvato;
+        public $proprietario;
 
         public function __construct($array){
             if(isset($array['ID'])){
@@ -36,6 +39,8 @@
             $this->cap=$array['CAP'];
             $this->citta=$array['Citta'];
             $this->nazione=$array['Nazione'];
+            $this->approvato=$array['Approvato'];
+            $this->proprietario=$array['ID_Proprietario'];
         }
 
         public function getErrors(){
@@ -233,11 +238,11 @@
             require_once('addForms.php');
             $detail_form=new formRistorante('Dettaglio',$this->id);
             $form_list.=$detail_form->getForm();
-            if($_SESSION['permesso']=='Ristoratore'){
+            if($_SESSION['permesso']=='Ristoratore'&&$this->proprietario==$_SESSION['ID']){
                 $delete_form=new formRistorante('Elimina',$this->id);
                 $form_list.=$delete_form->getForm();
             }else{
-                if($_SESSION['permesso']=='Admin'){
+                if($_SESSION['permesso']=='Admin'&&$this->approvato=='In attesa'){
                     $accept_form= new formRistorante('Accetta',$this->id);
                     $form_list.=$accept_form->getForm();
                     $deny_form= new formRistorante('Rifiuta',$this->id);

@@ -13,15 +13,15 @@
             switch($this->type){
                 case 'Accetta': 
                     $method='post';
-                    $action='';
-                    $name='';
+                    $action='approva.php';
+                    $name='approva';
                     $value='Accetta richiesta';
                     $class='msg_box success_box'; 
                 break;
                 case 'Rifiuta': 
                     $method='post';
-                    $action='';
-                    $name='';
+                    $action='rifiuta.php';
+                    $name='rifiuta';
                     $value='Rifiuta richiesta';
                     $class='msg_box error_box'; 
                 break;

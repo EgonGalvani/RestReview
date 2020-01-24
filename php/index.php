@@ -2,7 +2,7 @@
     require_once("sessione.php");
     require_once("connessione.php");
     require_once("addItems.php");
-    require_once("makeRestaurantCard.php");
+    require_once("ristorante.php");
    
     $page= (new addItems)->add("../html/index.html");
     $page = str_replace('><a href="index.php">Home</a>', 'class="active">Home',$page);
@@ -32,7 +32,12 @@
         //Mette come suggerimenti i miglior recensiti
         $queryResult=$obj_connection->connessione->query("SELECT ID_Ristorante, AVG(Stelle) AS Media FROM `recensione` GROUP BY ID_Ristorante ORDER BY Media DESC LIMIT 3");//Se ha recensioni è già stato approvato
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
-            $list=$list.makeCard($row['ID_Ristorante'],$obj_connection);
+            $id=$row['ID_Ristorante'];
+            $queryResult2=$obj_connection->connessione->query("SELECT * FROM `ristorante` WHERE ID=$id");
+            while($row2=$queryResult2->fetch_array(MYSQLI_ASSOC)){
+                $ristorante = new ristorante($row2);
+                $list=$list.$ristorante->createItemRistorante();
+            }            
         }
         //Ricerca effettiva
         if(isset($_GET['cerca'])){
@@ -72,7 +77,12 @@
             $list='<dl class="card_list rist_list">';
             if (mysqli_num_rows($queryResult) > 0) {
                 while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){
-                    $list=$list.makeCard($row['ID'],$obj_connection);
+                    $id=$row['ID'];
+                    $queryResult2=$obj_connection->connessione->query("SELECT * FROM `ristorante` WHERE ID=$id");
+                    while($row2=$queryResult2->fetch_array(MYSQLI_ASSOC)){
+                        $ristorante = new ristorante($row2);
+                        $list=$list.$ristorante->createItemRistorante();
+                    } 
                 }
             }
             else{
