@@ -135,7 +135,7 @@
 
                     //form inserimento foto
                     $ins_foto_form='';
-                    if($_SESSION['permesso']=='Ristoratore'){
+                    if($_SESSION['permesso']=='Ristoratore'&& $_SESSION['ID']==$ristorante['ID_Proprietario']){
                         $ins_foto_form='<form action="ins_new_photo.php" method="post">
                                             <fieldset>
                                             <input type="hidden" name="id_ristorante" value="%ID_RIST%"/>
