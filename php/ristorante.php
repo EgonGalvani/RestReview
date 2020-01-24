@@ -39,8 +39,12 @@
             $this->cap=$array['CAP'];
             $this->citta=$array['Citta'];
             $this->nazione=$array['Nazione'];
-            $this->approvato=$array['Approvato'];
-            $this->proprietario=$array['ID_Proprietario'];
+            if(isset($array['Approvato'])){
+                $this->approvato=$array['Approvato'];
+            }
+            if(isset($array['ID_Proprietario'])){
+                $this->proprietario=$array['ID_Proprietario'];
+            }
         }
 
         public function getErrors(){
@@ -101,6 +105,10 @@
             //sito
             if($this->sito==''){
                 $err_array['sito']="[Campo obbligatorio]";
+            }else{
+                if(!check_sito($this->sito)){
+                    $err_array['sito']="[Inserire un url valido]";
+                }
             }
             //ora apertura
             if($this->ora_ap==''){

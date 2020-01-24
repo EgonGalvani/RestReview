@@ -21,7 +21,7 @@
                     }
                     $obj_connection->close_connection();
                 }else{
-                    $msg='<p class="msg_box error_box">Eliminazione fallita, non è stato possibile connettersi al Database</p>'
+                    $msg='<p class="msg_box error_box">Eliminazione fallita, non è stato possibile connettersi al Database</p>';
                 }
             }
             //tab ristoranti approvati

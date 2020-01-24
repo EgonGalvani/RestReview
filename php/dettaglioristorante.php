@@ -16,7 +16,7 @@
                 if(count($query_result)>0){
                     $ristorante=$query_result[0];
                     //Breadcrumb
-                    $breadcrumb='<a href="index.php">Home</a>&gt&gt'.$ristorante['Nome'];
+                    $breadcrumb='<a href="index.php">Home</a> &#8250; '.$ristorante['Nome'];
                     $page=str_replace('%PATH%',$breadcrumb,$page);
 
                     // il path,descrizione e estensione vanno cercate nel db
