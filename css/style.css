@@ -34,7 +34,7 @@ html, body {
     margin: 1.25em 0.25em 0 0.25em; 
 }
 
-.btn:hover:not(.success_box):not(.error_box) {
+.btn:hover:not(.success_box):not(.error_box):not(.delete_rist) {
     background-color: #00428A; 
     border-color: #1565c0;
 }
@@ -361,6 +361,15 @@ textarea {
 
 .rist_list .rist_descrizione {
     margin: 0.5em 0.25em;   
+}
+
+.delete_rist {
+    background-color: #d80404; 
+    border-color: red; 
+}
+
+.delete_rist:hover {
+    background: #ff0000; 
 }
 
 /* --------------- Pagine chisiamo e regolamento -------------- */

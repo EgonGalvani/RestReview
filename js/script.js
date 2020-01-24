@@ -560,10 +560,24 @@ function dettaglioRist() {
     }
 }
 
+// chiede conferma quando si tenta di eliminare un ristorante 
+function delete_rist_init() {
+    var delBtns = document.getElementsByClassName("delete_rist"); 
+    for(var i = 0; i < delBtns.length; i++) {
+        delBtns[i].addEventListener("click", function(e) {
+            if(!confirm("Sei sicuro di voler eliminare il ristorante?"))
+                e.preventDefault(); 
+        }); 
+    }
+}
+
 window.onload = function() {
 
     // ----------- BOTTONE "TORNA SU" ------------
     window.onscroll = torna_su_init; 
+
+    // ---------- conferma di eliminazione per i ristoranti -----------
+    delete_rist_init(); 
 
     // ----------- FAQ  ---------------
     faq_init(); 

@@ -37,7 +37,7 @@
                     $action=$_SESSION['current_page'];
                     $name='eliminaRist';
                     $value='Elimina ristorante';
-                    $class=''; 
+                    $class='delete_rist'; 
                 break;
             }
 
