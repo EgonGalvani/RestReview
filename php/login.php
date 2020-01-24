@@ -58,6 +58,9 @@
                     if(isset($_POST['remember_me'])){
                         setcookie("user_email",$email,time()+60*60*24*30);
                         setcookie("user_pwd",$pwd,time()+60*60*24*30);    
+                    }else{
+                        setcookie("user_email",$email,time()-3600);
+                        setcookie("user_pwd",$pwd,time()-3600); 
                     }
 
                     $obj_connection->close_connection();

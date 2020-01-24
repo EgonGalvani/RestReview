@@ -149,8 +149,6 @@
             //Inserimento
             if($num_errori==0){
                 if($insert=$ristorante->insertIntoDB()){
-                    //$page=str_replace('%MESSAGGIO%','<p class="msg_box success_box">Inserimento avvenuto con successo</p>',$page);
-                
                     if($_FILES["main_photo"]['size'] != 0){
                         $gestImg = new gestImg();
                         $uploadResult = $gestImg->uploadImage("ristoranti/","main_photo");
@@ -169,6 +167,7 @@
                         $arrayResult=$obj_connection->queryToArray($queryResult);
                         $obj_connection->connessione->query("INSERT INTO corrispondenza VALUES (".$arrayResult[0]['ID'].",\"$insert\")");
                     }
+                    $obj_connection->close_connection();
                     header('location: imieirist.php?type=0');
                     exit;
                 }else{
