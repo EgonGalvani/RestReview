@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 24, 2020 alle 21:22
+-- Creato il: Gen 25, 2020 alle 19:45
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.2.26
 
@@ -70,7 +70,10 @@ INSERT INTO `corrispondenza` (`ID_Foto`, `ID_Ristorante`) VALUES
 (30, 6),
 (31, 7),
 (32, 8),
-(33, 9);
+(33, 9),
+(54, 3),
+(55, 3),
+(56, 3);
 
 -- --------------------------------------------------------
 
@@ -129,7 +132,10 @@ INSERT INTO `foto` (`ID`, `Path`, `Descrizione`) VALUES
 (50, '../img/Utenti/29.jpg', NULL),
 (51, '../img/Utenti/30.jpeg', NULL),
 (52, '../img/Utenti/31.jpg', NULL),
-(53, '../img/Utenti/1568268256.png', NULL);
+(53, '../img/Utenti/1568268256.png', NULL),
+(54, '../img/ristoranti/735758.jpg', 'Locale per tutte le occasioni. '),
+(55, '../img/ristoranti/8354893.jpg', 'Un ristorante unico.'),
+(56, '../img/ristoranti/83758374.jpg', 'Atmosfera calda e accogliente');
 
 -- --------------------------------------------------------
 
@@ -398,7 +404,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT per la tabella `recensione`
