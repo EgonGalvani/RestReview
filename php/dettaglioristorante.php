@@ -3,6 +3,13 @@
     require_once("addItems.php");
     require_once('errore.php');
 
+    function clearInd($ind,$total_pages){
+        for($z=1;$z<=$total_pages;$z++){//Evita che nell'url ci siano robe tipo &pagen=2&pagen=1&pagen=3&pagen=2&pagen=4 mettendo solo la pagina corrente e non tutta la history delle pagine visitate
+            $ind=str_replace("&pagen=$z","",$ind);
+         }
+        return $ind;
+    }
+
     $page= (new addItems)->add("../html/dettaglioristorante.html");
 
     if(isset($_GET['id'])){
@@ -103,6 +110,19 @@
                     $page=str_replace('%PIU_RECENTI%',$recenti,$page);
                     $page=str_replace('%PIU_VOTATI%',$votati,$page);
 
+                    $results_per_page = 5;
+                    $pagesList="";
+                    $total_pages=1;
+                    if($query_all_recensioni=$obj_connection->connessione->query($query)){
+                        $array_all_recensioni=$obj_connection->queryToArray($query_all_recensioni);
+                        $total_pages=ceil(count($array_all_recensioni) / $results_per_page);
+                    }
+
+                    //recupero lista recensioni
+                    if (isset($_GET["pagen"])) { $pagen  = $_GET["pagen"]; } else { $pagen=1; }; 
+                    $start_from = ($pagen-1) * $results_per_page;
+                    $query.=" LIMIT $start_from,$results_per_page";
+
                     if($query_recensioni=$obj_connection->connessione->query($query)){
                         $array_recensioni=$obj_connection->queryToArray($query_recensioni);
                         if(count($array_recensioni)>0){
@@ -117,8 +137,34 @@
                             $list_recensioni='<p>Non sono presenti recensioni</p>';
                         }
                         $query_recensioni->close();
-                    }// errore query
+                    }else{
+                        $page=str_replace('%LIST%',(new errore('query'))->printHTMLerror(),$page);
+                    }
                     $page=str_replace('%LIST%',$list_recensioni,$page);
+                    $i=1;
+                    $pagesList=" <div class=\"center\"> <div class=\"pagination\">";
+                    $ind=$_SERVER['REQUEST_URI'];
+                    if($pagen>1){
+                        $prec=$pagen-1;
+                        $ind=clearInd($ind,$total_pages);
+                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$prec\">&laquoPrecedente</a>";
+                    }
+                    while($i<=$total_pages){                
+                        $ind=clearInd($ind,$total_pages);
+                        if($i!=$pagen){
+                            $pagesList= $pagesList."\n<a href=\"$ind&pagen=$i\">$i</a>";
+                        }
+                        else{
+                            $pagesList= $pagesList."<span class=\"active\">$i</span>";
+                        }
+                        $i++;
+                    }
+                    if($pagen<$total_pages){
+                        $succ=$pagen+1;
+                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$succ\">Successiva&raquo</a>";
+                    }
+                    $pagesList= $pagesList."</div></div>";
+                    $page = str_replace('%PAGESLIST%', $pagesList,$page);
 
                     //form inserimento recensione
                     $ins_rec_form='';
