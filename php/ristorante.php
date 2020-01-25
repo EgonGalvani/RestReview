@@ -220,7 +220,7 @@
             $connection=new DBConnection();
             $connection->create_connection();
             //immagine
-            if($queryFoto=$connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$this->id AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
+            if($queryFoto=$connection->connessione->query("SELECT f.Path AS Percorso FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$this->id AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID ORDER BY f.ID ASC")){
                 $arrayFoto=$connection->queryToArray($queryFoto);
                 if(count($arrayFoto)>0){
                     $ristorante=str_replace('%PATH_IMG%',$arrayFoto[0]['Percorso'],$ristorante);

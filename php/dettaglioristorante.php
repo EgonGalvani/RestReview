@@ -26,9 +26,9 @@
                     $breadcrumb='<a href="index.php">Home</a> &#8250; '.$ristorante['Nome'];
                     $page=str_replace('%PATH%',$breadcrumb,$page);
 
-                    // il path,descrizione e estensione vanno cercate nel db
+                    // il path e descrizione vanno cercate nel db
                     $extra_foto='';
-                    if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso, f.Descrizione AS Descrizione FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID")){
+                    if($queryFoto=$obj_connection->connessione->query("SELECT f.Path AS Percorso, f.Descrizione AS Descrizione FROM foto AS f, ristorante AS r, corrispondenza AS c WHERE r.ID=$id_ristorante AND r.ID=c.ID_Ristorante AND c.ID_Foto=f.ID ORDER BY f.ID ASC")){
                         $arrayFoto=$obj_connection->queryToArray($queryFoto);
                         if(count($arrayFoto)>0){  
                             $page=str_replace('%MAIN_IMG_PATH%',$arrayFoto[0]['Percorso'],$page);
