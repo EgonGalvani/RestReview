@@ -96,19 +96,16 @@
                 $no_error=false;
             }
         }
-        
         //calcola età
-        //date in mm/dd/yyyy format; or it can be in other formats as well
         //explode the date to get month, day and year
-        //$birthDate = explode("/", $datan);
-        //get age from date or birthdate
-        /*$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
-            ? ((date("Y") - $birthDate[2]) - 1)
-            : (date("Y") - $birthDate[2]));
-        if($age<12){
-            $error="<div class=\"msg_box error_box\">Per poterti registrare devi avere almeno 12 anni.</div>";
+        $date = new DateTime($datan);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+        if($interval->y<12){
+            $error=$error."<div class=\"msg_box error_box\">L'età minima per poter utilizzare questo sito è 12 anni.</div>";
             $no_error=false;
-        }*/
+        }
+
         if($no_error){//Controllo non ci siano errori prima di caricare l'immagine
             $gestImg = new gestImg();
             if($_FILES['fileToUpload']['size'] != 0){
