@@ -1073,6 +1073,7 @@ progress {
     .rec_list dt .data_item{
         float: none;
         margin-top: 0.25em; 
+        margin-left: 0.75em; 
     }
 
     .rist_indirizzo{
