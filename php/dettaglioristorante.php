@@ -22,6 +22,17 @@
                 $query_result=$obj_connection->queryToArray($result);
                 $result->close();
                 if(count($query_result)>0){
+                    //eliminazione recensione
+                    $msg='';
+                    if(isset($_POST['eliminaRec'])){
+                        if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
+                            $msg='<p class="msg_box success_box">Recensione eliminata</p>';
+                        }else{
+                            $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
+                        }
+                    }
+                    $page=str_replace('%MESSAGGIO%',$msg,$page);
+
                     $ristorante=$query_result[0];
                     //Breadcrumb
                     $breadcrumb='<a href="index.php">Home</a> &#8250; '.$ristorante['Nome'];
@@ -202,18 +213,7 @@
                     }
                     $page=str_replace('%FORM_INSERIMENTO_FOTO%',$ins_foto_form,$page);
                     
-                    $page=str_replace('%ID_RIST%',$id_ristorante,$page);
-
-                    //eliminazione recensione
-                    $msg='';
-                    if(isset($_POST['eliminaRec'])){
-                        if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
-                            $msg='<p class="msg_box success_box">Recensione eliminata</p>';
-                        }else{
-                            $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
-                        }
-                    }
-                    $page=str_replace('%MESSAGGIO%',$msg,$page);
+                    $page=str_replace('%ID_RIST%',$id_ristorante,$page); 
 
                 }else{
                     //ristorante non presente
