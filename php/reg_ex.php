@@ -35,6 +35,13 @@
         return false;
     }
 
+    function check_number($num){
+        if(preg_match('/^([0-9]*)$/',$num)==1){
+            return true;
+        }
+        return false;
+    }
+
     function check_cap($cap){
         if(preg_match('/^(\d{5})$/',$cap)==1){
             return true;

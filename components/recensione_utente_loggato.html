@@ -16,30 +16,12 @@
         %LIKE_FORM% 
     </div>
     
-    <form action="remove_review.php" method="post">
+    <form action="dettaglioristorante.php" method="get">
         <fieldset>
-            <input type="hidden" name="id_ristorante" value="%ID_RECENSIONE%"/>
-            <input type="submit" class="btn" name="Elimina" value="Elimina" tabindex="2" />
-        </fieldset>
-    </form>
-    
-    <form action="dettaglioristorante.html" method="get">
-        <fieldset>
-            <input type="hidden" name="id_ristorante" value="%ID_RISTORANTE%"/>
+            <input type="hidden" name="id" value="%ID_RISTORANTE%"/>
             <input type="submit" class="btn" name="Visita" value="Vai al ristorante" tabindex="3" />
         </fieldset>
     </form>
+
+    %DELETE_FORM%
 </dd>
-       
-
-<!--  FORM PER UTENTE CHE NON HA ANCORA MESSO LIKE 
-    <form action="" method="">
-        <fieldset>
-            <input type="submit" title="Premi per mettere mi piace" value="" class="like_button" tabindex="1">
-        </fieldset>
-    </form>
--->
-
-<!-- IMMAGINE PER UTENTE CHE HA GIA MESSO LIKE 
-    <img src="../img/has_like_button.svg" alt="Hai messo like" class="has_like"/>              
--->

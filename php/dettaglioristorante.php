@@ -2,6 +2,7 @@
     require_once('sessione.php');
     require_once("addItems.php");
     require_once('errore.php');
+    require_once('reg_ex.php');
 
     function clearInd($ind,$total_pages){
         for($z=1;$z<=$total_pages;$z++){//Evita che nell'url ci siano robe tipo &pagen=2&pagen=1&pagen=3&pagen=2&pagen=4 mettendo solo la pagina corrente e non tutta la history delle pagine visitate
@@ -12,7 +13,7 @@
 
     $page= (new addItems)->add("../html/dettaglioristorante.html");
 
-    if(isset($_GET['id'])){
+    if(isset($_GET['id']) && check_num($_GET['id'])){
         $id_ristorante=$_GET['id'];
         require_once('connessione.php');
         $obj_connection=new DBConnection();
@@ -95,6 +96,11 @@
                     $page=str_replace('%5_star_perc%',$percentages[4],$page);
 
                     $list_recensioni='';
+                    //check su ordinamento passato tramite GET
+                    if(isset($_GET['ordinamento']) && !check_number($_GET['ordinamento']) && $_GET['ordinamento']!==0 && $_GET['ordinamento']!==1){
+                        header('location: ../html/404.html');
+                        exit;
+                    }
                     //ordinamento
                     if(isset($_GET['ordinamento']) && $_GET['ordinamento']==1){
                         $query="SELECT * FROM recensione WHERE ID_Ristorante=".$id_ristorante." ORDER BY Data DESC";
@@ -116,6 +122,11 @@
                     if($query_all_recensioni=$obj_connection->connessione->query($query)){
                         $array_all_recensioni=$obj_connection->queryToArray($query_all_recensioni);
                         $total_pages=ceil(count($array_all_recensioni) / $results_per_page);
+                    }
+                    //check su pagen passato tramite GET
+                    if(isset($_GET['pagen']) && (!check_number($_GET['pagen']) || $_GET['pagen']<1 || $_GET['pagen']>$total_pages)){
+                        header('location: ../html/404.html');
+                        exit;
                     }
 
                     //recupero lista recensioni

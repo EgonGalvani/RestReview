@@ -88,7 +88,7 @@
                     $action=$_SESSION['current_page'];
                     $name='eliminaRec';
                     $value='Elimina recensione';
-                    $class='btn'; 
+                    $class='delete_rec'; 
                     $title=''; 
                 break;
             }
@@ -97,7 +97,7 @@
                         <fieldset>
                             <input type=\"hidden\" name=\"ID_Recensione\" value=\"$this->recID\" />
                             <input type=\"hidden\" name=\"ID_Viewer\" value=\"$this->viewerID\" />
-                            <input type=\"submit\" name=\"$name\" title=\"$title\" value=\"$value\" class=\"$class\" />
+                            <input type=\"submit\" name=\"$name\" title=\"$title\" value=\"$value\" class=\"btn $class\" />
                         </fieldset> 
                     </form>";
 

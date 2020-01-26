@@ -32,10 +32,15 @@
             if(!$connection->create_connection()){
                 return false;
             }
-            if(!$query_utente=$connection->queryDB("SELECT * FROM utente AS u,foto AS f WHERE u.ID=$this->id_utente AND u.ID_Foto=f.ID")){
+            if(!$query_utente=$connection->connessione->query("SELECT * FROM utente AS u,foto AS f WHERE u.ID=$this->id_utente AND u.ID_Foto=f.ID")){
                 return false;
             }
-            $utente=$query_utente[0];
+            $array_utente=$connection->queryToArray($query_utente);
+            if(count($array_utente)>0){
+                $utente=$array_utente[0];
+            }else{
+                return false;
+            }
             $recensione=str_replace('%URL_IMG_PROFILO%',$utente['Path'],$recensione);
             $recensione=str_replace('%NOME_UTENTE%',$utente['Nome'],$recensione);
             $recensione=str_replace('%COGNOME_UTENTE%',$utente['Cognome'],$recensione); 
@@ -46,10 +51,15 @@
             $stars=new stelle($this->stelle);
             $recensione=str_replace('%LISTA_STELLE%',$stars->printStars(),$recensione);  
             
-            if(!$query_likes=$connection->queryDB("SELECT COUNT(*) AS numero FROM mi_piace WHERE ID_Recensione=$this->id")){
+            if(!$query_likes=$connection->connessione->query("SELECT COUNT(*) AS numero FROM mi_piace WHERE ID_Recensione=$this->id")){
                 return false;
             }
-            $likes=$query_likes[0];
+            $array_likes=$connection->queryToArray($query_likes);
+            if(count($array_likes)>0){
+                $likes=$array_likes[0];
+            }else{
+                return false;
+            }
             $recensione=str_replace('%NUMERO_MI_PIACE%',$likes['numero'],$recensione);
 
             require_once('addForms.php');
@@ -83,6 +93,78 @@
 
             $connection->close_connection();
 
+            return $recensione;
+        }
+
+        public function createRecensioneUtenteLoggato($viewer_id,$viewer_permission){
+            $recensione=file_get_contents('../components/recensione_utente_loggato.html');
+            $recensione=str_replace('%TITOLO%',$this->oggetto,$recensione);
+            $recensione=str_replace('%DATA%',$this->data,$recensione);
+
+            require_once('connessione.php');
+            $connection=new DBConnection();
+            if(!$connection->create_connection()){
+                return false;
+            }
+            if(!$query_ristorante=$connection->connessione->query("SELECT Nome FROM ristorante WHERE ID=$this->id_ristorante")){
+                return false;
+            }
+            $array_ristorante=$connection->queryToArray($query_ristorante);
+            if(count($array_ristorante)>0){
+                $ristorante=$array_ristorante[0];
+            }else{
+                return false;
+            }
+            $recensione=str_replace('%NOME_RISTORANTE%',$ristorante['Nome'],$recensione);
+            $recensione=str_replace('%ID_RISTORANTE%',$this->id_ristorante,$recensione);
+
+            $recensione=str_replace('%CONTENUTO%',$this->descrizione,$recensione);
+            $recensione=str_replace('%NUMERO_STELLE%',$this->stelle,$recensione);
+            require_once('stelle.php');
+            $stars=new stelle($this->stelle);
+            $recensione=str_replace('%LISTA_STELLE%',$stars->printStars(),$recensione);  
+            
+            if(!$query_likes=$connection->connessione->query("SELECT COUNT(*) AS numero FROM mi_piace WHERE ID_Recensione=$this->id")){
+                return false;
+            }
+            $array_likes=$connection->queryToArray($query_likes);
+            if(count($array_likes)>0){
+                $likes=$array_likes[0];
+            }else{
+                return false;
+            }
+            $recensione=str_replace('%NUMERO_MI_PIACE%',$likes['numero'],$recensione);
+
+            require_once('addForms.php');
+            //like form
+            if($viewer_permission=='Utente'){
+                if($query_like_result=$connection->connessione->query("SELECT * FROM mi_piace WHERE ID_Utente=$viewer_id AND ID_Recensione=$this->id")){
+                    if($array_like_result=$connection->queryToArray($query_like_result)){
+                        $dislike_form=new formRecensione('Dislike',$this->id,$viewer_id);
+                        $recensione=str_replace('%LIKE_FORM%',$dislike_form->getForm(),$recensione);
+                    }else{
+                        $like_form=new formRecensione('Like',$this->id,$viewer_id);
+                        $recensione=str_replace('%LIKE_FORM%',$like_form->getForm(),$recensione);
+                    }
+                }//errore query
+                
+            }else{
+                if($viewer_permission=='Visitatore'){
+                    $link='<a href="login.php" title="Accedi per mettere mi piace">Accedi per mettere mi piace</a>';
+                    $recensione=str_replace('%LIKE_FORM%',$link,$recensione);
+                }else{
+                    $recensione=str_replace('%LIKE_FORM%','',$recensione);
+                }
+            }
+            //delete form
+            if($viewer_permission=='Admin' || $this->id_utente==$viewer_id){
+                $delete_form=new formRecensione('Elimina',$this->id,$viewer_id);
+                $recensione=str_replace('%DELETE_FORM%',$delete_form->getForm(),$recensione);
+            }else{
+                $recensione=str_replace('%DELETE_FORM%','',$recensione);
+            }
+
+            $connection->close_connection();
             return $recensione;
         }
 

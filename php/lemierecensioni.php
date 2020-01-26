@@ -34,7 +34,7 @@
                         $list_recensioni='<dl class="card_list rec_list">';
                         foreach($array_recensioni as $value){
                             $recensione=new recensione($value);
-                            $list_recensioni.=$recensione->createItemRecensione($id_utente,$_SESSION['permesso']);
+                            $list_recensioni.=$recensione->createRecensioneUtenteLoggato($id_utente,$_SESSION['permesso']);
                         }
                         $list_recensioni.='</dl>';
                     }else{
