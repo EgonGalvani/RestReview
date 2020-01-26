@@ -21,11 +21,17 @@
     }
     if($no_error){
         if(isset($_POST['ins_cat'])){
-            $cat=$_POST['nome_categoria'];
-            $cat=$obj_connection->escape_str(trim(htmlentities($cat)));
-            $obj_connection->connessione->query("INSERT INTO `categoria` (`Nome`) VALUES ('$cat')");
-            $error=$error."<div class=\"msg_box success_box\">Inserimento avvenuto con successo</div>";
+            if(strlen($_POST['nome_categoria'])>5){
+                $cat=$_POST['nome_categoria'];
+                $cat=$obj_connection->escape_str(trim(htmlentities($cat)));
+                $obj_connection->connessione->query("INSERT INTO `categoria` (`Nome`) VALUES ('$cat')");
+                $error=$error."<div class=\"msg_box success_box\">Inserimento avvenuto con successo</div>";
+            }
+            else{
+                $error=$error."<div class=\"msg_box error_box\">La categoria non può essere vuota o di lunghezza minore di 5 caratteri.</div>";
+            }            
         }
+        
         $queryResult=$obj_connection->connessione->query("SELECT * FROM `ristorante` WHERE Approvato='In attesa'");
         while($row=$queryResult->fetch_array(MYSQLI_ASSOC)){            
             $ristorante = new ristorante($row);
