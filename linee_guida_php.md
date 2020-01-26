@@ -212,8 +212,8 @@ Per le precedenti motivazioni sono passati nel GET due parametri: type e page. (
 - pswRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/; 
 
 ## ENTITA' STELLE
-- stelle piene: &amp;#9733;
-- stelle vuote: &amp;#9734;
+- stelle piene: &copy;#9733;
+- stelle vuote: &copy;#9734;
 
 ## MESSAGGI DI SUCCESSO/WARNING/ERRORE 
 Se fosse necessario mostrare eventuali messaggi all'utente (es. dopo registrazione o inserimento ristorante) si può usare un p con la classe msg_box e una classe tra: error_box, success_box e warning_box. Indicando all'interno del div il messaggio da mostrare all'utente. Esempio: 
@@ -236,7 +236,7 @@ Esempio:
 ```html
     <div class="center">
         <div class="pagination">
-            <span class="disabled">&laquo;</span>
+            <span class="disabled">&laquo;;</span>
             <a href="" >1</a>
             <span class="active">2</span>
             <a href="#" >3</a>

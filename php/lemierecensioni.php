@@ -66,7 +66,7 @@
                         if($pagen>1){
                             $prec=$pagen-1;
                             $ind=clearInd($ind,$total_pages);
-                            $pagesList= $pagesList."\n<a href=\"$ind?pagen=$prec\">&laquo;Precedente</a>";
+                            $pagesList= $pagesList."\n<a href=\"$ind?pagen=$prec\">&laquo;;Precedente</a>";
                         }
                         while($i<=$total_pages){                
                             $ind=clearInd($ind,$total_pages);
