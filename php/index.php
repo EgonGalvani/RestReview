@@ -72,7 +72,7 @@
             $result = $obj_connection->connessione->query($query);
             $rowcount=mysqli_num_rows($result);
             $total_pages = ceil($rowcount / $results_per_page);
-            if($pagen<0||$pagen>$total_pages){
+            if($pagen>$total_pages&&$total_pages>0){
                 header('location: ../html/404.html');
             }
             $query="SELECT t1.ID, Media\n"
