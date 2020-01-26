@@ -42,6 +42,9 @@ function faq_init() {
     var faqDTs = document.querySelectorAll(".faq_list dt"); 
     for(var i = 0; i < faqDTs.length; i++) {
         faqDTs[i].addEventListener("click", (e) => dtClick(e.target)); 
+        faqDTs[i].addEventListener("keyup", function(e) {
+            if(e.keyCode === 13) dtClick(e.target); 
+        }); 
         closeDT(faqDTs[i]); 
     }
 
@@ -411,7 +414,7 @@ function init_index() {
             // se rispetta i controlli ed era presente un box di errore, lo rimuove 
             if(searchField.value.trim().length > 0) {
                 removePreviousBox(searchField); 
-            }
+            }   
         }); 
 
         document.getElementById("search_btn").addEventListener("click", function(e) {
