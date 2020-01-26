@@ -415,8 +415,10 @@ function init_index() {
         }); 
 
         document.getElementById("search_btn").addEventListener("click", function(e) {
+            removePreviousBox(searchField); 
+
             // mostra un messaggio di errore se non è presente alcun valore da cercare
-            if(searchField.value.trim().length == 0) {
+            if(!isNotEmpty(searchField.value)) {
                 showAlertBox(searchField, "È necessario inserire un valore da cercare");
                 e.preventDefault();
             }            

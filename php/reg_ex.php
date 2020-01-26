@@ -15,7 +15,7 @@
     }
 
     function check_nome($nome){
-        if(preg_match('/^([a-zA-Z]*)$/',$nome)==1){
+        if(preg_match('/^([\p{L}\s]*)$/u',$nome)==1){
             return true;
         }
         return false;
@@ -44,6 +44,15 @@
 
     function check_piva($piva){
         if(preg_match('/^[0-9]{11}$/',$piva)==1){
+            return true;
+        }
+        return false;
+    }
+
+    function check_sito($sito){
+        $temp_sito = (!preg_match('#^(ht|f)tps?://#', $sito)) ? 'http://' . $sito : $sito;
+
+        if (filter_var($temp_sito, FILTER_VALIDATE_URL)){
             return true;
         }
         return false;
