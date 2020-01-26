@@ -502,17 +502,6 @@ function init_ins_risto() {
     }
 }
 
-// funzione per avvisare l'utente in caso di eliminazione profilo 
-function init_profile() {
-    if(document.getElementById("remove_profile_btn")) {
-
-        document.getElementById("remove_profile_btn").addEventListener("click", function(e) {
-            if(!confirm("Sei sicuro di voler eliminare il tuo profilo?"))
-                e.preventDefault(); 
-        });  
-    }
-}
-
 function nuova_foto_rist_init() {
     if(document.getElementById("new_photo_form")) {
         
@@ -566,8 +555,8 @@ function dettaglioRist() {
 }
 
 // chiede conferma quando si tenta di eliminare un ristorante 
-function delete_rist_init() {
-    var delBtns = document.getElementsByClassName("delete_rist"); 
+function alert_btn_init() {
+    var delBtns = document.getElementsByClassName("alert_btn"); 
     for(var i = 0; i < delBtns.length; i++) {
         delBtns[i].addEventListener("click", function(e) {
             if(!confirm("Sei sicuro di voler eliminare il ristorante?"))
@@ -581,8 +570,8 @@ window.onload = function() {
     // ----------- BOTTONE "TORNA SU" ------------
     window.onscroll = torna_su_init; 
 
-    // ---------- conferma di eliminazione per i ristoranti -----------
-    delete_rist_init(); 
+    // ---------- richiede la conferma quando un -----------
+    alert_btn_init(); 
 
     // ----------- FAQ  ---------------
     faq_init(); 
@@ -592,9 +581,6 @@ window.onload = function() {
 
     // ---------- REGISTRAZIONE -------------- 
     reg_init(); 
-
-    // ----------- PROFILO ---------------
-    init_profile(); 
 
     // ------------ MODIFICA PROFIFLO ----------------
     modify_profile_init(); 

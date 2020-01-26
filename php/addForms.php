@@ -37,7 +37,7 @@
                     $action=$_SESSION['current_page'];
                     $name='eliminaRist';
                     $value='Elimina ristorante';
-                    $class='delete_rist'; 
+                    $class='alert_btn'; 
                 break;
             }
 
@@ -88,7 +88,7 @@
                     $action=$_SESSION['current_page'];
                     $name='eliminaRec';
                     $value='Elimina recensione';
-                    $class='btn delete_rec'; 
+                    $class='btn alert_btn'; 
                     $title=''; 
                 break;
             }
