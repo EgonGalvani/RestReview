@@ -16,7 +16,15 @@
     $ricercaTipo="";
     $results_per_page = 3;
     $pagesList="";
-    if (isset($_GET["pagen"])) { $pagen  = $_GET["pagen"]; } else { $pagen=1; }; 
+    if (isset($_GET["pagen"])&&is_numeric($_GET["pagen"])){ 
+        $pagen  = $_GET["pagen"]; 
+    } 
+    elseif(isset($_GET["pagen"])&&!is_numeric($_GET["pagen"])){
+        header('location: ../html/404.html');
+    }
+    else{ 
+        $pagen=1; 
+    }
     $start_from = ($pagen-1) * $results_per_page;
     if(!$obj_connection->create_connection()){
         $error=$error."<div class=\"msg_box error_box\">Errore di connessione al database</div>";
@@ -64,6 +72,9 @@
             $result = $obj_connection->connessione->query($query);
             $rowcount=mysqli_num_rows($result);
             $total_pages = ceil($rowcount / $results_per_page);
+            if($pagen<0||$pagen>$total_pages){
+                header('location: ../html/404.html');
+            }
             $query="SELECT t1.ID, Media\n"
             . "FROM\n"
             . "($query) AS t1\n"
