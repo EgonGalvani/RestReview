@@ -164,21 +164,21 @@
             return $count;
         }
 
-        private function pulisciDati(){
-            $this->nome=htmlentities(trim($this->nome));
-            $this->descrizione=htmlentities(trim($this->descrizione));
-            $this->categoria=htmlentities(trim($this->categoria));
-            $this->telefono=htmlentities(trim($this->telefono));
-            $this->email=htmlentities(trim($this->email));
-            $this->sito=htmlentities(trim($this->sito));
-            $this->ora_ap=htmlentities(trim($this->ora_ap));
-            $this->ora_chiu=htmlentities(trim($this->ora_chiu));
-            $this->giorno=htmlentities(trim($this->giorno));
-            $this->via=htmlentities(trim($this->via));
-            $this->civico=htmlentities(trim($this->civico));
-            $this->cap=htmlentities(trim($this->cap));
-            $this->citta=htmlentities(trim($this->citta));
-            $this->nazione=htmlentities(trim($this->nazione));
+        private function pulisciDati($connection){
+            $this->nome=$connection->escape_str(htmlentities(trim($this->nome)));
+            $this->descrizione=$connection->escape_str(htmlentities(trim($this->descrizione)));
+            $this->categoria=$connection->escape_str(htmlentities(trim($this->categoria)));
+            $this->telefono=$connection->escape_str(htmlentities(trim($this->telefono)));
+            $this->email=$connection->escape_str(htmlentities(trim($this->email)));
+            $this->sito=$connection->escape_str(htmlentities(trim($this->sito)));
+            $this->ora_ap=$connection->escape_str(htmlentities(trim($this->ora_ap)));
+            $this->ora_chiu=$connection->escape_str(htmlentities(trim($this->ora_chiu)));
+            $this->giorno=$connection->escape_str(htmlentities(trim($this->giorno)));
+            $this->via=$connection->escape_str(htmlentities(trim($this->via)));
+            $this->civico=$connection->escape_str(htmlentities(trim($this->civico)));
+            $this->cap=$connection->escape_str(htmlentities(trim($this->cap)));
+            $this->citta=$connection->escape_str(htmlentities(trim($this->citta)));
+            $this->nazione=$connection->escape_str(htmlentities(trim($this->nazione)));
 
         }
 
@@ -188,7 +188,7 @@
             $obj_connection=new DBConnection();
             $obj_connection->create_connection();
 
-            $this->pulisciDati();
+            $this->pulisciDati($obj_connection);
             $query_res=$obj_connection->queryDB("SELECT MAX(ID) as num FROM ristorante");
             $rist_id=$query_res[0]['num']+1;
             $ins="INSERT INTO ristorante 

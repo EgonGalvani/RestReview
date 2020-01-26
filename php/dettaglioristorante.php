@@ -12,7 +12,7 @@
     }
 
     $page= (new addItems)->add("../html/dettaglioristorante.html");
-
+    
     if(isset($_GET['id']) && check_num($_GET['id'])){
         $id_ristorante=$_GET['id'];
         require_once('connessione.php');
@@ -22,6 +22,17 @@
                 $query_result=$obj_connection->queryToArray($result);
                 $result->close();
                 if(count($query_result)>0){
+                    //eliminazione recensione
+                    $msg='';
+                    if(isset($_POST['eliminaRec'])){
+                        if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
+                            $msg='<p class="msg_box success_box">Recensione eliminata</p>';
+                        }else{
+                            $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
+                        }
+                    }
+                    $page=str_replace('%MESSAGGIO%',$msg,$page);
+
                     $ristorante=$query_result[0];
                     //Breadcrumb
                     $breadcrumb='<a href="index.php">Home</a> &#8250; '.$ristorante['Nome'];
@@ -158,7 +169,7 @@
                     if($pagen>1){
                         $prec=$pagen-1;
                         $ind=clearInd($ind,$total_pages);
-                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$prec\">&laquoPrecedente</a>";
+                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$prec\">&laquo;Precedente</a>";
                     }
                     while($i<=$total_pages){                
                         $ind=clearInd($ind,$total_pages);
@@ -172,7 +183,7 @@
                     }
                     if($pagen<$total_pages){
                         $succ=$pagen+1;
-                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$succ\">Successiva&raquo</a>";
+                        $pagesList= $pagesList."\n<a href=\"$ind&pagen=$succ\">Successiva&raquo;</a>";
                     }
                     $pagesList= $pagesList."</div></div>";
                     $page = str_replace('%PAGESLIST%', $pagesList,$page);
@@ -202,18 +213,7 @@
                     }
                     $page=str_replace('%FORM_INSERIMENTO_FOTO%',$ins_foto_form,$page);
                     
-                    $page=str_replace('%ID_RIST%',$id_ristorante,$page);
-
-                    //eliminazione recensione
-                    $msg='';
-                    if(isset($_POST['eliminaRec'])){
-                        if($obj_connection->connessione->query("DELETE FROM recensione WHERE ID=".$_POST['ID_Recensione'])){
-                            $msg='<p class="msg_box success_box">Recensione eliminata</p>';
-                        }else{
-                            $msg='<p class="msg_box error_box">Eliminazione fallita</p>';
-                        }
-                    }
-                    $page=str_replace('%MESSAGGIO%',$msg,$page);
+                    $page=str_replace('%ID_RIST%',$id_ristorante,$page); 
 
                 }else{
                     //ristorante non presente
