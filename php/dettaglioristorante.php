@@ -12,7 +12,7 @@
     }
 
     $page= (new addItems)->add("../html/dettaglioristorante.html");
-
+    
     if(isset($_GET['id']) && check_num($_GET['id'])){
         $id_ristorante=$_GET['id'];
         require_once('connessione.php');
