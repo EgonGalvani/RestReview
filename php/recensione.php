@@ -175,7 +175,7 @@
             $connection=new DBConnection();
             $connection->create_connection();
 
-            $this->pulisciDati();
+            $this->pulisciDati($connection);
             $ins="INSERT INTO recensione VALUES(NULL,\"$this->data\",$this->stelle,\"$this->oggetto\",
                                                 \"$this->descrizione\",$this->id_utente,
                                                 $this->id_ristorante)";
@@ -219,13 +219,13 @@
             return $count;
         }
 
-        private function pulisciDati(){
-            $this->data=htmlentities(trim($this->data));
-            $this->stelle=htmlentities(trim($this->stelle));
-            $this->oggetto=htmlentities(trim($this->oggetto));
-            $this->descrizione=htmlentities(trim($this->descrizione));
-            $this->id_utente=htmlentities(trim($this->id_utente));
-            $this->id_ristorante=htmlentities(trim($this->id_ristorante));
+        private function pulisciDati($connection){
+            $this->data=$connection->escape_str(htmlentities(trim($this->data)));
+            $this->stelle=$connection->escape_str(htmlentities(trim($this->stelle)));
+            $this->oggetto=$connection->escape_str(htmlentities(trim($this->oggetto)));
+            $this->descrizione=$connection->escape_str(htmlentities(trim($this->descrizione)));
+            $this->id_utente=$connection->escape_str(htmlentities(trim($this->id_utente)));
+            $this->id_ristorante=$connection->escape_str(htmlentities(trim($this->id_ristorante)));
         }
 
     }

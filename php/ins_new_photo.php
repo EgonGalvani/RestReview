@@ -12,13 +12,12 @@
         if($_SESSION['permesso']=='Ristoratore'){
 
             $obj_connection=new DBConnection();
-            //reperimento dati ristorante
-            if(isset($_POST['id_ristorante'])){
+            if($obj_connection->create_connection()){
+                //reperimento dati ristorante
+                if(isset($_POST['id_ristorante'])){
 
-                $nome_rist='';
-                $indirizzo='';
-                
-                if($obj_connection->create_connection()){
+                    $nome_rist='';
+                    $indirizzo='';
                     
                     $query="SELECT r.Nome AS Nome, r.Via AS Via, r.Civico AS Civ, r.Citta AS Citta, r.CAP AS CAP, r.Nazione AS Nazione
                          FROM ristorante AS r 
@@ -39,44 +38,28 @@
                         exit;
                     }
 
-                    $obj_connection->close_connection();
-                }else{
-                //connessione fallita
-                    $page= (new addItems)->add("../html/base.html");
-                    $page=str_replace('%PATH%','Ricerca',$page);
-                    $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
-                    echo $page;
-                    exit;
-                }
-
-                //check errori
-                $desc_foto='';
-                $err='';
-                $err_foto='';
-                $err_desc='';
-                if(isset($_POST['descrizione_foto'])){
-                    $desc_foto=htmlentities(trim($_POST['descrizione_foto']));
-                    if($desc_foto==''){
-                        $err_desc='<p class="msg_box error_box">Inserire una descrizione per la foto</p>';
-                        $num_errori++;
-                    }
-                    /*if(!isset($_FILES["nuova_foto"]['size'])){
-                        $err_foto='<p class="msg_box error_box">Inserire una foto</p>';
-                        $num_errori++;
-                    }*/
-                    //inserimento
-                    if($num_errori==0){
-                        if($_FILES["nuova_foto"]['size'] != 0){
-                            $gestImg = new gestImg();
-                            $uploadResult = $gestImg->uploadImage("ristoranti/","nuova_foto");
-                            if($uploadResult['error']==""){
-                                $filePath=$uploadResult['path'];
-                            }
-                            else{
-                                $img_error=$img_error.$uploadResult['error'];
-                            }
-                    
-                            if($obj_connection->create_connection()){
+                    //check errori
+                    $desc_foto='';
+                    $err='';
+                    $err_foto='';
+                    $err_desc='';
+                    if(isset($_POST['descrizione_foto'])){
+                        $desc_foto=$obj_connection->escape_str(htmlentities(trim($_POST['descrizione_foto'])));
+                        if($desc_foto==''){
+                            $err_desc='<p class="msg_box error_box">Inserire una descrizione per la foto</p>';
+                            $num_errori++;
+                        }
+                        //inserimento
+                        if($num_errori==0){
+                            if($_FILES["nuova_foto"]['size'] != 0){
+                                $gestImg = new gestImg();
+                                $uploadResult = $gestImg->uploadImage("ristoranti/","nuova_foto");
+                                if($uploadResult['error']==""){
+                                    $filePath=$uploadResult['path'];
+                                }
+                                else{
+                                    $img_error=$img_error.$uploadResult['error'];
+                                }
                                 if($filePath!=="../img/ristoranti/" && $uploadResult['error']==""){//è stato caricato qualcosa
                                     $obj_connection->connessione->query("INSERT INTO foto VALUES (NULL, \"$filePath\", \"$desc_foto\")");//se arrivo a questo punto inserisco sicuramente qualcosa
                                     $queryResult=$obj_connection->connessione->query("SELECT ID FROM foto WHERE Path='".$filePath."'");
@@ -86,29 +69,30 @@
                                 $obj_connection->close_connection();
                                 header('location: dettaglioristorante.php?id='.$_POST['id_ristorante']);
                                 exit;
-                            }else{
-                                //connessione fallita
-                                $page= (new addItems)->add("../html/base.html");
-                                $page=str_replace('%PATH%','Ricerca',$page);
-                                $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
-                                echo $page;
-                                exit;
+                                
                             }
+                        }else{
+                            $err="[Sono presenti $num_errori campi compilati non correttamente]";
                         }
-                    }else{
-                        $err="[Sono presenti $num_errori campi compilati non correttamente]";
                     }
+                    $page=str_replace('%MESSAGGIO%',$err,$page);
+                    $page=str_replace('%ERR_FOTO%',$err_foto,$page);
+                    $page=str_replace('%ERR_DESC%',$err_desc,$page);
+                    $page=str_replace('%NOME_RISTORANTE%',$nome_rist,$page);
+                    $page=str_replace('%INDIRIZZO_RISTORANTE%',$indirizzo,$page);
+                    $page=str_replace('%DESCRIZIONE_FOTO%',$desc_foto,$page);
+
+                    $page=str_replace('%ID_RIST%',$_POST['id_ristorante'],$page);
+                    $page=str_replace('%PATH_RISTO%','dettaglioristorante.php?id='.$_POST['id_ristorante'],$page);
+
                 }
-                $page=str_replace('%MESSAGGIO%',$err,$page);
-                $page=str_replace('%ERR_FOTO%',$err_foto,$page);
-                $page=str_replace('%ERR_DESC%',$err_desc,$page);
-                $page=str_replace('%NOME_RISTORANTE%',$nome_rist,$page);
-                $page=str_replace('%INDIRIZZO_RISTORANTE%',$indirizzo,$page);
-                $page=str_replace('%DESCRIZIONE_FOTO%',$desc_foto,$page);
-
-                $page=str_replace('%ID_RIST%',$_POST['id_ristorante'],$page);
-                $page=str_replace('%PATH_RISTO%','dettaglioristorante.php?id='.$_POST['id_ristorante'],$page);
-
+            }else{
+                //connessione fallita
+                $page= (new addItems)->add("../html/base.html");
+                $page=str_replace('%PATH%','Ricerca',$page);
+                $page=str_replace('%MESSAGGIO%',(new errore('DBConnection'))->printHTMLerror(),$page);
+                echo $page;
+                exit;
             }
 
         }else{
