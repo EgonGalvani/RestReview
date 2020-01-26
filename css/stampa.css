@@ -208,7 +208,7 @@ img {
 }
 
 .photoes {
-    width: 25%; 
+    width: 20%; 
 }
 
 #all_photoes fieldset {
@@ -243,6 +243,12 @@ img {
 /* ----------------- ITEM RISTORANTE ----------------- */
 .rist_list .rist_img {
     float: right; 
+    width: 25%;    
+    margin: 0.5cm 0.25cm 0 0.25cm;  
+}
+
+.rist_dett {
+    margin-right:27%; 
 }
 
 .rist_list span {
