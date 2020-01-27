@@ -7,7 +7,7 @@
     }
    
     $page= (new addItems)->add("../html/profilo.html");
-    $page=str_replace('><a href="profilo.php">Il mio profilo</a>', 'class="active">Il mio profilo',$page);
+    $page=str_replace('><a href="profilo.php">Il mio profilo</a>', ' class="active">Il mio profilo',$page);
    
     $no_error=true;
     $error='';

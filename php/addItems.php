@@ -45,31 +45,30 @@ class addItems {
     public function addMenu(&$page) {
 
         // menù di base 
-        $tabindex = 1; 
-        $menu = '<ul><li xml:lang="en" tabindex="' . $tabindex++ . '"><a href="index.php">Home</a></li>'; 
+        $menu = '<ul><li xml:lang="en"><a href="index.php">Home</a></li>'; 
 
         if(isset($_SESSION['permesso'])){
             
             switch($_SESSION['permesso']) {
                 case 'Admin': 
-                        $menu .= '<li tabindex="' . $tabindex++ . '"><a href="pannello_amministratore.php">Pannello amministratore</a></li>';
+                        $menu .= '<li><a href="pannello_amministratore.php">Pannello amministratore</a></li>';
                     break; 
                 case 'Ristoratore': 
-                        $menu .= '<li tabindex="' . $tabindex++ . '"><a href="profilo.php">Il mio profilo</a></li>
-                                    <li tabindex="' . $tabindex++ . '"><a href="imieirist.php?type=0">I miei ristoranti</a></li>'; 
+                        $menu .= '<li><a href="profilo.php">Il mio profilo</a></li>
+                                    <li><a href="imieirist.php?type=0">I miei ristoranti</a></li>'; 
                     break; 
                 case 'Utente': 
-                        $menu .= '<li tabindex="' . $tabindex++ . '"><a href="profilo.php">Il mio profilo</a></li>
-                                <li tabindex="' . $tabindex++ . '"><a href="lemierecensioni.php">Le mie recensioni</a></li>';
+                        $menu .= '<li><a href="profilo.php">Il mio profilo</a></li>
+                                <li><a href="lemierecensioni.php">Le mie recensioni</a></li>';
                     break;  
                 }          
         }
 
-        $menu .= '<li tabindex="' . $tabindex++ . '"><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a></li>
-            <li tabindex="' . $tabindex++ . '"><a href="casuale.php">Ristorante casuale</a></li>
-            <li tabindex="' . $tabindex++ . '"><a href="regolamento.php">Regolamento</a></li>
-            <li tabindex="' . $tabindex++ . '"><a href="faq.php"><abbr xml:lang="en" title="Frequently Asked Questions">FAQ</abbr></a></li>
-            <li tabindex="' . $tabindex++ . '"><a href="chisiamo.php">Chi Siamo</a></li></ul>';
+        $menu .= '<li><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a></li>
+            <li><a href="casuale.php">Ristorante casuale</a></li>
+            <li><a href="regolamento.php">Regolamento</a></li>
+            <li><a href="faq.php"><abbr xml:lang="en" title="Frequently Asked Questions">FAQ</abbr></a></li>
+            <li><a href="chisiamo.php">Chi Siamo</a></li></ul>';
 
         $page = str_replace('%MENU%', $menu, $page);
     }

@@ -9,7 +9,7 @@
     }
 
     $page =(new addItems)->add("../html/pannello_amm.html");
-    $page=str_replace('><a href="pannello_amministratore.php">Pannello amministratore</a>', 'class="active">Pannello amministratore',$page);
+    $page=str_replace('><a href="pannello_amministratore.php">Pannello amministratore</a>', ' class="active">Pannello amministratore',$page);
    
     $error="";
     $list='<h1>Ristoranti in attesa di approvazione</h1><dl class="card_list rist_list">';

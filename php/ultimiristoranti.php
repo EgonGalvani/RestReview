@@ -5,7 +5,7 @@
     require_once("ristorante.php");
   
     $page= (new addItems)->add("../html/ultimiristoranti.html");
-    $page = str_replace('><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a>', 'class="active">Ultimi ristoranti inseriti',$page);
+    $page = str_replace('><a href="ultimiristoranti.php">Ultimi ristoranti inseriti</a>', ' class="active">Ultimi ristoranti inseriti',$page);
     $error="";
     $list='<dl class="card_list rist_list">';
     $no_error=true;
