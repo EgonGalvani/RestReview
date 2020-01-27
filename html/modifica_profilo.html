@@ -55,9 +55,9 @@
 
                     <img class="img_profilo" id="img_profilo-modify" src="../img/imgnotfound.jpg" alt="immagine di profilo"/>
 		   		    <label for="new_foto_profilo">Seleziona nuova foto: </label>
-                    <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="9"/>
+                    <input type="file" id="new_foto_profilo" name="new_foto_profilo" tabindex="1"/>
 
-                    <input type="submit" name="mod_foto" value="Modifica foto profilo" id="change_photo" tabindex="10" class="btn right"/>
+                    <input type="submit" name="mod_foto" value="Modifica foto profilo" id="change_photo" tabindex="2" class="btn right"/>
                 </fieldset>
             </form>
             
@@ -68,15 +68,15 @@
                     %PASSWORD_ERROR% 
 
                     <label for="old_password">Vecchia <span lang="en">password</span>:</label>
-                    <input type="password" id="old_password" name="old_password" tabindex="11" class="full_width_input"/>
+                    <input type="password" id="old_password" name="old_password" tabindex="3" class="full_width_input"/>
 
                     <label for="password">Nuova <span lang="en">password</span>:</label>
-                    <input type="password" id="password" name="password" tabindex="12" class="full_width_input"/>
+                    <input type="password" id="password" name="password" tabindex="4" class="full_width_input"/>
                     
                     <label for="repeat_pwd" id="repeat_pw_lbl">Ripeti <span lang="en">password</span>:</label>
-                    <input type="password" name="repeat_pwd" id="repeat_pwd" tabindex="13" class="full_width_input"/>
+                    <input type="password" name="repeat_pwd" id="repeat_pwd" tabindex="5" class="full_width_input"/>
 
-                    <input type="submit" name="mod_pwd" id="change_psw_btn" value="Cambia password" tabindex="14" class="btn right"/>
+                    <input type="submit" name="mod_pwd" id="change_psw_btn" value="Cambia password" tabindex="6" class="btn right"/>
                 </fieldset>
             </form>
          
@@ -86,13 +86,13 @@
                     <legend>I miei dati personali</legend>
                     %DATI_ERROR% 
                     <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" value="%NOME%" tabindex="15" class="full_width_input"/>
+                    <input type="text" name="nome" id="nome" value="%NOME%" tabindex="7" class="full_width_input"/>
                     
                     <label for="cognome">Cognome:</label>
-                    <input type="text" name="cognome" id="cognome" value="%COGNOME%" tabindex="16" class="full_width_input"/>
+                    <input type="text" name="cognome" id="cognome" value="%COGNOME%" tabindex="8" class="full_width_input"/>
                     
                     <label for="sesso">Sesso:</label>
-                    <select name="sesso" id="sesso" tabindex="17" class="full_width_input">
+                    <select name="sesso" id="sesso" tabindex="9" class="full_width_input">
                         <option value="ns" selected="%SEL_NS%">Non Specificato</option>
                         <option value="Uomo" selected="%SEL_UOMO%">Uomo</option>
                         <option value="Donna" selected="%SEL_DONNA%">Donna</option>
@@ -100,13 +100,13 @@
                     </select>
                     
                     <label id="piva_l" for="piva">Partita <abbr title="Imposta su Valore Aggiunto">IVA:</abbr></label>
-                    <input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="18" class="full_width_input"/>
+                    <input id="piva" type="text" name="piva" value="%P_IVA%" tabindex="10" class="full_width_input"/>
                     
                     <label id="rsoc_l" for="rsoc">Ragione sociale:</label>
-                    <input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="19" class="full_width_input"/>
+                    <input id="rsoc" type="text" name="rsoc" value="%R_SOC%" tabindex="11" class="full_width_input"/>
 
-                    <input type="reset" value="Resetta form" tabindex="21" class="btn right"/>
-                    <input type="submit" name="mod_prof" id="modify_profile_btn" value="Applica modifiche" tabindex="20" class="btn right"/>
+                    <input type="reset" value="Resetta form" tabindex="12" class="btn right"/>
+                    <input type="submit" name="mod_prof" id="modify_profile_btn" value="Applica modifiche" tabindex="13" class="btn right"/>
                 </fieldset>
             </form>            
         </div>
