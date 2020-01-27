@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 25, 2020 alle 19:45
--- Versione del server: 10.4.11-MariaDB
--- Versione PHP: 7.2.26
+-- Creato il: Gen 27, 2020 alle 17:24
+-- Versione del server: 10.1.37-MariaDB
+-- Versione PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,12 +37,14 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`Nome`) VALUES
+('Birreria'),
 ('Britannica'),
 ('Cucina tedesca'),
 ('Indiano'),
 ('Italiana'),
 ('Libanese'),
 ('Messicano'),
+('Pizzeria'),
 ('Steakhouse'),
 ('Sushi'),
 ('Vegano');
@@ -73,7 +75,10 @@ INSERT INTO `corrispondenza` (`ID_Foto`, `ID_Ristorante`) VALUES
 (33, 9),
 (54, 3),
 (55, 3),
-(56, 3);
+(56, 3),
+(57, 10),
+(58, 11),
+(59, 12);
 
 -- --------------------------------------------------------
 
@@ -84,7 +89,7 @@ INSERT INTO `corrispondenza` (`ID_Foto`, `ID_Ristorante`) VALUES
 CREATE TABLE `foto` (
   `ID` int(11) NOT NULL,
   `Path` text NOT NULL,
-  `Descrizione` text DEFAULT NULL
+  `Descrizione` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -135,7 +140,10 @@ INSERT INTO `foto` (`ID`, `Path`, `Descrizione`) VALUES
 (53, '../img/Utenti/1568268256.png', NULL),
 (54, '../img/ristoranti/735758.jpg', 'Locale per tutte le occasioni. '),
 (55, '../img/ristoranti/8354893.jpg', 'Un ristorante unico.'),
-(56, '../img/ristoranti/83758374.jpg', 'Atmosfera calda e accogliente');
+(56, '../img/ristoranti/83758374.jpg', 'Atmosfera calda e accogliente'),
+(57, '../img/ristoranti/1580140596.jpg', NULL),
+(58, '../img/ristoranti/1580141144.jpg', NULL),
+(59, '../img/ristoranti/1580141281.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,6 +164,8 @@ INSERT INTO `mi_piace` (`ID_Utente`, `ID_Recensione`) VALUES
 (1, 1),
 (1, 6),
 (1, 14),
+(1, 20),
+(1, 23),
 (2, 1),
 (2, 3),
 (2, 6),
@@ -212,7 +222,7 @@ INSERT INTO `mi_piace` (`ID_Utente`, `ID_Recensione`) VALUES
 
 CREATE TABLE `recensione` (
   `ID` int(11) NOT NULL,
-  `Data` datetime NOT NULL DEFAULT current_timestamp(),
+  `Data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Stelle` enum('1','2','3','4','5') NOT NULL,
   `Oggetto` varchar(64) NOT NULL,
   `Descrizione` text NOT NULL,
@@ -242,7 +252,12 @@ INSERT INTO `recensione` (`ID`, `Data`, `Stelle`, `Oggetto`, `Descrizione`, `ID_
 (15, '2018-10-15 03:17:00', '2', 'Peccato per la scortesia', 'Il super market ha prodotti buoni anche se a prezzi alti. Al ristorante la qualità è minore e i dipendenti sono spesso scortesi. Proprio stasera il signore della security, vestito in nero, si è posto malissimo perché siamo entrati poco prima della chiusura e chiesto per un gelato. Migliorate i modi! ', 5, 4),
 (16, '2019-11-16 05:51:00', '4', 'Ottima pizza ', 'Sono stato da Rosso Pomodoro diverse volte ma devo dire che ultimamente è nettamente migliorato. Sorprendente.', 19, 4),
 (17, '2018-10-07 06:09:24', '3', 'Una pizza discreta', 'Se ci si aspetta di trovare la pizza sfoglia napoletana, probabilmente, questo ristorante non e` il migliore.\r\nIn compenso la gentilezza del servizio e la qualita` degli ingredienti, valgono la pena di una visita!\r\nAccompagnata da una discreta gamma di birre locali e artigianali, potrete degustare piu` di 20 tipi di pizza differenti immersi in un clima disteso amichevole.', 18, 4),
-(18, '2019-11-27 19:41:09', '4', 'autentico e un buon rapporto qualità-prezzo!', 'il pasto è ottimo, il servizio è autentico italiano, l\'atmosfera è come una pizza comune in Italia - - niente di speciale, ma bello', 9, 4);
+(18, '2019-11-27 19:41:09', '4', 'autentico e un buon rapporto qualità-prezzo!', 'il pasto è ottimo, il servizio è autentico italiano, l\'atmosfera è come una pizza comune in Italia - - niente di speciale, ma bello', 9, 4),
+(19, '2020-01-27 17:00:00', '4', 'La miglior birreria di monaco', 'Ci sono stata quest\'estate e la birra &egrave; ottima, riguardo al cibo ho assaggiato solo il Bretzel che non era ne meglio ne peggio a confronto di quelli venduti da altre birrerie di monaco.', 1, 7),
+(20, '2020-01-27 17:00:00', '5', 'La stessa birra di monaco!', 'Ci ho fatto tappa nel mio viaggio a Genova e non avrei mai pensato di bere la stessa birra di Monaco fuori dalla Germania.', 1, 10),
+(21, '2020-01-27 17:00:00', '3', 'La birra &egrave; buona tuttavia...', 'Come da titolo la birra &egrave; buona per&ograve; il posto &egrave; piccolo e se non si vuole mangiare fuori in inverno bisogna arrivare molto presto.', 1, 11),
+(22, '2020-01-27 17:00:00', '4', 'Pizza veramente buona.........', 'Pizza ottima, buona lievitazione e ottimi ingredienti. Locale grande ed accogliente. Servizio cortese e disponibile. Prezzo pi&ugrave; alto della media.', 1, 4),
+(23, '2020-01-27 17:00:00', '5', 'Ottima cena e soprattutto gran servizio', 'Sono stata a cena, con amici e devo dire, che sono rimasta molto sorpresa da tutto, dalla cucina e soprattutto dal servizio (essendo anche io cameriere).', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -255,7 +270,7 @@ CREATE TABLE `ristorante` (
   `ID_Proprietario` int(11) NOT NULL,
   `Nome` varchar(64) NOT NULL,
   `Categoria` varchar(32) NOT NULL,
-  `Descrizione` text DEFAULT NULL,
+  `Descrizione` text,
   `Tel` varchar(13) NOT NULL,
   `Mail` varchar(128) NOT NULL,
   `Giorno_Chiusura` varchar(16) NOT NULL,
@@ -279,10 +294,13 @@ INSERT INTO `ristorante` (`ID`, `ID_Proprietario`, `Nome`, `Categoria`, `Descriz
 (3, 22, 'The clink restaurant', 'Britannica', 'Situato vicino le vecchie case governative Inglesi risalenti al 1819, questo ristorante offre agli ospiti il tipico cibo Inglese.', '+000000000000', 'theclink@spy.us', 'Mercoledì', '18:00:00', '21:00:00', 'Inghilterra', 'Londra', 'SW2', 'Brixtonjebb avenue', '11', 'Approvato', 'www.theclinkcharity.org/rastaurant/brixton'),
 (4, 23, 'Rosso pomodoro', 'Italiana', 'Noi di Rossopomodoro portiamo da vent\'anni un po’ di Napoli in tutto il mondo facendo gustare l\'autentica pizza napoletana artigianale a lunga lievitazione e la cucina campana in più di cento località, dal nord al sud Italia, fino a Nizza, Londra, San Paolo, Reykjavik, Jeddah, New York e tante altre città. Essere ambasciatori della cultura gastronomica napoletana è la nostra passione. Perché siamo legati alla nostra terra, ai suoi prodotti genuini e anche all\'atmosfera della nostra amata città, colorata, accogliente e allegra come i nostri ristoranti.\r\nBenvenuti a Rossopomodoro, benvenuti a Napoli!', '+000000000000', 'rossopomodoro@dayrep.com', 'Giovedì', '11:30:00', '24:00:00', 'Italia', 'Napoli', '80121', 'Corso Vittorio emanuele', '84', 'Approvato', 'www.rossopomodoro.it'),
 (5, 23, 'Pizza Italia', 'Italiana', 'Solo qui potrai mangiare la vera pizza italiana in quel di Malta!', '+000000000000', 'pizzaitala@spy.us', 'Giovedì', '18:00:00', '24:00:00', 'Malta', 'La Valletta', '1012', 'Dawret il-Gzejjer St. Paul’s Bay', '12', 'In attesa', NULL),
-(6, 24, 'La Boheme', 'Steakhouse', 'Casual international flair meets living room-like cosiness and culinary diversity. From the simple glass of wine with oven bread to the 5-course menu you can get everything you want. In addition, there are always vegetarian dishes in the menu. Chef Lilian Schumann and host Michael Urban with their young team have set the goal to give you a special dining experience.\r\nEspecially for our international guests coming from the airport or going to it, La Bohème is the first or last stop on your way. It’s worth stopping by.', '+0000000000', 'LaBoheme@dayrep.com', 'Lunedì', '18:00:00', '23:00:00', 'Germania', 'Monaco di Baviera', '80804', 'Leopoldstrasse', '180', 'In attesa', 'http://boheme-schwabing.de/en/the-restaurant/'),
+(6, 24, 'La Boheme', 'Steakhouse', 'Casual international flair meets living room-like cosiness and culinary diversity. From the simple glass of wine with oven bread to the 5-course menu you can get everything you want. In addition, there are always vegetarian dishes in the menu. Chef Lilian Schumann and host Michael Urban with their young team have set the goal to give you a special dining experience.\r\nEspecially for our international guests coming from the airport or going to it, La Bohème is the first or last stop on your way. It’s worth stopping by.', '+0000000000', 'LaBoheme@dayrep.com', 'Lunedì', '18:00:00', '23:00:00', 'Germania', 'Monaco di Baviera', '80804', 'Leopoldstrasse', '180', 'Approvato', 'http://boheme-schwabing.de/en/the-restaurant/'),
 (7, 26, 'Hofbrauhaus', 'Cucina tedesca', 'Situata nel cuore di Monaco per anni. Questo ristorante è una delle pietre miliari della cultura bavarese. Ogni giorno attraiamo persone da tutte le nazioni e c\'è spazio per tutti nelle stanze storiche', '+0000000000', 'Hofbraumhaus@dayrep.it', 'Mercoledì', '09:00:00', '24:00:00', 'Germania', 'Monaco di Baviera', '80331', 'Platzl', '9', 'Approvato', 'www.hofbraeuhaus.de'),
 (8, 30, 'Da enzo', 'Italiana', 'Buonissimo ristorante, aperto per tutti :)', '+0000000000', 'Daenzo@troll.it', 'Domenica', '00:00:00', '01:00:30', 'Italia', 'Borgoricco', '35010', 'Via Giotto', '12', 'Non approvato', 'www.superenzo.it'),
-(9, 29, 'Sumishi', 'Sushi', NULL, '+0000000000', 'sumishi@dayrep.it', 'Martedì', '12:00:00', '22:00:00', 'Italia', 'Monselice', '35043', 'Viale Lombardia', '19', 'In attesa', 'www.sumishi.it');
+(9, 29, 'Sumishi', 'Sushi', NULL, '+0000000000', 'sumishi@dayrep.it', 'Martedì', '12:00:00', '22:00:00', 'Italia', 'Monselice', '35043', 'Viale Lombardia', '19', 'In attesa', 'www.sumishi.it'),
+(10, 26, 'Birreria Hofbr&auml;uhaus', 'Cucina tedesca', 'Stinco di maiale, w&uuml;rstel e birre!', '0000000000', 'hbgenova@mail.it', 'Marted&igrave;', '18:00:00', '01:00:00', 'Italia', 'Genova', '16121', 'Gerolamo Boccardo', '5', 'Approvato', 'http://www.hbgenova.com/birreria-2/'),
+(11, 26, 'Birreria Valhalla', 'Cucina tedesca', 'Il Valhalla offre panini e hamburger', '0000000000', 'valhalla@mail.it', 'Marted&igrave;', '18:00:00', '01:00:00', 'Italia', 'Monselice', '35043', 'Carrubbio', '113', 'Approvato', 'https://www.facebook.com/pg/birreriavalhallamontichiari/about/?ref=page_internal'),
+(12, 26, 'Birreria gino', 'Britannica', 'Birreria all\'Inglese apertura entro marzo', '0000000000', 'asd@ggg.it', 'Marted&igrave;', '18:00:00', '22:00:00', 'Italia', 'pozzonovo', '35020', 'vallase', '17', 'Non approvato', 'http://www.sito.com');
 
 -- --------------------------------------------------------
 
@@ -404,19 +422,19 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT per la tabella `recensione`
 --
 ALTER TABLE `recensione`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT per la tabella `ristorante`
 --
 ALTER TABLE `ristorante`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`
