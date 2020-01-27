@@ -238,7 +238,7 @@ Esempio:
         <div class="pagination">
             <span class="disabled">&laquo;;</span>
             <a href="" >1</a>
-            <span class="active">2</span>
+            <span  class="active">2</span>
             <a href="#" >3</a>
             <a href="#" >4</a>
             <a href="#" >5</a>

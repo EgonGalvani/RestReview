@@ -4,7 +4,7 @@
     require_once('addItems.php');
 
     $page= (new addItems)->add("../html/casuale.html");
-    $page=str_replace('><a href="casuale.php">Ristorante casuale</a>', 'class="active">Ristorante casuale',$page);
+    $page=str_replace('><a href="casuale.php">Ristorante casuale</a>', ' class="active">Ristorante casuale',$page);
 
     $risultato='';
     $error_msg='';

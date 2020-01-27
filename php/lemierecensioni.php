@@ -14,7 +14,7 @@
     }
 
     $page= (new addItems)->add("../html/lemierecensioni.html");
-    $page = str_replace('><a href="lemierecensioni.php">Le mie recensioni</a>', 'class="active">Le mie recensioni',$page);
+    $page = str_replace('><a href="lemierecensioni.php">Le mie recensioni</a>', ' class="active">Le mie recensioni',$page);
 
     if($_SESSION['logged']==true){
         if($_SESSION['permesso']=='Utente'){

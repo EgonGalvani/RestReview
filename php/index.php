@@ -5,7 +5,7 @@
     require_once("ristorante.php");
    
     $page= (new addItems)->add("../html/index.html");
-    $page = str_replace('><a href="index.php">Home</a>', 'class="active">Home',$page);
+    $page = str_replace('><a href="index.php">Home</a>', ' class="active">Home',$page);
     $error="";
     $list='<dl class="card_list rist_list">';
     $tipologia="";
