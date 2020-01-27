@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
         <title>RestReview - Le migliori recensioni di ristoranti</title>
-        <meta name="title" content="Inserimento nuovo ristorante - RestReview" />
-
+      
+        <meta charset="UTF-8" />
         <meta name="description" content="Pagina di inserimento di un nuovo ristorante" />
         <meta name="keywords" content="dettagli ristorante, aggiungi ristorante, ristorante, recensioni, restreview" />
         <meta name="author" content="Alberto Cocco, Alessandro Discalzi, Egon Galvani, Matteo Munari" />
@@ -67,7 +65,7 @@
 
                     %ERR_CAT%
                     <label for="categoria">Categoria: </label>
-                    <select name="categoria" class="full_width_input" tabindex="11">
+                    <select name="categoria" id="categoria" class="full_width_input" tabindex="11">
                         %CATEGORIA%
                     </select>
                     %ERR_TEL%
@@ -94,25 +92,32 @@
                     <span>Giorno di chiusura: </span>
                     <ul id="free_day_list">
                         <li>
-                            <input type="radio" name="free_day" checked="checked" id="lun" value="Lunedì" %LUN%><label for="lun">Lunedì </label>
+                            <input type="radio" name="free_day" checked="checked" id="lun" value="Lunedì" %LUN% />
+                            <label for="lun">Lunedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mar" value="Martedì" %MAR%><label for="mar">Martedì <label>
+                            <input type="radio" name="free_day" id="mar" value="Martedì" %MAR% />
+                            <label for="mar">Martedì</label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="mer" value="Mercoledì" %MER%><label for="mer">Mercoledì</label>
+                            <input type="radio" name="free_day" id="mer" value="Mercoledì" %MER% />
+                            <label for="mer">Mercoledì</label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="gio" value="Giovedì" %GIO%><label for="gio">Giovedì </label>
+                            <input type="radio" name="free_day" id="gio" value="Giovedì" %GIO% />
+                            <label for="gio">Giovedì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="ven" value="Venerdì" %VEN%><label for="ven">Venerdì </label>
+                            <input type="radio" name="free_day" id="ven" value="Venerdì" %VEN% />
+                            <label for="ven">Venerdì </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="sab" value="Sabato" %SAB%><label for="sab">Sabato </label>
+                            <input type="radio" name="free_day" id="sab" value="Sabato" %SAB% />
+                            <label for="sab">Sabato </label>
                         </li> 
                         <li>
-                            <input type="radio" name="free_day" id="dom" value="Domenica" %DOM%><label for="dom">Domenica</label>
+                            <input type="radio" name="free_day" id="dom" value="Domenica" %DOM% />
+                            <label for="dom">Domenica</label>
                         </li>
                     </ul>
                   
@@ -147,7 +152,7 @@
                     <legend>Immagini</legend>
                     %ERR_IMG%
                     <label for="main_photo" class="file_label">Selezionare un'immagine principale: </label>
-                    <label>L'immagine può avere una dimensione massima di 5MB e un'estensione tra: jpg, png, jpeg</label>
+                    <span>L'immagine può avere una dimensione massima di 5MB e un'estensione tra: jpg, png, jpeg</span>
                     <input type="file" id="main_photo" name="main_photo" tabindex="22" />
                     
                     <label for="main_photo_description">Descrizione immagine principale: </label>
@@ -161,10 +166,10 @@
     
         <div id="footer">
             <ul>
-                <li>    RestReview - Trova i migliori ristoranti   </li>
-                <li>    restreview@dayrep.com   </li>
-                <li>    049-0000000 - Padova, Via Trieste 13  </li>
-                <li>    Copyright &copy; 2019-2020 all rights reserved   </li>
+                <li>RestReview - Trova i migliori ristoranti</li>
+                <li>restreview@dayrep.com</li>
+                <li>049-0000000 - Padova, Via Trieste 13</li>
+                <li>Copyright &copy; 2019-2020 all rights reserved</li>
             </ul>
 
             <a id="scrollBtn" class="hide" href="#header">Torna SU</a>
