@@ -66,7 +66,7 @@
                         if($pagen>1){
                             $prec=$pagen-1;
                             $ind=clearInd($ind,$total_pages);
-                            $pagesList= $pagesList."\n<a href=\"$ind?pagen=$prec\">&laquo;;Precedente</a>";
+                            $pagesList= $pagesList."\n<a href=\"$ind?pagen=$prec\">&laquo;Precedente</a>";
                         }
                         while($i<=$total_pages){                
                             $ind=clearInd($ind,$total_pages);
@@ -83,7 +83,6 @@
                             $pagesList= $pagesList."\n<a href=\"$ind?pagen=$succ\">Successiva&raquo;</a>";
                         }
                         $pagesList= $pagesList."</div></div>";
-                        $page = str_replace('%PAGESLIST%', $pagesList,$page);
                     }else{
                         $list_recensioni='<p>Non hai ancora scritto nessuna recensione</p>';
                     }
@@ -107,6 +106,7 @@
             }
             $page=str_replace('%MESSAGGIO%',$msg,$page);
             $page=str_replace('%LIST%',$list_recensioni,$page);
+            $page = str_replace('%PAGESLIST%', $pagesList,$page);
         }else{
             header('location: access_denied.php');
             exit;
