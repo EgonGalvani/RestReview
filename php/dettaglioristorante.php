@@ -35,7 +35,7 @@
 
                     $ristorante=$query_result[0];
                     //Breadcrumb
-                    $breadcrumb='<a href="index.php">Home</a> &#8250; '.$ristorante['Nome'];
+                    $breadcrumb='Home &#8250; '.$ristorante['Nome'];
                     $page=str_replace('%PATH%',$breadcrumb,$page);
 
                     // il path e descrizione vanno cercate nel db
