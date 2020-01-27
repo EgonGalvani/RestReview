@@ -194,16 +194,16 @@
             if($this->oggetto==''){
                 $err_array['titolo']='[Campo obbligatorio]';
             }else{
-                if(strlen($this->oggetto)<25 || strlen($this->oggetto)>50){
-                    $err_array['titolo']='[Il titolo deve avere tra i 25 e 50 cartteri.]';
+                if(strlen($this->oggetto)<6 || strlen($this->oggetto)>60){
+                    $err_array['titolo']='[Il titolo deve avere tra i 6 e 60 caratteri.]';
                 }
             }
 
             if($this->descrizione==''){
                 $err_array['contenuto']='[Campo obbligatorio]';
             }else{
-                if(strlen($this->descrizione)<100 || strlen($this->descrizione)>250){
-                    $err_array['contenuto']='[Il contenuto della recensione deve avere tra i 100 e 250 caratteri.]';
+                if(strlen($this->descrizione)<50 || strlen($this->descrizione)>500){
+                    $err_array['contenuto']='[Il contenuto della recensione deve avere tra i 50 e 500 caratteri.]';
                 }
             }
             return $err_array;

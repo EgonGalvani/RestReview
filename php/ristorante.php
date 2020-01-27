@@ -74,8 +74,12 @@
             if($this->descrizione==''){
                 $err_array['desc']="[Campo obbligatorio]";
             }else{
-                if(strlen($this->descrizione)<20){
-                $err_array['desc']="[La descrizione deve essere lunga almeno 20 caratteri]";
+                if(strlen($this->descrizione) < 20){
+                    $err_array['desc']="[La descrizione deve essere lunga almeno 20 caratteri]";
+                } else {
+                    if(strlen($this->descrizione) > 500) {
+                        $err_array['desc']="[La descrizione deve essere lunga al massimo 500 caratteri]";
+                    }
                 }
             }
             //categoria
