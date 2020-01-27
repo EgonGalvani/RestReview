@@ -45,7 +45,7 @@
                 }
                 //check su pagen passato tramite GET
                 if(isset($_GET['pagen']) && (!check_number($_GET['pagen']) || $_GET['pagen']<1 || $_GET['pagen']>$total_pages)){
-                    header('location: ../html/404.html');
+                    header('location: 404.php');
                     exit;
                 }
                 if (isset($_GET["pagen"])) { $pagen  = $_GET["pagen"]; } else { $pagen=1; }; 

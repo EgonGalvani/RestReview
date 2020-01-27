@@ -85,7 +85,7 @@
 
             }else{
                 //reindirizzamento se non è definito il type
-                header('location: ../html/404.html');
+                header('location: 404.php');
                 exit;
             }
 
