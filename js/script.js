@@ -436,12 +436,12 @@ function hasLengthBetween(string, min, max) {
 
 // un titolo deve contenere tra i 25 e 50 caratteri; 
 function isTitle(titolo) { 
-    return hasLengthBetween(titolo, 25, 50); 
+    return hasLengthBetween(titolo, 6, 60); 
 }
 
 // una recensione deve avere tra i 100 e 250 caratteri 
 function isReview(review) {
-    return hasLengthBetween(review, 100, 250); 
+    return hasLengthBetween(review, 50, 500); 
 }
 
 /** PAGINA DI INSERIMENTO NUOVA RECENSIONE  */
@@ -449,8 +449,8 @@ function init_ins_recensione() {
     if(document.getElementById("new_review_form")) {
       
         var reviewControls = {}; 
-        reviewControls["titolo_recensione"] = [ [isNotEmpty, "Inserire un titolo per la recensione."], [isTitle, "Il titolo deve avere tra i 25 e 50 cartteri."]]; 
-        reviewControls["contenuto_recensione"] = [ [isNotEmpty, "Inserire un contenuto alla recensione."], [isReview, "Il contenuto della recensione deve avere tra i 100 e 250 caratteri."]]; 
+        reviewControls["titolo_recensione"] = [ [isNotEmpty, "Inserire un titolo per la recensione."], [isTitle, "Il titolo deve avere tra i 6 e 60 cartteri."]]; 
+        reviewControls["contenuto_recensione"] = [ [isNotEmpty, "Inserire un contenuto alla recensione."], [isReview, "Il contenuto della recensione deve avere tra i 50 e 500 caratteri."]]; 
         addFocusEvents(reviewControls); 
 
         document.getElementById("send_review").addEventListener("click", (e) => { if(!executeControls(reviewControls)) e.preventDefault();})
@@ -462,7 +462,7 @@ function init_ins_recensione() {
 
 function isUrl(url) { return new RegExp(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/).test(url); }
 
-function isBriefDescription(desc) { return hasLengthBetween(desc, 20, 75); }
+function isBriefDescription(desc) { return hasLengthBetween(desc, 20, 250); }
 
 function isPhoneNumber(number) { return new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/).test(number); }
 
@@ -477,7 +477,7 @@ function init_ins_risto() {
         // controlli generali del form di inserimento 
         var ristControls = {}; 
         ristControls["nome"] = [ [isNotEmpty, "Inserire il nome del ristorante."], [isWord, "Il nome deve contenere solo lettere ed essere lungo almeno 3 caratteri."]]; 
-        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 20 ai 70 caratteri"]]; 
+        ristControls["b_descrizione"] = [ [isNotEmpty, "Inserire una breve descrizione del ristorante."], [isBriefDescription, "La descrizione deve avere dai 20 ai 250 caratteri"]]; 
         ristControls["telefono"] = [ [isNotEmpty, "Inserire il numero di telefono del ristorante"], [isPhoneNumber, "Il valore inserito non corrisponde ad un numero di telefono valido."]]; 
         ristControls["email"] = [ [isNotEmpty, "Inserire l'email del ristorante."], [isEmail, "L'email inserita non è valida."]]; 
         ristControls["sito"] = [ [isNotEmpty, "Inserire il sito del ristorante."], [isUrl, "Il valore inserito non corrisponde ad un URL valido"]]; 
