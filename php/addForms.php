@@ -89,7 +89,7 @@
                     $name='eliminaRec';
                     $value='Elimina recensione';
                     $class='btn alert_btn'; 
-                    $title=''; 
+                    $title='Elimina recensione'; 
                 break;
             }
 
