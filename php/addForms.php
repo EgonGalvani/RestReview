@@ -16,35 +16,35 @@
                     $action='approva.php';
                     $name='approva';
                     $value='Accetta richiesta';
-                    $class='msg_box success_box'; 
+                    $class = ' msg_box success_box'; 
                 break;
                 case 'Rifiuta': 
                     $method='post';
                     $action='rifiuta.php';
                     $name='rifiuta';
                     $value='Rifiuta richiesta';
-                    $class='msg_box error_box'; 
+                    $class = ' msg_box error_box'; 
                 break;
                 case 'Dettaglio':
                     $method='get';
                     $action='dettaglioristorante.php';
                     $name='visitaRist';
                     $value='Vai al ristorante';
-                    $class=''; 
+                    $class =''; 
                 break;
                 case 'Elimina':
                     $method='post';
                     $action=$_SESSION['current_page'];
                     $name='eliminaRist';
                     $value='Elimina ristorante';
-                    $class='alert_btn'; 
+                    $class = ' alert_btn'; 
                 break;
             }
 
             $form = "<form method=\"$method\" action=\"$action\">
                         <fieldset>
                             <input type=\"hidden\" name=\"id\" value=\"$this->ristID\" />
-                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn $class\" />
+                            <input type=\"submit\" name=\"$name\" value=\"$value\" class=\"btn$class\" />
                         </fieldset> 
                     </form>";
 
