@@ -290,6 +290,12 @@ img {
 
 .rec_list .data_item {
     float: right; 
+    font-size: 9pt;
+    overflow: hidden;
+}
+
+.rec_list .card_title {
+    font-size: 14pt; 
 }
 
 /* ----------------- INSERIMENTO NUOVA RECENSIONE -------------- */ 
