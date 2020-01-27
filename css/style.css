@@ -554,7 +554,7 @@ dd form, dd fieldset {
 .rec_list .data_item{
    float: right;
    font-size: 1em; 
-   margin: 0.5em 0.5em 0 0; 
+   margin: 0.5em 0.5em 0 0;     
 }
 
 .rec_list .like_info {
@@ -866,7 +866,7 @@ progress {
 
 #ins_title {
     display: block;
-    font-size: 1.5em; 
+    font-size: 1.75em; 
     font-weight: bold;
 }
 
