@@ -494,6 +494,11 @@ textarea {
     margin: 1em; 
 }
 
+.card_title {
+    font-size: 1.5em; 
+    margin-left: 0.5em; 
+}
+
 .card_list dt {
     padding: 0.5em; 
     border-bottom: 0; 
@@ -548,7 +553,8 @@ dd form, dd fieldset {
 
 .rec_list .data_item{
    float: right;
-   margin: 0.5em 1em 0 0; 
+   font-size: 1em; 
+   margin: 0.5em 0.5em 0 0; 
 }
 
 .rec_list .like_info {
