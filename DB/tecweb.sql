@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 27, 2020 alle 17:24
+-- Creato il: Gen 27, 2020 alle 17:33
 -- Versione del server: 10.1.37-MariaDB
 -- Versione PHP: 7.3.1
 
@@ -352,11 +352,11 @@ INSERT INTO `utente` (`ID`, `PWD`, `Mail`, `Nome`, `Cognome`, `Data_Nascita`, `I
 (23, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'bernicebeneventi@dayrep.com', 'Bernice', 'Beneventi', '1971-05-05', 23, 'Best Bar Restaurants', '34567890123', 'Ristoratore', 'Donna'),
 (24, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'sofia.reticci@rhyta.com', 'Sofia', 'Reticci', '1974-07-01', 24, 'FoodConsumers SRL', '12345678900', 'Ristoratore', 'Donna'),
 (25, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'grazianopiazza@teleworm.us', 'Graziano', 'Piazza', '1957-03-18', 25, 'Piazza e F.', '45678901234', 'Ristoratore', 'Uomo'),
-(26, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lidiarossi@dayrep.com', 'Lidia', 'Rossi', '1965-08-08', 52, NULL, '56789012345', 'Ristoratore', 'Donna'),
-(27, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'fantinogiordano@jourrapide.com', 'Giordano', 'Fantino', '1981-01-21', 48, NULL, '67890123456', 'Ristoratore', 'Sconosciuto'),
-(28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', 49, NULL, '78901234567', 'Ristoratore', 'Uomo'),
-(29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', 50, NULL, '89012345678', 'Ristoratore', 'Altro'),
-(30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', 51, NULL, '90123456789', 'Ristoratore', 'Sconosciuto'),
+(26, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'lidiarossi@dayrep.com', 'Lidia', 'Rossi', '1965-08-08', 52, 'Lidia Rossi', '56789012345', 'Ristoratore', 'Donna'),
+(27, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'fantinogiordano@jourrapide.com', 'Giordano', 'Fantino', '1981-01-21', 48, 'Giordano & Sons', '67890123456', 'Ristoratore', 'Sconosciuto'),
+(28, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'gaetanonio@teleworm.us', 'Gaetano', 'Onio', '1988-10-18', 49, 'Onio SPA', '78901234567', 'Ristoratore', 'Uomo'),
+(29, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'camillocolombo@rhyta.com', 'Camillo', 'Colombo', '1963-05-25', 50, 'Colombo Camillo', '89012345678', 'Ristoratore', 'Altro'),
+(30, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'GIANETTOTOSCANO@teleworm.us', 'Gianetto', 'Toscano', '1993-12-25', 51, 'Toscano&co', '90123456789', 'Ristoratore', 'Sconosciuto'),
 (78, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'paolovillaggio@gmail.com', 'Paolo', 'Villaggio', '1932-12-30', 46, NULL, NULL, 'Utente', 'Uomo'),
 (79, '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'vanessatroiani@ggg.it', 'Vanessa', 'Troiani', '1968-06-15', 47, NULL, NULL, 'Utente', 'Donna'),
 (80, '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'admin@admin.com', 'Matteo', 'Ciccio', '1999-03-13', 53, NULL, NULL, 'Admin', 'Sconosciuto');
