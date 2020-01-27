@@ -46,7 +46,7 @@
                         $tab='<a class="tab_item" href="imieirist.php?type=0">Approvati</a>
                         <a class="tab_item" href="imieirist.php?type=1">In fase di approvazione</a>
                         <span class="tab_item active_tab">Rifiutati</span>';
-                        $stato='Rifiutato';
+                        $stato='Non approvato';
                     break;
                     }
                 }
