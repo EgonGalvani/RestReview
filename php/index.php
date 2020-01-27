@@ -20,7 +20,7 @@
         $pagen  = $_GET["pagen"]; 
     } 
     elseif(isset($_GET["pagen"])&&!is_numeric($_GET["pagen"])){
-        header('location: ../html/404.html');
+        header('location: 404.php');
     }
     else{ 
         $pagen=1; 
@@ -73,7 +73,7 @@
             $rowcount=mysqli_num_rows($result);
             $total_pages = ceil($rowcount / $results_per_page);
             if($pagen>$total_pages&&$total_pages>0){
-                header('location: ../html/404.html');
+                header('location: 404.php');
             }
             $query="SELECT t1.ID, Media\n"
             . "FROM\n"

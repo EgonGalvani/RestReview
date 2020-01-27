@@ -109,7 +109,7 @@
                     $list_recensioni='';
                     //check su ordinamento passato tramite GET
                     if(isset($_GET['ordinamento']) && !check_number($_GET['ordinamento']) && $_GET['ordinamento']!==0 && $_GET['ordinamento']!==1){
-                        header('location: ../html/404.html');
+                        header('location: 404.php');
                         exit;
                     }
                     //ordinamento
@@ -136,7 +136,7 @@
                     }
                     //check su pagen passato tramite GET
                     if(isset($_GET['pagen']) && (!check_number($_GET['pagen']) || $_GET['pagen']<1 || $_GET['pagen']>$total_pages)){
-                        header('location: ../html/404.html');
+                        header('location: 404.php');
                         exit;
                     }
 
@@ -217,7 +217,7 @@
 
                 }else{
                     //ristorante non presente
-                    header('location: ../html/404.html');
+                    header('location: 404.php');
                     exit;
                 }
             }else{
@@ -235,7 +235,7 @@
         }
         $obj_connection->close_connection();
     }else{
-        header('location: ../html/404.html');
+        header('location: 404.php');
         exit;
     }
 
