@@ -31,7 +31,7 @@
             $page=str_replace("%RAGIONESOCIALE%",$row['Ragione_Sociale'],$page);
         }
         else{
-            $page=str_replace("<dt>Partita IVA:</dt>","",$page);
+            $page=str_replace('<dt>Partita <abbr title="imposta sul valore aggiunto">IVA</abbr>:</dt>',"",$page);
             $page=str_replace("<dd>%PARTITA_IVA%</dd>","",$page);
             $page=str_replace("<dt>Ragione Sociale: </dt>","",$page);
             $page=str_replace("<dd>%RAGIONESOCIALE%</dd>","",$page);
